@@ -1,0 +1,18 @@
+test_cached_pair_never_counts_as_new_observations (custom.mission_2.test_mission_2.ConsensusTests) ... ok
+test_evaluator_refuses_active_training (custom.mission_2.test_mission_2.ConsensusTests) ... ok
+test_every_color_uses_measured_world_points (custom.mission_2.test_mission_2.ConsensusTests) ... ok
+test_manifest_covers_three_colors_and_prior_mission_endpoints (custom.mission_2.test_mission_2.ConsensusTests) ... ok
+test_nonfinite_measurement_is_rejected (custom.mission_2.test_mission_2.ConsensusTests) ... ok
+test_one_outlier_does_not_move_robust_center (custom.mission_2.test_mission_2.ConsensusTests) ... ok
+test_rejects_different_track_and_unstable_clusters (custom.mission_2.test_mission_2.ConsensusTests) ... ok
+test_three_consistent_frames_required (custom.mission_2.test_mission_2.ConsensusTests) ... ok
+test_begin_failure_still_stops (custom.mission_2.test_mission_2.MissionFailureTests) ... ok
+test_command_color_precedes_practice_color_and_stops_on_failed_route (custom.mission_2.test_mission_2.MissionFailureTests) ... ok
+test_invalid_command_color_is_not_replaced_by_practice_color (custom.mission_2.test_mission_2.MissionFailureTests) ... ok
+test_missing_observations_prevent_blind_approach (custom.mission_2.test_mission_2.MissionFailureTests) ... ok
+test_short_approaches_reobserve_and_verify_final_stop (custom.mission_2.test_mission_2.MissionFailureTests) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.044s
+
+OK

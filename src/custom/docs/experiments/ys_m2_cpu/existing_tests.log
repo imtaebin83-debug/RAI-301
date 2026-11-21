@@ -1,0 +1,71 @@
+test_malformed_llm_json_never_silently_falls_back (test_planner.ApiContractTests) ... ok
+test_network_error_never_silently_falls_back (test_planner.ApiContractTests) ... ok
+test_strict_configured_llm_path_and_fenced_json (test_planner.ApiContractTests) ... ok
+test_bracketed_numbers_are_not_coordinate (test_planner.FallbackTests) ... [planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+ok
+test_development_fallback_is_visible (test_planner.FallbackTests) ... ok
+test_duplicate_numeric_steps_not_silently_dropped (test_planner.FallbackTests) ... [planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+ok
+test_english_order_and_color (test_planner.FallbackTests) ... [planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+ok
+test_explicit_numeric_sequence (test_planner.FallbackTests) ... [planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+ok
+test_goal_coordinates_are_not_soccer (test_planner.FallbackTests) ... [planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+ok
+test_missing_color_rejected (test_planner.FallbackTests) ... [planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+ok
+test_mixed_explicit_arguments (test_planner.FallbackTests) ... [planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+ok
+test_mixed_language_order (test_planner.FallbackTests) ... [planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+ok
+test_negative_coordinates_remain_coordinates (test_planner.FallbackTests) ... [planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+ok
+test_number_does_not_supply_goal (test_planner.FallbackTests) ... [planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+ok
+test_strict_gate_refuses_missing_llm (test_planner.FallbackTests) ... [planner] local Qwen CPU language-model inference
+ok
+test_strict_gate_refuses_partial_llm_configuration (test_planner.FallbackTests) ... [planner] local Qwen CPU language-model inference
+[planner] local Qwen CPU language-model inference
+ok
+test_unknown_or_empty_instruction_rejected (test_planner.FallbackTests) ... [planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+ok
+test_configured_api_precedes_opted_in_rules (test_planner.LocalLlmContractTests) ... ok
+test_default_path_invokes_actual_llm_helper_contract (test_planner.LocalLlmContractTests) ... [planner] local Qwen CPU language-model inference
+ok
+test_local_failure_never_becomes_rule_plan (test_planner.LocalLlmContractTests) ... [planner] local Qwen CPU language-model inference
+ok
+test_local_invalid_json_rejected (test_planner.LocalLlmContractTests) ... [planner] local Qwen CPU language-model inference
+ok
+test_local_timeout_propagates (test_planner.LocalLlmContractTests) ... [planner] local Qwen CPU language-model inference
+ok
+test_strict_gate_accepts_successful_local_llm (test_planner.LocalLlmContractTests) ... [planner] local Qwen CPU language-model inference
+ok
+test_actual_model_trailing_quote_preserves_all_steps (test_planner.ValidationTests) ... [planner] removed trailing quoting after complete LLM JSON
+ok
+test_duplicate_json_keys_cannot_silently_drop_a_mission (test_planner.ValidationTests) ... ok
+test_extra_root_field_cannot_hide_another_mission (test_planner.ValidationTests) ... ok
+test_extra_step_field_cannot_hide_another_mission (test_planner.ValidationTests) ... ok
+test_invalid_cone_colors (test_planner.ValidationTests) ... ok
+test_multiple_json_plans_not_silently_merged_or_dropped (test_planner.ValidationTests) ... ok
+test_nested_duplicate_json_keys_rejected (test_planner.ValidationTests) ... ok
+test_rejects_hidden_or_unknown_parameters (test_planner.ValidationTests) ... ok
+test_rejects_invalid_goal_values (test_planner.ValidationTests) ... ok
+test_rejects_invalid_shapes (test_planner.ValidationTests) ... ok
+test_repeated_steps_from_llm_preserved (test_planner.ValidationTests) ... ok
+test_trailing_mission_prose_rejected (test_planner.ValidationTests) ... ok
+test_duplicate_labels_use_actual_scores_for_joint_assignment (test_room_assignment.RoomAssignmentTests) ... ok
+test_duplicate_labels_without_scores_rejected (test_room_assignment.RoomAssignmentTests) ... ok
+test_identical_scores_cannot_fabricate_assignment (test_room_assignment.RoomAssignmentTests) ... ok
+test_no_fixed_spatial_room_order (test_room_assignment.RoomAssignmentTests) ... ok
+test_nonfinite_scores_rejected (test_room_assignment.RoomAssignmentTests) ... ok
+test_bgr_rows_with_padding_are_rgb (test_vision.ImageDecodingTests) ... ok
+test_big_endian_float_depth_preserves_padding_and_nan (test_vision.ImageDecodingTests) ... ok
+test_uint16_depth_is_converted_from_mm_to_m (test_vision.ImageDecodingTests) ... ok
+test_ball_silhouette_cannot_admit_nan_depth_neighbours (test_vision.InvalidDepthRegressionTests) ... ok
+test_detection_rejects_nonfinite_fields_and_nonpositive_range (test_vision.InvalidDepthRegressionTests) ... ok
+test_invalid_candidate_is_not_an_observation (test_vision.InvalidDepthRegressionTests) ... ok
+
+----------------------------------------------------------------------
+Ran 46 tests in 0.050s
+
+OK

@@ -1,0 +1,10 @@
+{
+  "kind": "single_saved_frame_not_accuracy_or_mission_validation",
+  "source": "/tmp/rai_cone_capture",
+  "projection_seconds": 0.025726874002430122,
+  "detections": {
+    "blue": null,
+    "green": null,
+    "orange": null
+  }
+}

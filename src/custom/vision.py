@@ -106,8 +106,8 @@ class RGBD:
         self._cache = (image, depth, world, height, valid)
         return self._cache
 
-    def cone(self, color):
-        data = self.frame()
+    def cone(self, color, data=None):
+        data = self.frame() if data is None else data
         if data is None:
             return None
         rgb, depth, world, height, valid = data

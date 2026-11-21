@@ -1,0 +1,176 @@
+[
+  {
+    "id": "order-0-blue",
+    "split": "development",
+    "missions": [
+      2
+    ],
+    "cone_order": [
+      "blue",
+      "green",
+      "orange"
+    ],
+    "m2_color": "blue"
+  },
+  {
+    "id": "order-0-green",
+    "split": "development",
+    "missions": [
+      2
+    ],
+    "cone_order": [
+      "blue",
+      "green",
+      "orange"
+    ],
+    "m2_color": "green"
+  },
+  {
+    "id": "order-0-orange",
+    "split": "development",
+    "missions": [
+      2
+    ],
+    "cone_order": [
+      "blue",
+      "green",
+      "orange"
+    ],
+    "m2_color": "orange"
+  },
+  {
+    "id": "order-1-blue",
+    "split": "development",
+    "missions": [
+      2
+    ],
+    "cone_order": [
+      "orange",
+      "blue",
+      "green"
+    ],
+    "m2_color": "blue"
+  },
+  {
+    "id": "order-1-green",
+    "split": "development",
+    "missions": [
+      2
+    ],
+    "cone_order": [
+      "orange",
+      "blue",
+      "green"
+    ],
+    "m2_color": "green"
+  },
+  {
+    "id": "order-1-orange",
+    "split": "development",
+    "missions": [
+      2
+    ],
+    "cone_order": [
+      "orange",
+      "blue",
+      "green"
+    ],
+    "m2_color": "orange"
+  },
+  {
+    "id": "order-2-blue",
+    "split": "development",
+    "missions": [
+      2
+    ],
+    "cone_order": [
+      "green",
+      "orange",
+      "blue"
+    ],
+    "m2_color": "blue"
+  },
+  {
+    "id": "order-2-green",
+    "split": "development",
+    "missions": [
+      2
+    ],
+    "cone_order": [
+      "green",
+      "orange",
+      "blue"
+    ],
+    "m2_color": "green"
+  },
+  {
+    "id": "order-2-orange",
+    "split": "development",
+    "missions": [
+      2
+    ],
+    "cone_order": [
+      "green",
+      "orange",
+      "blue"
+    ],
+    "m2_color": "orange"
+  },
+  {
+    "id": "after-m1-blue",
+    "split": "held-out",
+    "missions": [
+      1,
+      2
+    ],
+    "cone_order": [
+      "orange",
+      "blue",
+      "green"
+    ],
+    "m2_color": "blue",
+    "m1_goal": [
+      16.38,
+      18.64,
+      90.0
+    ]
+  },
+  {
+    "id": "after-m1-green",
+    "split": "held-out",
+    "missions": [
+      1,
+      2
+    ],
+    "cone_order": [
+      "orange",
+      "blue",
+      "green"
+    ],
+    "m2_color": "green",
+    "m1_goal": [
+      14.98,
+      7.99,
+      90.0
+    ]
+  },
+  {
+    "id": "after-m1-orange",
+    "split": "held-out",
+    "missions": [
+      1,
+      2
+    ],
+    "cone_order": [
+      "orange",
+      "blue",
+      "green"
+    ],
+    "m2_color": "orange",
+    "m1_goal": [
+      15.42,
+      9.65,
+      90.0
+    ]
+  }
+]
