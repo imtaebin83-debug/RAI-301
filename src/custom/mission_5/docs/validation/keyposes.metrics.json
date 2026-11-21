@@ -1,0 +1,20 @@
+{
+  "train": {
+    "episodes": 3,
+    "position_rmse_m": 0.0010514379879589125,
+    "orientation_mean_rad": 0.0027046600302261313,
+    "official_policy_success": null
+  },
+  "val": {
+    "episodes": 1,
+    "position_rmse_m": 0.004277439260014752,
+    "orientation_mean_rad": 0.012989619347043235,
+    "official_policy_success": null
+  },
+  "test": {
+    "episodes": 1,
+    "position_rmse_m": 0.004206530324935471,
+    "orientation_mean_rad": 0.01359894161392856,
+    "official_policy_success": null
+  }
+}

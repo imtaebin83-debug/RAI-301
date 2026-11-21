@@ -1,0 +1,143 @@
+{
+  "version": 1,
+  "root": "/home/aril/m5-data/pilot",
+  "split_seed": 42,
+  "episodes": [
+    {
+      "file": "episode_1795257454317550964.h5",
+      "frames": 292,
+      "success": 1,
+      "fps": 10.0,
+      "action_key": "actions",
+      "group": "placement:vision:57353d8c79c5254f222dcbee06332cb61cc573a4d17e2c498abb1c8e030b2890",
+      "sha256": "0f3dfe64c577ae33b5dfbd8d9d95b4f6e64d448370cf8a442a2b35819faec4ef",
+      "official_success": true,
+      "camera_signature": "a8a2268824d6d4f60463ed5b262914beddca1a7084450eb21b606d87f07e0bb8",
+      "camera_metadata": {
+        "camera_calibration_sha256": "f0f2e6aa0b03bb46bdcd5855b76a0a2e9797027f127c9b8a83dcf34e79628945",
+        "camera_metadata_json": "{\"agentview\": {\"pos\": [1.28, 0.0, 0.92], \"quat\": [0.6633178, 0.24496836, 0.24496836, 0.6633178], \"fovy\": 46.0}, \"wrist\": {\"pos\": [0.05, 0.0, 0.0], \"quat\": [0.0, 0.707108, 0.707108, 0.0], \"fovy\": 75.0}}"
+      }
+    },
+    {
+      "file": "episode_1795257703809602955.h5",
+      "frames": 287,
+      "success": 1,
+      "fps": 10.0,
+      "action_key": "actions",
+      "group": "placement:vision:58de3efaf62639b6c150b01e02d10f7931696f41180cdfe37c255883af601a54",
+      "sha256": "c221a200d34e3a8ef06cb54dfa749a40c0904642ca9bb816e0f773960dbfc510",
+      "official_success": true,
+      "camera_signature": "a8a2268824d6d4f60463ed5b262914beddca1a7084450eb21b606d87f07e0bb8",
+      "camera_metadata": {
+        "camera_calibration_sha256": "f0f2e6aa0b03bb46bdcd5855b76a0a2e9797027f127c9b8a83dcf34e79628945",
+        "camera_metadata_json": "{\"agentview\": {\"pos\": [1.28, 0.0, 0.92], \"quat\": [0.6633178, 0.24496836, 0.24496836, 0.6633178], \"fovy\": 46.0}, \"wrist\": {\"pos\": [0.05, 0.0, 0.0], \"quat\": [0.0, 0.707108, 0.707108, 0.0], \"fovy\": 75.0}}"
+      }
+    },
+    {
+      "file": "episode_1795257741707550049.h5",
+      "frames": 279,
+      "success": 0,
+      "fps": 10.0,
+      "action_key": "actions",
+      "group": "placement:vision:d052e0db37f0008550e559130c7ee98657b675fbe981b67588650e606cae8fca",
+      "sha256": "12b85fbaafac499c6664bb59d7efc2d88fb02a98dce95045f77e12ca9ae05e88",
+      "official_success": false,
+      "camera_signature": "a8a2268824d6d4f60463ed5b262914beddca1a7084450eb21b606d87f07e0bb8",
+      "camera_metadata": {
+        "camera_calibration_sha256": "f0f2e6aa0b03bb46bdcd5855b76a0a2e9797027f127c9b8a83dcf34e79628945",
+        "camera_metadata_json": "{\"agentview\": {\"pos\": [1.28, 0.0, 0.92], \"quat\": [0.6633178, 0.24496836, 0.24496836, 0.6633178], \"fovy\": 46.0}, \"wrist\": {\"pos\": [0.05, 0.0, 0.0], \"quat\": [0.0, 0.707108, 0.707108, 0.0], \"fovy\": 75.0}}"
+      }
+    },
+    {
+      "file": "episode_1795257772154559584.h5",
+      "frames": 297,
+      "success": 1,
+      "fps": 10.0,
+      "action_key": "actions",
+      "group": "placement:vision:c7b7b839b94e95d5e66bc8e8332e4f29caad7a3cfc88c83c7af0d476ed04add9",
+      "sha256": "93c2a6ec2f5a169e38e5a60fca567ca51dca76e81e3122b5f1f1677992551dd1",
+      "official_success": true,
+      "camera_signature": "a8a2268824d6d4f60463ed5b262914beddca1a7084450eb21b606d87f07e0bb8",
+      "camera_metadata": {
+        "camera_calibration_sha256": "f0f2e6aa0b03bb46bdcd5855b76a0a2e9797027f127c9b8a83dcf34e79628945",
+        "camera_metadata_json": "{\"agentview\": {\"pos\": [1.28, 0.0, 0.92], \"quat\": [0.6633178, 0.24496836, 0.24496836, 0.6633178], \"fovy\": 46.0}, \"wrist\": {\"pos\": [0.05, 0.0, 0.0], \"quat\": [0.0, 0.707108, 0.707108, 0.0], \"fovy\": 75.0}}"
+      }
+    },
+    {
+      "file": "episode_1795257804046722306.h5",
+      "frames": 291,
+      "success": 1,
+      "fps": 10.0,
+      "action_key": "actions",
+      "group": "placement:vision:b0c31da503dd0462e7abbe79ad5f3d911cef941ba05612588b029f0f46811fa9",
+      "sha256": "8914549143cef4041ff84f9a326641a15a4a11c713ff3c7285dd3dd9cf4e4509",
+      "official_success": true,
+      "camera_signature": "a8a2268824d6d4f60463ed5b262914beddca1a7084450eb21b606d87f07e0bb8",
+      "camera_metadata": {
+        "camera_calibration_sha256": "f0f2e6aa0b03bb46bdcd5855b76a0a2e9797027f127c9b8a83dcf34e79628945",
+        "camera_metadata_json": "{\"agentview\": {\"pos\": [1.28, 0.0, 0.92], \"quat\": [0.6633178, 0.24496836, 0.24496836, 0.6633178], \"fovy\": 46.0}, \"wrist\": {\"pos\": [0.05, 0.0, 0.0], \"quat\": [0.0, 0.707108, 0.707108, 0.0], \"fovy\": 75.0}}"
+      }
+    },
+    {
+      "file": "episode_1795257842884152806.h5",
+      "frames": 341,
+      "success": 0,
+      "fps": 10.0,
+      "action_key": "actions",
+      "group": "placement:vision:c8d2dd95311fdac5df3458e9aad19be38418f2e6b8ccaedfd271cefe5f01ffe1",
+      "sha256": "a096bf2818d4f7c4bd37775108008ce7a1e9d37b3da1f66dd6963bd1d3b1c729",
+      "official_success": false,
+      "camera_signature": "a8a2268824d6d4f60463ed5b262914beddca1a7084450eb21b606d87f07e0bb8",
+      "camera_metadata": {
+        "camera_calibration_sha256": "f0f2e6aa0b03bb46bdcd5855b76a0a2e9797027f127c9b8a83dcf34e79628945",
+        "camera_metadata_json": "{\"agentview\": {\"pos\": [1.28, 0.0, 0.92], \"quat\": [0.6633178, 0.24496836, 0.24496836, 0.6633178], \"fovy\": 46.0}, \"wrist\": {\"pos\": [0.05, 0.0, 0.0], \"quat\": [0.0, 0.707108, 0.707108, 0.0], \"fovy\": 75.0}}"
+      }
+    },
+    {
+      "file": "episode_1795257882109485426.h5",
+      "frames": 317,
+      "success": 1,
+      "fps": 10.0,
+      "action_key": "actions",
+      "group": "placement:vision:d5c24b8b505f60daa9469fc368eddc2719f549437a17a93d30438f15ae01de42",
+      "sha256": "5e0fc60766de9aca33b3e84cc6d0de004a9be93ed88cad0e77d724e78898ce7c",
+      "official_success": true,
+      "camera_signature": "a8a2268824d6d4f60463ed5b262914beddca1a7084450eb21b606d87f07e0bb8",
+      "camera_metadata": {
+        "camera_calibration_sha256": "f0f2e6aa0b03bb46bdcd5855b76a0a2e9797027f127c9b8a83dcf34e79628945",
+        "camera_metadata_json": "{\"agentview\": {\"pos\": [1.28, 0.0, 0.92], \"quat\": [0.6633178, 0.24496836, 0.24496836, 0.6633178], \"fovy\": 46.0}, \"wrist\": {\"pos\": [0.05, 0.0, 0.0], \"quat\": [0.0, 0.707108, 0.707108, 0.0], \"fovy\": 75.0}}"
+      }
+    }
+  ],
+  "errors": [],
+  "counts": {
+    "total": 7,
+    "successful": 5,
+    "failed": 2,
+    "groups": 5
+  },
+  "policy_inputs": [
+    "observation/image",
+    "observation/wrist_image",
+    "observation/state"
+  ],
+  "splits": {
+    "train": [
+      "episode_1795257454317550964.h5",
+      "episode_1795257703809602955.h5",
+      "episode_1795257772154559584.h5"
+    ],
+    "val": [
+      "episode_1795257804046722306.h5"
+    ],
+    "test": [
+      "episode_1795257882109485426.h5"
+    ]
+  },
+  "notes": [
+    "Success is the recorder label; not an independently verified official verdict.",
+    "Initial diagnostic poses are used only for grouping; excluded from model inputs.",
+    "Pilot development split explicitly includes the default demonstration in training; default rollout is not held-out evaluation."
+  ],
+  "ready": true
+}

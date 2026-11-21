@@ -1,0 +1,163 @@
+"""Task-parameterized keypose policy learned from measured successful episodes.
+
+The inductive bias is an object-relative SE(3) trajectory with a finite-state
+servo. Phase order, endpoint poses, gripper actions and phase durations come
+from the training split. This is not the raw-image CNN and never calls the
+demonstration teacher's planner or step function.
+"""
+from __future__ import annotations
+
+import json
+import math
+from pathlib import Path
+import time
+
+import numpy as np
+from scipy.spatial.transform import Rotation
+
+from .perception import CameraModel, measure_scene
+
+FORMAT = "m5-task-parameterized-keyposes-v1"
+
+
+def yaw_rotation(yaw):
+    return Rotation.from_euler("z", float(yaw)).as_matrix()
+
+
+def materialize(phase, measurement):
+    """A learned pose in an observed object's yaw-canonical frame -> base pose."""
+    ref = np.asarray(measurement[phase["reference"] + "_xy"], dtype=float)
+    rotation = yaw_rotation(measurement["pencil_yaw"])
+    target = np.eye(4)
+    target[:3, 3] = np.r_[ref, 0.] + rotation @ np.asarray(phase["offset_xyz"], float)
+    target[:3, :3] = rotation @ Rotation.from_quat(phase["quaternion_xyzw"]).as_matrix()
+    if not np.isfinite(target).all():
+        raise ValueError("Nonfinite learned keypose")
+    return target
+
+
+def servo_action(state, target, grip, controller):
+    state = np.asarray(state, dtype=float)
+    if state.shape != (8,) or not np.isfinite(state).all():
+        raise ValueError("Expected finite 8-D robot proprioception")
+    error = target[:3, 3] - state[:3]
+    angular = Rotation.from_matrix(target[:3, :3] @ Rotation.from_rotvec(state[3:6]).as_matrix().T).as_rotvec()
+    translation = error * controller["position_gain"]
+    translation *= min(1., controller["max_position_step_m"] / max(np.linalg.norm(translation), 1e-12))
+    turn = angular * controller["orientation_gain"]
+    turn *= min(1., controller["max_rotation_step_rad"] / max(np.linalg.norm(turn), 1e-12))
+    action = np.r_[translation / .05, turn / .5, -1. if grip < 0 else 1.]
+    return np.clip(action, -1., 1.).astype(np.float32), float(np.linalg.norm(error)), float(np.linalg.norm(angular))
+
+
+def validate_model(model):
+    if model.get("format") != FORMAT or not model.get("phases"):
+        raise ValueError("Not a learned task-parameterized keypose checkpoint")
+    if not model.get("training", {}).get("episode_sha256"):
+        raise ValueError("Checkpoint lacks training demonstration provenance")
+    names = []
+    for phase in model["phases"]:
+        if phase.get("reference") not in ("pencil", "holder"):
+            raise ValueError("Keypose reference must be a sensor-observed object")
+        values = [*phase["offset_xyz"], *phase["quaternion_xyzw"], phase["grip"], phase["minimum_seconds"]]
+        if not np.isfinite(values).all() or phase["minimum_seconds"] < 0:
+            raise ValueError("Invalid learned keypose values")
+        if len(phase["offset_xyz"]) != 3 or len(phase["quaternion_xyzw"]) != 4:
+            raise ValueError("Invalid learned keypose shape")
+        names.append(phase["name"])
+    if len(set(names)) != len(names):
+        raise ValueError("Duplicate learned phases")
+    required = ("position_gain", "orientation_gain", "max_position_step_m", "max_rotation_step_rad",
+                "position_tolerance_m", "orientation_tolerance_rad", "stage_timeout_scale", "stage_timeout_min")
+    c = model["controller"]
+    if any(not math.isfinite(float(c[k])) or float(c[k]) <= 0 for k in required):
+        raise ValueError("Invalid finite servo configuration")
+    return model
+
+
+class Policy:
+    policy_name = "task-parameterized-keypose-bc"
+    def __init__(self, checkpoint, device="cpu", camera=None):
+        if device != "cpu":
+            raise ValueError("Keypose policy is CPU-only")
+        self.model = validate_model(json.loads(Path(checkpoint).read_text()))
+        self.fps = float(self.model["fps"])
+        if not 1 <= self.fps <= 30:
+            raise ValueError("Unsupported checkpoint fps")
+        calibration = self.model["camera"]
+        self.camera = camera or CameraModel.from_pose(calibration["k"], calibration["position"],
+                                                      calibration["quaternion_wxyz"])
+        self.controller = self.model["controller"]
+        self.reset()
+
+    def reset(self):
+        self.done = False
+        self.failed = None
+        self.stage = "observe"
+        self.debug = {"policy_kind": self.policy_name, "phase_source": "training_split_measured_robot_states"}
+        self._measurements = []
+        self._scene = None
+        self._index = 0
+        self._start = self._stage_started = None
+        self._last_measure_time = None
+        self._last_hit_time = None
+        self._hits = 0
+        self._grip = -1.
+
+    def _hold(self):
+        return {"actions": np.asarray([[0, 0, 0, 0, 0, 0, self._grip]], dtype=np.float32)}
+
+    def act(self, observation):
+        if self.done or self.failed:
+            return self._hold()
+        now = float(observation.get("time", time.monotonic()))
+        if not math.isfinite(now):
+            raise ValueError("Invalid observation timestamp")
+        if self._start is None:
+            self._start = self._stage_started = now
+        if self._scene is None:
+            try:
+                measurement = measure_scene(observation["image"], self.camera).as_dict()
+                if now != self._last_measure_time:
+                    self._measurements.append(measurement)
+                    self._measurements = self._measurements[-4:]
+                    self._last_measure_time = now
+                if len(self._measurements) >= 3:
+                    p = np.asarray([m["pencil_xy"] for m in self._measurements])
+                    h = np.asarray([m["holder_xy"] for m in self._measurements])
+                    yaw = np.asarray([m["pencil_yaw"] for m in self._measurements])
+                    if max(p.std(0).max(), h.std(0).max()) < .008:
+                        self._scene = {"pencil_xy": np.median(p, axis=0), "holder_xy": np.median(h, axis=0),
+                                       "pencil_yaw": math.atan2(np.sin(yaw).mean(), np.cos(yaw).mean())}
+                        self.stage = self.model["phases"][0]["name"]
+                        self._stage_started = now
+            except (ValueError, np.linalg.LinAlgError) as error:
+                self.debug["vision_error"] = str(error)
+            if self._scene is None and now - self._start > 8:
+                self.failed = "Initial sensor-only object localization timed out"
+            return self._hold()
+        phase = self.model["phases"][self._index]
+        target = materialize(phase, self._scene)
+        self._grip = float(phase["grip"])
+        action, distance, angular = servo_action(observation["state"], target, self._grip, self.controller)
+        elapsed = now - self._stage_started
+        self.debug.update(stage=self.stage, learned_target_xyz=target[:3, 3].tolist(),
+                          position_error=distance, orientation_error=angular, elapsed=elapsed)
+        timeout = max(self.controller["stage_timeout_min"],
+                      phase["minimum_seconds"] * self.controller["stage_timeout_scale"])
+        if elapsed > timeout:
+            self.failed = "Learned-keypose stage timed out: " + self.stage
+            return self._hold()
+        hit = distance < self.controller["position_tolerance_m"] and angular < self.controller["orientation_tolerance_rad"]
+        if now != self._last_hit_time:
+            self._hits = self._hits + 1 if hit else 0
+            self._last_hit_time = now
+        if self._hits >= 2 and elapsed >= phase["minimum_seconds"]:
+            self._index += 1
+            self._hits = 0
+            self._stage_started = now
+            if self._index >= len(self.model["phases"]):
+                self.done, self.stage = True, "done"
+            else:
+                self.stage = self.model["phases"][self._index]["name"]
+        return {"actions": action[None]}

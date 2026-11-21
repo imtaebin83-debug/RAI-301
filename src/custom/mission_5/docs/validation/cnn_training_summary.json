@@ -1,0 +1,22 @@
+{
+  "format": "m5-two-camera-bc-v3",
+  "epochs": 100,
+  "best_epoch": 98,
+  "best_val_loss": 0.023051651316307663,
+  "last_train_loss": 0.00011541121509074995,
+  "last_val_loss": 0.024152905056157064,
+  "resume_epochs": 92,
+  "resume_wall_seconds": 226.96,
+  "peak_rss_mb": 658.234375,
+  "epoch_seconds_mean": 2.509217384800031,
+  "train_episodes": 3,
+  "val_episodes": 1,
+  "test_episodes": 1,
+  "train_includes_default": true,
+  "test_loss_evaluated": false,
+  "inference_checkpoint": "/home/aril/m5-runs/bc-pilot-v3-1795257934095983009/inference_best_epoch98.pt",
+  "inference_size_bytes": 680183,
+  "inference_sha256": "344fd55606443379b53b75a8fcd9b75d6c28b260528509ab8dcd32a46f19d198",
+  "official_task_success": null,
+  "note": "Actual demonstration training; physical closed-loop task success must be measured separately."
+}

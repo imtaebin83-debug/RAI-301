@@ -1,0 +1,306 @@
+{
+  "format": "m5-task-parameterized-keyposes-v1",
+  "fps": 10.0,
+  "phases": [
+    {
+      "name": "approach",
+      "reference": "pencil",
+      "offset_xyz": [
+        -0.0028918528298845646,
+        0.001766731878674252,
+        0.20104057590166727
+      ],
+      "quaternion_xyzw": [
+        0.6951417697536673,
+        0.7188715411531544,
+        -0.0012573698411759017,
+        -0.00021513928081997536
+      ],
+      "grip": -1.0,
+      "minimum_seconds": 3.400000000000034,
+      "reference_variance_m2": {
+        "pencil": 3.891249958329442e-06,
+        "holder": 0.012190727129878221
+      },
+      "endpoint_std_m": [
+        0.001738825812818892,
+        0.0008361881308093107,
+        0.0004105169434966018
+      ],
+      "samples": 3
+    },
+    {
+      "name": "descend",
+      "reference": "pencil",
+      "offset_xyz": [
+        -0.0004627733020024117,
+        -0.0006603146780914932,
+        0.02306913894911607
+      ],
+      "quaternion_xyzw": [
+        0.7074653213913669,
+        0.7067477805010011,
+        0.0005750468619530369,
+        -0.000251210320923703
+      ],
+      "grip": -1.0,
+      "minimum_seconds": 2.8000000000000114,
+      "reference_variance_m2": {
+        "pencil": 5.989572042188301e-08,
+        "holder": 0.01243638008478782
+      },
+      "endpoint_std_m": [
+        0.0001435828303465991,
+        0.00017731006589676273,
+        8.85484713771413e-05
+      ],
+      "samples": 3
+    },
+    {
+      "name": "close",
+      "reference": "pencil",
+      "offset_xyz": [
+        -9.189285371991142e-05,
+        -0.004269403896302446,
+        0.01742202912767728
+      ],
+      "quaternion_xyzw": [
+        0.7063937368200801,
+        0.7077948492638556,
+        0.005358795599826378,
+        -0.002371338575186196
+      ],
+      "grip": 1.0,
+      "minimum_seconds": 1.0,
+      "reference_variance_m2": {
+        "pencil": 7.577076839970144e-07,
+        "holder": 0.012321907831455398
+      },
+      "endpoint_std_m": [
+        0.0006214895934711643,
+        0.0005512811703937802,
+        0.0002598989041402933
+      ],
+      "samples": 3
+    },
+    {
+      "name": "lift",
+      "reference": "pencil",
+      "offset_xyz": [
+        -0.0001298055586154757,
+        -0.0010449718612404637,
+        0.41522253553072613
+      ],
+      "quaternion_xyzw": [
+        0.706829628432865,
+        0.7073836048815326,
+        -0.000414496909442778,
+        0.00037430813166471196
+      ],
+      "grip": 1.0,
+      "minimum_seconds": 6.5,
+      "reference_variance_m2": {
+        "pencil": 1.4677672939479193e-07,
+        "holder": 0.01238138436617162
+      },
+      "endpoint_std_m": [
+        0.00025421688839434944,
+        0.0001089525062583272,
+        0.00026510347872088735
+      ],
+      "samples": 3
+    },
+    {
+      "name": "upright",
+      "reference": "pencil",
+      "offset_xyz": [
+        0.0009931082213240473,
+        0.00023540615339287727,
+        0.41874051094055176
+      ],
+      "quaternion_xyzw": [
+        0.5127723355121688,
+        0.512724394400796,
+        -0.4862134311636511,
+        -0.48762149939866434
+      ],
+      "grip": 1.0,
+      "minimum_seconds": 3.5,
+      "reference_variance_m2": {
+        "pencil": 5.565985503396537e-07,
+        "holder": 0.012424433204564966
+      },
+      "endpoint_std_m": [
+        0.0006859509581579077,
+        0.00028645954867213873,
+        6.333056384129766e-05
+      ],
+      "samples": 3
+    },
+    {
+      "name": "carry",
+      "reference": "holder",
+      "offset_xyz": [
+        0.004498689398348676,
+        -0.0013246618744420498,
+        0.3990194996198018
+      ],
+      "quaternion_xyzw": [
+        0.500171225967668,
+        0.4998886860644529,
+        -0.4996812486321703,
+        -0.500258629135121
+      ],
+      "grip": 1.0,
+      "minimum_seconds": 5.799999999999997,
+      "reference_variance_m2": {
+        "pencil": 0.012157532359948812,
+        "holder": 1.971775066209239e-06
+      },
+      "endpoint_std_m": [
+        0.00040019133963101926,
+        0.0013224786594117045,
+        0.0002503440698202982
+      ],
+      "samples": 3
+    },
+    {
+      "name": "insert",
+      "reference": "holder",
+      "offset_xyz": [
+        0.00047252394329790515,
+        -0.0005475655308298596,
+        0.26955097913742065
+      ],
+      "quaternion_xyzw": [
+        0.4987295116437579,
+        0.49951529848042453,
+        -0.5009037500788137,
+        -0.5008480547596971
+      ],
+      "grip": 1.0,
+      "minimum_seconds": 2.099999999999966,
+      "reference_variance_m2": {
+        "pencil": 0.012417553546571682,
+        "holder": 7.646255083440859e-07
+      },
+      "endpoint_std_m": [
+        0.00010523714663965602,
+        6.24581274372525e-05,
+        0.000865823096035363
+      ],
+      "samples": 3
+    },
+    {
+      "name": "release",
+      "reference": "holder",
+      "offset_xyz": [
+        0.00046854909316083713,
+        0.0003536848294498252,
+        0.2647666831811269
+      ],
+      "quaternion_xyzw": [
+        0.4989183243557111,
+        0.5001916477271756,
+        -0.5007225031465045,
+        -0.5001657685295563
+      ],
+      "grip": -1.0,
+      "minimum_seconds": 1.1000000000000227,
+      "reference_variance_m2": {
+        "pencil": 0.012429927665418897,
+        "holder": 6.477871511708636e-08
+      },
+      "endpoint_std_m": [
+        6.293907324974457e-05,
+        4.995876285894508e-05,
+        0.00024149846829566712
+      ],
+      "samples": 3
+    },
+    {
+      "name": "retreat",
+      "reference": "holder",
+      "offset_xyz": [
+        -0.0004660735041239103,
+        -0.0007925402208934091,
+        0.41296255588531494
+      ],
+      "quaternion_xyzw": [
+        0.5014338917526944,
+        0.49972989208594576,
+        -0.49881183639126375,
+        -0.5000208385992445
+      ],
+      "grip": -1.0,
+      "minimum_seconds": 2.5,
+      "reference_variance_m2": {
+        "pencil": 0.012449250274505072,
+        "holder": 1.7362886505546026e-06
+      },
+      "endpoint_std_m": [
+        7.479779663572174e-05,
+        0.00015538267084693619,
+        0.0013063499400135924
+      ],
+      "samples": 3
+    }
+  ],
+  "policy_inputs": [
+    "image",
+    "state"
+  ],
+  "unused_optional_input": "wrist_image",
+  "camera": {
+    "k": [
+      [
+        301.54910282544034,
+        0,
+        127.5
+      ],
+      [
+        0,
+        301.54910282544034,
+        127.5
+      ],
+      [
+        0,
+        0,
+        1
+      ]
+    ],
+    "position": [
+      1.28,
+      0.0,
+      0.92
+    ],
+    "quaternion_wxyz": [
+      0.6633178,
+      0.24496836,
+      0.24496836,
+      0.6633178
+    ]
+  },
+  "controller": {
+    "position_gain": 0.65,
+    "orientation_gain": 0.65,
+    "max_position_step_m": 0.015,
+    "max_rotation_step_rad": 0.1,
+    "position_tolerance_m": 0.006,
+    "orientation_tolerance_rad": 0.08,
+    "stage_timeout_scale": 3.0,
+    "stage_timeout_min": 12.0
+  },
+  "training": {
+    "method": "train-only object-relative pose/gripper/timing prototypes",
+    "manifest_sha256": "d6de4cbc0122d829565f3f42005db141f523758ff72163ceada324eac55dd052",
+    "episode_sha256": {
+      "episode_1795257454317550964.h5": "0f3dfe64c577ae33b5dfbd8d9d95b4f6e64d448370cf8a442a2b35819faec4ef",
+      "episode_1795257703809602955.h5": "c221a200d34e3a8ef06cb54dfa749a40c0904642ca9bb816e0f773960dbfc510",
+      "episode_1795257772154559584.h5": "93c2a6ec2f5a169e38e5a60fca567ca51dca76e81e3122b5f1f1677992551dd1"
+    },
+    "target_source": "next-phase measured HDF5 robot state, never debug target_xyz",
+    "phase_reference_selection": "minimum train endpoint variance",
+    "inductive_bias": "object-relative SE(3) frames and generic finite-state pose servo"
+  }
+}
