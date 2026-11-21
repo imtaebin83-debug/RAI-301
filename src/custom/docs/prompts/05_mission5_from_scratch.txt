@@ -1,0 +1,72 @@
+미션 5 처음부터: 시연 → 팀 정책 학습 → Panda 삽입
+=============================================
+
+당신은 ROS 2 휴머노이드 대회 팀의 구현 담당자다. 아래 담당 미션을 실제 코드 수정과 시뮬레이터 검증까지 진행해라. 계획만 제시하고 끝내지 마라.
+내 이니셜: [INI]  — 사용 전에 실제 이니셜로 바꾼다.
+
+프로젝트와 작업 시작
+- 저장소: https://github.com/imtaebin83-debug/RAI-301.git
+- 작성 시 확인한 main: e48a9a1b59234f11714bbe1d47056c36379fd00b. 이 SHA로 고정하지 말고 작업 시작 시 최신 origin/main과 변경된 규칙·코드를 다시 확인한다.
+- 먼저 README.md, src/custom/README.md, src/custom/docs/VALIDATION_REPORT.md, TEAM_OPTIMIZATION.md, 관련 미션·공통 코드와 공식 판정을 읽어라. 이 프롬프트의 과거 상태보다 최신 소스·규칙을 우선한다.
+- Ubuntu는 aril@100.77.17.47(Tailscale), 기준 저장소 /home/aril/RAI-301, Conda는 /home/aril/miniconda3의 haic_rai301이다. rai-gpu 별칭은 이 PC에 실제 설정돼 있을 때만 쓴다. 비밀번호·개인키·API 키를 채팅이나 Git에 남기지 않는다.
+- 원본 공유 폴더에서 branch 전환·reset·clean·pull로 다른 사람 작업을 덮어쓰지 않는다. 상태와 기존 worktree를 확인한 뒤 origin/main에서 본인 전용 opt/m5-이니셜-고유번호 브랜치와 /home/aril/rai-worktrees/이니셜-m5-고유번호 worktree를 만든다. 로컬 노트북에서도 별도 clone/worktree를 쓴다.
+- 내 worktree의 src가 실행·import되는지 HAIC_ROOT, PYTHONPATH, cwd, __file__로 확인한다. Conda activation hook이 원본 경로를 가리킬 수 있으므로 확인 없이 원본 코드를 실행하지 않는다. 기존 가중치는 읽기 전용으로 재사용하거나 custom/tools/download_models.py로 준비한다.
+- 공통 Conda 환경·전역 설정을 임의로 업그레이드하지 않는다. 추가 의존성이 필요하면 개인 환경에서 시험하고 제출용 의존성 변경안을 함께 남긴다. SSH나 GPU가 준비되지 않아도 가능한 소스 분석·구현·오프라인 검사를 계속하고, 실제 검증 대기 항목을 구분한다.
+
+대회 규칙과 인터페이스
+- 최종 실행 코드·필수 모델·의존성은 src/custom/ 안에 둔다. 조교 관리 main.py, mission_api.py, referee.py, main_config.yaml, scenarios/, ros2_bridge/, environment/, setup/는 읽기만 한다. 센서·보행 설정과 공유 의존성은 통합 담당자와 조율한다.
+- 목표·색은 대회 명령에서 planner가 self.params로 넘긴 값을 쓴다. 미션 코드가 시나리오·정답 파일·referee 내부 상태·gt /odom으로 위치나 숨은 물체·방 배치를 알아내면 안 된다. 평가 하네스만 별도로 시나리오 생성과 공식 결과 확인을 수행한다.
+- 미션 제어에서 self.randomize(), self.judge()를 호출하지 않는다. 채점·초기화·배치 편의 기능으로 수행 과정을 생략하지 않는다.
+- begin_mission()은 G1을 이동시키지 않는다. e48a9a1의 selected.pos/yaw_deg는 실제 현재 자세가 아닌 미션 지정 자세였으므로 현재 위치로 재초기화하지 않는다. 공통 bringup의 연속 센서 추정과 허용된 실제 리스폰 처리를 사용한다.
+- MissionN 클래스·MISSION·run()·self.result()와 Navigator 공개 인터페이스를 보존한다. 미션 파일에서 ROS init/spin/shutdown, 입력 대기, 무한 대기를 추가하지 않는다. 모든 센서·모델·제어 대기에 시간 상한을 두고 예외·종료 시 정지한다.
+- 미션 4는 실제 VLM, 미션 5는 팀이 학습한 정책이 필수다. 규칙 기반 대체 경로를 해당 요구사항을 충족한 것처럼 보고하지 않는다.
+
+협업과 공유 GPU
+- 담당 범위 외 미션을 덮어쓰지 않는다. 공통 위치 추정·Navigator·bringup·planner는 미션 1/통합 담당자가 관리한다. 변경이 필요하면 재현 로그와 최소 변경안을 experiments/이니셜/m5/DEPENDENCY_REQUEST.txt에 남기고 담당자에게 전달할 자료로 정리한다. 독립적인 담당 작업은 계속한다.
+- vision.py의 frame/_image/observe/Detection은 미션 2·6 공유 영역이다. 담당 함수의 변경과 공통 변경을 구분하고, 공통 부분을 바꾸면 두 미션의 회귀 검증이 필요하다.
+- 다른 사람의 프로세스를 종료하거나 장치를 재부팅하지 않는다. GPU 점유·시뮬레이터·학습 프로세스를 확인하고 예약 순서대로 쓴다.
+- 일반 시뮬레이터는 src에서 bash custom/tools/run_sim.sh --headless --missions 5 --no-wait로 실행한다. wrapper가 /tmp/rai-gpu-simulator.lock을 사용한다.
+- randomized_suite.py, web_smoke.py, 별도 GPU 학습처럼 wrapper를 거치지 않는 GPU 작업은 같은 lock을 바깥에서 한 번 획득한다. 예: flock -n /tmp/rai-gpu-simulator.lock python custom/testing/randomized_suite.py ... . lock을 이미 잡은 wrapper를 다시 감싸거나 다른 사람의 시뮬레이터에 제어 명령을 보내지 않는다. CPU 분석·단위 검사는 병렬 진행할 수 있다.
+- experiments/이니셜/m5/실행ID/에 작은 설정·측정값·실패 기록을 남긴다. 큰 데이터·가중치는 일반 Git에 올리지 말고 재현·전달 방법을 명시한다. 제출 시 필요한 가중치는 custom 내부에 실제로 포함돼야 한다.
+
+진행과 완료
+1. 현재 구현과 공식 실패 로그를 읽고, 재현 가능한 병목과 가설을 정한다. 필요한 논문·공식 구현을 선별해 확인하고 적용 이유를 기록한다.
+2. 기존 baseline을 동일 조건에서 먼저 측정하고 작은 변경을 하나씩 비교한다. 성공 미션 수·안정성을 먼저 확보하고 시간을 줄인다.
+3. 기본 시나리오뿐 아니라 별도 개발 seed와 손대지 않은 평가 seed, 다른 초기 위치·이전 미션 종료 위치를 구분해 시험한다. 기본 시작점으로 강제 리셋한 단독 시험을 연속 미션 성공으로 표현하지 않는다.
+4. 필요한 단위·수치 검사와 실제 원본 referee 판정을 모두 확인한다. 기존 검사 46개는 출발점이며, 최신 main에서 검사 수·내용을 다시 확인한다. 단일 PASS·학습 loss·추정 좌표만으로 대회 성공을 선언하지 않는다. 무관한 전체 검사를 매번 반복하지 않는다.
+5. 변경 파일, 기반/결과 커밋, 가설, 개발/평가 조건, 실제 PASS/시도 횟수와 시간, 실패 단계, 공식 JSON·로그, 의존성과 실행 명령, 공통 변경 요청을 src/custom/docs/experiments/이니셜_m5_날짜.md에 기록한다.
+6. 충분히 검증한 담당 변경을 커밋하고 본인의 opt 브랜치만 push한다. main 자동 병합·force push·타인 브랜치 수정은 하지 않는다. 인증이 막히면 커밋·patch·보고서를 먼저 완성하고 필요한 로그인만 요청한다.
+7. 최종 응답은 달라진 점, 실제 측정 결과, 남은 실패 원인, 팀원이 재현할 명령, 브랜치/커밋을 짧게 보고한다. 실제 실행하지 못한 검증은 명확히 표시한다.
+
+담당 미션 작업 지시
+--------------------
+담당 범위와 출발점
+- 미션 5는 아직 구현되지 않은 TODO 스켈레톤이다. 성공 시연·학습 checkpoint·실제 삽입 성공이 있다고 가정하지 않는다.
+- src/custom/mission_5/ 아래에 수집·데이터 검사·학습·checkpoint·추론·미션 실행을 연결한다. 다른 미션·공통 주행·공유 카메라 설정은 보존한다.
+- 제공 원본을 먼저 읽는다: ros2_bridge/tools/panda_learning_runtime.py, environment/robots/control/franka/manipulation/panda_controller.py, ros2_bridge/tools/ros_publisher.py, mission_api.py, 원본 referee 및 관련 Panda 도구. 조교 코드는 수정하지 않는다.
+- 로컬/호스트에 mission5-prep 같은 준비 자료가 있다면 참고 구현으로 검토한다. 그 폴더가 있다는 사실을 실제 성공 데이터나 학습 정책 확보로 해석하지 않는다.
+
+반드시 확인할 좌표계·데이터 계약
+- e48a9a1의 제공 HDF5 state는 raw joint가 아니라 Panda-base 기준 eef xyz3 + eef rotvec3 + finger qpos2의 8차원이었다.
+- 제공 runtime의 학습 action은 base 기준 정규화 7차원(dx,dy,dz,drotvec3,grip)이었고 이동 0.05m, 회전 0.5rad 스케일 및 grip<0 열기를 사용했다. 최신 소스로 단위·회전 합성을 다시 확인한다.
+- 같은 7개 값을 받는 ROS /panda/eef_delta_command는 실제 제어기에서 world 기준 delta에 적용됐으므로 학습 action을 그대로 publish하면 좌표계가 틀릴 수 있다. 공개 TF의 base→world 회전, FK/TF로 재구성한 로봇 자기 상태, 실제 작은 양/음 명령의 캘리브레이션으로 계약을 검증한다.
+- 허용된 두 RGB 카메라(agentview, wrist; 기본 256×256 RGB)와 로봇 자기 상태만 정책 입력 whitelist로 구성한다. runtime에 pencil_pose_world/holder_pose_world 같은 diagnostics가 있어도 정책·teacher 입력에 넣지 않는다.
+- 미리보기 wrist 영상의 회전과 저장 원시 영상 방향, RGB/BGR, fps, 정규화, gripper 부호를 수집·학습·추론에서 일치시킨다. top/insertion 등 모니터 전용 영상은 정책 입력으로 쓰지 않는다.
+
+구현 순서
+1. 성공 시연 수집기를 준비한다. 제공 수집 도구를 활용하거나 custom 안에 허용 센서 기반 조작 UI를 만든다. 먼저 실제 성공 episode 소수로 저장·검사·재생·학습·추론의 연결을 검증한 뒤 배치 다양성을 늘린다. 고정 정답 위치나 시뮬레이터 상태 변경으로 성공 데이터를 만들지 않는다.
+2. episode manifest와 데이터 검사를 구현한다. 성공 버튼 라벨을 공식 판정·영상과 대조하고, NaN·프레임 누락·정지 데이터·좌표계/단위 오류를 검사한다.
+3. episode와 초기 배치 단위로 train/validation/test를 나눠 프레임 누수를 막고 정규화 통계는 train에서만 계산한다. 최종 평가는 학습에 쓰지 않은 실제 배치에서 한다.
+4. 두 카메라+로봇 자기 상태 → 7-D action의 작은 폐루프 행동 모방학습 baseline부터 학습한다. 필요성이 확인되면 action chunking/ACT/Diffusion Policy 등을 비교한다. seed, 데이터 manifest, 모델 설정, best/last checkpoint, optimizer·재개 상태, 학습 곡선을 저장한다.
+5. 현재 공유 haic_rai301은 CPU PyTorch 환경이므로 GPU 학습을 위해 덮어쓰지 않는다. 개인 학습 환경에서 공식 설치 지침을 확인하고 RTX5060 호환 CUDA 실행을 검증한다. GPU lock 아래 짧은 시험 학습으로 시간·VRAM을 측정하고 재개 가능한 본 학습을 진행한다. 최종 CPU 추론도 대회 환경에서 확인한다.
+6. 학습한 checkpoint를 custom 내부 상대 경로로 로드해 Mission5.run()에서 두 카메라·자기 상태로 행동을 예측하고 허용 ROS 명령으로 실행한다. 출력 제한, 유한 시간, 센서/모델 부재의 명확한 오류, 정지 처리를 구현한다. self.stop()은 G1 정지이므로 Panda의 오류·시간 초과에는 행동 발행 중단과 현재 팔 목표 hold·그리퍼 상태 유지도 처리한다. 오류 시 자동으로 손을 열어 잡은 연필을 떨어뜨리지 않는다.
+7. 개발용 --panda-mode policy/--panda-policy 성공으로 끝내지 않는다. 조교 원본 main과 custom/mission_5를 사용하는 최종 대회 경로에서도 실제 팀 학습 정책을 실행한다. 미션 4 성공이 선행돼야 한다고 임의 가정하지 말고 최신 판정을 확인한다.
+
+데이터·사람 조작이 필요할 때
+- 데이터가 없다는 말로 작업을 끝내지 말고 동작하는 수집 도구, 검사기, 학습·재개, ROS 추론 경로까지 가능한 부분을 완성한다.
+- 사람의 시연이 필요하면 준비된 수집기의 최소 조작 절차와 필요한 성공 시연 목표를 요청하고 데이터에 의존하지 않는 구현은 계속한다. 합성 episode·무학습 scripted 동작·학습 loss를 실제 팀 정책 성공처럼 세지 않는다.
+- 기존 randomized_suite.py는 미션 5를 거부하도록 작성돼 있다. 이를 무작정 사용하거나 다른 미션을 수정하지 말고 미션 5 전용 평가 하네스를 담당 폴더에 만든다. 정책은 정답 diagnostics에 접근하지 않는다.
+
+완료 기준
+- 팀이 실제로 학습한 정책이 학습에 쓰지 않은 여러 연필·꽂이 배치에서 공식 PASS를 받는다. 현재 규칙의 성공은 연필 끝이 꽂이 입구 안에서 테두리보다 2cm 이상 아래에 있고 그리퍼가 놓은 상태다. 최신 원본 판정을 기준으로 확인한다.
+- 손실 감소와 실제 성공을 구분하고 접근/파지/이동/정렬/삽입/놓기 중 실패 단계를 기록한다. checkpoint, 데이터 분할, 실행·재개 명령, 성공/시도 횟수와 시간을 함께 인계한다.
