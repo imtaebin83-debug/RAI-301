@@ -1,0 +1,87 @@
+[
+  {
+    "id": "rooms-0",
+    "split": "development",
+    "missions": [
+      4
+    ],
+    "room_order": [
+      "classroom",
+      "medical",
+      "cafeteria"
+    ]
+  },
+  {
+    "id": "rooms-1",
+    "split": "development",
+    "missions": [
+      4
+    ],
+    "room_order": [
+      "classroom",
+      "cafeteria",
+      "medical"
+    ]
+  },
+  {
+    "id": "rooms-2",
+    "split": "development",
+    "missions": [
+      4
+    ],
+    "room_order": [
+      "medical",
+      "classroom",
+      "cafeteria"
+    ]
+  },
+  {
+    "id": "rooms-3",
+    "split": "held-out",
+    "missions": [
+      4
+    ],
+    "room_order": [
+      "medical",
+      "cafeteria",
+      "classroom"
+    ]
+  },
+  {
+    "id": "rooms-4",
+    "split": "held-out",
+    "missions": [
+      4
+    ],
+    "room_order": [
+      "cafeteria",
+      "classroom",
+      "medical"
+    ]
+  },
+  {
+    "id": "rooms-5",
+    "split": "held-out",
+    "missions": [
+      4
+    ],
+    "room_order": [
+      "cafeteria",
+      "medical",
+      "classroom"
+    ]
+  },
+  {
+    "id": "after-cone",
+    "split": "integration",
+    "missions": [
+      2,
+      4
+    ],
+    "room_order": [
+      "medical",
+      "cafeteria",
+      "classroom"
+    ]
+  }
+]

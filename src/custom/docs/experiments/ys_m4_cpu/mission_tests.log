@@ -1,0 +1,18 @@
+test_begin_failure_stops_and_reports_stage (custom.mission_4.test_mission_4.CameraTests) ... ok
+test_correct_room_labels_do_not_hide_failed_delivery (custom.mission_4.test_mission_4.CameraTests) ... ok
+test_failed_waypoint_prevents_room_entry (custom.mission_4.test_mission_4.CameraTests) ... ok
+test_stalled_camera_times_out (custom.mission_4.test_mission_4.CameraTests) ... ok
+test_travel_centers_corridor_before_longitudinal_motion (custom.mission_4.test_mission_4.CameraTests) ... ok
+test_two_post_alignment_frames_required_and_padding_ignored (custom.mission_4.test_mission_4.CameraTests) ... ok
+test_all_six_permutations_use_view_scores (custom.mission_4.test_mission_4.RoomEvidenceTests) ... ok
+test_batch_timeout_and_cpu_only_worker (custom.mission_4.test_mission_4.RoomEvidenceTests) ... ok
+test_disagreeing_api_views_do_not_fabricate_labels (custom.mission_4.test_mission_4.RoomEvidenceTests) ... ok
+test_manifest_has_six_distinct_orders_and_prior_mission_endpoint (custom.mission_4.test_mission_4.RoomEvidenceTests) ... ok
+test_nonfinite_scores_and_empty_views_are_rejected (custom.mission_4.test_mission_4.RoomEvidenceTests) ... ok
+test_repeated_views_are_averaged_not_counted_as_independent_rooms (custom.mission_4.test_mission_4.RoomEvidenceTests) ... ok
+test_small_assignment_margin_is_rejected (custom.mission_4.test_mission_4.RoomEvidenceTests) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.040s
+
+OK

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import math
+import os
 import sys
 import time
 from pathlib import Path
@@ -13,7 +14,9 @@ if str(SRC_ROOT) not in sys.path:
 
 from mission_api import Mission, MissionResult, run_standalone  # noqa: E402
 from custom.navigation import Navigator
-from custom.vlm import assign_rooms, classify_room
+from custom.vlm import assign_rooms, classify_views, combine_views
+
+DOOR_Y = (17.5, 10.5, 3.59)  # Published north-to-south door geometry.
 
 
 class Mission4(Mission):
@@ -33,19 +36,55 @@ class Mission4(Mission):
         import numpy as np
         from PIL import Image as PILImage
         from sensor_msgs.msg import Image
-        message = self.latest("/camera/color/image_raw", Image, timeout=timeout)
-        if message is None or message.encoding.lower() not in ("rgb8", "bgr8"):
-            raise RuntimeError("RGB camera unavailable or unsupported encoding")
-        rows = np.frombuffer(message.data, dtype=np.uint8).reshape(message.height, message.step)
-        image = rows[:, :message.width * 3].reshape(message.height, message.width, 3)
-        if message.encoding.lower() == "bgr8":
-            image = image[:, :, ::-1]
-        return PILImage.fromarray(image.copy())
+        deadline = time.monotonic() + timeout
+        message = self.latest("/camera/color/image_raw", Image, timeout=0.)
+        previous = ((message.header.stamp.sec, message.header.stamp.nanosec)
+                    if message is not None else None)
+        fresh = 0
+        while time.monotonic() < deadline:
+            message = self.latest("/camera/color/image_raw", Image, timeout=0.)
+            if message is not None:
+                stamp = (message.header.stamp.sec, message.header.stamp.nanosec)
+                if previous is None or stamp > previous:
+                    previous = stamp
+                    fresh += 1
+                    if fresh >= 2:
+                        encoding = message.encoding.lower()
+                        if encoding not in ('rgb8', 'bgr8', 'rgba8', 'bgra8'):
+                            raise RuntimeError('Unsupported RGB camera encoding')
+                        channels = 4 if 'a' in encoding else 3
+                        image = np.ndarray((message.height, message.width, channels),
+                            dtype=np.uint8, buffer=message.data,
+                            strides=(message.step, channels, 1))[:, :, :3]
+                        if encoding.startswith('bgr'):
+                            image = image[:, :, ::-1]
+                        self._last_image_stamp = list(stamp)
+                        return PILImage.fromarray(image.copy())
+            time.sleep(min(.04, max(0., deadline-time.monotonic())))
+        raise TimeoutError('Fresh room camera frames unavailable after alignment')
+
+    def _travel(self, nav, door_y, remaining):
+        """Keep long hallway travel away from the east wall, using Navigator."""
+        _, py, _ = nav.pose()
+        # route_to handles leaving the cone room or another room if necessary.
+        py = max(.8, min(20.3, py))
+        if not nav.route_to(15.5, py, tolerance=.18, timeout=remaining(70)):
+            raise RuntimeError('Could not reach central corridor')
+        while abs(py-door_y) > 2.5:
+            py += math.copysign(2.5, door_y-py)
+            if not nav.goto(15.5, py, tolerance=.18, timeout=remaining(20)):
+                raise RuntimeError('Central corridor waypoint was not reached')
+        if not nav.goto(15.5, door_y, tolerance=.15, timeout=remaining(20)):
+            raise RuntimeError('Could not align with room doorway')
+        if not nav.goto(16.7, door_y, tolerance=.15, timeout=remaining(18), speed=.22):
+            raise RuntimeError('Could not reach room observation waypoint')
 
     def run(self) -> MissionResult:
-        observations, answer = [], []
+        observations, answer, view_metadata = [], [], []
         assignment = None
-        deadline = time.monotonic() + 480
+        deadline = time.monotonic() + 600
+        started = time.monotonic()
+        stage = 'begin'
 
         def remaining(limit):
             seconds = deadline - time.monotonic()
@@ -56,35 +95,53 @@ class Mission4(Mission):
         try:
             start = self.begin_mission(4, timeout=remaining(60))
             nav = Navigator(self, start)
-            # README door geometry, never the hidden room assignment.
-            for door_y in (17.5, 10.5, 3.59):
-                if time.monotonic() > deadline - 10:
-                    raise TimeoutError("room survey deadline reached")
-                reached = nav.route_to(16.9, door_y, tolerance=0.22,
-                    timeout=remaining(100))
-                if reached is False:
-                    raise RuntimeError("could not reach room observation waypoint")
+            images = []
+            for door_y in DOOR_Y:
+                stage = f'survey door {door_y}'
+                self._travel(nav, door_y, remaining)
                 self._face_room(nav, min(deadline, time.monotonic() + 18))
-                time.sleep(remaining(0.6))
-                image = self._image(timeout=remaining(8))
-                observation = classify_room(image, timeout=remaining(65))
-                observations.append(observation)
-                answer.append(observation["label"])
-                self.log(f"[mission 4] VLM door y={door_y}: {observation}")
-            answer, assignment = assign_rooms(observations)
+                # Small different headings yield actual sensor views, with no
+                # assumed room labels. No cached pre-turn image is accepted.
+                for yaw in (-.15, .15):
+                    if not nav.face(yaw, timeout=remaining(8)):
+                        raise RuntimeError('Room observation heading was not reached')
+                    self.stop()
+                    time.sleep(remaining(.3))
+                    image = self._image(timeout=remaining(5))
+                    capture = os.getenv('HAIC_M4_CAPTURE_DIR')
+                    if capture:
+                        directory = Path(capture)
+                        directory.mkdir(parents=True, exist_ok=True)
+                        image.save(directory / f'view-{len(images)}.png')
+                    images.append(image)
+                    view_metadata.append({'door_y': door_y, 'stamp': self._last_image_stamp,
+                                          'estimated_pose': list(nav.pose()),
+                                          'elapsed_seconds': time.monotonic()-started})
+            stage = 'VLM survey inference'
+            raw = classify_views(images, timeout=remaining(240))
+            observations = [combine_views(raw[index:index+2]) for index in range(0, 6, 2)]
+            # A small nonzero margin is a rejection threshold, not a calibrated
+            # confidence probability. Record it for simulation calibration.
+            answer, assignment = assign_rooms(observations, min_margin=.25)
             self.log(f"[mission 4] VLM joint assignment {answer}: {assignment}")
-            classroom_y = (17.5, 10.5, 3.59)[answer.index("classroom")]
-            reached = nav.route_to(16.9, classroom_y, tolerance=.2, timeout=remaining(100))
-            if reached is False:
-                raise RuntimeError("could not return to classroom doorway")
-            reached = nav.goto(18.65, classroom_y, tolerance=.18, timeout=remaining(45))
-            if reached is False:
+            classroom_y = DOOR_Y[answer.index("classroom")]
+            stage = 'classroom return'
+            self._travel(nav, classroom_y, remaining)
+            self._face_room(nav, min(deadline, time.monotonic()+18))
+            stage = 'classroom entry'
+            reached = nav.goto(18.65, classroom_y, tolerance=.15,
+                               timeout=remaining(30), speed=.20)
+            if not reached:
                 raise RuntimeError("could not enter the classroom")
-            return self.result(rooms=answer, vlm_observations=observations, room_assignment=assignment)
+            return self.result(rooms=answer, vlm_observations=observations,
+                               room_assignment=assignment, views=view_metadata,
+                               elapsed_seconds=time.monotonic()-started)
         except Exception as exc:
             self.log(f"[mission 4] incomplete: {exc}")
             return self.result(rooms=answer, vlm_observations=observations,
-                               room_assignment=assignment, error=str(exc))
+                               room_assignment=assignment, views=view_metadata,
+                               failed_stage=stage, error=str(exc),
+                               elapsed_seconds=time.monotonic()-started)
         finally:
             self.stop()
 

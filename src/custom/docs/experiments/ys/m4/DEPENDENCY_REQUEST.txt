@@ -1,0 +1,21 @@
+Owner: common navigation/localisation integration maintainer
+Status: prepared follow-up; no shared code changed and no message sent.
+
+Baseline evidence: custom/docs/validation/seed417_case0.log and .json.
+Mission 4 identified three rooms correctly but stalled returning north:
+estimated x approximately 17.8, y approximately 8.85 while targeting (16.9,17.5).
+The official referee reported pelvis (17.634,8.862) in no room; full mission FAIL.
+
+The mission-specific draft now travels through the corridor centre x=15.5,
+uses short waypoints, and aligns at a door before entry. This is a hypothesis
+to validate after training, not evidence that shared drift has been corrected.
+
+If the failure persists, request a sensor-only localisation/heading and progress
+diagnostic from the common owner. Reproduce from the default spawn and after
+Mission 2 with this branch's evaluator. Compare localiser pose, measured wall
+clearance, commands and official final pose. Investigate drift/progress handling
+within Navigator's existing interface; do not reinitialise from nominal mission
+selection coordinates, use hidden truth, or enable the experimental wall matcher
+globally without regressions (prior cliff tests failed with it).
+
+No shared change is safe to prescribe as verified before these reproductions.

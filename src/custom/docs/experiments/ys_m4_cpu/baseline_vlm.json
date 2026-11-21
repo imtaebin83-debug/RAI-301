@@ -1,0 +1,1 @@
+{"label": "medical", "text": "medical", "text_kind": "highest_likelihood_candidate", "scores": {"classroom": -16.624172554002143, "medical": -8.327370643615723, "cafeteria": -18.4207410402596}, "score_kind": "answer_sequence_log_likelihood", "model": "/home/aril/rai-worktrees/ys-m4-20261121/src/custom/models/SmolVLM-500M-Instruct", "backend": "local-cpu"}
