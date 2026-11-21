@@ -1,0 +1,40 @@
+test_changed_training_endpoints_change_executed_action (test_keyposes.KeyposeLearningTests) ... ok
+test_incompatible_phase_sequences_cannot_be_averaged (test_keyposes.KeyposeLearningTests) ... ok
+test_no_checkpoint_or_missing_provenance_is_rejected (test_keyposes.KeyposeLearningTests) ... ok
+test_nonfinite_learned_pose_is_rejected (test_keyposes.KeyposeLearningTests) ... ok
+test_object_relative_prediction_generalizes_rigid_scene_transform (test_keyposes.KeyposeLearningTests) ... ok
+test_reference_frames_and_arbitrary_phase_names_are_learned (test_keyposes.KeyposeLearningTests) ... ok
+test_base_to_world_rotation (test_learning.PipelineTests) ... ok
+test_camera_pose_changes_are_not_silently_mixed (test_learning.PipelineTests) ... ok
+test_changed_episode_is_rejected_before_training (test_learning.PipelineTests) ... ok
+test_groups_do_not_leak_and_normalization_uses_train_only (test_learning.PipelineTests) ... ok
+test_horizon_padding_is_masked (test_learning.PipelineTests) ... ok
+test_in_progress_recording_is_not_an_audited_episode (test_learning.PipelineTests) ... ok
+test_invalid_action_rejected (test_learning.PipelineTests) ... ok
+test_manifest_cannot_replace_actions_with_diagnostics (test_learning.PipelineTests) ... ok
+test_official_failure_cannot_be_a_success_label (test_learning.PipelineTests) ... ok
+test_placement_id_keeps_repeated_placement_in_one_split (test_learning.PipelineTests) ... ok
+test_rotvec_branch_cut_has_continuous_proprio_features (test_learning.PipelineTests) ... ok
+test_spatial_features_retain_horizontal_position (test_learning.PipelineTests) ... ok
+test_train_resume_and_policy_ignores_privileged_fields (test_learning.PipelineTests) ... ok
+test_base_yaw_rotates_translation_and_rotvec (test_ros_io.ActionContractTests) ... ok
+test_diagonal_limits_preserve_direction (test_ros_io.ActionContractTests) ... ok
+test_invalid_action_cannot_reach_command (test_ros_io.ActionContractTests) ... ok
+test_rotation_is_left_multiplied_in_equivalent_frames (test_ros_io.ActionContractTests) ... ok
+test_fk_uses_only_robot_description_and_joint_sensors (test_ros_io.KinematicContractTests) ... ok
+test_camera_shape_is_not_silently_resized (test_ros_io.SensorContractTests) ... ok
+test_joint_state_names_accept_namespace_and_reject_missing (test_ros_io.SensorContractTests) ... ok
+test_rgb_padding_and_bgr_order (test_ros_io.SensorContractTests) ... ok
+test_blank_is_not_a_measurement (test_teacher.TeacherGeometryTests) ... ok
+test_empty_grasp_does_not_count_as_completion (test_teacher.TeacherGeometryTests) ... ok
+test_eraser_resolves_axis_polarity (test_teacher.TeacherGeometryTests) ... ok
+test_fsm_bounded_actions_and_timeout (test_teacher.TeacherGeometryTests) ... ok
+test_invalid_ray_rejected (test_teacher.TeacherGeometryTests) ... ok
+test_pencil_axis_is_gripper_y_and_becomes_vertical (test_teacher.TeacherGeometryTests) ... ok
+test_ray_plane_roundtrip (test_teacher.TeacherGeometryTests) ... ok
+test_sensor_detection (test_teacher.TeacherGeometryTests) ... ok
+
+----------------------------------------------------------------------
+Ran 35 tests in 6.623s
+
+OK

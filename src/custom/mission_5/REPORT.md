@@ -11,6 +11,7 @@
 | 두 카메라 CNN BC, 100 epochs | 기본 배치 FAIL, 70.1초 | loss 감소가 폐루프 성공을 보장하지 않음 |
 | **학습 keypose, 기본 배치** | **PASS, 30.4초** | 이 배치의 시연은 train에 포함 |
 | **동일 keypose, 새 무작위 배치 5회** | **4 PASS / 1 FAIL** | 34.39 / 39.51 / 27.24 / 27.69 / 19.13초 |
+| **원본 저장소 통합 후, 별도 검증 환경** | **기본 배치 PASS, 33.7초** | 기본 동봉 JSON, `haic_rai301_verify`, 원본 main 경로 재확인 |
 
 무작위 5회는 모델을 고정하고 public `/panda/retry`로 매번 재배치한 순차 평가다. 사전에 정한 시드의 대규모 독립 시험은 아니며 80% 일반 성공률을 확정하는 결과가 아니다. 이 평가를 보고 모델·인식 threshold를 변경하지 않았다.
 
@@ -50,6 +51,7 @@ CNN 비교는 동일 split에서 horizon 1, 64px, batch 32, CPU로 100 epochs �
 - `src/custom/requirements.txt`에 `h5py==3.15.1`을 추가했다.
 - 공통 README에서 미션 5의 미구현 표기를 갱신했다. 다른 미션과 원본 `main.py`, `mission_api.py`, `referee.py`, bridge, scene, setup은 수정하지 않았다.
 - 실제 Ubuntu `haic_rai301`에서 미션 5 검사 **35개**, 기존 공통 회귀 검사 **46개** 통과. `pip check` 통과.
+- 별도 `haic_rai301_verify` 환경에 명시한 h5py를 설치한 뒤 미션 5 검사 **35개**와 `pip check`를 다시 통과했다. 통합 저장소 `/home/aril/RAI-301`에서 `M5_CHECKPOINT`를 해제하고 원본 `main.py`의 동봉 기본 모델 경로로 재실행해 공식 PASS33.7초를 확인했다.
 - action translation/rotvec의 base→world 변환, robot-only FK, 데이터 누수 방지, 학습 재개·추론 export, keypose 학습값이 실제 행동을 바꾸는지 검사했다. 수치 검사는 시뮬레이터 PASS와 별도다.
 
 공식 결과 JSON, 고정 manifest, 학습 요약·잔차는 `docs/validation/`에 있다. JSON의 referee 필드는 평가 증거이며 정책 로더는 이 폴더를 읽지 않는다. 성공 영상은 기본 배치 실제 agentview/wrist trace이며 학습 배치인 점을 함께 표시한다. HDF5 원본은 용량 때문에 Git에 넣지 않았다.
