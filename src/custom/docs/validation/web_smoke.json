@@ -1,0 +1,55 @@
+{
+  "id": "97ba341b-84ec-4cd7-9035-7f0d7fe2c5cf",
+  "instruction": "Walk to (15.5, 18.0), then go to the green cone.",
+  "plan": [
+    "mission 1 {'goal': [15.5, 18.0]}",
+    "mission 2 {'color': 'green'}"
+  ],
+  "records": [
+    {
+      "step": 1,
+      "mission": 1,
+      "label": "Point-goal navigation",
+      "verdict": "PASS",
+      "seconds": 21.5,
+      "checks": [
+        {
+          "name": "check",
+          "ok": true,
+          "summary": "0.03 m < 0.50 m from goal world (15.50, 18.00)"
+        }
+      ],
+      "rooms": null,
+      "reported": {
+        "status": "done",
+        "detail": ""
+      }
+    },
+    {
+      "step": 2,
+      "mission": 2,
+      "label": "Cone colour navigation",
+      "verdict": "PASS",
+      "seconds": 23.34,
+      "checks": [
+        {
+          "name": "check",
+          "ok": true,
+          "summary": "green cone box: |dx| 0.02 < 0.25, |dy| 0.01 < 0.25 m"
+        }
+      ],
+      "rooms": null,
+      "reported": {
+        "status": "done",
+        "detail": ""
+      }
+    }
+  ],
+  "results_file": "/home/aril/RAI-301-quick/src/results/run_20261121-162236.json",
+  "state": "done",
+  "total": {
+    "passed": 2,
+    "missions": 2,
+    "seconds": 65.8
+  }
+}

@@ -1,0 +1,284 @@
+{
+  "case": 0,
+  "seed": 417,
+  "returncode": 1,
+  "evaluation_scenario": {
+    "m1_goal": [
+      16.36,
+      15.82,
+      90.0
+    ],
+    "m2_color": "orange",
+    "cone_order": [
+      "green",
+      "orange",
+      "blue"
+    ],
+    "room_order": [
+      "classroom",
+      "medical",
+      "cafeteria"
+    ],
+    "ball_xy": [
+      8.43,
+      8.05
+    ],
+    "panda_task": {
+      "pencil_xy": [
+        20.9911,
+        19.715
+      ],
+      "pencil_yaw_deg": 3.52,
+      "cup_xy": [
+        21.3778,
+        19.7061
+      ],
+      "cup_yaw_deg": 13.25
+    }
+  },
+  "code_sha256": {
+    "custom/bringup.launch.py": "439468d3cdfe278e08908df2c1729dbdcdd97eaadc0f9be459f8c89697dbc4d2",
+    "custom/public_map.py": "cbb6a31993c75d378e7b805d52311583e032122f34f361e8de234cb90b604695",
+    "custom/navigation.py": "a218e9553c209ded1f1e27abb3305066e603e9b3eb7f1405ffac4b69fcf197a2",
+    "custom/localizer_node.py": "16fc54aea3fc1fb1e0d22916df1c9be96f4fa8d5df1a4872e22ac8c26c11d9f9",
+    "custom/localization.py": "6a6341f214ea068a3815a0505c38c4db4a3dffd9dee8a5bd0033dfacccb386c0",
+    "custom/vlm.py": "6c59b7e8bb779e3b9ccace53ee0b89f2b17170557c02d63e9f2df4f3a4a233ef",
+    "custom/vision.py": "c81086a280acc35ea734d3ee948cd2cad66f765503436323fa04bd03b623fa63",
+    "custom/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "custom/tools/download_models.py": "f065d3de598843c8ab06b227f558eb88b23bf1623b05da07ede1d3dfba807c5f",
+    "custom/tests/test_vision.py": "5ae70c4a11a40bcf9ba1eaf4d4b14d2e27fa5f32aac6088702b195c58fb12c3b",
+    "custom/tests/test_planner.py": "8b9247344ac4b50ef7941a34e7497d398fe35db2c37181aa9dd5dc55de069d3a",
+    "custom/tests/test_room_assignment.py": "650a4875d6b87c9c877ae9464687c74a81cf92ea83283f47de0c63e1fab91225",
+    "custom/mission_6/mission_6.py": "b59093d8c530aae16980db163eec10f2b14407699ab4a57e60e1564613116336",
+    "custom/mission_6/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "custom/testing/web_smoke.py": "68f10f96965aecc45db5b994c31fa69918b0c3c141d95811f0027f4406f45e1e",
+    "custom/testing/capture.py": "be26d09fd23618c1e230891c95ac717455531bc363a00175606bcc78e134ee07",
+    "custom/testing/randomized_suite.py": "3740d37bf61c88984ee28377f8bb9938d5b4212759aa988a267e4187d93d584e",
+    "custom/planner/planner.py": "322cd75a717d3f91e8ccc797a3c43b7eec54ebdf0c3e923984fc26ba5b710ce7",
+    "custom/planner/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "custom/planner/local_model.py": "738dc494168b86d94a769ae14a2766220a30d5c481399853acc943889cb6d64a",
+    "custom/mission_1/mission_1.py": "573361a9b8704a6c7836ff570e825a1b7ca4248d1f6ddcb54b150be9605a8d0f",
+    "custom/mission_1/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "custom/mission_3/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "custom/mission_3/mission_3.py": "bd3fb3282a039b7c5a801873fb39e707d0cec5acd897413e5a98fc40f00892d4",
+    "custom/mission_4/mission_4.py": "1cec5844ba50239a19c18cf023e8436f62194eb0223133f9bc90fd2a9a96a301",
+    "custom/mission_4/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "custom/mission_2/mission_2.py": "96825919f078a28f735eb8ba2096afd426a36447266e253c817602d0a52680f4",
+    "custom/mission_2/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "custom/mission_5/mission_5.py": "20ecb57451bb92db54ff516e0ea6f7e56ba3eedbdc29068d937294efb90238b2",
+    "custom/mission_5/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "official_result": {
+    "run": {
+      "started_at": "2026-11-21T16:25:43+09:00",
+      "package": "RAI-301-quick",
+      "mode": "auto",
+      "config": "/tmp/rai-eval-c880fbd0/config.yaml",
+      "scenario": "/tmp/rai-eval-c880fbd0/scenario.yaml",
+      "referee": {
+        "goal_radius_m": 0.5,
+        "cone_box_m": 0.5,
+        "cone_box_offset_m": 0.75,
+        "m4_room": "classroom",
+        "m1_goal": [
+          16.36,
+          15.82,
+          90.0
+        ],
+        "m2_color": "orange"
+      },
+      "plans": [],
+      "ended_at": "2026-11-21T16:29:51+09:00"
+    },
+    "missions": [
+      {
+        "mission": 4,
+        "label": "Semantic delivery",
+        "verdict": "FAIL",
+        "success": false,
+        "seconds": 245.6,
+        "started_at": "2026-11-21T16:25:43+09:00",
+        "ended_at": "2026-11-21T16:29:49+09:00",
+        "checks": [
+          {
+            "name": "rooms",
+            "ok": true,
+            "summary": "3/3 rooms right"
+          },
+          {
+            "name": "delivery",
+            "ok": false,
+            "summary": "pelvis (17.63, 8.86) in no room; target classroom x 18.25..23.00, y 14.10..20.90"
+          }
+        ],
+        "reported": {
+          "status": "done",
+          "detail": ""
+        },
+        "referee": {
+          "mission": 4,
+          "pelvis": [
+            17.634,
+            8.862,
+            0.78
+          ],
+          "success": false,
+          "summary": "pelvis (17.63, 8.86) in no room; target classroom x 18.25..23.00, y 14.10..20.90",
+          "room": "classroom",
+          "room_box": [
+            18.25,
+            23.0,
+            14.1,
+            20.9
+          ],
+          "pelvis_room": "no room",
+          "rooms": {
+            "classroom": [
+              18.25,
+              23.0,
+              14.1,
+              20.9
+            ],
+            "medical": [
+              18.25,
+              23.0,
+              7.1,
+              13.9
+            ],
+            "cafeteria": [
+              18.25,
+              23.0,
+              0.1,
+              6.9
+            ]
+          }
+        },
+        "data": {
+          "rooms": [
+            "classroom",
+            "medical",
+            "cafeteria"
+          ],
+          "vlm_observations": [
+            {
+              "label": "medical",
+              "text": "medical",
+              "text_kind": "highest_likelihood_candidate",
+              "scores": {
+                "classroom": -12.983910669427132,
+                "medical": -10.375164031982422,
+                "cafeteria": -17.10466481000185
+              },
+              "score_kind": "answer_sequence_log_likelihood",
+              "model": "/home/aril/RAI-301-quick/src/custom/models/SmolVLM-500M-Instruct",
+              "backend": "local-cpu"
+            },
+            {
+              "label": "medical",
+              "text": "medical",
+              "text_kind": "highest_likelihood_candidate",
+              "scores": {
+                "classroom": -16.14041990804253,
+                "medical": -8.124714851379395,
+                "cafeteria": -18.570012947544456
+              },
+              "score_kind": "answer_sequence_log_likelihood",
+              "model": "/home/aril/RAI-301-quick/src/custom/models/SmolVLM-500M-Instruct",
+              "backend": "local-cpu"
+            },
+            {
+              "label": "medical",
+              "text": "medical",
+              "text_kind": "highest_likelihood_candidate",
+              "scores": {
+                "classroom": -13.407918758952292,
+                "medical": -10.512534141540527,
+                "cafeteria": -16.320222225040197
+              },
+              "score_kind": "answer_sequence_log_likelihood",
+              "model": "/home/aril/RAI-301-quick/src/custom/models/SmolVLM-500M-Instruct",
+              "backend": "local-cpu"
+            }
+          ],
+          "room_assignment": {
+            "method": "vlm_likelihood_unique_room_assignment",
+            "unconstrained_labels": [
+              "medical",
+              "medical",
+              "medical"
+            ],
+            "score": -37.428847745846724,
+            "runner_up_margin": 1.2084506744868122
+          },
+          "error": "could not return to classroom doorway"
+        },
+        "rooms": {
+          "ok": true,
+          "correct": 3,
+          "total": 3,
+          "truth": "north classroom | middle medical | south cafeteria",
+          "answer": "north classroom | middle medical | south cafeteria",
+          "rows": [
+            {
+              "room": "classroom",
+              "slot": "north",
+              "answer_xy": [
+                20.625,
+                17.5
+              ],
+              "answer_in": "classroom",
+              "ok": true
+            },
+            {
+              "room": "medical",
+              "slot": "middle",
+              "answer_xy": [
+                20.625,
+                10.5
+              ],
+              "answer_in": "medical",
+              "ok": true
+            },
+            {
+              "room": "cafeteria",
+              "slot": "south",
+              "answer_xy": [
+                20.625,
+                3.5
+              ],
+              "answer_in": "cafeteria",
+              "ok": true
+            }
+          ],
+          "given": {
+            "classroom": [
+              20.625,
+              17.5
+            ],
+            "medical": [
+              20.625,
+              10.5
+            ],
+            "cafeteria": [
+              20.625,
+              3.5
+            ]
+          }
+        }
+      }
+    ],
+    "total": {
+      "missions": 1,
+      "passed": 0,
+      "failed": 1,
+      "not_judged": 0,
+      "mission_seconds": 245.6,
+      "run_seconds": 247.26,
+      "by_mission": [
+        "4 FAIL 245.6s"
+      ],
+      "complete": true,
+      "updated_at": "2026-11-21T16:29:51+09:00"
+    }
+  }
+}

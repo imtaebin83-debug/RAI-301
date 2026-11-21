@@ -1,0 +1,83 @@
+{
+  "run": {
+    "started_at": "2026-11-21T16:19:10+09:00",
+    "package": "RAI-301-quick",
+    "mode": "auto",
+    "config": "/tmp/rai_quick_headless.yaml",
+    "scenario": "/home/aril/RAI-301-quick/src/scenarios/default.yaml",
+    "referee": {
+      "goal_radius_m": 0.5,
+      "cone_box_m": 0.5,
+      "cone_box_offset_m": 0.75,
+      "m4_room": "classroom",
+      "m1_goal": [
+        15.5,
+        18.0,
+        90.0
+      ],
+      "m2_color": "green"
+    },
+    "plans": [],
+    "ended_at": "2026-11-21T16:19:54+09:00"
+  },
+  "missions": [
+    {
+      "mission": 6,
+      "label": "Soccer goal scoring",
+      "verdict": "FAIL",
+      "success": false,
+      "seconds": 42.06,
+      "started_at": "2026-11-21T16:19:10+09:00",
+      "ended_at": "2026-11-21T16:19:53+09:00",
+      "checks": [
+        {
+          "name": "check",
+          "ok": false,
+          "summary": "ball (9.25, 8.15) outside the goal (centre x 6.82..11.68, y 0.66..1.96: whole ball past the line, between the posts)"
+        }
+      ],
+      "reported": {
+        "status": "done",
+        "detail": ""
+      },
+      "referee": {
+        "mission": 6,
+        "pelvis": [
+          11.616,
+          8.899,
+          0.78
+        ],
+        "success": false,
+        "summary": "ball (9.25, 8.15) outside the goal (centre x 6.82..11.68, y 0.66..1.96: whole ball past the line, between the posts)",
+        "ball": [
+          9.25,
+          8.15,
+          0.11
+        ],
+        "goal_box": [
+          6.82,
+          11.68,
+          0.66,
+          1.96,
+          1.93
+        ]
+      },
+      "data": {
+        "error": "No stable elevated RGB-D soccer ball detection"
+      }
+    }
+  ],
+  "total": {
+    "missions": 1,
+    "passed": 0,
+    "failed": 1,
+    "not_judged": 0,
+    "mission_seconds": 42.06,
+    "run_seconds": 43.87,
+    "by_mission": [
+      "6 FAIL 42.1s"
+    ],
+    "complete": true,
+    "updated_at": "2026-11-21T16:19:54+09:00"
+  }
+}

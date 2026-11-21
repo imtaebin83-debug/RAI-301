@@ -1,0 +1,19 @@
+[
+  {
+    "case": 0,
+    "returncode": 1,
+    "total": {
+      "missions": 1,
+      "passed": 0,
+      "failed": 1,
+      "not_judged": 0,
+      "mission_seconds": 245.6,
+      "run_seconds": 247.26,
+      "by_mission": [
+        "4 FAIL 245.6s"
+      ],
+      "complete": true,
+      "updated_at": "2026-11-21T16:29:51+09:00"
+    }
+  }
+]

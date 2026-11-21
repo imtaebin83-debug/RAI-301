@@ -1,0 +1,172 @@
+{
+  "case": 1,
+  "seed": 301,
+  "returncode": 0,
+  "evaluation_scenario": {
+    "m1_goal": [
+      14.74,
+      17.63,
+      90.0
+    ],
+    "m2_color": "orange",
+    "cone_order": [
+      "green",
+      "orange",
+      "blue"
+    ],
+    "room_order": [
+      "classroom",
+      "cafeteria",
+      "medical"
+    ],
+    "ball_xy": [
+      7.52,
+      7.43
+    ],
+    "panda_task": {
+      "pencil_xy": [
+        20.9911,
+        19.715
+      ],
+      "pencil_yaw_deg": 3.52,
+      "cup_xy": [
+        21.3778,
+        19.7061
+      ],
+      "cup_yaw_deg": 13.25
+    }
+  },
+  "official_result": {
+    "run": {
+      "started_at": "2026-11-21T16:15:45+09:00",
+      "package": "RAI-301-quick",
+      "mode": "auto",
+      "config": "/tmp/rai-eval-_cmpiyeg/config.yaml",
+      "scenario": "/tmp/rai-eval-_cmpiyeg/scenario.yaml",
+      "referee": {
+        "goal_radius_m": 0.5,
+        "cone_box_m": 0.5,
+        "cone_box_offset_m": 0.75,
+        "m4_room": "classroom",
+        "m1_goal": [
+          14.74,
+          17.63,
+          90.0
+        ],
+        "m2_color": "orange"
+      },
+      "plans": [],
+      "ended_at": "2026-11-21T16:16:33+09:00"
+    },
+    "missions": [
+      {
+        "mission": 1,
+        "label": "Point-goal navigation",
+        "verdict": "PASS",
+        "success": true,
+        "seconds": 22.17,
+        "started_at": "2026-11-21T16:15:45+09:00",
+        "ended_at": "2026-11-21T16:16:07+09:00",
+        "checks": [
+          {
+            "name": "check",
+            "ok": true,
+            "summary": "0.12 m < 0.50 m from goal world (14.74, 17.63)"
+          }
+        ],
+        "reported": {
+          "status": "done",
+          "detail": ""
+        },
+        "referee": {
+          "mission": 1,
+          "pelvis": [
+            14.633,
+            17.69,
+            0.779
+          ],
+          "success": true,
+          "summary": "0.12 m < 0.50 m from goal world (14.74, 17.63)",
+          "goal": [
+            14.74,
+            17.63
+          ],
+          "goal_world": [
+            14.74,
+            17.63
+          ],
+          "distance_m": 0.122,
+          "threshold_m": 0.5
+        },
+        "data": {
+          "controller_reached": true,
+          "estimated_pose": [
+            14.77388075436386,
+            17.549020506068295,
+            1.9984247873302985
+          ]
+        }
+      },
+      {
+        "mission": 2,
+        "label": "Cone colour navigation",
+        "verdict": "PASS",
+        "success": true,
+        "seconds": 23.9,
+        "started_at": "2026-11-21T16:16:08+09:00",
+        "ended_at": "2026-11-21T16:16:32+09:00",
+        "checks": [
+          {
+            "name": "check",
+            "ok": true,
+            "summary": "orange cone box: |dx| 0.00 < 0.25, |dy| 0.03 < 0.25 m"
+          }
+        ],
+        "reported": {
+          "status": "done",
+          "detail": ""
+        },
+        "referee": {
+          "mission": 2,
+          "pelvis": [
+            15.498,
+            24.078,
+            0.78
+          ],
+          "success": true,
+          "summary": "orange cone box: |dx| 0.00 < 0.25, |dy| 0.03 < 0.25 m",
+          "color": "orange",
+          "box_center": [
+            15.5,
+            24.05
+          ],
+          "box_m": 0.5,
+          "dx_m": -0.002,
+          "dy_m": 0.028
+        },
+        "data": {
+          "color": "orange",
+          "cone_xy": [
+            15.667220557071527,
+            24.704875787582832
+          ],
+          "reached": true
+        }
+      }
+    ],
+    "total": {
+      "missions": 2,
+      "passed": 2,
+      "failed": 0,
+      "not_judged": 0,
+      "mission_seconds": 46.07,
+      "run_seconds": 48.88,
+      "by_mission": [
+        "1 PASS 22.2s",
+        "2 PASS 23.9s"
+      ],
+      "complete": true,
+      "updated_at": "2026-11-21T16:16:33+09:00"
+    }
+  }
+}

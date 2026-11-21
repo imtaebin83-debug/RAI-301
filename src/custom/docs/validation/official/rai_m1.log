@@ -1,0 +1,41 @@
+[main] starting the simulator: -m ros2_bridge.run_g1_ros --no-view --spawn 16 11 0 --m4-room classroom --judge-goal-radius 0.5 --judge-cone-box 0.5 --judge-cone-offset 0.75 --ball-friction 0.62 0.02 0.01 --m1-goal-region 14.0 17.0 1.0 20.0 --m1-goal-yaw 90 --ball-region 7.25 11.25 5.5 8.5 --scenario /home/aril/RAI-301-quick/src/scenarios/default.yaml --sensors /home/aril/RAI-301-quick/src/custom/sensors.yaml --max-vel 0.6 0.4 0.7
+[main] starting robot_state_publisher (G1 URDF -> /tf)
+[mission] waiting for the simulator on /g1/mission_status ...
+[INFO] [1795244172.708307341] [mujoco_sim]: /clock 100 Hz | joint_states 50 Hz (29 joints) | G1 RGB-D 20 Hz | extra RGB 10 Hz | lidar 10 Hz (OS1-32 32x512, 1 worker(s)) | IMU 100 Hz | odom 0 Hz
+[INFO] [1795244172.708521191] [mujoco_sim]: listening on /cmd_vel; timeout 0.5s; limits vx/vy/wz=(0.6, 0.4, 0.7)
+[INFO] [1795244172.709077702] [mujoco_sim]: G1 rescue: keys 1-6 in viewer or publish std_msgs/Empty to /g1/respawn
+[INFO] [1795244172.709778556] [mujoco_sim]: referee: std_msgs/Int32 /g1/mission_end judges mission N on ground truth; mission 4 room classroom; scenario /home/aril/RAI-301-quick/src/scenarios/default.yaml
+[INFO] [1795244172.710584777] [mujoco_sim]: Mission API: std_msgs/Int32 /g1/mission (1-6, respawn there), std_msgs/Int32 /g1/mission_begin (1-6, G1 not moved), std_msgs/Empty /g1/randomize; status on /g1/mission_status, /g1/soccer_kick_status, /panda/task_status
+[INFO] [1795244172.710700379] [mujoco_sim]: ground truth: NOT published (no /odom, no odom TF; add --ground-truth to enable); initial pose: manual (RViz 2D Pose Estimate)
+[INFO] [1795244172.725842612] [mujoco_sim]: Panda task (startup): arm home, pencil (20.991, 19.715), holder (21.378, 19.706)
+[INFO] [1795244172.726216487] [mujoco_sim]: Scenario (/home/aril/RAI-301-quick/src/scenarios/default.yaml): m1 goal (15.50, 18.00), m2 green, cones blue | green | orange, rooms classroom | medical | cafeteria, ball (9.25, 8.15)
+[INFO] [1795244172.726437978] [mujoco_sim]: scene=layout.json robot='g1/' spawn=(16.00, 11.00, floor 0.00); official Unitree 29-DoF ONNX READY; standing until /cmd_vel arrives
+[mission] simulator up (mission point 1: launch point)
+[main] launching custom/bringup.launch.py (your nodes)
+[referee] results file: /home/aril/RAI-301-quick/src/results/run_20261121-155612.json
+
+[main] ===== mission 1: Point-goal navigation =====
+[INFO] [1795244172.964931668] [mujoco_sim]: mission 1 (launch point) selected from ROS begin 1; G1 not moved
+[INFO] [launch]: All log files can be found below /home/aril/.ros/log/2026-11-21-15-56-12-967334-aril-13-44694
+[INFO] [launch]: Default logging verbosity is set to INFO
+[localizer] kiss-icp, IMU roll/pitch=-0.0/-0.5 deg
+[nav] pose=(15.91,11.01,0.00) target=(15.50,18.00) error=7.00
+[nav] pose=(15.80,11.67,1.69) target=(15.50,18.00) error=6.33
+[nav] pose=(16.02,13.71,1.70) target=(15.50,18.00) error=4.32
+[nav] pose=(15.92,15.62,1.79) target=(15.50,18.00) error=2.42
+[nav] pose=(15.62,17.62,1.82) target=(15.50,18.00) error=0.40
+[WARN] [1795244196.385179436] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[INFO] [1795244196.872061325] [mujoco_sim]: referee: mission 1 PASS -- 0.06 m < 0.50 m from goal world (15.50, 18.00)
+[referee] ===== mission 1 Point-goal navigation: PASS in 23.1 s =====
+[referee]   check     0.06 m < 0.50 m from goal world (15.50, 18.00)  [PASS]
+[referee]   reported  done:
+[main] stopping the simulator
+[main] stopping the robot_state_publisher
+[INFO] [1795244196.977448170] [mujoco_sim]: stopped at sim=24.23s wall=24.25s RTF=1.00
+
+============================== Mission results (referee, ground truth) ==============================
+  step  #  mission                        result     time  check
+  -     1  Point-goal navigation          PASS      23.1s  check: 0.06 m < 0.50 m from goal world (15.50, 18.00)
+  1/1 passed, missions 23.1 s, run 25.1 s
+  results file: /home/aril/RAI-301-quick/src/results/run_20261121-155612.json
+======================================================================================================

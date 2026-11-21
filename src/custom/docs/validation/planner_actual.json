@@ -1,0 +1,77 @@
+[
+  {
+    "instruction": "Go to the blue cone, then score a soccer goal.",
+    "expected": [
+      [
+        2,
+        {
+          "color": "blue"
+        }
+      ],
+      6
+    ],
+    "actual": [
+      [
+        2,
+        {
+          "color": "blue"
+        }
+      ],
+      6
+    ],
+    "passed": true,
+    "seconds": 15.16
+  },
+  {
+    "instruction": "Navigate to (14.2, 7.7), then cross the cliff.",
+    "expected": [
+      [
+        1,
+        {
+          "goal": [
+            14.2,
+            7.7
+          ]
+        }
+      ],
+      3
+    ],
+    "actual": [
+      [
+        1,
+        {
+          "goal": [
+            14.2,
+            7.7
+          ]
+        }
+      ],
+      3
+    ],
+    "passed": true,
+    "seconds": 16.63
+  },
+  {
+    "instruction": "Score a soccer goal, then go to the orange cone.",
+    "expected": [
+      6,
+      [
+        2,
+        {
+          "color": "orange"
+        }
+      ]
+    ],
+    "actual": [
+      6,
+      [
+        2,
+        {
+          "color": "orange"
+        }
+      ]
+    ],
+    "passed": true,
+    "seconds": 14.57
+  }
+]

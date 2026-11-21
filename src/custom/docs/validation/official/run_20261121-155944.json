@@ -1,0 +1,84 @@
+{
+  "run": {
+    "started_at": "2026-11-21T15:59:44+09:00",
+    "package": "RAI-301-quick",
+    "mode": "auto",
+    "config": "/tmp/rai_quick_headless.yaml",
+    "scenario": "/home/aril/RAI-301-quick/src/scenarios/default.yaml",
+    "referee": {
+      "goal_radius_m": 0.5,
+      "cone_box_m": 0.5,
+      "cone_box_offset_m": 0.75,
+      "m4_room": "classroom",
+      "m1_goal": [
+        15.5,
+        18.0,
+        90.0
+      ],
+      "m2_color": "green"
+    },
+    "plans": [],
+    "ended_at": "2026-11-21T16:00:48+09:00"
+  },
+  "missions": [
+    {
+      "mission": 2,
+      "label": "Cone colour navigation",
+      "verdict": "FAIL",
+      "success": false,
+      "seconds": 61.63,
+      "started_at": "2026-11-21T15:59:44+09:00",
+      "ended_at": "2026-11-21T16:00:46+09:00",
+      "checks": [
+        {
+          "name": "check",
+          "ok": false,
+          "summary": "green cone box: |dx| 0.31 > 0.25, |dy| 0.24 < 0.25 m"
+        }
+      ],
+      "reported": {
+        "status": "done",
+        "detail": ""
+      },
+      "referee": {
+        "mission": 2,
+        "pelvis": [
+          15.19,
+          23.81,
+          0.78
+        ],
+        "success": false,
+        "summary": "green cone box: |dx| 0.31 > 0.25, |dy| 0.24 < 0.25 m",
+        "color": "green",
+        "box_center": [
+          15.5,
+          24.05
+        ],
+        "box_m": 0.5,
+        "dx_m": -0.31,
+        "dy_m": -0.24
+      },
+      "data": {
+        "color": "green",
+        "cone_xy": [
+          14.14454508068955,
+          23.199529713516654
+        ],
+        "reached": true
+      }
+    }
+  ],
+  "total": {
+    "missions": 1,
+    "passed": 0,
+    "failed": 1,
+    "not_judged": 0,
+    "mission_seconds": 61.63,
+    "run_seconds": 63.46,
+    "by_mission": [
+      "2 FAIL 61.6s"
+    ],
+    "complete": true,
+    "updated_at": "2026-11-21T16:00:48+09:00"
+  }
+}

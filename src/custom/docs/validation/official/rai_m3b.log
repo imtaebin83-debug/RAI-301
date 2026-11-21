@@ -1,0 +1,71 @@
+[main] starting the simulator: -m ros2_bridge.run_g1_ros --no-view --spawn 16 11 0 --m4-room classroom --judge-goal-radius 0.5 --judge-cone-box 0.5 --judge-cone-offset 0.75 --ball-friction 0.62 0.02 0.01 --m1-goal-region 14.0 17.0 1.0 20.0 --m1-goal-yaw 90 --ball-region 7.25 11.25 5.5 8.5 --scenario /home/aril/RAI-301-quick/src/scenarios/default.yaml --sensors /home/aril/RAI-301-quick/src/custom/sensors.yaml --max-vel 0.6 0.4 0.7
+[main] starting robot_state_publisher (G1 URDF -> /tf)
+[mission] waiting for the simulator on /g1/mission_status ...
+[INFO] [1795245036.113886187] [mujoco_sim]: /clock 100 Hz | joint_states 50 Hz (29 joints) | G1 RGB-D 20 Hz | extra RGB 10 Hz | lidar 10 Hz (OS1-32 32x512, 1 worker(s)) | IMU 100 Hz | odom 0 Hz
+[INFO] [1795245036.114119863] [mujoco_sim]: listening on /cmd_vel; timeout 0.5s; limits vx/vy/wz=(0.6, 0.4, 0.7)
+[INFO] [1795245036.114715341] [mujoco_sim]: G1 rescue: keys 1-6 in viewer or publish std_msgs/Empty to /g1/respawn
+[INFO] [1795245036.115478970] [mujoco_sim]: referee: std_msgs/Int32 /g1/mission_end judges mission N on ground truth; mission 4 room classroom; scenario /home/aril/RAI-301-quick/src/scenarios/default.yaml
+[INFO] [1795245036.116423615] [mujoco_sim]: Mission API: std_msgs/Int32 /g1/mission (1-6, respawn there), std_msgs/Int32 /g1/mission_begin (1-6, G1 not moved), std_msgs/Empty /g1/randomize; status on /g1/mission_status, /g1/soccer_kick_status, /panda/task_status
+[INFO] [1795245036.116549837] [mujoco_sim]: ground truth: NOT published (no /odom, no odom TF; add --ground-truth to enable); initial pose: manual (RViz 2D Pose Estimate)
+[INFO] [1795245036.132449110] [mujoco_sim]: Panda task (startup): arm home, pencil (20.991, 19.715), holder (21.378, 19.706)
+[INFO] [1795245036.132837332] [mujoco_sim]: Scenario (/home/aril/RAI-301-quick/src/scenarios/default.yaml): m1 goal (15.50, 18.00), m2 green, cones blue | green | orange, rooms classroom | medical | cafeteria, ball (9.25, 8.15)
+[INFO] [1795245036.133040310] [mujoco_sim]: scene=layout.json robot='g1/' spawn=(16.00, 11.00, floor 0.00); official Unitree 29-DoF ONNX READY; standing until /cmd_vel arrives
+[mission] simulator up (mission point 1: launch point)
+[main] launching custom/bringup.launch.py (your nodes)
+[referee] results file: /home/aril/RAI-301-quick/src/results/run_20261121-161036.json
+
+[main] ===== mission 3: Cliff crossing =====
+[INFO] [1795245036.303415775] [mujoco_sim]: mission 3 (cliff-course entrance) selected from ROS begin 3; G1 not moved
+[INFO] [launch]: All log files can be found below /home/aril/.ros/log/2026-11-21-16-10-36-319725-aril-13-51817
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [python-1]: process started with pid [51834]
+[nav] pose=(16.00,11.00,0.00) target=(14.00,20.12) error=9.34
+[nav] pose=(15.92,11.46,1.79) target=(14.00,20.12) error=8.88
+[nav] pose=(15.92,12.97,1.89) target=(14.00,20.12) error=7.41
+[nav] pose=(16.06,14.54,1.97) target=(14.00,20.12) error=5.96
+[nav] pose=(15.93,16.01,2.06) target=(14.00,20.12) error=4.55
+[nav] pose=(15.55,17.56,2.14) target=(14.00,20.12) error=2.99
+[nav] pose=(14.91,18.88,2.22) target=(14.00,20.12) error=1.54
+[nav] pose=(14.09,20.01,2.31) target=(14.00,20.12) error=0.14
+[nav] pose=(13.40,19.95,-2.97) target=(12.40,20.12) error=1.02
+[nav] pose=(12.03,20.08,-3.12) target=(6.08,20.12) error=5.95
+[nav] pose=(10.60,20.45,-3.05) target=(6.08,20.12) error=4.54
+[nav] pose=(9.71,20.51,1.65) target=(6.08,20.12) error=3.66
+[nav] pose=(-1.75,35.88,-1.17) target=(6.08,20.12) error=17.59
+[nav] pose=(-1.73,35.83,-1.13) target=(6.08,20.12) error=17.53
+[nav] pose=(-3.63,36.63,-0.49) target=(6.08,20.12) error=19.15
+[nav] pose=(-3.36,36.47,-0.47) target=(6.08,20.12) error=18.88
+[nav] pose=(-2.92,36.14,-0.62) target=(6.08,20.12) error=18.36
+[nav] pose=(-1.71,35.95,-1.00) target=(6.08,20.12) error=17.64
+[nav] pose=(-3.30,36.61,-0.60) target=(6.08,20.12) error=18.97
+[nav] pose=(-3.01,36.19,-0.60) target=(6.08,20.12) error=18.46
+[nav] pose=(-1.82,35.88,-1.02) target=(6.08,20.12) error=17.62
+[nav] pose=(-2.24,36.46,-0.94) target=(6.08,20.12) error=18.33
+[nav] pose=(-0.52,35.22,-0.39) target=(6.08,20.12) error=16.48
+[nav] pose=(-0.91,35.46,-0.17) target=(6.08,20.12) error=16.85
+[nav] pose=(-1.08,35.57,-0.19) target=(6.08,20.12) error=17.02
+[nav] pose=(-0.52,35.35,-0.19) target=(6.08,20.12) error=16.59
+[nav] timeout target=(6.075,20.125)
+[WARN] [1795245166.028001475] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[INFO] [1795245166.517513978] [mujoco_sim]: referee: mission 3 FAIL -- did not cross the course entrance -> exit; pelvis (8.60, 20.72) outside the exit zone x 13.00..14.20, y 10.78..11.97
+[referee] ===== mission 3 Cliff crossing: FAIL in 129.4 s =====
+[referee]   check     did not cross the course entrance -> exit; pelvis (8.60, 20.72) outside the exit zone x 13.00..14.20, y 10.78..11.97  [FAIL]
+[referee]   reported  done:
+[main] stopping the simulator
+[main] stopping the robot_state_publisher
+[main] stopping the custom/bringup.launch.py
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [python-1]: sending signal 'SIGINT' to process[python-1]
+[INFO] [1795245166.623385335] [mujoco_sim]: stopped at sim=130.49s wall=130.49s RTF=1.00
+[python-1] [mission] waiting for the simulator on /g1/mission_status ...
+[python-1] [mission] simulator up (mission point 3: cliff-course entrance)
+[python-1] [localizer] waiting: waiting for LiDAR
+[python-1] [localizer] kiss-icp, IMU roll/pitch=-0.0/-0.5 deg, pelvis height=0.780m floor support=0.77
+[INFO] [python-1]: process has finished cleanly [pid 51834]
+
+============================== Mission results (referee, ground truth) ==============================
+  step  #  mission                        result     time  check
+  -     3  Cliff crossing                 FAIL     129.4s  check: did not cross the course entrance -> exit; pelvis (8.60, 20.72) outside the exit zone x 13.00..14.20, y 10.78..11.97
+  0/1 passed, missions 129.4 s, run 131.2 s
+  results file: /home/aril/RAI-301-quick/src/results/run_20261121-161036.json
+======================================================================================================

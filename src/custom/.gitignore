@@ -1,0 +1,8 @@
+__pycache__/
+models/
+models/Qwen2.5-0.5B-Instruct/
+*.py[cod]
+models/**/*.safetensors
+models/**/.cache/
+models/**/LICENSE*
+models/**/README.md

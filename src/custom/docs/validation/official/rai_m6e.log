@@ -1,0 +1,56 @@
+[main] starting the simulator: -m ros2_bridge.run_g1_ros --no-view --spawn 16 11 0 --m4-room classroom --judge-goal-radius 0.5 --judge-cone-box 0.5 --judge-cone-offset 0.75 --ball-friction 0.62 0.02 0.01 --m1-goal-region 14.0 17.0 1.0 20.0 --m1-goal-yaw 90 --ball-region 7.25 11.25 5.5 8.5 --scenario /home/aril/RAI-301-quick/src/scenarios/default.yaml --sensors /home/aril/RAI-301-quick/src/custom/sensors.yaml --max-vel 0.6 0.4 0.7
+[main] starting robot_state_publisher (G1 URDF -> /tf)
+[mission] waiting for the simulator on /g1/mission_status ...
+[INFO] [1795245667.666755475] [mujoco_sim]: /clock 100 Hz | joint_states 50 Hz (29 joints) | G1 RGB-D 20 Hz | extra RGB 10 Hz | lidar 10 Hz (OS1-32 32x512, 1 worker(s)) | IMU 100 Hz | odom 0 Hz
+[INFO] [1795245667.667054317] [mujoco_sim]: listening on /cmd_vel; timeout 0.5s; limits vx/vy/wz=(0.6, 0.4, 0.7)
+[INFO] [1795245667.667840534] [mujoco_sim]: G1 rescue: keys 1-6 in viewer or publish std_msgs/Empty to /g1/respawn
+[INFO] [1795245667.668790578] [mujoco_sim]: referee: std_msgs/Int32 /g1/mission_end judges mission N on ground truth; mission 4 room classroom; scenario /home/aril/RAI-301-quick/src/scenarios/default.yaml
+[INFO] [1795245667.669889733] [mujoco_sim]: Mission API: std_msgs/Int32 /g1/mission (1-6, respawn there), std_msgs/Int32 /g1/mission_begin (1-6, G1 not moved), std_msgs/Empty /g1/randomize; status on /g1/mission_status, /g1/soccer_kick_status, /panda/task_status
+[INFO] [1795245667.670062798] [mujoco_sim]: ground truth: NOT published (no /odom, no odom TF; add --ground-truth to enable); initial pose: manual (RViz 2D Pose Estimate)
+[INFO] [1795245667.691675283] [mujoco_sim]: Panda task (startup): arm home, pencil (20.991, 19.715), holder (21.378, 19.706)
+[INFO] [1795245667.692208164] [mujoco_sim]: Scenario (/home/aril/RAI-301-quick/src/scenarios/default.yaml): m1 goal (15.50, 18.00), m2 green, cones blue | green | orange, rooms classroom | medical | cafeteria, ball (9.25, 8.15)
+[INFO] [1795245667.692479434] [mujoco_sim]: scene=layout.json robot='g1/' spawn=(16.00, 11.00, floor 0.00); official Unitree 29-DoF ONNX READY; standing until /cmd_vel arrives
+[mission] simulator up (mission point 1: launch point)
+[main] launching custom/bringup.launch.py (your nodes)
+[referee] results file: /home/aril/RAI-301-quick/src/results/run_20261121-162107.json
+
+[main] ===== mission 6: Soccer goal scoring =====
+[INFO] [launch]: All log files can be found below /home/aril/.ros/log/2026-11-21-16-21-07-975765-aril-13-57583
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [1795245667.979704939] [mujoco_sim]: mission 6 (soccer-room door) selected from ROS begin 6; G1 not moved; soccer ball restored
+[INFO] [python-1]: process started with pid [57601]
+[nav] pose=(16.00,11.00,0.00) target=(14.00,9.10) error=2.76
+[nav] pose=(16.21,10.99,-1.83) target=(14.00,9.10) error=2.90
+[nav] pose=(14.91,10.12,-2.37) target=(14.00,9.10) error=1.37
+[nav] pose=(13.91,8.99,-2.60) target=(12.00,9.10) error=1.92
+[nav] pose=(12.41,9.06,-3.07) target=(12.00,9.10) error=0.41
+[WARN] [1795245695.283497689] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[mission 6] observed ball (9.73,8.18), range=2.47
+[mission 6] push attempt 1, observed ball=(9.73,8.18), behind=[9.77972997377216, 8.873495695828593]
+[nav] pose=(11.88,8.97,-2.49) target=(9.78,8.87) error=2.10
+[nav] pose=(10.76,9.15,-3.04) target=(9.78,8.87) error=1.02
+[WARN] [1795245711.852672781] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[vision] ball: unstable XY std=(1.70,0.16)
+[WARN] [1795245712.748431164] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[INFO] [1795245713.194584211] [mujoco_sim]: referee: mission 6 FAIL -- ball (9.25, 8.15) outside the goal (centre x 6.82..11.68, y 0.66..1.96: whole ball past the line, between the posts)
+[referee] ===== mission 6 Soccer goal scoring: FAIL in 44.5 s =====
+[referee]   check     ball (9.25, 8.15) outside the goal (centre x 6.82..11.68, y 0.66..1.96: whole ball past the line, between the posts)  [FAIL]
+[referee]   reported  done:
+[main] stopping the simulator
+[main] stopping the robot_state_publisher
+[main] stopping the custom/bringup.launch.py
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [python-1]: sending signal 'SIGINT' to process[python-1]
+[INFO] [1795245713.305853802] [mujoco_sim]: stopped at sim=43.95s wall=45.61s RTF=0.96
+[python-1] [mission] waiting for the simulator on /g1/mission_status ...
+[python-1] [mission] simulator up (mission point 6: soccer-room door)
+[python-1] [localizer] waiting: waiting for LiDAR
+[python-1] [localizer] kiss-icp, IMU roll/pitch=-0.0/-0.5 deg, pelvis height=0.780m floor support=0.82
+[INFO] [python-1]: process has finished cleanly [pid 57601]
+
+============================== Mission results (referee, ground truth) ==============================
+  step  #  mission                        result     time  check
+  -     6  Soccer goal scoring            FAIL      44.5s  check: ball (9.25, 8.15) outside the goal (centre x 6.82..11.68, y 0.66..1.96: whole ball past the line, between the posts)
+  0/1 passed, missions 44.5 s, run 46.3 s
+  results file: /home/aril/RAI-301-quick/src/results/run_20261121-162107.json
+======================================================================================================

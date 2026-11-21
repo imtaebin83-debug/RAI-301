@@ -1,0 +1,175 @@
+{
+  "run": {
+    "started_at": "2026-11-21T16:07:01+09:00",
+    "package": "RAI-301-quick",
+    "mode": "auto",
+    "config": "/tmp/rai_quick_headless.yaml",
+    "scenario": "/home/aril/RAI-301-quick/src/scenarios/default.yaml",
+    "referee": {
+      "goal_radius_m": 0.5,
+      "cone_box_m": 0.5,
+      "cone_box_offset_m": 0.75,
+      "m4_room": "classroom",
+      "m1_goal": [
+        15.5,
+        18.0,
+        90.0
+      ],
+      "m2_color": "green"
+    },
+    "plans": [],
+    "ended_at": "2026-11-21T16:09:35+09:00"
+  },
+  "missions": [
+    {
+      "mission": 4,
+      "label": "Semantic delivery",
+      "verdict": "FAIL",
+      "success": false,
+      "seconds": 152.48,
+      "started_at": "2026-11-21T16:07:01+09:00",
+      "ended_at": "2026-11-21T16:09:34+09:00",
+      "checks": [
+        {
+          "name": "rooms",
+          "ok": false,
+          "summary": "1/3 rooms right"
+        },
+        {
+          "name": "delivery",
+          "ok": false,
+          "summary": "pelvis (14.80, 3.94) in no room; target classroom x 18.25..23.00, y 14.10..20.90"
+        }
+      ],
+      "reported": {
+        "status": "done",
+        "detail": ""
+      },
+      "referee": {
+        "mission": 4,
+        "pelvis": [
+          14.797,
+          3.937,
+          0.78
+        ],
+        "success": false,
+        "summary": "pelvis (14.80, 3.94) in no room; target classroom x 18.25..23.00, y 14.10..20.90",
+        "room": "classroom",
+        "room_box": [
+          18.25,
+          23.0,
+          14.1,
+          20.9
+        ],
+        "pelvis_room": "no room",
+        "rooms": {
+          "classroom": [
+            18.25,
+            23.0,
+            14.1,
+            20.9
+          ],
+          "medical": [
+            18.25,
+            23.0,
+            7.1,
+            13.9
+          ],
+          "cafeteria": [
+            18.25,
+            23.0,
+            0.1,
+            6.9
+          ]
+        }
+      },
+      "data": {
+        "rooms": [
+          "classroom",
+          "medical",
+          "medical"
+        ],
+        "vlm_observations": [
+          {
+            "label": "classroom",
+            "text": "Classroom.",
+            "model": "/home/aril/RAI-301-quick/src/custom/models/SmolVLM-500M-Instruct",
+            "backend": "local-cpu"
+          },
+          {
+            "label": "medical",
+            "text": "Medical.",
+            "model": "/home/aril/RAI-301-quick/src/custom/models/SmolVLM-500M-Instruct",
+            "backend": "local-cpu"
+          },
+          {
+            "label": "medical",
+            "text": "Medical.",
+            "model": "/home/aril/RAI-301-quick/src/custom/models/SmolVLM-500M-Instruct",
+            "backend": "local-cpu"
+          }
+        ],
+        "error": "VLM labels not unique; no fabricated correction"
+      },
+      "rooms": {
+        "ok": false,
+        "correct": 1,
+        "total": 3,
+        "truth": "north classroom | middle medical | south cafeteria",
+        "answer": "north classroom | middle - | south medical",
+        "rows": [
+          {
+            "room": "classroom",
+            "slot": "north",
+            "answer_xy": [
+              20.625,
+              17.5
+            ],
+            "answer_in": "classroom",
+            "ok": true
+          },
+          {
+            "room": "medical",
+            "slot": "middle",
+            "answer_xy": [
+              20.625,
+              3.5
+            ],
+            "answer_in": "cafeteria",
+            "ok": false
+          },
+          {
+            "room": "cafeteria",
+            "slot": "south",
+            "answer_xy": null,
+            "answer_in": null,
+            "ok": false
+          }
+        ],
+        "given": {
+          "classroom": [
+            20.625,
+            17.5
+          ],
+          "medical": [
+            20.625,
+            3.5
+          ]
+        }
+      }
+    }
+  ],
+  "total": {
+    "missions": 1,
+    "passed": 0,
+    "failed": 1,
+    "not_judged": 0,
+    "mission_seconds": 152.48,
+    "run_seconds": 154.09,
+    "by_mission": [
+      "4 FAIL 152.5s"
+    ],
+    "complete": true,
+    "updated_at": "2026-11-21T16:09:35+09:00"
+  }
+}

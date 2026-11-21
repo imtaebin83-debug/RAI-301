@@ -1,0 +1,93 @@
+[main] starting the simulator: -m ros2_bridge.run_g1_ros --no-view --spawn 16 11 0 --m4-room classroom --judge-goal-radius 0.5 --judge-cone-box 0.5 --judge-cone-offset 0.75 --ball-friction 0.62 0.02 0.01 --m1-goal-region 14.0 17.0 1.0 20.0 --m1-goal-yaw 90 --ball-region 7.25 11.25 5.5 8.5 --scenario /tmp/rai-eval-c880fbd0/scenario.yaml --sensors /home/aril/RAI-301-quick/src/custom/sensors.yaml --max-vel 0.6 0.4 0.7
+[main] starting robot_state_publisher (G1 URDF -> /tf)
+[mission] waiting for the simulator on /g1/mission_status ...
+[INFO] [1795245943.960664310] [mujoco_sim]: /clock 100 Hz | joint_states 50 Hz (29 joints) | G1 RGB-D 20 Hz | extra RGB 10 Hz | lidar 10 Hz (OS1-32 32x512, 1 worker(s)) | IMU 100 Hz | odom 0 Hz
+[INFO] [1795245943.960915683] [mujoco_sim]: listening on /cmd_vel; timeout 0.5s; limits vx/vy/wz=(0.6, 0.4, 0.7)
+[INFO] [1795245943.961560717] [mujoco_sim]: G1 rescue: keys 1-6 in viewer or publish std_msgs/Empty to /g1/respawn
+[INFO] [1795245943.962368428] [mujoco_sim]: referee: std_msgs/Int32 /g1/mission_end judges mission N on ground truth; mission 4 room classroom; scenario /tmp/rai-eval-c880fbd0/scenario.yaml
+[INFO] [1795245943.963298278] [mujoco_sim]: Mission API: std_msgs/Int32 /g1/mission (1-6, respawn there), std_msgs/Int32 /g1/mission_begin (1-6, G1 not moved), std_msgs/Empty /g1/randomize; status on /g1/mission_status, /g1/soccer_kick_status, /panda/task_status
+[INFO] [1795245943.963427681] [mujoco_sim]: ground truth: NOT published (no /odom, no odom TF; add --ground-truth to enable); initial pose: manual (RViz 2D Pose Estimate)
+[INFO] [1795245943.979042122] [mujoco_sim]: Panda task (startup): arm home, pencil (20.991, 19.715), holder (21.378, 19.706)
+[INFO] [1795245943.979430172] [mujoco_sim]: Scenario (/tmp/rai-eval-c880fbd0/scenario.yaml): m1 goal (16.36, 15.82), m2 orange, cones green | orange | blue, rooms classroom | medical | cafeteria, ball (8.43, 8.05)
+[INFO] [1795245943.979628416] [mujoco_sim]: scene=layout.json robot='g1/' spawn=(16.00, 11.00, floor 0.00); official Unitree 29-DoF ONNX READY; standing until /cmd_vel arrives
+[mission] simulator up (mission point 1: launch point)
+[main] launching custom/bringup.launch.py (your nodes)
+[referee] results file: /home/aril/RAI-301-quick/src/results/run_20261121-162543.json
+
+[main] ===== mission 4: Semantic delivery =====
+[referee] mission 4 rooms to identify: cafeteria, classroom, medical (answer: result.data['rooms'] = {room: [x, y] world})
+[INFO] [launch]: All log files can be found below /home/aril/.ros/log/2026-11-21-16-25-44-113036-aril-13-60639
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [python-1]: process started with pid [60655]
+[INFO] [1795245944.152817315] [mujoco_sim]: mission 4 (three-room hallway view) selected from ROS begin 4; G1 not moved
+[nav] pose=(16.00,11.00,0.00) target=(16.90,17.50) error=6.56
+[nav] pose=(16.01,11.80,1.45) target=(16.90,17.50) error=5.77
+[nav] pose=(16.59,13.72,1.52) target=(16.90,17.50) error=3.80
+[nav] pose=(16.90,15.65,1.55) target=(16.90,17.50) error=1.85
+[WARN] [1795245970.662942384] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[mission 4] VLM door y=17.5: {'label': 'medical', 'text': 'medical', 'text_kind': 'highest_likelihood_candidate', 'scores': {'classroom': -12.983910669427132, 'medical': -10.375164031982422, 'cafeteria': -17.10466481000185}, 'score_kind': 'answer_sequence_log_likelihood', 'model': '/home/aril/RAI-301-quick/src/custom/models/SmolVLM-500M-Instruct', 'backend': 'local-cpu'}
+[nav] pose=(16.97,17.60,0.04) target=(16.90,10.50) error=7.10
+[nav] pose=(16.96,17.37,-1.52) target=(16.90,10.50) error=6.87
+[nav] pose=(16.65,15.26,-1.52) target=(16.90,10.50) error=4.76
+[nav] pose=(16.56,13.25,-1.44) target=(16.90,10.50) error=2.77
+[nav] pose=(16.69,11.41,-1.37) target=(16.90,10.50) error=0.93
+[WARN] [1795246019.952908197] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[mission 4] VLM door y=10.5: {'label': 'medical', 'text': 'medical', 'text_kind': 'highest_likelihood_candidate', 'scores': {'classroom': -16.14041990804253, 'medical': -8.124714851379395, 'cafeteria': -18.570012947544456}, 'score_kind': 'answer_sequence_log_likelihood', 'model': '/home/aril/RAI-301-quick/src/custom/models/SmolVLM-500M-Instruct', 'backend': 'local-cpu'}
+[nav] pose=(17.05,10.26,0.10) target=(16.90,3.59) error=6.67
+[nav] pose=(17.13,10.03,-1.33) target=(16.90,3.59) error=6.44
+[nav] pose=(16.65,7.93,-1.49) target=(16.90,3.59) error=4.35
+[nav] pose=(16.61,5.94,-1.42) target=(16.90,3.59) error=2.37
+[nav] pose=(16.84,3.87,-1.37) target=(16.90,3.59) error=0.29
+[WARN] [1795246066.195043577] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[mission 4] VLM door y=3.59: {'label': 'medical', 'text': 'medical', 'text_kind': 'highest_likelihood_candidate', 'scores': {'classroom': -13.407918758952292, 'medical': -10.512534141540527, 'cafeteria': -16.320222225040197}, 'score_kind': 'answer_sequence_log_likelihood', 'model': '/home/aril/RAI-301-quick/src/custom/models/SmolVLM-500M-Instruct', 'backend': 'local-cpu'}
+[mission 4] VLM joint assignment ['classroom', 'medical', 'cafeteria']: {'method': 'vlm_likelihood_unique_room_assignment', 'unconstrained_labels': ['medical', 'medical', 'medical'], 'score': -37.428847745846724, 'runner_up_margin': 1.2084506744868122}
+[nav] pose=(16.95,3.51,-0.01) target=(16.90,17.50) error=13.99
+[nav] pose=(16.78,4.21,1.57) target=(16.90,17.50) error=13.29
+[nav] pose=(17.22,6.04,1.64) target=(16.90,17.50) error=11.46
+[nav] pose=(17.68,7.99,1.67) target=(16.90,17.50) error=9.54
+[nav] pose=(17.86,8.85,1.54) target=(16.90,17.50) error=8.70
+[nav] pose=(17.82,8.85,1.57) target=(16.90,17.50) error=8.69
+[nav] pose=(17.85,8.83,1.53) target=(16.90,17.50) error=8.72
+[nav] pose=(17.82,8.87,1.54) target=(16.90,17.50) error=8.68
+[nav] pose=(17.85,8.84,1.52) target=(16.90,17.50) error=8.71
+[nav] pose=(17.84,8.87,1.51) target=(16.90,17.50) error=8.68
+[nav] pose=(17.85,8.85,1.54) target=(16.90,17.50) error=8.70
+[nav] pose=(17.81,8.86,1.50) target=(16.90,17.50) error=8.69
+[nav] pose=(17.83,8.86,1.48) target=(16.90,17.50) error=8.69
+[nav] pose=(17.85,8.84,1.56) target=(16.90,17.50) error=8.71
+[nav] pose=(17.83,8.85,1.53) target=(16.90,17.50) error=8.70
+[nav] pose=(17.84,8.84,1.51) target=(16.90,17.50) error=8.71
+[nav] pose=(17.86,8.83,1.56) target=(16.90,17.50) error=8.72
+[nav] pose=(17.86,8.86,1.52) target=(16.90,17.50) error=8.70
+[nav] pose=(17.84,8.86,1.54) target=(16.90,17.50) error=8.69
+[nav] pose=(17.85,8.84,1.52) target=(16.90,17.50) error=8.71
+[nav] timeout target=(16.9,17.5)
+[mission 4] incomplete: could not return to classroom doorway
+[WARN] [1795246190.124923355] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[INFO] [1795246190.641926710] [mujoco_sim]: referee: mission 4 FAIL -- pelvis (17.63, 8.86) in no room; target classroom x 18.25..23.00, y 14.10..20.90
+[referee] ===== mission 4 Semantic delivery: FAIL in 245.6 s =====
+[referee]   rooms     truth  : north classroom | middle medical | south cafeteria
+[referee]             answer : north classroom | middle medical | south cafeteria
+[referee]             3/3 rooms right  [PASS]
+[referee]   delivery  pelvis (17.63, 8.86) in no room; target classroom x 18.25..23.00, y 14.10..20.90  [FAIL]
+[referee]   reported  done:
+[main] stopping the simulator
+[main] stopping the robot_state_publisher
+[main] stopping the custom/bringup.launch.py
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [1795246190.745062145] [mujoco_sim]: stopped at sim=246.61s wall=246.77s RTF=1.00
+[INFO] [python-1]: sending signal 'SIGINT' to process[python-1]
+[python-1] [mission] waiting for the simulator on /g1/mission_status ...
+[python-1] [mission] simulator up (mission point 4: three-room hallway view)
+[python-1] [localizer] waiting: waiting for LiDAR
+[python-1] [localizer] kiss-icp, IMU roll/pitch=-0.0/-0.5 deg, pelvis height=0.780m floor support=0.76
+[python-1] [localizer] sensor reanchor #1: rejected translation=0.749m turn=17.9deg dt=0.200s; retained last trusted pose, no absolute relocalization
+[python-1] [localizer] sensor reanchor #2: rejected translation=1.042m turn=16.7deg dt=0.400s; retained last trusted pose, no absolute relocalization
+[INFO] [python-1]: process has finished cleanly [pid 60655]
+
+============================== Mission results (referee, ground truth) ==============================
+  step  #  mission                        result     time  check
+  -     4  Semantic delivery              FAIL     245.6s  rooms: 3/3 rooms right; delivery: pelvis (17.63, 8.86) in no room; target classroom x 18.25..23.00, y 14.10..20.90
+  0/1 passed, missions 245.6 s, run 247.3 s
+  results file: /home/aril/RAI-301-quick/src/results/run_20261121-162543.json
+======================================================================================================
