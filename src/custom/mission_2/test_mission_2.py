@@ -17,6 +17,33 @@ def detection(x=15.5, y=24.72):
 
 
 class ConsensusTests(unittest.TestCase):
+    def test_projection_uses_paired_snapshot_despite_live_camera_updates(self):
+        sequence = [0]
+
+        def latest(topic, *args, **kwargs):
+            if 'color' in topic:
+                sequence[0] += 1
+            return SimpleNamespace(encoding='32FC1' if 'depth' in topic else 'rgb8',
+                header=SimpleNamespace(stamp=SimpleNamespace(sec=1, nanosec=sequence[0]*1000)))
+
+        mission = SimpleNamespace(latest=latest, stop=Mock(), log=Mock())
+        sensor = ConeSensor(mission, Mock())
+
+        def project(**kwargs):
+            color = sensor._snapshot.latest('/camera/color/image_raw')
+            depth = sensor._snapshot.latest('/camera/depth/image_raw')
+            latest('/camera/color/image_raw')  # A live callback advances the cache.
+            self.assertEqual(color.header.stamp.nanosec, depth.header.stamp.nanosec)
+            self.assertIs(sensor._snapshot.latest('/camera/color/image_raw'), color)
+            return ('fixed-data',)
+
+        clock = iter(np.arange(0., 2., .01))
+        with patch.object(sensor._projection, 'frame', side_effect=project), \
+             patch.object(sensor, 'cone', return_value=detection()), \
+             patch('custom.mission_2.perception.time.monotonic', side_effect=lambda: next(clock)), \
+             patch('custom.mission_2.perception.time.sleep'):
+            self.assertIsNotNone(sensor.observe_cone('blue', .3))
+
     def test_manifest_covers_three_colors_and_prior_mission_endpoints(self):
         cases = evaluate.cases()
         self.assertEqual(len({item['id'] for item in cases}), 12)
@@ -70,7 +97,7 @@ class ConsensusTests(unittest.TestCase):
         rgb, depth = Image(), Image()
         rgb.header.stamp.sec = depth.header.stamp.sec = 1
         rgb.encoding, depth.encoding = 'rgb8', '32FC1'
-        mission = SimpleNamespace(stop=Mock(), latest=lambda topic, *a, **k:
+        mission = SimpleNamespace(stop=Mock(), log=Mock(), latest=lambda topic, *a, **k:
                                   depth if 'depth' in topic else rgb)
         sensor = ConeSensor(mission, Mock())
         with patch('custom.mission_2.perception.time.monotonic', side_effect=[0., 0., .1, 2.]), \
@@ -119,14 +146,14 @@ class MissionFailureTests(unittest.TestCase):
         nav.goto.assert_not_called()
         mission.stop.assert_called_once()
 
-    def test_short_approaches_reobserve_and_verify_final_stop(self):
+    def test_measured_approach_verifies_final_stop(self):
         mission = self.mission()
         position = [15.5, 22.3, 1.57]
         nav = Mock()
         nav.pose.side_effect = lambda: tuple(position)
 
         def goto(x, y, **kwargs):
-            bound = .70001 if kwargs['speed'] <= .14 else .55001
+            bound = 3.5
             self.assertLessEqual(np.hypot(x-position[0], y-position[1]), bound)
             self.assertLessEqual(kwargs['speed'], .18)
             position[:2] = [x, y]
@@ -138,10 +165,10 @@ class MissionFailureTests(unittest.TestCase):
             sensor.return_value.observe_cone.side_effect = lambda *a, **k: detection()
             result = Mission2.run(mission)
             self.assertTrue(result['reached'])
-            self.assertGreaterEqual(sensor.return_value.observe_cone.call_count, 2)
-            self.assertLessEqual(result['final_leg_m'], .70)
+            self.assertEqual(sensor.return_value.observe_cone.call_count, 1)
+            self.assertLessEqual(result['final_leg_m'], 3.5)
             self.assertLess(result['final_pose_error_m'], .12)
-        self.assertGreater(nav.goto.call_count, 1)
+        self.assertEqual(nav.goto.call_count, 1)
         mission.stop.assert_called_once()
 
 

@@ -1,0 +1,22 @@
+Shared navigation blocker — user requested documentation, no common edits.
+
+Reproduce with mission_2/evaluate.py --run --case after-m1-green.
+Initial stock spawn: (16,11,0). Mission 1 target: (14.98,7.99,90deg).
+Then Mission 2: green cone; order orange/blue/green. No reset between missions.
+On November 22: Mission 1 PASS (14.0s); Mission 2 FAIL (140.3s).
+Estimated pose stalled near (15.4,16.0) while pursuing (15.5,20.3).
+Error: Could not reach cone observation point. No cone approach was attempted.
+
+Existing HAIC_MAP_CORRECTION=1 diagnostic: same scenario passed both missions
+(14.4s / 64.8s). This comparison does not establish a generally safe default;
+previous cliff tests failed with that experimental matcher. No source/default
+or unrelated environment was changed. Do not enable it globally on this evidence.
+
+The shared localisation, Navigator, bringup, planner and walking settings
+remain untouched. The integration owner should investigate pose drift and
+wall/progress handling. Keep the public start anchor and continuous sensor pose;
+never reinitialise from nominal mission selection data or hidden ground truth.
+
+Official evidence: /tmp/ys-m2-candidate-expanded/after-m1-green/record.json
+Diagnostic: /tmp/ys-m2-candidate-map-green/after-m1-green/record.json
+Copied evidence is stored in output/ys-missions/sim-20261122 on the Mac.
