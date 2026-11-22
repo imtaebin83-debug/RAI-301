@@ -89,8 +89,9 @@ def measure_scene(image, camera: CameraModel, table_z=0., holder_height=.15,
     if image.shape != (256, 256, 3) or image.dtype != np.uint8:
         raise ValueError('Expected unrotated 256x256 RGB agentview')
     hsv = cv2.cvtColor(image, cv2.COLOR_RGB2HSV)
-    pencil = ((hsv[:, :, 0] >= 20) & (hsv[:, :, 0] <= 42) &
+    pencil = ((hsv[:, :, 0] >= 18) & (hsv[:, :, 0] <= 42) &
               (hsv[:, :, 1] > 130) & (hsv[:, :, 2] > 155)).astype(np.uint8)
+    legacy_pencil = pencil.astype(bool) & (hsv[:, :, 0] >= 20)
     # Connect metal bands splitting yellow paint, but measure original pixels.
     expanded = cv2.dilate(pencil, np.ones((3, 9), np.uint8))
     count, labels, stats, _ = cv2.connectedComponentsWithStats(expanded, 8)
@@ -108,6 +109,17 @@ def measure_scene(image, camera: CameraModel, table_z=0., holder_height=.15,
         if not .15 < np.linalg.norm(center) < .95:
             continue
         axis = vt[0]
+        # Restore H18/H19 body pixels without changing the arbitrary directed
+        # PCA branch consumed by the learned policy. Reference only H20 pixels
+        # belonging to this same H18 component, centered at their own mean.
+        old_rows, old_cols = np.nonzero((labels == label) & legacy_pencil)
+        if len(old_rows) >= 30:
+            old_points = camera.on_plane(np.c_[old_cols, old_rows],
+                                         table_z + pencil_radius * 1.7)[:, :2]
+            _, _, old_vt = np.linalg.svd(old_points - old_points.mean(0),
+                                        full_matrices=False)
+            if np.dot(axis, old_vt[0]) < 0:
+                axis = -axis
         # Resolve the otherwise pi-ambiguous PCA axis with the pink eraser.
         # The desired directed axis points from eraser toward graphite tip.
         pink=(hsv[:,:,0]>145)&(hsv[:,:,0]<179)&(hsv[:,:,1]>70)&(hsv[:,:,2]>90)
