@@ -1,0 +1,26 @@
+/home/aril/miniconda3/envs/haic_rai301_verify/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:2284: FutureWarning: The class `AutoModelForVision2Seq` is deprecated and will be removed in v5.0. Please use `AutoModelForImageTextToText` instead.
+  warnings.warn(
+`torch_dtype` is deprecated! Use `dtype` instead!
+	Command being timed: "python -m custom.vlm --batch /tmp/ys-m4-candidate-reattempt-final-six/rooms-0/camera/view-0.png /tmp/ys-m4-candidate-reattempt-final-six/rooms-0/camera/view-1.png /tmp/ys-m4-candidate-reattempt-final-six/rooms-0/camera/view-2.png"
+	User time (seconds): 147.98
+	System time (seconds): 32.85
+	Percent of CPU this job got: 296%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:01.07
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 4261452
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 36746228
+	Voluntary context switches: 3266
+	Involuntary context switches: 884
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 24
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

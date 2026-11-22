@@ -94,7 +94,7 @@ class CameraTests(unittest.TestCase):
 
     def test_travel_uses_one_central_corridor_goal(self):
         nav = Mock()
-        Mission4._travel(SimpleNamespace(), nav, 17.5, lambda limit: limit)
+        Mission4._travel(SimpleNamespace(_navigate=lambda nav, action, timeout: action(timeout)), nav, 17.5, lambda limit: limit)
         nav.route_to.assert_called_once_with(16.0, 17.5, tolerance=.18, timeout=100)
         nav.goto.assert_not_called()
 
@@ -103,13 +103,14 @@ class CameraTests(unittest.TestCase):
         nav.pose.return_value = (16., 11., 0.)
         nav.route_to.return_value = False
         with self.assertRaises(RuntimeError):
-            Mission4._travel(SimpleNamespace(), nav, 17.5, lambda limit: limit)
+            Mission4._travel(SimpleNamespace(_navigate=lambda nav, action, timeout: action(timeout)), nav, 17.5, lambda limit: limit)
         nav.goto.assert_not_called()
 
     def test_correct_room_labels_do_not_hide_failed_delivery(self):
         mission = SimpleNamespace(begin_mission=Mock(return_value={}), stop=Mock(),
             log=Mock(), result=lambda **data: data, _travel=Mock(), _face_room=Mock(),
-            _image=Mock(return_value=Mock()), _last_image_stamp=[2, 0])
+            _image=Mock(return_value=Mock()), _last_image_stamp=[2, 0],
+            _navigate=lambda nav, action, timeout: action(timeout))
         nav = Mock()
         nav.pose.return_value = (16.7, 3.59, 0.)
         nav.goto.return_value = False
@@ -127,6 +128,136 @@ class CameraTests(unittest.TestCase):
                                         timeout=40, speed=.20)
         mission.stop.assert_called()
 
+
+
+    def test_ambiguous_survey_gets_one_crop_retry_before_delivery(self):
+        from PIL import Image as PILImage
+        image = PILImage.new('RGB', (640, 480))
+        mission = SimpleNamespace(begin_mission=Mock(return_value={}), stop=Mock(),
+            log=Mock(), result=lambda **data: data, _travel=Mock(), _face_room=Mock(),
+            _image=Mock(return_value=image), _last_image_stamp=[2, 0],
+            _navigate=lambda nav, action, timeout: action(timeout))
+        nav = Mock()
+        nav.pose.return_value = (16., 3.59, 0.)
+        labels = ('medical', 'cafeteria', 'classroom')
+        ambiguous = [{'label': 'medical', 'scores': {label: -5. for label in ROOM_LABELS}}] * 3
+        with patch('custom.mission_4.mission_4.Navigator', return_value=nav), \
+             patch('custom.mission_4.mission_4.classify_views', side_effect=[
+                 ambiguous, [observation(label) for label in labels]]) as classify, \
+             patch('custom.mission_4.mission_4.time.sleep'), \
+             patch.dict('os.environ', {}, clear=True):
+            result = Mission4.run(mission)
+        self.assertEqual(result['rooms'], list(labels))
+        self.assertNotIn('error', result)
+        self.assertEqual(classify.call_count, 2)
+        self.assertTrue(all(im.size == (512, 384) for im in classify.call_args.args[0]))
+        self.assertEqual(len(result['vlm_retries']), 1)
+        self.assertTrue(all(len(o['views']) == 2 for o in result['vlm_observations']))
+        nav.goto.assert_called_once()
+
+    def test_still_ambiguous_crop_retry_never_enters_a_room(self):
+        from PIL import Image as PILImage
+        mission = SimpleNamespace(begin_mission=Mock(return_value={}), stop=Mock(),
+            log=Mock(), result=lambda **data: data, _travel=Mock(), _face_room=Mock(),
+            _image=Mock(return_value=PILImage.new('RGB', (640, 480))), _last_image_stamp=[2, 0],
+            _navigate=lambda nav, action, timeout: action(timeout))
+        nav = Mock()
+        nav.pose.return_value = (16., 3.59, 0.)
+        ambiguous = [{'label': 'medical', 'scores': {label: -5. for label in ROOM_LABELS}}] * 3
+        with patch('custom.mission_4.mission_4.Navigator', return_value=nav), \
+             patch('custom.mission_4.mission_4.classify_views', return_value=ambiguous) as classify, \
+             patch('custom.mission_4.mission_4.time.sleep'), \
+             patch.dict('os.environ', {}, clear=True):
+            result = Mission4.run(mission)
+        self.assertEqual(classify.call_count, 2)
+        self.assertEqual(result['rooms'], [])
+        self.assertEqual(result['failed_stage'], 'VLM crop retry')
+        nav.goto.assert_not_called()
+        mission.stop.assert_called()
+
+
+class PoseRecoveryTests(unittest.TestCase):
+    def mission(self, stamps):
+        def message(stamp):
+            return SimpleNamespace(header=SimpleNamespace(stamp=SimpleNamespace(sec=stamp, nanosec=0)))
+        mission = SimpleNamespace(stop=Mock(), log=Mock(), _recovery_attempts=0,
+                                  _pose_recoveries=[], latest=Mock(side_effect=[message(s) for s in stamps]))
+        return mission
+
+    def test_retry_waits_for_sustained_poses_and_keeps_deadline(self):
+        mission = self.mission([10, 10] + list(range(11, 60)))
+        nav, clock = Mock(), [0.]
+        def sleep(seconds):
+            clock[0] += seconds
+        action = Mock(side_effect=[RuntimeError('Stale localization: test'), True])
+        with patch('custom.mission_4.mission_4.time.monotonic', side_effect=lambda: clock[0]), \
+             patch('custom.mission_4.mission_4.time.sleep', side_effect=sleep):
+            self.assertTrue(Mission4._navigate(mission, nav, action, 20))
+        self.assertGreaterEqual(mission.latest.call_count, 23)
+        self.assertGreaterEqual(clock[0], 1.)
+        self.assertGreaterEqual(mission.stop.call_count, 4)
+        nav.pose.assert_called_once()
+        self.assertLess(action.call_args_list[1].args[0], action.call_args_list[0].args[0])
+        self.assertTrue(mission._pose_recoveries[0]['recovered'])
+
+    def test_intermittent_pose_bursts_do_not_resume_movement(self):
+        # Two new stamps alone must not count as a sustained recovery.
+        mission = self.mission(([10, 11, 12] + [12] * 20) * 9)
+        clock = [0.]
+        def sleep(seconds):
+            clock[0] += seconds
+        action = Mock(side_effect=RuntimeError('Stale localization: test'))
+        with patch('custom.mission_4.mission_4.time.monotonic', side_effect=lambda: clock[0]), \
+             patch('custom.mission_4.mission_4.time.sleep', side_effect=sleep):
+            with self.assertRaisesRegex(RuntimeError, 'did not recover'):
+                Mission4._navigate(mission, Mock(), action, 20)
+        action.assert_called_once()
+
+    def test_permanent_outage_never_retries_movement(self):
+        mission = self.mission([10] * 200)
+        nav, clock = Mock(), [0.]
+        def sleep(seconds):
+            clock[0] += seconds
+        action = Mock(side_effect=RuntimeError('Stale localization: test'))
+        with patch('custom.mission_4.mission_4.time.monotonic', side_effect=lambda: clock[0]), \
+             patch('custom.mission_4.mission_4.time.sleep', side_effect=sleep):
+            with self.assertRaisesRegex(RuntimeError, 'did not recover'):
+                Mission4._navigate(mission, nav, action, 20)
+        action.assert_called_once()
+        self.assertLessEqual(clock[0], 8.01)
+        self.assertFalse(mission._pose_recoveries[0]['recovered'])
+
+    def test_unrelated_errors_and_exhausted_budget_are_not_retried(self):
+        for error, attempts in [('bad target', 0), ('Stale localization: test', 3)]:
+            mission = self.mission([])
+            mission._recovery_attempts = attempts
+            action = Mock(side_effect=RuntimeError(error))
+            with self.assertRaisesRegex(RuntimeError, error):
+                Mission4._navigate(mission, Mock(), action, 20)
+            action.assert_called_once()
+            mission.latest.assert_not_called()
+            mission.stop.assert_called()
+
+    def test_recovery_wait_cannot_extend_the_leg_deadline(self):
+        mission = self.mission([10] * 100)
+        clock = [0.]
+        def sleep(seconds):
+            clock[0] += seconds
+        action = Mock(side_effect=RuntimeError('Stale localization: test'))
+        with patch('custom.mission_4.mission_4.time.monotonic', side_effect=lambda: clock[0]), \
+             patch('custom.mission_4.mission_4.time.sleep', side_effect=sleep):
+            with self.assertRaisesRegex(RuntimeError, 'did not recover'):
+                Mission4._navigate(mission, Mock(), action, .4)
+        self.assertLessEqual(clock[0], .4)
+        action.assert_called_once()
+
+    def test_expired_deadline_never_starts_navigation(self):
+        mission = self.mission([])
+        action = Mock()
+        with self.assertRaises(TimeoutError):
+            Mission4._navigate(mission, Mock(), action, 0)
+        action.assert_not_called()
+        mission.stop.assert_called()
 
 if __name__ == '__main__':
     unittest.main()

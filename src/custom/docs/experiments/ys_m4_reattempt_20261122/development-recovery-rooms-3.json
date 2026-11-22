@@ -1,0 +1,356 @@
+{
+  "case": {
+    "id": "rooms-3",
+    "split": "held-out",
+    "missions": [
+      4
+    ],
+    "room_order": [
+      "medical",
+      "cafeteria",
+      "classroom"
+    ]
+  },
+  "command": [
+    "bash",
+    "custom/tools/run_sim.sh",
+    "--headless",
+    "--missions",
+    "4",
+    "--no-wait",
+    "--scenario",
+    "/tmp/ys-m4-candidate-reattempt-recovery/rooms-3/evaluation_scenario.yaml"
+  ],
+  "source_root": "/home/aril/rai-worktrees/ys-m4-reattempt-20261122/src",
+  "commit": "6a1a3af6682da5534c2e94dec1405b5a0fd7fd9d",
+  "code_sha256": {
+    "custom/bringup.launch.py": "439468d3cdfe278e08908df2c1729dbdcdd97eaadc0f9be459f8c89697dbc4d2",
+    "custom/public_map.py": "cbb6a31993c75d378e7b805d52311583e032122f34f361e8de234cb90b604695",
+    "custom/navigation.py": "a218e9553c209ded1f1e27abb3305066e603e9b3eb7f1405ffac4b69fcf197a2",
+    "custom/localizer_node.py": "16fc54aea3fc1fb1e0d22916df1c9be96f4fa8d5df1a4872e22ac8c26c11d9f9",
+    "custom/localization.py": "6a6341f214ea068a3815a0505c38c4db4a3dffd9dee8a5bd0033dfacccb386c0",
+    "custom/vlm.py": "63b1b1225aa32e7ea20b1ac9efdf61193d8658de02cbcac3b1d0c9fbc8a5b030",
+    "custom/vision.py": "c81086a280acc35ea734d3ee948cd2cad66f765503436323fa04bd03b623fa63",
+    "custom/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "custom/tools/download_models.py": "f065d3de598843c8ab06b227f558eb88b23bf1623b05da07ede1d3dfba807c5f",
+    "custom/tests/test_vision.py": "5ae70c4a11a40bcf9ba1eaf4d4b14d2e27fa5f32aac6088702b195c58fb12c3b",
+    "custom/tests/test_planner.py": "8b9247344ac4b50ef7941a34e7497d398fe35db2c37181aa9dd5dc55de069d3a",
+    "custom/tests/test_room_assignment.py": "650a4875d6b87c9c877ae9464687c74a81cf92ea83283f47de0c63e1fab91225",
+    "custom/mission_6/mission_6.py": "b59093d8c530aae16980db163eec10f2b14407699ab4a57e60e1564613116336",
+    "custom/mission_6/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "custom/testing/web_smoke.py": "68f10f96965aecc45db5b994c31fa69918b0c3c141d95811f0027f4406f45e1e",
+    "custom/testing/capture.py": "be26d09fd23618c1e230891c95ac717455531bc363a00175606bcc78e134ee07",
+    "custom/testing/randomized_suite.py": "3740d37bf61c88984ee28377f8bb9938d5b4212759aa988a267e4187d93d584e",
+    "custom/planner/planner.py": "322cd75a717d3f91e8ccc797a3c43b7eec54ebdf0c3e923984fc26ba5b710ce7",
+    "custom/planner/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "custom/planner/local_model.py": "738dc494168b86d94a769ae14a2766220a30d5c481399853acc943889cb6d64a",
+    "custom/mission_1/mission_1.py": "573361a9b8704a6c7836ff570e825a1b7ca4248d1f6ddcb54b150be9605a8d0f",
+    "custom/mission_1/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "custom/mission_3/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "custom/mission_3/mission_3.py": "bd3fb3282a039b7c5a801873fb39e707d0cec5acd897413e5a98fc40f00892d4",
+    "custom/mission_4/mission_4.py": "415ab4e5f034118e26a6a68195ee7ba104ebe6c6f66dafe08aa96c6d7245a9a6",
+    "custom/mission_4/evaluate.py": "876d273c3371587ee1f7f60f3943b06ef201f8d4cbd098b911c6b7b921508297",
+    "custom/mission_4/test_mission_4.py": "208d004c9a29f91e9ce10fcbad973b14ce5d70178559bf27b98efabc240ac2a1",
+    "custom/mission_4/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "custom/mission_2/mission_2.py": "96825919f078a28f735eb8ba2096afd426a36447266e253c817602d0a52680f4",
+    "custom/mission_2/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "custom/mission_5/evaluate.py": "56808e2263c639fb72569130c84d16105095743c4f1afdd278117ddfb922673b",
+    "custom/mission_5/policy.py": "49ee223a7eecc001226842f8d91597a709f1f1f005dd1f9976fceb63b7416e0e",
+    "custom/mission_5/perception.py": "16d2e6668d29dbff3a56d09a9d831f078c8017fabe1c6a9727892a70fba928ca",
+    "custom/mission_5/train_keyposes.py": "dc91fc9cc220753c69fbf59729d381e6f0f372b24f6860fceff639956621bcc6",
+    "custom/mission_5/collect.py": "724713c70c9d453dc97cb8fe1febded5497ace943657abf7b6a5443395c38ef5",
+    "custom/mission_5/ros_io.py": "a30aba84ec521699c9ce76b5e94e114e270465e94951408b629a97ae88f41408",
+    "custom/mission_5/mission_5.py": "9fda76d548d2819c646f19ae3c0e98d4e48a7ab21e5d4ed670b8d6ad72ed4933",
+    "custom/mission_5/policy_adapter.py": "0843344db550660c8b35322a17c9ee78242a1c02588d813e80092174138c41b6",
+    "custom/mission_5/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "custom/mission_5/vision_teacher.py": "49d7a2d34264e3a7bde9c969fafb46b1b5594b2f7afa5ccd2693acf97deb2862",
+    "custom/mission_5/keypose_policy.py": "0a261bb66716a3480e674cd4da47bc2e62be57a5874a50ea8920c0b77b77bd9b",
+    "custom/mission_5/tests/test_teacher.py": "08bce20b8ea3c180fafae08569819130f0ac95aa282661fecbecd75c8802a611",
+    "custom/mission_5/tests/test_learning.py": "15ff3a59db429f5ec98eef42d7a196f72eedaef6a3a1cbcb390bee524cf74e90",
+    "custom/mission_5/tests/test_keyposes.py": "bd742428a98b50509ddc76e6868f5af8e467d1a5d0db7c46da094735e4198347",
+    "custom/mission_5/tests/test_ros_io.py": "de56f65f6bf96acf30fc47fc873deada230d65774fbe09caf67b33285fdc6f6b",
+    "custom/mission_5/bc/export.py": "fd4141d9bfe33ce99a882126da0f78aca59f71167f57ce35d59de66faaf1f01c",
+    "custom/mission_5/bc/merge.py": "7add681774a5ac88af7e0563a4d6eb5eb472680602b4a6dd0d5a269f512661b0",
+    "custom/mission_5/bc/policy.py": "0b6b20d78af5a8bc35edca442b4402e821feddfefe3868c748cb0b1fe66a88e8",
+    "custom/mission_5/bc/prepare.py": "fa688c782496492bcac4859463d15b842b37cf7fa3874e2f048a8aeaeeeec1f8",
+    "custom/mission_5/bc/__init__.py": "47c2e5f788aab12c14747b5e52437b037c3020a7df23fcd0a74b3846005e473a",
+    "custom/mission_5/bc/train.py": "868fc8b8e2b10766ec1a0ed5f855d5d268da8e00bec333aa4007429b1f6243fe",
+    "custom/mission_5/bc/model.py": "e2236de08c9ac5eef1d91d46ba52281300cb1ebd3d0391cb2cdc1267cdcd640f",
+    "custom/mission_5/bc/frames.py": "a9daf859f8512fe5687ff32f35f1157d092b70319d1196db912e137cc321b2fe",
+    "custom/mission_5/bc/data.py": "fcf7c821b6bcb620ccf4ba1455f2d9d942c99d5ed168d0191c2470639f1c2192"
+  },
+  "initial_pose": [
+    16.0,
+    11.0,
+    0.0
+  ],
+  "ros_domain_id": "74",
+  "runtime_options": {
+    "HAIC_MAP_CORRECTION": null,
+    "HAIC_VLM_THREADS": null,
+    "HAIC_M2_CAPTURE_DIR": null
+  },
+  "returncode": 1,
+  "wall_seconds": 157.467543812003,
+  "official_result": {
+    "run": {
+      "started_at": "2026-11-22T13:42:48+09:00",
+      "package": "ys-m4-reattempt-20261122",
+      "mode": "auto",
+      "config": "/tmp/rai-headless.MPlL4A.yaml",
+      "scenario": "/tmp/ys-m4-candidate-reattempt-recovery/rooms-3/evaluation_scenario.yaml",
+      "referee": {
+        "goal_radius_m": 0.5,
+        "cone_box_m": 0.5,
+        "cone_box_offset_m": 0.75,
+        "m4_room": "classroom",
+        "m1_goal": [
+          15.5,
+          18.0,
+          90.0
+        ],
+        "m2_color": "green"
+      },
+      "plans": [],
+      "ended_at": "2026-11-22T13:45:18+09:00"
+    },
+    "missions": [
+      {
+        "mission": 4,
+        "label": "Semantic delivery",
+        "verdict": "FAIL",
+        "success": false,
+        "seconds": 147.83,
+        "started_at": "2026-11-22T13:42:48+09:00",
+        "ended_at": "2026-11-22T13:45:16+09:00",
+        "checks": [
+          {
+            "name": "rooms",
+            "ok": false,
+            "summary": "0/3 rooms right"
+          },
+          {
+            "name": "delivery",
+            "ok": false,
+            "summary": "pelvis (13.81, 4.28) in no room; target classroom x 18.25..23.00, y 0.10..6.90"
+          }
+        ],
+        "reported": {
+          "status": "done",
+          "detail": ""
+        },
+        "referee": {
+          "mission": 4,
+          "pelvis": [
+            13.811,
+            4.275,
+            0.78
+          ],
+          "success": false,
+          "summary": "pelvis (13.81, 4.28) in no room; target classroom x 18.25..23.00, y 0.10..6.90",
+          "room": "classroom",
+          "room_box": [
+            18.25,
+            23.0,
+            0.1,
+            6.9
+          ],
+          "pelvis_room": "no room",
+          "rooms": {
+            "medical": [
+              18.25,
+              23.0,
+              14.1,
+              20.9
+            ],
+            "cafeteria": [
+              18.25,
+              23.0,
+              7.1,
+              13.9
+            ],
+            "classroom": [
+              18.25,
+              23.0,
+              0.1,
+              6.9
+            ]
+          }
+        },
+        "data": {
+          "rooms": [],
+          "vlm_observations": [
+            {
+              "label": "medical",
+              "scores": {
+                "classroom": -16.18236769537907,
+                "medical": -8.936153411865234,
+                "cafeteria": -19.436240654438734
+              },
+              "score_kind": "mean_view_answer_sequence_log_likelihood",
+              "views": [
+                {
+                  "label": "medical",
+                  "text": "medical",
+                  "text_kind": "highest_likelihood_candidate",
+                  "scores": {
+                    "classroom": -16.18236769537907,
+                    "medical": -8.936153411865234,
+                    "cafeteria": -19.436240654438734
+                  },
+                  "score_kind": "answer_sequence_log_likelihood",
+                  "model": "/home/aril/rai-worktrees/ys-m4-reattempt-20261122/src/custom/models/SmolVLM-500M-Instruct",
+                  "backend": "local-cpu",
+                  "load_seconds": 0.37914655200438574,
+                  "inference_seconds": 18.93298393501027
+                }
+              ]
+            },
+            {
+              "label": "medical",
+              "scores": {
+                "classroom": -12.749620735208737,
+                "medical": -10.28335952758789,
+                "cafeteria": -15.182156343013048
+              },
+              "score_kind": "mean_view_answer_sequence_log_likelihood",
+              "views": [
+                {
+                  "label": "medical",
+                  "text": "medical",
+                  "text_kind": "highest_likelihood_candidate",
+                  "scores": {
+                    "classroom": -12.749620735208737,
+                    "medical": -10.28335952758789,
+                    "cafeteria": -15.182156343013048
+                  },
+                  "score_kind": "answer_sequence_log_likelihood",
+                  "model": "/home/aril/rai-worktrees/ys-m4-reattempt-20261122/src/custom/models/SmolVLM-500M-Instruct",
+                  "backend": "local-cpu",
+                  "load_seconds": 0.0,
+                  "inference_seconds": 19.15266870400228
+                }
+              ]
+            },
+            {
+              "label": "medical",
+              "scores": {
+                "classroom": -14.426231495453976,
+                "medical": -8.854655265808105,
+                "cafeteria": -16.820900639519095
+              },
+              "score_kind": "mean_view_answer_sequence_log_likelihood",
+              "views": [
+                {
+                  "label": "medical",
+                  "text": "medical",
+                  "text_kind": "highest_likelihood_candidate",
+                  "scores": {
+                    "classroom": -14.426231495453976,
+                    "medical": -8.854655265808105,
+                    "cafeteria": -16.820900639519095
+                  },
+                  "score_kind": "answer_sequence_log_likelihood",
+                  "model": "/home/aril/rai-worktrees/ys-m4-reattempt-20261122/src/custom/models/SmolVLM-500M-Instruct",
+                  "backend": "local-cpu",
+                  "load_seconds": 0.0,
+                  "inference_seconds": 19.262547082995297
+                }
+              ]
+            }
+          ],
+          "pose_recoveries": [],
+          "room_assignment": null,
+          "views": [
+            {
+              "door_y": 17.5,
+              "stamp": [
+                27,
+                802000000
+              ],
+              "estimated_pose": [
+                16.013374660854762,
+                17.62894434457712,
+                0.03125860668996105
+              ],
+              "elapsed_seconds": 27.91169172800437
+            },
+            {
+              "door_y": 10.5,
+              "stamp": [
+                57,
+                500000000
+              ],
+              "estimated_pose": [
+                16.06884471854807,
+                10.247258533094517,
+                -0.005347166938090604
+              ],
+              "elapsed_seconds": 60.354899992002174
+            },
+            {
+              "door_y": 3.59,
+              "stamp": [
+                82,
+                952000000
+              ],
+              "estimated_pose": [
+                15.531727721733386,
+                3.483087797837892,
+                0.03465069010392678
+              ],
+              "elapsed_seconds": 87.0372761960025
+            }
+          ],
+          "failed_stage": "VLM survey inference",
+          "error": "VLM scores do not distinguish a room assignment",
+          "elapsed_seconds": 147.62078015400039
+        },
+        "rooms": {
+          "ok": false,
+          "correct": 0,
+          "total": 3,
+          "truth": "north medical | middle cafeteria | south classroom",
+          "answer": "no answer (self.result(rooms=[...]))",
+          "rows": [
+            {
+              "room": "medical",
+              "slot": "north",
+              "answer_xy": null,
+              "answer_in": null,
+              "ok": false
+            },
+            {
+              "room": "cafeteria",
+              "slot": "middle",
+              "answer_xy": null,
+              "answer_in": null,
+              "ok": false
+            },
+            {
+              "room": "classroom",
+              "slot": "south",
+              "answer_xy": null,
+              "answer_in": null,
+              "ok": false
+            }
+          ],
+          "given": {}
+        }
+      }
+    ],
+    "total": {
+      "missions": 1,
+      "passed": 0,
+      "failed": 1,
+      "not_judged": 0,
+      "mission_seconds": 147.83,
+      "run_seconds": 149.86,
+      "by_mission": [
+        "4 FAIL 147.8s"
+      ],
+      "complete": true,
+      "updated_at": "2026-11-22T13:45:18+09:00"
+    }
+  }
+}

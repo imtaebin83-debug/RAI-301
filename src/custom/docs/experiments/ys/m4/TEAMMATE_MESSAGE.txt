@@ -1,0 +1,7 @@
+Hi, I reattempted Mission 4: 5/6 standalone layouts passed, but shared localization still blocks reliable delivery. In rooms-2, the estimate stalled near (17.7,10.1), while the referee reported (17.97,11.22), outside the classroom. In Mission 2 -> 4, Mission 2 passed, then the localizer hit "LiDAR recovery limit reached (2 per 30s)" and Mission 4 stopped.
+
+From the ys branch's src directory in the verified environment, repeat:
+  python custom/mission_4/evaluate.py --run --case rooms-2 --case rooms-3
+For continuous reproduction, use --case after-cone with the combined source root documented in the report. Failures are intermittent.
+
+Please check scan-registration/reanchor drift, heading error, publication gaps, and blocked-state reporting to Navigator. The report includes a read-only timing probe and official results. I kept shared code unchanged; Mission 4 now waits briefly while stopped for stable fresh poses, but that cannot fix drift or the recovery lockout.

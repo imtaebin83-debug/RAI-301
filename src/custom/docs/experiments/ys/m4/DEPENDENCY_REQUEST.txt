@@ -1,50 +1,89 @@
-Owner: common navigation/localisation integration maintainer
-Status: prepared follow-up; no shared code changed and no message sent.
+Owner: shared localization/navigation integration maintainer
+Status: Mission 4 reattempt complete: standalone5/6 PASS; continuous M2 -> 4 blocked. Shared files unchanged.
 
-Baseline evidence: custom/docs/validation/seed417_case0.log and .json.
-Mission 4 identified three rooms correctly but stalled returning north:
-estimated x approximately 17.8, y approximately 8.85 while targeting (16.9,17.5).
-The official referee reported pelvis (17.634,8.862) in no room; full mission FAIL.
+Reproduce on OMEN, using the ys Mission 4 checkout and the existing verified env:
+  source ~/miniconda3/etc/profile.d/conda.sh
+  conda activate haic_rai301_verify
+  cd ~/rai-worktrees/ys-m4-20261121/src
+  export HAIC_ROOT="$(dirname "$PWD")" PYTHONPATH="$PWD:$PYTHONPATH"
+  python custom/mission_4/evaluate.py --run --case rooms-2 --case rooms-3
+Only run when GPU is available; the evaluator uses the team simulator lock.
+Default spawn (16,11,0); no map correction; original simulator and referee.
 
-The mission-specific draft now travels through the corridor centre x=15.5,
-uses short waypoints, and aligns at a door before entry. This is a hypothesis
-to validate after training, not evidence that shared drift has been corrected.
+Observed before the reattempt (commit 6a1a3af):
+- rooms-2 (medical/classroom/cafeteria north to south): labels 3/3 correct,
+  delivery FAIL at 178.80s during classroom return, official pelvis (15.82,10.83).
+- rooms-3 (medical/cafeteria/classroom): survey FAIL at 60.53s going south.
+- Both raised "Stale localization: bringup localizer has not published a pose".
+- Continuous Mission 2 -> 4: M2 PASS 47.1s, M4 FAIL 58.0s at middle survey,
+  official pelvis (12.08,10.66). Use the combined ys integration checkout;
+  the isolated M4 branch does not include final M2 code.
+- A fresh unchanged rooms-3 reattempt PASSED 164.08s: these failures are
+  intermittent. The same case ID is not guaranteed to fail on every run.
 
-If the failure persists, request a sensor-only localisation/heading and progress
-diagnostic from the common owner. Reproduce from the default spawn and after
-Mission 2 with this branch's evaluator. Compare localiser pose, measured wall
-clearance, commands and official final pose. Investigate drift/progress handling
-within Navigator's existing interface; do not reinitialise from nominal mission
-selection coordinates, use hidden truth, or enable the experimental wall matcher
-globally without regressions (prior cliff tests failed with it).
+Please investigate:
+1. Correlate /lidar/points receipt and stamps, scan-registration latency and
+   recovery blocks, /custom/estimated_pose publication gaps, and Navigator's
+   1.2s freshness timeout. The current consumer error text is a fixed default,
+   not evidence that the estimator never started or an identified root cause.
+2. Expose actual estimator health/recovery reason to navigation, distinguishing
+   transient publication gaps from persistent loss. Do not just relax the stale
+   timeout or keep publishing old estimates with fresh timestamps.
+3. Check accumulated position/heading drift and failure to make progress on
+   corridor return and after Mission 2. Compare allowed sensor pose/TF and
+   commands; official final pelvis is evaluation evidence only.
+4. Recheck the six room orders and continuous M2 -> 4 without pose resets,
+   and regress M1/M2/M3 before integrating any common fix. Do not enable
+   experimental HAIC_MAP_CORRECTION globally based on an isolated pass.
 
-No shared change is safe to prescribe as verified before these reproductions.
+Mission-specific trial: bounded stopped waiting for a sustained stream of advancing
+estimated poses, retaining Navigator's freshness test and original leg deadline. No
+estimator resets, truth pose reads, shared code edits, or default changes.
+This cannot repair systematic drift or permanently lost localization.
 
-November 22 live reproduction (shared source and defaults unchanged):
-- Original Mission 4: rooms 3/3, delivery FAIL, 260.83s, official pelvis
-  (17.65,8.83), stuck on classroom return.
-- Reduced-turn survey fixed wrong-room views. An early entry target x=18.65
-  still stopped short: estimated completion but official pelvis (17.50,17.97).
-- Private Mission 4 now targets x=20.0 and passed default rooms in 243.82s
-  without map correction. This is not a fix to shared localisation.
-- Mission 1 -> 2 case after-m1-green: goal (14.98,7.99), cone order
-  orange/blue/green, target green. Mission 1 PASS 14.0s; Mission 2 FAIL 140.3s,
-  unable to reach observation point. Estimated pose stalled around (15.4,16.0)
-  while pursuing (15.5,20.3). No reset between missions.
-- Existing HAIC_MAP_CORRECTION=1 was a diagnostic only: the same continuous
-  case passed (Mission 1 14.4s, Mission 2 64.8s). This is a single comparison,
-  not permission to enable the option globally or evidence for other missions.
-- User explicitly requested leaving shared code unchanged and documenting
-  this blocker. No common source/default/environment installation was changed.
-Reproduction: use mission_2/evaluate.py --run --case after-m1-green in the
-ys Mission 2 checkout; source and official JSON are in that evaluator's record.
+Detailed original results: custom/docs/experiments/ys_m4_sim_20261122.md
+Reattempt results will be recorded in ys_m4_reattempt_20261122.md.
 
-Additional changed-layout reproduction, November 22:
-case rooms-2 = north medical / middle classroom / south cafeteria.
-All three room labels were correct. During classroom return, Navigator raised
-"Stale localization: bringup localizer has not published a pose". Full mission
-FAIL after 178.80s; official pelvis (15.82,10.83), outside the classroom.
-The private mission stopped on the stale estimate rather than issuing blind
-movement. The user requested documenting this shared failure, not editing the
-common estimator. Main remains unchanged; do not describe isolated PASS runs
-as reliability across all room orders.
+Reattempt diagnostic evidence (November 22):
+A read-only evaluator subscribed to /lidar/points and /custom/estimated_pose.
+It observed a 1.2217s pose publication gap with no corresponding >0.5s LiDAR
+receive gap at that point. This exceeds Navigator's 1.2s freshness threshold.
+Investigate the estimator update/publication path; this alone does not prove
+whether registration latency, quality gating, or callback scheduling caused it.
+The initial mission retry recovered two interruptions in 0.30s and 0.50s, then
+stopped on a third. Another run rejected ambiguous VLM scores despite useful
+room images; do not attribute all Mission4 failures to localization.
+
+Read-only timing capture in a separate terminal (same ROS domain as evaluator):
+  ROS_DOMAIN_ID=74 ROS_LOCALHOST_ONLY=1 python \
+    custom/docs/experiments/ys/m4/pose_probe.py /tmp/m4-pose-gaps.jsonl 300
+This subscribes only; it never publishes commands or accesses ground truth.
+Match its elapsed gap records to the run log. Use an available ROS domain if
+another user is already running on 74, and pass YS_EVAL_ROS_DOMAIN_ID likewise.
+
+Final-candidate rooms-2 failure: labels 3/3 correct; recovered one pose outage
+in 2.26s, then entry timed out after 40s. Estimated pose stayed near (17.7,10.1)
+while targeting (20,10.5); official final pelvis was (17.971,11.221), outside.
+The common estimator logged sensor reanchor #1 after rejecting a 31.2-degree
+turn over 0.200s, retaining the last trusted pose without absolute relocalization.
+The roughly 1.1m lateral mismatch is consistent with misaligned door entry;
+recovery from a publication gap does not correct this accumulated pose error.
+
+Final continuous run: Mission2 PASS47.27s; Mission4 FAIL118.62s.
+Failure stage: survey door 10.5. Error: Localization did not recover while stopped.
+Recovery evidence: [{"reason": "Stale localization: bringup localizer has not published a pose", "recovered": false, "wait_seconds": 8.000077556993347}].
+Official final pelvis: [11.937, 11.31, 0.104].
+Reproduce from the combined checkout, never reset between missions:
+  python custom/mission_4/evaluate.py --run --case after-cone \
+    --source-root /home/aril/rai-worktrees/ys-m2-m4-integration-20261122/src
+Current M4 source, current M2 source and evaluation inputs are hashed in
+ys_m4_reattempt_20261122/final-after-cone.json.
+
+Confirmed shared diagnostic in the final continuous run:
+"LiDAR recovery limit reached (2 per 30s); stopped until respawn/restart".
+There were five logged reanchors across the run. Last navigation estimate was
+about(17.02,14.91); official final pelvis was(11.937,11.310,0.104). The low final
+height is consistent with falling; the cause is not established by this record.
+Please investigate scan-map loss/reanchors and propagate the blocked health
+state to navigation. More mission retries or a longer stale timeout cannot
+recover an estimator that has deliberately stopped publishing until restart.
