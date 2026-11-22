@@ -34,6 +34,7 @@ class Mission5(Mission):
 
     def run(self) -> MissionResult:
         interface = None
+        policy = None
         commands = 0
         try:
             self.begin_mission(5, timeout=15.)
@@ -73,7 +74,13 @@ class Mission5(Mission):
                     continue
                 if not queue:
                     predicted = policy.act(observation)
-                    if getattr(policy,'failed',None):raise RuntimeError(str(policy.failed))
+                    if getattr(policy,'failed',None):
+                        if trace_dir is not None:
+                            failure = {'time':sim_now, 'state':observation['state'].tolist(),
+                                       'stage':getattr(policy,'stage',None),
+                                       'debug':getattr(policy,'debug',{}), 'error':str(policy.failed)}
+                            (trace_dir/'failure.json').write_text(json.dumps(failure,indent=2))
+                        raise RuntimeError(str(policy.failed))
                     if getattr(policy,'done',False):break
                     actions = np.asarray(predicted.get("actions"), dtype=np.float64)
                     if actions.ndim != 2 or actions.shape[1] != 7 or not 1 <= len(actions) <= 64:
@@ -100,7 +107,9 @@ class Mission5(Mission):
                                policy_complete=getattr(policy,'done',None),
                                detail="Bounded policy rollout complete; original referee determines insertion success")
         except Exception as error:
-            return self.result(error=f"{type(error).__name__}: {error}", commands=commands)
+            return self.result(error=f"{type(error).__name__}: {error}", commands=commands,
+                               policy_stage=getattr(policy,'stage',None),
+                               policy_debug=getattr(policy,'debug',{}))
         finally:
             if interface is not None:
                 try:

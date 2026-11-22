@@ -24,6 +24,23 @@ def yaw_rotation(yaw):
     return Rotation.from_euler("z", float(yaw)).as_matrix()
 
 
+def average_pencil_yaw(yaws):
+    """Align an undirected PCA axis to its first observed branch before mean.
+
+    Without a visible eraser, PCA may return either theta or theta+pi. Keep
+    the first grasp branch, rather than cancelling opposite vectors or changing
+    every existing grasp to a newly chosen global branch.
+    """
+    values = np.asarray(yaws, dtype=float)
+    if not len(values) or not np.isfinite(values).all():
+        raise ValueError('Invalid pencil axis measurements')
+    axis_confidence = abs(np.exp(2j*values).mean())
+    if axis_confidence < .95:
+        raise ValueError('Pencil axis is not temporally stable')
+    aligned = values + np.where(np.cos(values-values[0]) < 0, np.pi, 0.)
+    return math.atan2(np.sin(aligned).mean(), np.cos(aligned).mean())
+
+
 def materialize(phase, measurement):
     """A learned pose in an observed object's yaw-canonical frame -> base pose."""
     ref = np.asarray(measurement[phase["reference"] + "_xy"], dtype=float)
@@ -103,6 +120,16 @@ class Policy:
         self._last_hit_time = None
         self._hits = 0
         self._grip = -1.
+        self._grasp_anchor = None
+        self._grasp_stable_since = None
+        self._grasp_width = None
+
+    def _closing_phase(self):
+        """A learned open-to-closed transition near the preceding keypose."""
+        if self._index == 0:
+            return False
+        previous, current = self.model['phases'][self._index-1:self._index+1]
+        return previous['grip'] < 0 < current['grip']
 
     def _hold(self):
         return {"actions": np.asarray([[0, 0, 0, 0, 0, 0, self._grip]], dtype=np.float32)}
@@ -128,7 +155,7 @@ class Policy:
                     yaw = np.asarray([m["pencil_yaw"] for m in self._measurements])
                     if max(p.std(0).max(), h.std(0).max()) < .008:
                         self._scene = {"pencil_xy": np.median(p, axis=0), "holder_xy": np.median(h, axis=0),
-                                       "pencil_yaw": math.atan2(np.sin(yaw).mean(), np.cos(yaw).mean())}
+                                       "pencil_yaw": average_pencil_yaw(yaw)}
                         self.stage = self.model["phases"][0]["name"]
                         self._stage_started = now
             except (ValueError, np.linalg.LinAlgError) as error:
@@ -137,24 +164,58 @@ class Policy:
                 self.failed = "Initial sensor-only object localization timed out"
             return self._hold()
         phase = self.model["phases"][self._index]
-        target = materialize(phase, self._scene)
+        learned_target = materialize(phase, self._scene)
+        target = learned_target
         self._grip = float(phase["grip"])
+        closing = self._closing_phase()
+        if closing:
+            # Demonstration endpoints contain contact deflection. Do not turn
+            # that deflection into another downward/lateral motion while
+            # squeezing an object against the table. Hold the observed arrival
+            # pose; learned approach/lift targets and grip/dwell remain intact.
+            if self._grasp_anchor is None:
+                self._grasp_anchor = np.eye(4)
+                self._grasp_anchor[:3, 3] = observation['state'][:3]
+                self._grasp_anchor[:3, :3] = Rotation.from_rotvec(observation['state'][3:6]).as_matrix()
+            target = self._grasp_anchor
         action, distance, angular = servo_action(observation["state"], target, self._grip, self.controller)
         elapsed = now - self._stage_started
-        self.debug.update(stage=self.stage, learned_target_xyz=target[:3, 3].tolist(),
+        self.debug.update(stage=self.stage, learned_target_xyz=learned_target[:3, 3].tolist(),
+                          command_target_xyz=target[:3, 3].tolist(),
+                          position_error_xyz=(target[:3,3]-observation['state'][:3]).tolist(),
                           position_error=distance, orientation_error=angular, elapsed=elapsed)
+        width = float(np.abs(np.asarray(observation['state'])[6:8]).sum())
+        self.debug.update(finger_width=width, contact_hold=closing)
         timeout = max(self.controller["stage_timeout_min"],
                       phase["minimum_seconds"] * self.controller["stage_timeout_scale"])
         if elapsed > timeout:
             self.failed = "Learned-keypose stage timed out: " + self.stage
             return self._hold()
         hit = distance < self.controller["position_tolerance_m"] and angular < self.controller["orientation_tolerance_rad"]
+        if closing:
+            # Reject empty closure and a still-wide/open hand. A nonzero gap is
+            # evidence from joint sensors, not an oracle that an object is held.
+            grasped = .008 <= width <= .065
+            stable_width = self._grasp_width is not None and abs(width-self._grasp_width) <= .001
+            self._grasp_width = width
+            if grasped and hit and stable_width:
+                if self._grasp_stable_since is None:
+                    self._grasp_stable_since = now
+            else:
+                self._grasp_stable_since = None
+            hit = grasped and hit and self._grasp_stable_since is not None and now-self._grasp_stable_since >= .3
+            if elapsed >= max(2., phase['minimum_seconds']) and width < .008:
+                self.failed = 'Empty grasp: fingers closed without a supported object'
+                return self._hold()
         if now != self._last_hit_time:
             self._hits = self._hits + 1 if hit else 0
             self._last_hit_time = now
         if self._hits >= 2 and elapsed >= phase["minimum_seconds"]:
             self._index += 1
             self._hits = 0
+            self._grasp_anchor = None
+            self._grasp_stable_since = None
+            self._grasp_width = None
             self._stage_started = now
             if self._index >= len(self.model["phases"]):
                 self.done, self.stage = True, "done"
