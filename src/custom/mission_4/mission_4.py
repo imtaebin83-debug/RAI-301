@@ -64,19 +64,8 @@ class Mission4(Mission):
         raise TimeoutError('Fresh room camera frames unavailable after alignment')
 
     def _travel(self, nav, door_y, remaining):
-        """Keep long hallway travel away from the east wall, using Navigator."""
-        _, py, _ = nav.pose()
-        # route_to handles leaving the cone room or another room if necessary.
-        py = max(.8, min(20.3, py))
-        if not nav.route_to(15.5, py, tolerance=.18, timeout=remaining(70)):
-            raise RuntimeError('Could not reach central corridor')
-        while abs(py-door_y) > 2.5:
-            py += math.copysign(2.5, door_y-py)
-            if not nav.goto(15.5, py, tolerance=.18, timeout=remaining(20)):
-                raise RuntimeError('Central corridor waypoint was not reached')
-        if not nav.goto(15.5, door_y, tolerance=.15, timeout=remaining(20)):
-            raise RuntimeError('Could not align with room doorway')
-        if not nav.goto(16.7, door_y, tolerance=.15, timeout=remaining(18), speed=.22):
+        """Use a single corridor line and avoid repeated cross-corridor turns."""
+        if not nav.route_to(16.0, door_y, tolerance=.18, timeout=remaining(100)):
             raise RuntimeError('Could not reach room observation waypoint')
 
     def run(self) -> MissionResult:
@@ -100,9 +89,9 @@ class Mission4(Mission):
                 stage = f'survey door {door_y}'
                 self._travel(nav, door_y, remaining)
                 self._face_room(nav, min(deadline, time.monotonic() + 18))
-                # Small different headings yield actual sensor views, with no
+                # The forward heading gives an actual sensor view, with no
                 # assumed room labels. No cached pre-turn image is accepted.
-                for yaw in (-.15, .15):
+                for yaw in (0.,):
                     if not nav.face(yaw, timeout=remaining(8)):
                         raise RuntimeError('Room observation heading was not reached')
                     self.stop()
@@ -119,7 +108,7 @@ class Mission4(Mission):
                                           'elapsed_seconds': time.monotonic()-started})
             stage = 'VLM survey inference'
             raw = classify_views(images, timeout=remaining(240))
-            observations = [combine_views(raw[index:index+2]) for index in range(0, 6, 2)]
+            observations = [combine_views([item]) for item in raw]
             # A small nonzero margin is a rejection threshold, not a calibrated
             # confidence probability. Record it for simulation calibration.
             answer, assignment = assign_rooms(observations, min_margin=.25)
@@ -129,8 +118,10 @@ class Mission4(Mission):
             self._travel(nav, classroom_y, remaining)
             self._face_room(nav, min(deadline, time.monotonic()+18))
             stage = 'classroom entry'
-            reached = nav.goto(18.65, classroom_y, tolerance=.15,
-                               timeout=remaining(30), speed=.20)
+            # Aim well inside the published room, rather than stopping only
+            # 0.4m beyond a doorway using a drifting global pose estimate.
+            reached = nav.goto(20.0, classroom_y, tolerance=.15,
+                               timeout=remaining(40), speed=.20)
             if not reached:
                 raise RuntimeError("could not enter the classroom")
             return self.result(rooms=answer, vlm_observations=observations,

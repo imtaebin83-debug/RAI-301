@@ -19,3 +19,32 @@ selection coordinates, use hidden truth, or enable the experimental wall matcher
 globally without regressions (prior cliff tests failed with it).
 
 No shared change is safe to prescribe as verified before these reproductions.
+
+November 22 live reproduction (shared source and defaults unchanged):
+- Original Mission 4: rooms 3/3, delivery FAIL, 260.83s, official pelvis
+  (17.65,8.83), stuck on classroom return.
+- Reduced-turn survey fixed wrong-room views. An early entry target x=18.65
+  still stopped short: estimated completion but official pelvis (17.50,17.97).
+- Private Mission 4 now targets x=20.0 and passed default rooms in 243.82s
+  without map correction. This is not a fix to shared localisation.
+- Mission 1 -> 2 case after-m1-green: goal (14.98,7.99), cone order
+  orange/blue/green, target green. Mission 1 PASS 14.0s; Mission 2 FAIL 140.3s,
+  unable to reach observation point. Estimated pose stalled around (15.4,16.0)
+  while pursuing (15.5,20.3). No reset between missions.
+- Existing HAIC_MAP_CORRECTION=1 was a diagnostic only: the same continuous
+  case passed (Mission 1 14.4s, Mission 2 64.8s). This is a single comparison,
+  not permission to enable the option globally or evidence for other missions.
+- User explicitly requested leaving shared code unchanged and documenting
+  this blocker. No common source/default/environment installation was changed.
+Reproduction: use mission_2/evaluate.py --run --case after-m1-green in the
+ys Mission 2 checkout; source and official JSON are in that evaluator's record.
+
+Additional changed-layout reproduction, November 22:
+case rooms-2 = north medical / middle classroom / south cafeteria.
+All three room labels were correct. During classroom return, Navigator raised
+"Stale localization: bringup localizer has not published a pose". Full mission
+FAIL after 178.80s; official pelvis (15.82,10.83), outside the classroom.
+The private mission stopped on the stale estimate rather than issuing blind
+movement. The user requested documenting this shared failure, not editing the
+common estimator. Main remains unchanged; do not describe isolated PASS runs
+as reliability across all room orders.

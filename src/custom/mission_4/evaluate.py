@@ -85,7 +85,9 @@ def run_case(case, root, output, timeout):
                                                  text=True).strip(),
               'code_sha256': {str(p.relative_to(root)): hashlib.sha256(p.read_bytes()).hexdigest()
                               for p in (root / 'custom').rglob('*.py')},
-              'initial_pose': [16., 11., 0.], 'ros_domain_id': env['ROS_DOMAIN_ID']}
+              'initial_pose': [16., 11., 0.], 'ros_domain_id': env['ROS_DOMAIN_ID'],
+              'runtime_options': {key: env.get(key) for key in
+                  ('HAIC_MAP_CORRECTION', 'HAIC_VLM_THREADS', 'HAIC_M2_CAPTURE_DIR')}}
     started = time.monotonic()
     with (directory / 'simulator.log').open('w') as log:
         proc = subprocess.Popen(command, cwd=root, env=env, stdout=log,

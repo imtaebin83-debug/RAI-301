@@ -92,14 +92,11 @@ class CameraTests(unittest.TestCase):
         self.assertEqual(result['rooms'], [])
         mission.stop.assert_called_once()
 
-    def test_travel_centers_corridor_before_longitudinal_motion(self):
+    def test_travel_uses_one_central_corridor_goal(self):
         nav = Mock()
-        nav.pose.return_value = (16.7, 3.59, 0.)
         Mission4._travel(SimpleNamespace(), nav, 17.5, lambda limit: limit)
-        nav.route_to.assert_called_once_with(15.5, 3.59, tolerance=.18, timeout=70)
-        waypoints = nav.goto.call_args_list
-        self.assertTrue(all(call.args[0] == 15.5 for call in waypoints[:-1]))
-        self.assertEqual(waypoints[-1].args, (16.7, 17.5))
+        nav.route_to.assert_called_once_with(16.0, 17.5, tolerance=.18, timeout=100)
+        nav.goto.assert_not_called()
 
     def test_failed_waypoint_prevents_room_entry(self):
         nav = Mock()
@@ -117,7 +114,7 @@ class CameraTests(unittest.TestCase):
         nav.pose.return_value = (16.7, 3.59, 0.)
         nav.goto.return_value = False
         labels = ('medical', 'cafeteria', 'classroom')
-        views = [observation(label) for label in labels for _ in range(2)]
+        views = [observation(label) for label in labels]
         with patch('custom.mission_4.mission_4.Navigator', return_value=nav), \
              patch('custom.mission_4.mission_4.classify_views', return_value=views), \
              patch('custom.mission_4.mission_4.time.sleep'), \
@@ -126,8 +123,8 @@ class CameraTests(unittest.TestCase):
         self.assertEqual(result['rooms'], list(labels))
         self.assertEqual(result['failed_stage'], 'classroom entry')
         self.assertIn('could not enter', result['error'])
-        nav.goto.assert_called_once_with(18.65, 3.59, tolerance=.15,
-                                        timeout=30, speed=.20)
+        nav.goto.assert_called_once_with(20.0, 3.59, tolerance=.15,
+                                        timeout=40, speed=.20)
         mission.stop.assert_called()
 
 
