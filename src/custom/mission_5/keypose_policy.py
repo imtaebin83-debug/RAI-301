@@ -121,6 +121,9 @@ class Policy:
         self._hits = 0
         self._grip = -1.
         self._grasp_anchor = None
+        self._grasp_closed_at = None
+        self._grasp_align_hits = 0
+        self._last_align_time = None
         self._grasp_stable_since = None
         self._grasp_width = None
 
@@ -168,29 +171,55 @@ class Policy:
         target = learned_target
         self._grip = float(phase["grip"])
         closing = self._closing_phase()
-        if closing:
-            # Demonstration endpoints contain contact deflection. Do not turn
-            # that deflection into another downward/lateral motion while
-            # squeezing an object against the table. Hold the observed arrival
-            # pose; learned approach/lift targets and grip/dwell remain intact.
-            if self._grasp_anchor is None:
+        elapsed = now - self._stage_started
+        timeout = max(self.controller["stage_timeout_min"],
+                      phase["minimum_seconds"] * self.controller["stage_timeout_scale"])
+        aligning = closing and self._grasp_anchor is None
+        if aligning:
+            # Reach the learned grasp endpoint while the hand is still open.
+            # The preceding phase's 6-mm arrival tolerance must not silently
+            # become a higher grasp height. Require two distinct observations.
+            self._grip = float(self.model['phases'][self._index-1]['grip'])
+            if elapsed >= min(5., timeout):
+                self.failed = 'Learned-keypose open-hand alignment timed out: ' + self.stage
+                self.debug.update(stage=self.stage, elapsed=elapsed, grasp_mode='align_open',
+                                  contact_hold=False)
+                return self._hold()
+            _, alignment_distance, alignment_angular = servo_action(
+                observation['state'], learned_target, self._grip, self.controller)
+            aligned = (alignment_distance < min(.003, self.controller['position_tolerance_m'])
+                       and alignment_angular < self.controller['orientation_tolerance_rad'])
+            if now != self._last_align_time:
+                self._grasp_align_hits = self._grasp_align_hits + 1 if aligned else 0
+                self._last_align_time = now
+            if self._grasp_align_hits >= 2:
                 self._grasp_anchor = np.eye(4)
                 self._grasp_anchor[:3, 3] = observation['state'][:3]
                 self._grasp_anchor[:3, :3] = Rotation.from_rotvec(observation['state'][3:6]).as_matrix()
+                self._grasp_closed_at = now
+                self._hits = 0
+                self._last_hit_time = None
+                self._grip = float(phase['grip'])
+                aligning = False
+        if closing and not aligning:
+            # Once squeezing starts, hold this measured endpoint instead of
+            # chasing contact deflection while an object rests on the table.
             target = self._grasp_anchor
         action, distance, angular = servo_action(observation["state"], target, self._grip, self.controller)
-        elapsed = now - self._stage_started
+        close_elapsed = (now-self._grasp_closed_at if closing and not aligning else 0.)
         self.debug.update(stage=self.stage, learned_target_xyz=learned_target[:3, 3].tolist(),
                           command_target_xyz=target[:3, 3].tolist(),
                           position_error_xyz=(target[:3,3]-observation['state'][:3]).tolist(),
-                          position_error=distance, orientation_error=angular, elapsed=elapsed)
+                          position_error=distance, orientation_error=angular, elapsed=elapsed,
+                          grasp_mode=('align_open' if aligning else 'contact_hold') if closing else None,
+                          close_elapsed=close_elapsed, alignment_hits=self._grasp_align_hits)
         width = float(np.abs(np.asarray(observation['state'])[6:8]).sum())
-        self.debug.update(finger_width=width, contact_hold=closing)
-        timeout = max(self.controller["stage_timeout_min"],
-                      phase["minimum_seconds"] * self.controller["stage_timeout_scale"])
+        self.debug.update(finger_width=width, contact_hold=closing and not aligning)
         if elapsed > timeout:
             self.failed = "Learned-keypose stage timed out: " + self.stage
             return self._hold()
+        if aligning:
+            return {"actions": action[None]}
         hit = distance < self.controller["position_tolerance_m"] and angular < self.controller["orientation_tolerance_rad"]
         if closing:
             # Reject empty closure and a still-wide/open hand. A nonzero gap is
@@ -204,16 +233,20 @@ class Policy:
             else:
                 self._grasp_stable_since = None
             hit = grasped and hit and self._grasp_stable_since is not None and now-self._grasp_stable_since >= .3
-            if elapsed >= max(2., phase['minimum_seconds']) and width < .008:
+            if close_elapsed >= max(2., phase['minimum_seconds']) and width < .008:
                 self.failed = 'Empty grasp: fingers closed without a supported object'
                 return self._hold()
         if now != self._last_hit_time:
             self._hits = self._hits + 1 if hit else 0
             self._last_hit_time = now
-        if self._hits >= 2 and elapsed >= phase["minimum_seconds"]:
+        dwell = close_elapsed if closing else elapsed
+        if self._hits >= 2 and dwell >= phase["minimum_seconds"]:
             self._index += 1
             self._hits = 0
             self._grasp_anchor = None
+            self._grasp_closed_at = None
+            self._grasp_align_hits = 0
+            self._last_align_time = None
             self._grasp_stable_since = None
             self._grasp_width = None
             self._stage_started = now
