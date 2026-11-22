@@ -1,0 +1,102 @@
+{
+  "run": {
+    "started_at": "2026-11-22T23:07:08+09:00",
+    "package": "RAI-301-m5-stable",
+    "mode": "auto",
+    "config": "/home/aril/m5-runs/stability-20261122/final-unseen/case_002/headless_config.yaml",
+    "scenario": "/home/aril/m5-runs/stability-20261122/final-unseen/case_002/scenario.yaml",
+    "referee": {
+      "goal_radius_m": 0.5,
+      "cone_box_m": 0.5,
+      "cone_box_offset_m": 0.75,
+      "m4_room": "classroom",
+      "m1_goal": [
+        15.5,
+        18.0,
+        90.0
+      ],
+      "m2_color": "green"
+    },
+    "plans": [],
+    "ended_at": "2026-11-22T23:07:51+09:00"
+  },
+  "missions": [
+    {
+      "mission": 5,
+      "label": "Pencil pick-and-place (Panda)",
+      "verdict": "FAIL",
+      "success": false,
+      "seconds": 41.02,
+      "started_at": "2026-11-22T23:07:08+09:00",
+      "ended_at": "2026-11-22T23:07:49+09:00",
+      "checks": [
+        {
+          "name": "check",
+          "ok": false,
+          "summary": "pencil tip -0.104 < 0.02 m below the rim, inside the opening, still held by the gripper"
+        }
+      ],
+      "reported": {
+        "status": "done",
+        "detail": ""
+      },
+      "referee": {
+        "mission": 5,
+        "pelvis": [
+          16.003,
+          11.0,
+          0.78
+        ],
+        "success": false,
+        "summary": "pencil tip -0.104 < 0.02 m below the rim, inside the opening, still held by the gripper",
+        "tilt_deg": 6.17,
+        "tip_depth_m": -0.1035,
+        "in_opening": true,
+        "held": true
+      },
+      "data": {
+        "error": "RuntimeError: Learned-keypose stage timed out: carry",
+        "commands": 350,
+        "policy_stage": "carry",
+        "policy_debug": {
+          "policy_kind": "task-parameterized-keypose-bc",
+          "phase_source": "training_split_measured_robot_states",
+          "stage": "carry",
+          "learned_target_xyz": [
+            0.5171056581699139,
+            0.26384963829459035,
+            0.3990194996198018
+          ],
+          "command_target_xyz": [
+            0.5171056581699139,
+            0.26384963829459035,
+            0.3990194996198018
+          ],
+          "position_error_xyz": [
+            0.007294495221305541,
+            0.006705753397358294,
+            0.009109844764073671
+          ],
+          "position_error": 0.013459794232652748,
+          "orientation_error": 0.14026312097308652,
+          "elapsed": 17.402,
+          "finger_width": 0.026847459375858307,
+          "contact_hold": false
+        }
+      }
+    }
+  ],
+  "total": {
+    "missions": 1,
+    "passed": 0,
+    "failed": 1,
+    "not_judged": 0,
+    "mission_seconds": 41.02,
+    "run_seconds": 42.86,
+    "by_mission": [
+      "5 FAIL 41.0s"
+    ],
+    "complete": true,
+    "updated_at": "2026-11-22T23:07:51+09:00"
+  }
+}

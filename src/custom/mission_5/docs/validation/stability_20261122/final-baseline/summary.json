@@ -1,0 +1,54 @@
+{
+  "seed": 221122,
+  "requested_cases": 12,
+  "attempted": 4,
+  "passed": 2,
+  "failed": 1,
+  "not_judged": 1,
+  "cases": [
+    {
+      "index": 0,
+      "case_seed": 1844189509,
+      "success": true,
+      "wall_seconds": 38.696665445997496,
+      "failure_stage": null,
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "a20f38484a1f98ba6ef419e3bd776218b57cbfcdabc4daac780e6ed40c6b6ecd",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 1,
+      "case_seed": 3954581793,
+      "success": true,
+      "wall_seconds": 45.45601755801181,
+      "failure_stage": null,
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "f25004a26d782416053d9f5ccb761666367a804a13f556e57b344bdf03c359cf",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 2,
+      "case_seed": 2742929007,
+      "success": false,
+      "wall_seconds": 51.98425208800472,
+      "failure_stage": "carry",
+      "controller_error": "RuntimeError: Learned-keypose stage timed out: carry",
+      "error": null,
+      "scenario_sha256": "4234fa3eb7def39420897e3df3eeb6c1482478c110929704974672ac438de9c0",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 3,
+      "case_seed": 3959544676,
+      "success": null,
+      "wall_seconds": 35.718950449998374,
+      "failure_stage": "carry",
+      "controller_error": null,
+      "error": "benchmark interrupted",
+      "scenario_sha256": "c0497f61df5760964568306c1dc7b025be7262782af556d3d3b3ca131a86c3be",
+      "artifacts_changed_during_case": false
+    }
+  ]
+}

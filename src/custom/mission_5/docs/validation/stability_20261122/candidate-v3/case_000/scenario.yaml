@@ -1,0 +1,25 @@
+ball_xy:
+- 9.25
+- 8.15
+cone_order:
+- blue
+- green
+- orange
+m1_goal:
+- 15.5
+- 18.0
+- 90.0
+m2_color: green
+panda_task:
+  cup_xy:
+  - 21.437695658682376
+  - 19.635418662928156
+  cup_yaw_deg: -14.067626066344669
+  pencil_xy:
+  - 20.97046762094467
+  - 19.69993547611766
+  pencil_yaw_deg: 15.92031009190113
+room_order:
+- classroom
+- medical
+- cafeteria

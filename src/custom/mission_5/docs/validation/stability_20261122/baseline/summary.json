@@ -1,0 +1,98 @@
+{
+  "seed": 8122,
+  "requested_cases": 8,
+  "attempted": 8,
+  "passed": 4,
+  "failed": 4,
+  "not_judged": 0,
+  "cases": [
+    {
+      "index": 0,
+      "case_seed": 3897332011,
+      "success": false,
+      "wall_seconds": 46.91207124499488,
+      "failure_stage": "retreat",
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "7e779008b9775d76706e6907a3aa1ae66536de3edb44c450accd33e1fa80ad32",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 1,
+      "case_seed": 2122918758,
+      "success": true,
+      "wall_seconds": 43.09853474699776,
+      "failure_stage": null,
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "e6e28489e40e9ff3dbd43fbd60a0d9d047ced5523cc900a23e0f826f92c2ba31",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 2,
+      "case_seed": 1806208936,
+      "success": true,
+      "wall_seconds": 45.311910281001474,
+      "failure_stage": null,
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "141e510fb544fcf5a8cffec804a05a74b370969b6e708bb070d8f28115923d9f",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 3,
+      "case_seed": 1159463833,
+      "success": true,
+      "wall_seconds": 39.241631950004376,
+      "failure_stage": null,
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "4e53fe78f14cd3dbc25c7299a8c46523c481c997a2226b7874f2e5295d6937a1",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 4,
+      "case_seed": 2513962977,
+      "success": true,
+      "wall_seconds": 44.60380602099758,
+      "failure_stage": null,
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "97821a2cb4b7826f0af4135c234b7417d4bd9b146352dfcb62bd3de9676b10d3",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 5,
+      "case_seed": 3966943216,
+      "success": false,
+      "wall_seconds": 31.421117931997287,
+      "failure_stage": "close",
+      "controller_error": "RuntimeError: Learned-keypose stage timed out: close",
+      "error": null,
+      "scenario_sha256": "b60941dca2b01456f8bb5c5d4523de8210d069088be7d2386bbd3156475a332c",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 6,
+      "case_seed": 3479771859,
+      "success": false,
+      "wall_seconds": 31.429559641997912,
+      "failure_stage": "close",
+      "controller_error": "RuntimeError: Learned-keypose stage timed out: close",
+      "error": null,
+      "scenario_sha256": "3190097b18783c2bca8424bacaab5a9199a1ec7048bc6252c6a0e0683ea039a7",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 7,
+      "case_seed": 3734126279,
+      "success": false,
+      "wall_seconds": 48.30771126599575,
+      "failure_stage": "retreat",
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "190dece1f5c7a546a71e72c019b61fbce60a4aac59d5ad5859ff1749d5f9654f",
+      "artifacts_changed_during_case": false
+    }
+  ]
+}

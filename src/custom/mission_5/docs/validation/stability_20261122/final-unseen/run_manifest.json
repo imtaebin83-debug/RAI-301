@@ -1,0 +1,27 @@
+{
+  "seed": 221122,
+  "cases": 12,
+  "indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "root": "/home/aril/RAI-301-m5-stable/src",
+  "git": {
+    "head": "37449eb9a05fc636132b699499e9ac20f1bc81fe",
+    "branch": "opt/m5-grasp-20261122",
+    "status": ""
+  },
+  "checkpoint": "/home/aril/RAI-301-m5-stable/src/custom/mission_5/keyposes.json",
+  "sampler_sha256": "2acf75a7d0442cf53b2277f6712b4bf84c3c475b7778deab9d0ed945bb16209e",
+  "note": "Evaluation only; scenario/official truth are never policy inputs"
+}

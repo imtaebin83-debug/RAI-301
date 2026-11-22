@@ -1,0 +1,431 @@
+{
+  "generated_at_kst": "2026-11-22T23:41:04.506659+09:00",
+  "baseline": {
+    "folder": "/home/aril/m5-runs/stability-20261122/baseline",
+    "suite_seed": 8122,
+    "requested": 8,
+    "completed_attempts": 8,
+    "performance_attempts": 8,
+    "noninterrupted_attempts": 8,
+    "interrupted_attempts": 0,
+    "interrupted_indices": [],
+    "pending_indices": [],
+    "pending_official_evaluation_indices": [],
+    "passed": 4,
+    "failed": 4,
+    "not_judged": 0,
+    "pass_indices": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "fail_indices": [
+      0,
+      5,
+      6,
+      7
+    ],
+    "unjudged_indices": [],
+    "pass_fraction_completed": 0.5,
+    "pass_fraction_denominator": "officially judged, noninterrupted attempts",
+    "official_seconds_all_completed": {
+      "count": 8,
+      "mean": 32.51625,
+      "median": 35.15,
+      "min": 22.64,
+      "max": 39.36,
+      "values": [
+        38.27,
+        34.61,
+        36.19,
+        30.28,
+        35.69,
+        23.09,
+        22.64,
+        39.36
+      ]
+    },
+    "official_seconds_success_only": {
+      "count": 4,
+      "mean": 34.192499999999995,
+      "median": 35.15,
+      "min": 30.28,
+      "max": 36.19,
+      "values": [
+        34.61,
+        36.19,
+        30.28,
+        35.69
+      ]
+    },
+    "scenario_files_match_recorded_sha": true,
+    "code_sha256_values": [
+      "deb24613819e0bb70fb2b51f139f86795a91f0f0856f122253c367aa76e3ac0c"
+    ],
+    "model_sha256_values": [
+      "5399000712043f249abdc3414374ddd0bf710c696a6ed3b6f623497dd7b6b3ca"
+    ],
+    "frozen_code_across_completed_cases": true,
+    "frozen_model_across_completed_cases": true,
+    "changed_during_case_indices": [],
+    "sampler_sha256": "2acf75a7d0442cf53b2277f6712b4bf84c3c475b7778deab9d0ed945bb16209e",
+    "run_manifest_present": true,
+    "declared_expected_seed": null,
+    "declared_expected_indices": null,
+    "manifest_matches_declared_plan": null,
+    "evaluation_complete": true,
+    "interrupted_note": "Interrupted attempts are preserved as audit records and excluded from outcome/timing denominators."
+  },
+  "candidate": {
+    "folder": "/home/aril/m5-runs/stability-20261122/candidate-v3",
+    "suite_seed": 8122,
+    "requested": 8,
+    "completed_attempts": 8,
+    "performance_attempts": 8,
+    "noninterrupted_attempts": 8,
+    "interrupted_attempts": 0,
+    "interrupted_indices": [],
+    "pending_indices": [],
+    "pending_official_evaluation_indices": [],
+    "passed": 8,
+    "failed": 0,
+    "not_judged": 0,
+    "pass_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "fail_indices": [],
+    "unjudged_indices": [],
+    "pass_fraction_completed": 1.0,
+    "pass_fraction_denominator": "officially judged, noninterrupted attempts",
+    "official_seconds_all_completed": {
+      "count": 8,
+      "mean": 34.805,
+      "median": 35.22,
+      "min": 30.35,
+      "max": 37.45,
+      "values": [
+        37.17,
+        36.62,
+        31.87,
+        35.43,
+        35.01,
+        37.45,
+        34.54,
+        30.35
+      ]
+    },
+    "official_seconds_success_only": {
+      "count": 8,
+      "mean": 34.805,
+      "median": 35.22,
+      "min": 30.35,
+      "max": 37.45,
+      "values": [
+        37.17,
+        36.62,
+        31.87,
+        35.43,
+        35.01,
+        37.45,
+        34.54,
+        30.35
+      ]
+    },
+    "scenario_files_match_recorded_sha": true,
+    "code_sha256_values": [
+      "470a194b28dd3e5d6562e680324c387d857e8108f190f58f6e74c121b542528b"
+    ],
+    "model_sha256_values": [
+      "5399000712043f249abdc3414374ddd0bf710c696a6ed3b6f623497dd7b6b3ca"
+    ],
+    "frozen_code_across_completed_cases": true,
+    "frozen_model_across_completed_cases": true,
+    "changed_during_case_indices": [],
+    "sampler_sha256": "2acf75a7d0442cf53b2277f6712b4bf84c3c475b7778deab9d0ed945bb16209e",
+    "run_manifest_present": true,
+    "declared_expected_seed": 8122,
+    "declared_expected_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "manifest_matches_declared_plan": true,
+    "evaluation_complete": true,
+    "interrupted_note": "Interrupted attempts are preserved as audit records and excluded from outcome/timing denominators."
+  },
+  "pair_count": 8,
+  "unpaired_baseline_indices": [],
+  "unpaired_candidate_indices": [],
+  "same_official_sampler_source": true,
+  "all_completed_pairs_verified": true,
+  "valid_for_frozen_variant_comparison": true,
+  "requested_indices_match": true,
+  "comparison_complete": true,
+  "valid_for_full_requested_comparison": true,
+  "excluded_interrupted_pairs": [],
+  "completed_paired_outcomes": {
+    "baseline": {
+      "passed": 4,
+      "failed": 4,
+      "not_judged": 0,
+      "official_seconds_all": {
+        "count": 8,
+        "mean": 32.51625,
+        "median": 35.15,
+        "min": 22.64,
+        "max": 39.36,
+        "values": [
+          38.27,
+          34.61,
+          36.19,
+          30.28,
+          35.69,
+          23.09,
+          22.64,
+          39.36
+        ]
+      }
+    },
+    "candidate": {
+      "passed": 8,
+      "failed": 0,
+      "not_judged": 0,
+      "official_seconds_all": {
+        "count": 8,
+        "mean": 34.805,
+        "median": 35.22,
+        "min": 30.35,
+        "max": 37.45,
+        "values": [
+          37.17,
+          36.62,
+          31.87,
+          35.43,
+          35.01,
+          37.45,
+          34.54,
+          30.35
+        ]
+      }
+    }
+  },
+  "gained_pass_indices": [
+    0,
+    5,
+    6,
+    7
+  ],
+  "lost_pass_indices": [],
+  "shared_pass_indices": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "official_seconds_shared_pass_only": {
+    "baseline": {
+      "count": 4,
+      "mean": 34.192499999999995,
+      "median": 35.15,
+      "min": 30.28,
+      "max": 36.19,
+      "values": [
+        34.61,
+        36.19,
+        30.28,
+        35.69
+      ]
+    },
+    "candidate": {
+      "count": 4,
+      "mean": 34.7325,
+      "median": 35.22,
+      "min": 31.87,
+      "max": 36.62,
+      "values": [
+        36.62,
+        31.87,
+        35.43,
+        35.01
+      ]
+    },
+    "paired_delta_candidate_minus_baseline": {
+      "count": 4,
+      "mean": 0.54,
+      "median": 0.6649999999999991,
+      "min": -4.319999999999997,
+      "max": 5.149999999999999,
+      "values": [
+        2.009999999999998,
+        -4.319999999999997,
+        5.149999999999999,
+        -0.6799999999999997
+      ]
+    }
+  },
+  "pairs": [
+    {
+      "index": 0,
+      "baseline_seed": 3897332011,
+      "candidate_seed": 3897332011,
+      "same_case_seed": true,
+      "same_suite_seed": true,
+      "scenario_sha256": "7e779008b9775d76706e6907a3aa1ae66536de3edb44c450accd33e1fa80ad32",
+      "same_scenario_sha256": true,
+      "baseline_file_sha_verified": true,
+      "candidate_file_sha_verified": true,
+      "baseline_success": false,
+      "candidate_success": true,
+      "baseline_official_seconds": 38.27,
+      "candidate_official_seconds": 37.17,
+      "delta_official_seconds_candidate_minus_baseline": -1.1000000000000014,
+      "baseline_failure_stage": "retreat",
+      "candidate_failure_stage": null
+    },
+    {
+      "index": 1,
+      "baseline_seed": 2122918758,
+      "candidate_seed": 2122918758,
+      "same_case_seed": true,
+      "same_suite_seed": true,
+      "scenario_sha256": "e6e28489e40e9ff3dbd43fbd60a0d9d047ced5523cc900a23e0f826f92c2ba31",
+      "same_scenario_sha256": true,
+      "baseline_file_sha_verified": true,
+      "candidate_file_sha_verified": true,
+      "baseline_success": true,
+      "candidate_success": true,
+      "baseline_official_seconds": 34.61,
+      "candidate_official_seconds": 36.62,
+      "delta_official_seconds_candidate_minus_baseline": 2.009999999999998,
+      "baseline_failure_stage": null,
+      "candidate_failure_stage": null
+    },
+    {
+      "index": 2,
+      "baseline_seed": 1806208936,
+      "candidate_seed": 1806208936,
+      "same_case_seed": true,
+      "same_suite_seed": true,
+      "scenario_sha256": "141e510fb544fcf5a8cffec804a05a74b370969b6e708bb070d8f28115923d9f",
+      "same_scenario_sha256": true,
+      "baseline_file_sha_verified": true,
+      "candidate_file_sha_verified": true,
+      "baseline_success": true,
+      "candidate_success": true,
+      "baseline_official_seconds": 36.19,
+      "candidate_official_seconds": 31.87,
+      "delta_official_seconds_candidate_minus_baseline": -4.319999999999997,
+      "baseline_failure_stage": null,
+      "candidate_failure_stage": null
+    },
+    {
+      "index": 3,
+      "baseline_seed": 1159463833,
+      "candidate_seed": 1159463833,
+      "same_case_seed": true,
+      "same_suite_seed": true,
+      "scenario_sha256": "4e53fe78f14cd3dbc25c7299a8c46523c481c997a2226b7874f2e5295d6937a1",
+      "same_scenario_sha256": true,
+      "baseline_file_sha_verified": true,
+      "candidate_file_sha_verified": true,
+      "baseline_success": true,
+      "candidate_success": true,
+      "baseline_official_seconds": 30.28,
+      "candidate_official_seconds": 35.43,
+      "delta_official_seconds_candidate_minus_baseline": 5.149999999999999,
+      "baseline_failure_stage": null,
+      "candidate_failure_stage": null
+    },
+    {
+      "index": 4,
+      "baseline_seed": 2513962977,
+      "candidate_seed": 2513962977,
+      "same_case_seed": true,
+      "same_suite_seed": true,
+      "scenario_sha256": "97821a2cb4b7826f0af4135c234b7417d4bd9b146352dfcb62bd3de9676b10d3",
+      "same_scenario_sha256": true,
+      "baseline_file_sha_verified": true,
+      "candidate_file_sha_verified": true,
+      "baseline_success": true,
+      "candidate_success": true,
+      "baseline_official_seconds": 35.69,
+      "candidate_official_seconds": 35.01,
+      "delta_official_seconds_candidate_minus_baseline": -0.6799999999999997,
+      "baseline_failure_stage": null,
+      "candidate_failure_stage": null
+    },
+    {
+      "index": 5,
+      "baseline_seed": 3966943216,
+      "candidate_seed": 3966943216,
+      "same_case_seed": true,
+      "same_suite_seed": true,
+      "scenario_sha256": "b60941dca2b01456f8bb5c5d4523de8210d069088be7d2386bbd3156475a332c",
+      "same_scenario_sha256": true,
+      "baseline_file_sha_verified": true,
+      "candidate_file_sha_verified": true,
+      "baseline_success": false,
+      "candidate_success": true,
+      "baseline_official_seconds": 23.09,
+      "candidate_official_seconds": 37.45,
+      "delta_official_seconds_candidate_minus_baseline": 14.360000000000003,
+      "baseline_failure_stage": "close",
+      "candidate_failure_stage": null
+    },
+    {
+      "index": 6,
+      "baseline_seed": 3479771859,
+      "candidate_seed": 3479771859,
+      "same_case_seed": true,
+      "same_suite_seed": true,
+      "scenario_sha256": "3190097b18783c2bca8424bacaab5a9199a1ec7048bc6252c6a0e0683ea039a7",
+      "same_scenario_sha256": true,
+      "baseline_file_sha_verified": true,
+      "candidate_file_sha_verified": true,
+      "baseline_success": false,
+      "candidate_success": true,
+      "baseline_official_seconds": 22.64,
+      "candidate_official_seconds": 34.54,
+      "delta_official_seconds_candidate_minus_baseline": 11.899999999999999,
+      "baseline_failure_stage": "close",
+      "candidate_failure_stage": null
+    },
+    {
+      "index": 7,
+      "baseline_seed": 3734126279,
+      "candidate_seed": 3734126279,
+      "same_case_seed": true,
+      "same_suite_seed": true,
+      "scenario_sha256": "190dece1f5c7a546a71e72c019b61fbce60a4aac59d5ad5859ff1749d5f9654f",
+      "same_scenario_sha256": true,
+      "baseline_file_sha_verified": true,
+      "candidate_file_sha_verified": true,
+      "baseline_success": false,
+      "candidate_success": true,
+      "baseline_official_seconds": 39.36,
+      "candidate_official_seconds": 30.35,
+      "delta_official_seconds_candidate_minus_baseline": -9.009999999999998,
+      "baseline_failure_stage": "retreat",
+      "candidate_failure_stage": null
+    }
+  ],
+  "notes": [
+    "Official seconds include failures in the all-completed statistic; faster early failure is not an improvement.",
+    "Shared-PASS timing compares only cases passed by both variants.",
+    "Interrupted attempts are excluded from performance pairs and kept separately; null success is never a failure.",
+    "Scenario replay fixes placement, not bitwise ROS scheduling or physics trajectories."
+  ]
+}

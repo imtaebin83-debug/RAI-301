@@ -1,0 +1,1548 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-11-22T14:06:06.932389+00:00",
+  "purpose": "Posthoc approximate RGB/proprioception evidence, not ground-truth object tracking or a controller input",
+  "script_sha256": "dd80d7e0fff57c2cbfc3a98f40ff29b2c6e057463dc48bcebe660a96798cd682",
+  "original_used_script": "original_used_analysis.py",
+  "software": {
+    "python": "3.10.22",
+    "numpy": "1.26.4",
+    "scipy": "1.15.3",
+    "opencv": "4.11.0"
+  },
+  "method": {
+    "line_detector": "OpenCV HSV H18..42, S>130, V>155; dilate3x7; PCA of original pixels in largest elongated component; min15 pixels; singular ratio>=2",
+    "geometry": "Each image line l gives plane normal R @ K.T @ l; intersect two planes to obtain an unsigned 3D pencil axis",
+    "eef_axis_comparison": "acos(abs(dot(pencil_axis, EEF_rotation[:,1]))), in degrees",
+    "vertical_comparison": "acos(abs(pencil_axis.z)), in degrees",
+    "line_to_eef_distance": "Shortest distance between the reconstructed 3D line and recorded EEF origin; diagnostic only, not an accuracy bound",
+    "camera_calibration_source": "Previously read public sensor configuration/camera intrinsics and static robot geometry; constants preserved from the original analysis",
+    "agent_K": [
+      [
+        301.5491028,
+        0.0,
+        127.5
+      ],
+      [
+        0.0,
+        301.5491028,
+        127.5
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "wrist_K": [
+      [
+        166.8128477,
+        0.0,
+        127.5
+      ],
+      [
+        0.0,
+        166.8128477,
+        127.5
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "agent_camera_position_base_m": [
+      1.28,
+      0.0,
+      0.92
+    ],
+    "agent_optical_rotation_base": [
+      [
+        0.0,
+        0.7599620109707389,
+        -0.6499674929420014
+      ],
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -0.6499674929420014,
+        -0.7599620109707389
+      ]
+    ],
+    "T_eef_hand": [
+      [
+        2.220446049250313e-16,
+        -1.0,
+        0.0,
+        0.0
+      ],
+      [
+        1.0,
+        2.220446049250313e-16,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        -0.097
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "T_hand_wrist_optical": [
+      [
+        0.0,
+        -0.9999999999999998,
+        0.0,
+        0.05
+      ],
+      [
+        0.9999999999999998,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.9999999999999998,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "state_layout": "EEF xyz, EEF rotation vector xyz, two finger joint positions",
+    "uses_hidden_object_poses": false,
+    "official_referee": "Final official metrics copied only as separate evaluation results; never used in visual axis estimation"
+  },
+  "limitations": [
+    "Approximate visual evidence: no motion capture, object-pose oracle, force measurement, or calibrated statistical error bound.",
+    "Uses unsigned pencil axes: cannot distinguish pointed tip from eraser, or prove tip polarity.",
+    "PCA of visible yellow surface pixels can be biased by occlusion, highlights, perspective, or an incorrect connected component.",
+    "Requires the saved camera calibration, static transforms, and state conventions to match the capture; rounded constants are preserved from the initial analysis.",
+    "No elongated wrist component after release means no axis estimate; a line far from the EEF is not evidence of a held object.",
+    "Frames are saved every five commands (about0.5 seconds); phase-end samples and transition durations are approximate. Logged policy_stage may advance while debug/action still describe the preceding stage.",
+    "Relative rotation is consistent with grasp slip/contact rotation but does not isolate friction, finger force, or every physical cause.",
+    "This is one matched scenario, not an estimate of overall success probability. Learned target equality excludes a target change from yaw averaging in this case.",
+    "Trace time is simulation time; official seconds are wall-clock evaluation time and must not be conflated."
+  ],
+  "matched_comparison": {
+    "same_scenario_sha256": true,
+    "same_learned_xyz_targets_all_shared_stages": true,
+    "compared_stages": [
+      "approach",
+      "carry",
+      "close",
+      "descend",
+      "insert",
+      "lift",
+      "release",
+      "retreat",
+      "upright"
+    ],
+    "phase_axis_to_eef_y_deg": {
+      "close_end": {
+        "baseline": 1.5795419920244396,
+        "candidate-v1": 0.9277819300754596
+      },
+      "lift_end": {
+        "baseline": 71.25404483099538,
+        "candidate-v1": 0.8635534201677472
+      },
+      "upright_end": {
+        "baseline": 70.07681187337266,
+        "candidate-v1": 1.0609607028751065
+      },
+      "carry_end": {
+        "baseline": 80.31947399868507,
+        "candidate-v1": 0.58379930237785
+      },
+      "insert_end": {
+        "baseline": 72.56207214154877,
+        "candidate-v1": 0.5237591611011648
+      }
+    }
+  },
+  "cases": {
+    "baseline": {
+      "input_case_directory": "/home/aril/m5-runs/stability-20261122/baseline/case_000",
+      "scenario_sha256": "7e779008b9775d76706e6907a3aa1ae66536de3edb44c450accd33e1fa80ad32",
+      "trace_sha256": "76806a4121295a53c2b1885f86cb4887d6f84a4e1ce487c8fca3cbe5426afc12",
+      "trace_rows": 76,
+      "nominal_saved_command_stride": 5,
+      "median_saved_time_stride_s": 0.5,
+      "stage_transitions": [
+        {
+          "stage": "observe",
+          "time_s": 0.5,
+          "command_index": 0
+        },
+        {
+          "stage": "approach",
+          "time_s": 1.0,
+          "command_index": 5
+        },
+        {
+          "stage": "descend",
+          "time_s": 5.002,
+          "command_index": 45
+        },
+        {
+          "stage": "close",
+          "time_s": 8.002,
+          "command_index": 75
+        },
+        {
+          "stage": "lift",
+          "time_s": 15.5,
+          "command_index": 150
+        },
+        {
+          "stage": "upright",
+          "time_s": 22.002,
+          "command_index": 215
+        },
+        {
+          "stage": "carry",
+          "time_s": 25.502,
+          "command_index": 250
+        },
+        {
+          "stage": "insert",
+          "time_s": 32.502,
+          "command_index": 320
+        },
+        {
+          "stage": "release",
+          "time_s": 34.502,
+          "command_index": 340
+        },
+        {
+          "stage": "retreat",
+          "time_s": 36.002,
+          "command_index": 355
+        }
+      ],
+      "sampled_close_duration_s": 7.497999999999999,
+      "last_trace_time_s": 38.0,
+      "targets": {
+        "approach": {
+          "learned_target_xyz_m": [
+            0.35787861240888474,
+            -0.20547038915073768,
+            0.20104057590166727
+          ],
+          "command_target_xyz_m": [
+            0.35787861240888474,
+            -0.20547038915073768,
+            0.20104057590166727
+          ]
+        },
+        "descend": {
+          "learned_target_xyz_m": [
+            0.3595469349095729,
+            -0.20246910902799298,
+            0.02306913894911607
+          ],
+          "command_target_xyz_m": [
+            0.3595469349095729,
+            -0.20246910902799298,
+            0.02306913894911607
+          ]
+        },
+        "close": {
+          "learned_target_xyz_m": [
+            0.36291615976438696,
+            -0.20112322598343532,
+            0.01742202912767728
+          ],
+          "command_target_xyz_m": [
+            0.36291615976438696,
+            -0.20112322598343532,
+            0.01742202912767728
+          ]
+        },
+        "lift": {
+          "learned_target_xyz_m": [
+            0.359825599343572,
+            -0.20204346269603624,
+            0.41522253553072613
+          ],
+          "command_target_xyz_m": [
+            0.359825599343572,
+            -0.20204346269603624,
+            0.41522253553072613
+          ]
+        },
+        "upright": {
+          "learned_target_xyz_m": [
+            0.35828647723263524,
+            -0.20131448646517544,
+            0.41874051094055176
+          ],
+          "command_target_xyz_m": [
+            0.35828647723263524,
+            -0.20131448646517544,
+            0.41874051094055176
+          ]
+        },
+        "carry": {
+          "learned_target_xyz_m": [
+            0.4220055486107495,
+            0.2510383493585975,
+            0.3990194996198018
+          ],
+          "command_target_xyz_m": [
+            0.4220055486107495,
+            0.2510383493585975,
+            0.3990194996198018
+          ]
+        },
+        "insert": {
+          "learned_target_xyz_m": [
+            0.42236173214881223,
+            0.24695337441547813,
+            0.26955097913742065
+          ],
+          "command_target_xyz_m": [
+            0.42236173214881223,
+            0.24695337441547813,
+            0.26955097913742065
+          ]
+        },
+        "release": {
+          "learned_target_xyz_m": [
+            0.42149608479429534,
+            0.2467025305019467,
+            0.2647666831811269
+          ],
+          "command_target_xyz_m": [
+            0.42149608479429534,
+            0.2467025305019467,
+            0.2647666831811269
+          ]
+        },
+        "retreat": {
+          "learned_target_xyz_m": [
+            0.42285458313108176,
+            0.24611786518371917,
+            0.41296255588531494
+          ],
+          "command_target_xyz_m": [
+            0.42285458313108176,
+            0.24611786518371917,
+            0.41296255588531494
+          ]
+        }
+      },
+      "official_evaluation_only": {
+        "verdict": "FAIL",
+        "seconds": 38.27,
+        "referee": {
+          "mission": 5,
+          "pelvis": [
+            16.003,
+            11.0,
+            0.78
+          ],
+          "success": false,
+          "summary": "pencil tip 0.136 > 0.02 m below the rim, outside the opening, released",
+          "tilt_deg": 90.0,
+          "tip_depth_m": 0.1356,
+          "in_opening": false,
+          "held": false
+        },
+        "data": {
+          "learned_policy": true,
+          "commands": 377,
+          "checkpoint": "keyposes.json",
+          "controller": "task-parameterized-keypose-bc",
+          "policy_complete": true,
+          "detail": "Bounded policy rollout complete; original referee determines insertion success"
+        }
+      },
+      "frames": {
+        "descend_end": {
+          "command_index": 70,
+          "trace_row_index": 14,
+          "time_s": 7.502,
+          "logged_policy_stage": "descend",
+          "debug_phase": "descend",
+          "images": {
+            "agent": "00070_agent.png",
+            "wrist": "00070_wrist.png"
+          },
+          "eef_xyz_m": [
+            0.3586791157722473,
+            -0.20222871005535126,
+            0.035148266702890396
+          ],
+          "finger_gap_sum_m": 0.07806690409779549,
+          "line_detection": {
+            "agent": {
+              "pixels": 112,
+              "elongation": 3.9715662529497293,
+              "center_px": [
+                64.60714285714286,
+                102.61607142857143
+              ],
+              "homogeneous_line": [
+                -0.1931279769509178,
+                -0.9811735751225904,
+                113.16162446518548
+              ]
+            },
+            "wrist": {
+              "pixels": 6444,
+              "elongation": 5.33745984907324,
+              "center_px": [
+                113.47905027932961,
+                112.85055865921788
+              ],
+              "homogeneous_line": [
+                -0.9999367543640828,
+                -0.011246656028543297,
+                114.7410646405006
+              ]
+            }
+          },
+          "valid_axis_estimate": true,
+          "unsigned_axis_base": [
+            0.25985268202804684,
+            -0.9654794432871444,
+            -0.01805625190277647
+          ],
+          "axis_to_vertical_deg": 88.96539674864022,
+          "axis_to_eef_local_y_deg": 1.24220128752554,
+          "reconstructed_line_to_eef_distance_m": 0.02302624007307944,
+          "interpretation_plane_intersection_sine": 0.6633670959839273,
+          "grasp_proximity_heuristic_pass": true
+        },
+        "close_end": {
+          "command_index": 145,
+          "trace_row_index": 29,
+          "time_s": 15.0,
+          "logged_policy_stage": "close",
+          "debug_phase": "close",
+          "images": {
+            "agent": "00145_agent.png",
+            "wrist": "00145_wrist.png"
+          },
+          "eef_xyz_m": [
+            0.35779497027397156,
+            -0.20413720607757568,
+            0.018345989286899567
+          ],
+          "finger_gap_sum_m": 0.029373700730502605,
+          "line_detection": {
+            "agent": {
+              "pixels": 112,
+              "elongation": 3.9260987770633036,
+              "center_px": [
+                63.99107142857143,
+                103.38392857142857
+              ],
+              "homogeneous_line": [
+                -0.20178174532546314,
+                -0.9794305117022901,
+                114.16960414061082
+              ]
+            },
+            "wrist": {
+              "pixels": 8410,
+              "elongation": 5.103946964700256,
+              "center_px": [
+                121.0692033293698,
+                106.83186682520808
+              ],
+              "homogeneous_line": [
+                -0.9999166897712105,
+                -0.012907885844886465,
+                122.43809056791697
+              ]
+            }
+          },
+          "valid_axis_estimate": true,
+          "unsigned_axis_base": [
+            0.26245968321847274,
+            -0.9645567310072617,
+            -0.027298852603063778
+          ],
+          "axis_to_vertical_deg": 88.43569662564373,
+          "axis_to_eef_local_y_deg": 1.5795419920244396,
+          "reconstructed_line_to_eef_distance_m": 0.005174532510644665,
+          "interpretation_plane_intersection_sine": 0.6878307967347949,
+          "grasp_proximity_heuristic_pass": true
+        },
+        "lift_end": {
+          "command_index": 210,
+          "trace_row_index": 42,
+          "time_s": 21.502,
+          "logged_policy_stage": "lift",
+          "debug_phase": "lift",
+          "images": {
+            "agent": "00210_agent.png",
+            "wrist": "00210_wrist.png"
+          },
+          "eef_xyz_m": [
+            0.35945361852645874,
+            -0.20207038521766663,
+            0.41204503178596497
+          ],
+          "finger_gap_sum_m": 0.029328185133635998,
+          "line_detection": {
+            "agent": {
+              "pixels": 206,
+              "elongation": 3.5157484907179297,
+              "center_px": [
+                58.53398058252427,
+                32.592233009708735
+              ],
+              "homogeneous_line": [
+                -0.8748976211350218,
+                -0.4843079108710489,
+                66.99591664676852
+              ]
+            },
+            "wrist": {
+              "pixels": 563,
+              "elongation": 2.8540215615534095,
+              "center_px": [
+                125.51865008880995,
+                205.28952042628774
+              ],
+              "homogeneous_line": [
+                -0.084084643628312,
+                0.9964586156513977,
+                -194.00832037029363
+              ]
+            }
+          },
+          "valid_axis_estimate": true,
+          "unsigned_axis_base": [
+            0.42318851465363405,
+            0.4547282647782847,
+            0.7836668209621875
+          ],
+          "axis_to_vertical_deg": 38.40245691924593,
+          "axis_to_eef_local_y_deg": 71.25404483099538,
+          "reconstructed_line_to_eef_distance_m": 0.0133794766660048,
+          "interpretation_plane_intersection_sine": 0.3330811131288456,
+          "grasp_proximity_heuristic_pass": true
+        },
+        "upright_end": {
+          "command_index": 245,
+          "trace_row_index": 49,
+          "time_s": 25.002,
+          "logged_policy_stage": "upright",
+          "debug_phase": "upright",
+          "images": {
+            "agent": "00245_agent.png",
+            "wrist": "00245_wrist.png"
+          },
+          "eef_xyz_m": [
+            0.35665830969810486,
+            -0.20268812775611877,
+            0.4174676537513733
+          ],
+          "finger_gap_sum_m": 0.028958536684513092,
+          "line_detection": {
+            "agent": {
+              "pixels": 266,
+              "elongation": 4.336781436388105,
+              "center_px": [
+                45.57518796992481,
+                8.451127819548873
+              ],
+              "homogeneous_line": [
+                -0.30871129139386677,
+                0.9511557909017487,
+                6.031235968498931
+              ]
+            },
+            "wrist": {
+              "pixels": 566,
+              "elongation": 2.8160825541222936,
+              "center_px": [
+                125.69081272084806,
+                205.21024734982333
+              ],
+              "homogeneous_line": [
+                -0.09357353050657932,
+                0.9956123715525708,
+                -192.54852793231623
+              ]
+            }
+          },
+          "valid_axis_estimate": true,
+          "unsigned_axis_base": [
+            -0.19320477499187888,
+            -0.9542780452749551,
+            0.22809061187727186
+          ],
+          "axis_to_vertical_deg": 76.81531589380221,
+          "axis_to_eef_local_y_deg": 70.07681187337266,
+          "reconstructed_line_to_eef_distance_m": 0.010397307624771797,
+          "interpretation_plane_intersection_sine": 0.3708186435056295,
+          "grasp_proximity_heuristic_pass": true
+        },
+        "carry_end": {
+          "command_index": 315,
+          "trace_row_index": 63,
+          "time_s": 32.002,
+          "logged_policy_stage": "carry",
+          "debug_phase": "carry",
+          "images": {
+            "agent": "00315_agent.png",
+            "wrist": "00315_wrist.png"
+          },
+          "eef_xyz_m": [
+            0.419071763753891,
+            0.23814833164215088,
+            0.39792296290397644
+          ],
+          "finger_gap_sum_m": 0.028958425857126713,
+          "line_detection": {
+            "agent": {
+              "pixels": 220,
+              "elongation": 3.4392062375903953,
+              "center_px": [
+                189.6,
+                22.69090909090909
+              ],
+              "homogeneous_line": [
+                -0.5332711537664218,
+                0.8459443696606942,
+                81.91296396617635
+              ]
+            },
+            "wrist": {
+              "pixels": 577,
+              "elongation": 2.766495476695851,
+              "center_px": [
+                125.96880415944541,
+                205.21143847487002
+              ],
+              "homogeneous_line": [
+                -0.09385089522510245,
+                0.9955862642008712,
+                -192.4834043616832
+              ]
+            }
+          },
+          "valid_axis_estimate": true,
+          "unsigned_axis_base": [
+            -0.6555916422515804,
+            -0.736360065971819,
+            0.16725265872880551
+          ],
+          "axis_to_vertical_deg": 80.3718789255502,
+          "axis_to_eef_local_y_deg": 80.31947399868507,
+          "reconstructed_line_to_eef_distance_m": 0.012239392136325378,
+          "interpretation_plane_intersection_sine": 0.21973715262078983,
+          "grasp_proximity_heuristic_pass": true
+        },
+        "insert_end": {
+          "command_index": 335,
+          "trace_row_index": 67,
+          "time_s": 34.002,
+          "logged_policy_stage": "insert",
+          "debug_phase": "insert",
+          "images": {
+            "agent": "00335_agent.png",
+            "wrist": "00335_wrist.png"
+          },
+          "eef_xyz_m": [
+            0.4222133755683899,
+            0.24732768535614014,
+            0.28553977608680725
+          ],
+          "finger_gap_sum_m": 0.02895839884877205,
+          "line_detection": {
+            "agent": {
+              "pixels": 179,
+              "elongation": 3.258078508844258,
+              "center_px": [
+                187.0614525139665,
+                53.95530726256983
+              ],
+              "homogeneous_line": [
+                -0.46870992728860306,
+                0.8833521404633106,
+                40.01602364657504
+              ]
+            },
+            "wrist": {
+              "pixels": 574,
+              "elongation": 2.78726109269472,
+              "center_px": [
+                125.99477351916376,
+                205.18815331010452
+              ],
+              "homogeneous_line": [
+                -0.08588520066526956,
+                0.9963050397878587,
+                -193.60890484115237
+              ]
+            }
+          },
+          "valid_axis_estimate": true,
+          "unsigned_axis_base": [
+            -0.3581221706399706,
+            -0.8830259275682527,
+            0.3033376371938416
+          ],
+          "axis_to_vertical_deg": 72.34181990029552,
+          "axis_to_eef_local_y_deg": 72.56207214154877,
+          "reconstructed_line_to_eef_distance_m": 0.010534217856718897,
+          "interpretation_plane_intersection_sine": 0.29343706217291887,
+          "grasp_proximity_heuristic_pass": true
+        },
+        "release_start": {
+          "command_index": 340,
+          "trace_row_index": 68,
+          "time_s": 34.502,
+          "logged_policy_stage": "release",
+          "debug_phase": "release",
+          "images": {
+            "agent": "00340_agent.png",
+            "wrist": "00340_wrist.png"
+          },
+          "eef_xyz_m": [
+            0.42237499356269836,
+            0.2478315681219101,
+            0.270475834608078
+          ],
+          "finger_gap_sum_m": 0.028958392329514027,
+          "line_detection": {
+            "agent": {
+              "pixels": 174,
+              "elongation": 3.3359187728822164,
+              "center_px": [
+                186.60919540229884,
+                57.62068965517241
+              ],
+              "homogeneous_line": [
+                -0.4562254608802251,
+                0.8898642193304697,
+                33.861276159618505
+              ]
+            },
+            "wrist": {
+              "pixels": 578,
+              "elongation": 2.763638049931843,
+              "center_px": [
+                126.09861591695501,
+                205.2733564013841
+              ],
+              "homogeneous_line": [
+                -0.09496866926820588,
+                0.9954802619125234,
+                -192.37015684391676
+              ]
+            }
+          },
+          "valid_axis_estimate": true,
+          "unsigned_axis_base": [
+            -0.3176508214899533,
+            -0.8938845593703074,
+            0.3163358185949058
+          ],
+          "axis_to_vertical_deg": 71.55852521183576,
+          "axis_to_eef_local_y_deg": 71.94602117567871,
+          "reconstructed_line_to_eef_distance_m": 0.00891790856827035,
+          "interpretation_plane_intersection_sine": 0.2955782450123113,
+          "grasp_proximity_heuristic_pass": true
+        },
+        "release_late": {
+          "command_index": 350,
+          "trace_row_index": 70,
+          "time_s": 35.502,
+          "logged_policy_stage": "release",
+          "debug_phase": "release",
+          "images": {
+            "agent": "00350_agent.png",
+            "wrist": "00350_wrist.png"
+          },
+          "eef_xyz_m": [
+            0.42177093029022217,
+            0.24713386595249176,
+            0.2650693655014038
+          ],
+          "finger_gap_sum_m": 0.07799939811229706,
+          "line_detection": {
+            "agent": {
+              "pixels": 251,
+              "elongation": 13.804646981677926,
+              "center_px": [
+                185.9601593625498,
+                81.26294820717132
+              ],
+              "homogeneous_line": [
+                0.0028609621721616767,
+                0.9999959074393502,
+                -81.79464061509262
+              ]
+            },
+            "wrist": {
+              "pixels": 26,
+              "elongation": 65.79967566155939,
+              "center_px": [
+                144.0,
+                16.5
+              ],
+              "homogeneous_line": [
+                -0.8655782198324152,
+                -0.500773746667841,
+                132.90603047588718
+              ]
+            }
+          },
+          "valid_axis_estimate": true,
+          "unsigned_axis_base": [
+            -0.002770756554094573,
+            0.9999952568251298,
+            0.0013450781986848804
+          ],
+          "axis_to_vertical_deg": 89.92293267286146,
+          "axis_to_eef_local_y_deg": 89.7074135673812,
+          "reconstructed_line_to_eef_distance_m": 0.08892790488285593,
+          "interpretation_plane_intersection_sine": 0.979024743330701,
+          "grasp_proximity_heuristic_pass": false
+        }
+      }
+    },
+    "candidate-v1": {
+      "input_case_directory": "/home/aril/m5-runs/stability-20261122/candidate-v1/case_000",
+      "scenario_sha256": "7e779008b9775d76706e6907a3aa1ae66536de3edb44c450accd33e1fa80ad32",
+      "trace_sha256": "7919face75c9691fa25cf63ee43214bf9c3f64434bac24f8125c616047c1486a",
+      "trace_rows": 63,
+      "nominal_saved_command_stride": 5,
+      "median_saved_time_stride_s": 0.5,
+      "stage_transitions": [
+        {
+          "stage": "observe",
+          "time_s": 0.5,
+          "command_index": 0
+        },
+        {
+          "stage": "approach",
+          "time_s": 1.0,
+          "command_index": 5
+        },
+        {
+          "stage": "descend",
+          "time_s": 5.002,
+          "command_index": 45
+        },
+        {
+          "stage": "close",
+          "time_s": 8.002,
+          "command_index": 75
+        },
+        {
+          "stage": "lift",
+          "time_s": 9.002,
+          "command_index": 85
+        },
+        {
+          "stage": "upright",
+          "time_s": 15.5,
+          "command_index": 150
+        },
+        {
+          "stage": "carry",
+          "time_s": 19.0,
+          "command_index": 185
+        },
+        {
+          "stage": "insert",
+          "time_s": 26.502,
+          "command_index": 260
+        },
+        {
+          "stage": "release",
+          "time_s": 28.502,
+          "command_index": 280
+        },
+        {
+          "stage": "retreat",
+          "time_s": 29.502,
+          "command_index": 290
+        }
+      ],
+      "sampled_close_duration_s": 1.0,
+      "last_trace_time_s": 31.502,
+      "targets": {
+        "approach": {
+          "learned_target_xyz_m": [
+            0.35787861240888474,
+            -0.20547038915073768,
+            0.20104057590166727
+          ],
+          "command_target_xyz_m": [
+            0.35787861240888474,
+            -0.20547038915073768,
+            0.20104057590166727
+          ]
+        },
+        "descend": {
+          "learned_target_xyz_m": [
+            0.3595469349095729,
+            -0.20246910902799298,
+            0.02306913894911607
+          ],
+          "command_target_xyz_m": [
+            0.3595469349095729,
+            -0.20246910902799298,
+            0.02306913894911607
+          ]
+        },
+        "close": {
+          "learned_target_xyz_m": [
+            0.36291615976438696,
+            -0.20112322598343532,
+            0.01742202912767728
+          ],
+          "command_target_xyz_m": [
+            0.35415294766426086,
+            -0.20255333185195923,
+            0.02227918431162834
+          ]
+        },
+        "lift": {
+          "learned_target_xyz_m": [
+            0.359825599343572,
+            -0.20204346269603624,
+            0.41522253553072613
+          ],
+          "command_target_xyz_m": [
+            0.359825599343572,
+            -0.20204346269603624,
+            0.41522253553072613
+          ]
+        },
+        "upright": {
+          "learned_target_xyz_m": [
+            0.35828647723263524,
+            -0.20131448646517544,
+            0.41874051094055176
+          ],
+          "command_target_xyz_m": [
+            0.35828647723263524,
+            -0.20131448646517544,
+            0.41874051094055176
+          ]
+        },
+        "carry": {
+          "learned_target_xyz_m": [
+            0.4220055486107495,
+            0.2510383493585975,
+            0.3990194996198018
+          ],
+          "command_target_xyz_m": [
+            0.4220055486107495,
+            0.2510383493585975,
+            0.3990194996198018
+          ]
+        },
+        "insert": {
+          "learned_target_xyz_m": [
+            0.42236173214881223,
+            0.24695337441547813,
+            0.26955097913742065
+          ],
+          "command_target_xyz_m": [
+            0.42236173214881223,
+            0.24695337441547813,
+            0.26955097913742065
+          ]
+        },
+        "release": {
+          "learned_target_xyz_m": [
+            0.42149608479429534,
+            0.2467025305019467,
+            0.2647666831811269
+          ],
+          "command_target_xyz_m": [
+            0.42149608479429534,
+            0.2467025305019467,
+            0.2647666831811269
+          ]
+        },
+        "retreat": {
+          "learned_target_xyz_m": [
+            0.42285458313108176,
+            0.24611786518371917,
+            0.41296255588531494
+          ],
+          "command_target_xyz_m": [
+            0.42285458313108176,
+            0.24611786518371917,
+            0.41296255588531494
+          ]
+        }
+      },
+      "official_evaluation_only": {
+        "verdict": "PASS",
+        "seconds": 37.24,
+        "referee": {
+          "mission": 5,
+          "pelvis": [
+            16.003,
+            11.0,
+            0.78
+          ],
+          "success": true,
+          "summary": "pencil tip 0.145 > 0.02 m below the rim, inside the opening, released",
+          "tilt_deg": 24.64,
+          "tip_depth_m": 0.145,
+          "in_opening": true,
+          "held": false
+        },
+        "data": {
+          "learned_policy": true,
+          "commands": 314,
+          "checkpoint": "keyposes.json",
+          "controller": "task-parameterized-keypose-bc",
+          "policy_complete": true,
+          "detail": "Bounded policy rollout complete; original referee determines insertion success"
+        }
+      },
+      "frames": {
+        "descend_end": {
+          "command_index": 70,
+          "trace_row_index": 14,
+          "time_s": 7.502,
+          "logged_policy_stage": "descend",
+          "debug_phase": "descend",
+          "images": {
+            "agent": "00070_agent.png",
+            "wrist": "00070_wrist.png"
+          },
+          "eef_xyz_m": [
+            0.35824018716812134,
+            -0.20224857330322266,
+            0.03250716254115105
+          ],
+          "finger_gap_sum_m": 0.07806628197431564,
+          "line_detection": {
+            "agent": {
+              "pixels": 112,
+              "elongation": 3.9715662529497293,
+              "center_px": [
+                64.60714285714286,
+                102.61607142857143
+              ],
+              "homogeneous_line": [
+                -0.1931279769509178,
+                -0.9811735751225904,
+                113.16162446518548
+              ]
+            },
+            "wrist": {
+              "pixels": 6706,
+              "elongation": 5.251158428331811,
+              "center_px": [
+                113.94721145243066,
+                111.48314941843125
+              ],
+              "homogeneous_line": [
+                -0.9999398657338595,
+                -0.01096653619656996,
+                115.16294331389605
+              ]
+            }
+          },
+          "valid_axis_estimate": true,
+          "unsigned_axis_base": [
+            0.26039876196025086,
+            -0.9653421669198653,
+            -0.017521002711810903
+          ],
+          "axis_to_vertical_deg": 88.99606912193109,
+          "axis_to_eef_local_y_deg": 1.2334746560334826,
+          "reconstructed_line_to_eef_distance_m": 0.020287416913825233,
+          "interpretation_plane_intersection_sine": 0.6662697315064747,
+          "grasp_proximity_heuristic_pass": true
+        },
+        "close_end": {
+          "command_index": 80,
+          "trace_row_index": 16,
+          "time_s": 8.502,
+          "logged_policy_stage": "close",
+          "debug_phase": "close",
+          "images": {
+            "agent": "00080_agent.png",
+            "wrist": "00080_wrist.png"
+          },
+          "eef_xyz_m": [
+            0.35131844878196716,
+            -0.203562930226326,
+            0.022197864949703217
+          ],
+          "finger_gap_sum_m": 0.028615611605346203,
+          "line_detection": {
+            "agent": {
+              "pixels": 115,
+              "elongation": 4.059316891476967,
+              "center_px": [
+                64.96521739130435,
+                102.8
+              ],
+              "homogeneous_line": [
+                -0.17584544843236363,
+                -0.9844177864431448,
+                112.6219862310352
+              ]
+            },
+            "wrist": {
+              "pixels": 7324,
+              "elongation": 5.309396930983026,
+              "center_px": [
+                126.89677771709448,
+                105.051201529219
+              ],
+              "homogeneous_line": [
+                -0.9999981659346142,
+                -0.0019152356011891373,
+                127.09774278122335
+              ]
+            }
+          },
+          "valid_axis_estimate": true,
+          "unsigned_axis_base": [
+            0.2760729648269798,
+            -0.9608681055117954,
+            0.022720077064453323
+          ],
+          "axis_to_vertical_deg": 88.6981234524173,
+          "axis_to_eef_local_y_deg": 0.9277819300754596,
+          "reconstructed_line_to_eef_distance_m": 0.00798532202550792,
+          "interpretation_plane_intersection_sine": 0.7296036061113568,
+          "grasp_proximity_heuristic_pass": true
+        },
+        "lift_end": {
+          "command_index": 145,
+          "trace_row_index": 29,
+          "time_s": 15.0,
+          "logged_policy_stage": "lift",
+          "debug_phase": "lift",
+          "images": {
+            "agent": "00145_agent.png",
+            "wrist": "00145_wrist.png"
+          },
+          "eef_xyz_m": [
+            0.35929927229881287,
+            -0.2020389437675476,
+            0.41157907247543335
+          ],
+          "finger_gap_sum_m": 0.028626385144889355,
+          "line_detection": {
+            "agent": {
+              "pixels": 201,
+              "elongation": 4.271034449014289,
+              "center_px": [
+                46.37313432835821,
+                18.771144278606965
+              ],
+              "homogeneous_line": [
+                -0.156298057459807,
+                -0.9877099357778532,
+                25.78847652374478
+              ]
+            },
+            "wrist": {
+              "pixels": 7229,
+              "elongation": 5.329832009043139,
+              "center_px": [
+                128.7724443214829,
+                105.07760409461889
+              ],
+              "homogeneous_line": [
+                -0.9999994881303769,
+                0.0010117998737804478,
+                128.6660609002203
+              ]
+            }
+          },
+          "valid_axis_estimate": true,
+          "unsigned_axis_base": [
+            0.2756940260271126,
+            -0.9611206393328411,
+            -0.015489372530629993
+          ],
+          "axis_to_vertical_deg": 89.11248883556537,
+          "axis_to_eef_local_y_deg": 0.8635534201677472,
+          "reconstructed_line_to_eef_distance_m": 0.0040199733464134375,
+          "interpretation_plane_intersection_sine": 0.8812802890041501,
+          "grasp_proximity_heuristic_pass": true
+        },
+        "upright_end": {
+          "command_index": 180,
+          "trace_row_index": 36,
+          "time_s": 18.5,
+          "logged_policy_stage": "upright",
+          "debug_phase": "upright",
+          "images": {
+            "agent": "00180_agent.png",
+            "wrist": "00180_wrist.png"
+          },
+          "eef_xyz_m": [
+            0.35700201988220215,
+            -0.20251019299030304,
+            0.41822585463523865
+          ],
+          "finger_gap_sum_m": 0.02849795762449503,
+          "line_detection": {
+            "agent": {
+              "pixels": 268,
+              "elongation": 8.113055764524438,
+              "center_px": [
+                66.53731343283582,
+                21.37686567164179
+              ],
+              "homogeneous_line": [
+                -0.911241284292954,
+                0.4118729437582997,
+                51.82699435343528
+              ]
+            },
+            "wrist": {
+              "pixels": 6882,
+              "elongation": 5.569878595095682,
+              "center_px": [
+                127.87460040685848,
+                102.24643998837547
+              ],
+              "homogeneous_line": [
+                -0.9998792440693351,
+                -0.015540182731711233,
+                129.44808715156424
+              ]
+            }
+          },
+          "valid_axis_estimate": true,
+          "unsigned_axis_base": [
+            -0.05525014098449332,
+            0.23291243678025955,
+            -0.9709269893839986
+          ],
+          "axis_to_vertical_deg": 13.849703456969245,
+          "axis_to_eef_local_y_deg": 1.0609607028751065,
+          "reconstructed_line_to_eef_distance_m": 0.00867639229615002,
+          "interpretation_plane_intersection_sine": 0.9979279270163517,
+          "grasp_proximity_heuristic_pass": true
+        },
+        "carry_end": {
+          "command_index": 255,
+          "trace_row_index": 51,
+          "time_s": 26.002,
+          "logged_policy_stage": "carry",
+          "debug_phase": "carry",
+          "images": {
+            "agent": "00255_agent.png",
+            "wrist": "00255_wrist.png"
+          },
+          "eef_xyz_m": [
+            0.42109835147857666,
+            0.24739211797714233,
+            0.39724862575531006
+          ],
+          "finger_gap_sum_m": 0.028482320718467236,
+          "line_detection": {
+            "agent": {
+              "pixels": 341,
+              "elongation": 11.722456600800182,
+              "center_px": [
+                204.1466275659824,
+                29.545454545454547
+              ],
+              "homogeneous_line": [
+                -0.9780662546854194,
+                -0.20829402642811404,
+                205.82306912004117
+              ]
+            },
+            "wrist": {
+              "pixels": 6756,
+              "elongation": 5.681336398382956,
+              "center_px": [
+                128.1897572528123,
+                104.11175251628183
+              ],
+              "homogeneous_line": [
+                -0.9999480985771302,
+                -0.010188235960262986,
+                129.24381912288595
+              ]
+            }
+          },
+          "valid_axis_estimate": true,
+          "unsigned_axis_base": [
+            0.010994060586019785,
+            -0.0009310418571160178,
+            -0.9999391300438699
+          ],
+          "axis_to_vertical_deg": 0.6321808376683422,
+          "axis_to_eef_local_y_deg": 0.58379930237785,
+          "reconstructed_line_to_eef_distance_m": 0.004335215146766796,
+          "interpretation_plane_intersection_sine": 0.8535321937063983,
+          "grasp_proximity_heuristic_pass": true
+        },
+        "insert_end": {
+          "command_index": 275,
+          "trace_row_index": 55,
+          "time_s": 28.002,
+          "logged_policy_stage": "insert",
+          "debug_phase": "insert",
+          "images": {
+            "agent": "00275_agent.png",
+            "wrist": "00275_wrist.png"
+          },
+          "eef_xyz_m": [
+            0.42219507694244385,
+            0.24735014140605927,
+            0.2759704291820526
+          ],
+          "finger_gap_sum_m": 0.028482467867434025,
+          "line_detection": {
+            "agent": {
+              "pixels": 264,
+              "elongation": 11.276064141951428,
+              "center_px": [
+                197.4659090909091,
+                60.93181818181818
+              ],
+              "homogeneous_line": [
+                -0.9771559362941968,
+                -0.21252358966715024,
+                205.90443400885817
+              ]
+            },
+            "wrist": {
+              "pixels": 6785,
+              "elongation": 5.670662988901819,
+              "center_px": [
+                128.29830508474575,
+                104.29859985261606
+              ],
+              "homogeneous_line": [
+                -0.9999592119306285,
+                -0.009031858893710294,
+                129.2350822812581
+              ]
+            }
+          },
+          "valid_axis_estimate": true,
+          "unsigned_axis_base": [
+            0.010390041335764747,
+            -0.004482464587836335,
+            -0.9999359752265441
+          ],
+          "axis_to_vertical_deg": 0.6483566544660025,
+          "axis_to_eef_local_y_deg": 0.5237591611011648,
+          "reconstructed_line_to_eef_distance_m": 0.0044192417982974715,
+          "interpretation_plane_intersection_sine": 0.8476993920146045,
+          "grasp_proximity_heuristic_pass": true
+        },
+        "release_start": {
+          "command_index": 280,
+          "trace_row_index": 56,
+          "time_s": 28.502,
+          "logged_policy_stage": "release",
+          "debug_phase": "release",
+          "images": {
+            "agent": "00280_agent.png",
+            "wrist": "00280_wrist.png"
+          },
+          "eef_xyz_m": [
+            0.4221331775188446,
+            0.24763107299804688,
+            0.26766422390937805
+          ],
+          "finger_gap_sum_m": 0.07167893275618553,
+          "line_detection": {
+            "agent": {
+              "pixels": 130,
+              "elongation": 6.217006191443753,
+              "center_px": [
+                192.43076923076924,
+                82.3
+              ],
+              "homogeneous_line": [
+                -0.9783426442679531,
+                -0.20699195734807982,
+                205.29866569749404
+              ]
+            },
+            "wrist": {
+              "pixels": 6281,
+              "elongation": 5.561735581861299,
+              "center_px": [
+                127.71756089794619,
+                91.8253462824391
+              ],
+              "homogeneous_line": [
+                -0.9999109430168821,
+                -0.013345637305499588,
+                128.93165452421877
+              ]
+            }
+          },
+          "valid_axis_estimate": true,
+          "unsigned_axis_base": [
+            0.012422372099518438,
+            -0.0014592076796106487,
+            -0.9999217746325805
+          ],
+          "axis_to_vertical_deg": 0.7166618184274521,
+          "axis_to_eef_local_y_deg": 0.7675789539878359,
+          "reconstructed_line_to_eef_distance_m": 0.0063235213604271555,
+          "interpretation_plane_intersection_sine": 0.8532948110096817,
+          "grasp_proximity_heuristic_pass": true
+        },
+        "release_late": {
+          "command_index": 285,
+          "trace_row_index": 57,
+          "time_s": 29.002,
+          "logged_policy_stage": "release",
+          "debug_phase": "release",
+          "images": {
+            "agent": "00285_agent.png",
+            "wrist": "00285_wrist.png"
+          },
+          "eef_xyz_m": [
+            0.42178553342819214,
+            0.24718937277793884,
+            0.26528164744377136
+          ],
+          "finger_gap_sum_m": 0.0780235305428505,
+          "line_detection": {
+            "agent": {
+              "pixels": 164,
+              "elongation": 5.322132448461898,
+              "center_px": [
+                187.53658536585365,
+                80.78658536585365
+              ],
+              "homogeneous_line": [
+                -0.9972683404549388,
+                -0.07386377411324305,
+                192.9915013552345
+              ]
+            },
+            "wrist": {
+              "pixels": 6658,
+              "elongation": 5.031453423368988,
+              "center_px": [
+                96.3386902973866,
+                89.54295584259538
+              ],
+              "homogeneous_line": [
+                -0.9934480507278084,
+                -0.11428460309734685,
+                105.94086525424302
+              ]
+            }
+          },
+          "valid_axis_estimate": true,
+          "unsigned_axis_base": [
+            0.1055271361004573,
+            0.07484140533206589,
+            -0.9915960808687966
+          ],
+          "axis_to_vertical_deg": 7.433326006142459,
+          "axis_to_eef_local_y_deg": 7.610024590344959,
+          "reconstructed_line_to_eef_distance_m": 0.03664681978439962,
+          "interpretation_plane_intersection_sine": 0.9680947771977263,
+          "grasp_proximity_heuristic_pass": true
+        },
+        "retreat_start": {
+          "command_index": 290,
+          "trace_row_index": 58,
+          "time_s": 29.502,
+          "logged_policy_stage": "retreat",
+          "debug_phase": "retreat",
+          "images": {
+            "agent": "00290_agent.png",
+            "wrist": "00290_wrist.png"
+          },
+          "eef_xyz_m": [
+            0.4217657446861267,
+            0.24713590741157532,
+            0.2650146186351776
+          ],
+          "finger_gap_sum_m": 0.0780339352786541,
+          "line_detection": {
+            "agent": null,
+            "wrist": {
+              "pixels": 2273,
+              "elongation": 2.9552448126668645,
+              "center_px": [
+                13.87329520457545,
+                34.65640123185218
+              ],
+              "homogeneous_line": [
+                -0.9741700571601193,
+                -0.22581563217069242,
+                21.34090593537234
+              ]
+            }
+          },
+          "valid_axis_estimate": false,
+          "reason": "No elongated yellow component in both views"
+        },
+        "retreat_end": {
+          "command_index": 310,
+          "trace_row_index": 62,
+          "time_s": 31.502,
+          "logged_policy_stage": "retreat",
+          "debug_phase": "retreat",
+          "images": {
+            "agent": "00310_agent.png",
+            "wrist": "00310_wrist.png"
+          },
+          "eef_xyz_m": [
+            0.42238849401474,
+            0.2458677738904953,
+            0.39942020177841187
+          ],
+          "finger_gap_sum_m": 0.078033946454525,
+          "line_detection": {
+            "agent": {
+              "pixels": 58,
+              "elongation": 28.494912113362336,
+              "center_px": [
+                187.1551724137931,
+                75.1896551724138
+              ],
+              "homogeneous_line": [
+                -0.9976399222594106,
+                0.0686628393983039,
+                181.55073643982584
+              ]
+            },
+            "wrist": null
+          },
+          "valid_axis_estimate": false,
+          "reason": "No elongated yellow component in both views"
+        }
+      }
+    }
+  }
+}

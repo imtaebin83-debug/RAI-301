@@ -1,0 +1,16 @@
+{
+  "seed": 221122,
+  "cases": 8,
+  "indices": [
+    0
+  ],
+  "root": "/home/aril/RAI-301-m5-stable/src",
+  "git": {
+    "head": "810b8da57fd5a2a4b64b50d64021dbbf08e22b47",
+    "branch": "opt/m5-grasp-20261122",
+    "status": "M src/custom/README.md\n M src/custom/__pycache__/__init__.cpython-310.pyc\n M src/custom/mission_5/README.md\n M src/custom/mission_5/__pycache__/__init__.cpython-310.pyc\n M src/custom/mission_5/keypose_policy.py\n M src/custom/mission_5/perception.py\n M src/custom/mission_5/tests/test_grasp.py"
+  },
+  "checkpoint": "/home/aril/RAI-301-m5-stable/src/custom/mission_5/keyposes.json",
+  "sampler_sha256": "2acf75a7d0442cf53b2277f6712b4bf84c3c475b7778deab9d0ed945bb16209e",
+  "note": "Evaluation only; scenario/official truth are never policy inputs"
+}

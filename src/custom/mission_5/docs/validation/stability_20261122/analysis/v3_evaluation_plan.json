@@ -1,0 +1,41 @@
+{
+  "version": "v3",
+  "declared_at_kst": "2026-11-22T23:23:44.080100+09:00",
+  "predeclared": {
+    "development_seed": 8122,
+    "development_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "held_out_seed": 221123,
+    "held_out_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "held_out_cases": 12
+  },
+  "protocol": "Development baseline paired comparison, then a separately reported fresh-seed holdout.",
+  "candidate_freeze_requirement": "Freeze source and model before running the declared suite; verify artifact hashes afterward.",
+  "reason_for_new_holdout": "V1 was rejected after a held-out regression; seed221122 is now observed development evidence.",
+  "selection_rule": "Run and report every declared case, including failures. No favorable-seed or successful-case selection.",
+  "pairing_rule": "The new-seed holdout cannot be paired with the old-seed baseline. A matching-seed baseline would require a separately declared evaluation.",
+  "inherited_holdout_declaration": "/home/aril/m5-runs/stability-20261122/analysis/v2_evaluation_plan.json",
+  "original_holdout_declared_at_kst": "2026-11-22T23:19:43.824922+09:00",
+  "candidate_revision_reason": "V2 failed an already observed seed221122 regression pilot; V3 retains the still-unused seed221123 holdout declaration."
+}

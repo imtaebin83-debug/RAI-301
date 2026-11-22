@@ -1,6 +1,6 @@
 # Mission 5 — 연필 집어서 연필꽂이에 넣기
 
-`mission_5.py`의 기본값은 동봉한 **팀 학습 keypose 정책 `keyposes.json`**이다. Ubuntu 원본 시뮬레이터·referee로 기본 배치 PASS(30.4초), 새 무작위 배치 5회 중 4회 PASS를 확인했다. 기본 배치는 학습 시연에 포함됐다. 5회 결과는 작은 표본이며 성공을 보장하지 않는다. 상세 증거와 한계는 [REPORT.md](REPORT.md)에 있다.
+`mission_5.py`의 기본값은 동봉한 **팀 학습 keypose 정책 `keyposes.json`**이다. 2026-11-22 파지 중 팔 고정·관절 피드백과 몸통 검출을 보완해, 같은 랜덤 배치 8개에서 기존 4/8 → 개선 8/8 공식 PASS를 확인했다. 별도 새 배치 12개도 12/12 PASS였다. 자세한 원인·조건·한계는 [파지 안정화 보고서](STABILITY_20261122.md), 초기 학습과 이전 결과는 [REPORT.md](REPORT.md)에 있다. 작은 표본이며 성공을 보장하지 않는다.
 
 ## 바로 실행
 
@@ -75,7 +75,7 @@ python -m custom.mission_5.evaluate --episodes 5 --out ~/m5-runs/new-model/eval.
 - `M5_TRACE_DIR=/절대경로`: 5개 명령마다 RGB·wrist와 상태/오차를 기록. 평가 케이스마다 별도 폴더 사용.
 - `M5_EXECUTE_HORIZON=1`: 기본 매 관측 재계획. keypose는 한 action만 출력한다.
 
-우선 파지 단계 실패를 trace로 재현하고 위치/각도 오차·색상 중심 편향을 확인한다. 그다음 어려운 배치의 성공 시연을 추가한다. 현재 모델은 lift 이후 연필 미끄러짐을 직접 추적하지 않으며 HSV 인식은 조명·색상 변경에 취약하다. 카메라 pose·해상도·제어주기를 바꾸면 보정과 데이터를 함께 갱신한다. 새 평가를 보고 수정했다면 그 평가를 개발 세트로 취급하고 최종 비교는 새 배치에서 수행한다.
+파지 중에는 도착 EE pose를 유지하고, 학습된 grip/dwell과 손가락 폭 안정·팔 drift를 함께 확인한다. H18 몸통을 복원하면서 H20 PCA 방향을 유지해 중심 편향과 방향 반전 회귀를 줄인다. 기본 학습 JSON은 이전과 같다. 모델은 lift 이후 연필 미끄러짐을 직접 추적하지 않으며 HSV 인식은 조명·색상 변경에 취약하다. 먼 배치의 carry waypoint 도달성과 실제 놓임 피드백은 추가 개선 대상이다. 카메라 pose·해상도·제어주기를 바꾸면 보정과 데이터를 함께 갱신한다. 새 평가를 보고 수정했다면 그 평가를 개발 세트로 취급하고 최종 비교는 새 배치에서 수행한다.
 
 ```bash
 python -m unittest discover -s custom/mission_5/tests -v

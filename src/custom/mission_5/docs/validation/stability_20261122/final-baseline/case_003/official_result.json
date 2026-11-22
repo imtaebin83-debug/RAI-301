@@ -1,0 +1,35 @@
+{
+  "run": {
+    "started_at": "2026-11-22T23:16:35+09:00",
+    "package": "RAI-301-m5",
+    "mode": "auto",
+    "config": "/home/aril/m5-runs/stability-20261122/final-baseline/case_003/headless_config.yaml",
+    "scenario": "/home/aril/m5-runs/stability-20261122/final-baseline/case_003/scenario.yaml",
+    "referee": {
+      "goal_radius_m": 0.5,
+      "cone_box_m": 0.5,
+      "cone_box_offset_m": 0.75,
+      "m4_room": "classroom",
+      "m1_goal": [
+        15.5,
+        18.0,
+        90.0
+      ],
+      "m2_color": "green"
+    },
+    "plans": [],
+    "ended_at": "2026-11-22T23:17:04+09:00"
+  },
+  "missions": [],
+  "total": {
+    "missions": 0,
+    "passed": 0,
+    "failed": 0,
+    "not_judged": 0,
+    "mission_seconds": 0,
+    "run_seconds": 28.67,
+    "by_mission": [],
+    "complete": false,
+    "updated_at": "2026-11-22T23:17:04+09:00"
+  }
+}

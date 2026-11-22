@@ -1,0 +1,80 @@
+{
+  "run": {
+    "started_at": "2026-11-22T23:33:09+09:00",
+    "package": "RAI-301-m5-stable",
+    "mode": "auto",
+    "config": "/home/aril/m5-runs/stability-20261122/final-v3/case_002/headless_config.yaml",
+    "scenario": "/home/aril/m5-runs/stability-20261122/final-v3/case_002/scenario.yaml",
+    "referee": {
+      "goal_radius_m": 0.5,
+      "cone_box_m": 0.5,
+      "cone_box_offset_m": 0.75,
+      "m4_room": "classroom",
+      "m1_goal": [
+        15.5,
+        18.0,
+        90.0
+      ],
+      "m2_color": "green"
+    },
+    "plans": [],
+    "ended_at": "2026-11-22T23:33:46+09:00"
+  },
+  "missions": [
+    {
+      "mission": 5,
+      "label": "Pencil pick-and-place (Panda)",
+      "verdict": "PASS",
+      "success": true,
+      "seconds": 35.05,
+      "started_at": "2026-11-22T23:33:09+09:00",
+      "ended_at": "2026-11-22T23:33:44+09:00",
+      "checks": [
+        {
+          "name": "check",
+          "ok": true,
+          "summary": "pencil tip 0.145 > 0.02 m below the rim, inside the opening, released"
+        }
+      ],
+      "reported": {
+        "status": "done",
+        "detail": ""
+      },
+      "referee": {
+        "mission": 5,
+        "pelvis": [
+          16.003,
+          11.0,
+          0.78
+        ],
+        "success": true,
+        "summary": "pencil tip 0.145 > 0.02 m below the rim, inside the opening, released",
+        "tilt_deg": 25.2,
+        "tip_depth_m": 0.1449,
+        "in_opening": true,
+        "held": false
+      },
+      "data": {
+        "learned_policy": true,
+        "commands": 292,
+        "checkpoint": "keyposes.json",
+        "controller": "task-parameterized-keypose-bc",
+        "policy_complete": true,
+        "detail": "Bounded policy rollout complete; original referee determines insertion success"
+      }
+    }
+  ],
+  "total": {
+    "missions": 1,
+    "passed": 1,
+    "failed": 0,
+    "not_judged": 0,
+    "mission_seconds": 35.05,
+    "run_seconds": 37.06,
+    "by_mission": [
+      "5 PASS 35.0s"
+    ],
+    "complete": true,
+    "updated_at": "2026-11-22T23:33:46+09:00"
+  }
+}

@@ -1,0 +1,194 @@
+{
+  "index": 5,
+  "suite_seed": 8122,
+  "case_seed": 3966943216,
+  "distribution": "official val861_scene.randomize_panda_task",
+  "numpy_version": "1.26.4",
+  "room_order": [
+    "classroom",
+    "medical",
+    "cafeteria"
+  ],
+  "panda_base_xy": [
+    21.18,
+    20.05
+  ],
+  "object_min_separation_m": 0.26,
+  "root": "/home/aril/RAI-301-m5/src",
+  "checkpoint": "/home/aril/RAI-301-m5/src/custom/mission_5/keyposes.json",
+  "scenario_sha256": "b60941dca2b01456f8bb5c5d4523de8210d069088be7d2386bbd3156475a332c",
+  "command": [
+    "/home/aril/miniconda3/envs/haic_rai301/bin/python",
+    "-u",
+    "/home/aril/RAI-301-m5/src/main.py",
+    "--missions",
+    "5",
+    "--no-wait",
+    "--config",
+    "/home/aril/m5-runs/stability-20261122/baseline/case_005/headless_config.yaml",
+    "--scenario",
+    "/home/aril/m5-runs/stability-20261122/baseline/case_005/scenario.yaml"
+  ],
+  "returncode": 1,
+  "wall_seconds": 31.421117931997287,
+  "timed_out": false,
+  "interrupted": false,
+  "error": null,
+  "official_source": "/home/aril/RAI-301-m5/src/results/run_20261122-225723.json",
+  "success": false,
+  "official_record": {
+    "mission": 5,
+    "label": "Pencil pick-and-place (Panda)",
+    "verdict": "FAIL",
+    "success": false,
+    "seconds": 23.09,
+    "started_at": "2026-11-22T22:57:23+09:00",
+    "ended_at": "2026-11-22T22:57:47+09:00",
+    "checks": [
+      {
+        "name": "check",
+        "ok": false,
+        "summary": "pencil tip 0.136 > 0.02 m below the rim, outside the opening, still held by the gripper"
+      }
+    ],
+    "reported": {
+      "status": "done",
+      "detail": ""
+    },
+    "referee": {
+      "mission": 5,
+      "pelvis": [
+        16.003,
+        11.0,
+        0.78
+      ],
+      "success": false,
+      "summary": "pencil tip 0.136 > 0.02 m below the rim, outside the opening, still held by the gripper",
+      "tilt_deg": 90.0,
+      "tip_depth_m": 0.1358,
+      "in_opening": false,
+      "held": true
+    },
+    "data": {
+      "error": "RuntimeError: Learned-keypose stage timed out: close",
+      "commands": 193
+    }
+  },
+  "trace": {
+    "trace_rows": 39,
+    "invalid_rows": 0,
+    "stages": [
+      {
+        "stage": "observe",
+        "first_sim_time": 0.4,
+        "samples": 1,
+        "last_sim_time": 0.4
+      },
+      {
+        "stage": "approach",
+        "first_sim_time": 0.9,
+        "samples": 8,
+        "last_sim_time": 4.402
+      },
+      {
+        "stage": "descend",
+        "first_sim_time": 4.902,
+        "samples": 6,
+        "last_sim_time": 7.402
+      },
+      {
+        "stage": "close",
+        "first_sim_time": 7.902,
+        "samples": 24,
+        "last_sim_time": 19.4
+      }
+    ],
+    "last_stage": "close",
+    "last_debug": {
+      "policy_kind": "task-parameterized-keypose-bc",
+      "phase_source": "training_split_measured_robot_states",
+      "stage": "close",
+      "learned_target_xyz": [
+        0.38017228800693553,
+        -0.21626657001392652,
+        0.01742202912767728
+      ],
+      "position_error": 0.00673983760074974,
+      "orientation_error": 0.0011357088299646378,
+      "elapsed": 11.797999999999998
+    },
+    "agent_images": 39,
+    "wrist_images": 39
+  },
+  "failure_stage": "close",
+  "controller_error": "RuntimeError: Learned-keypose stage timed out: close",
+  "artifacts_before": {
+    "files": {
+      "custom/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/bringup.launch.py": "439468d3cdfe278e08908df2c1729dbdcdd97eaadc0f9be459f8c89697dbc4d2",
+      "custom/localization.py": "6a6341f214ea068a3815a0505c38c4db4a3dffd9dee8a5bd0033dfacccb386c0",
+      "custom/localizer_node.py": "16fc54aea3fc1fb1e0d22916df1c9be96f4fa8d5df1a4872e22ac8c26c11d9f9",
+      "custom/mission_1/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_1/mission_1.py": "573361a9b8704a6c7836ff570e825a1b7ca4248d1f6ddcb54b150be9605a8d0f",
+      "custom/mission_2/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_2/mission_2.py": "96825919f078a28f735eb8ba2096afd426a36447266e253c817602d0a52680f4",
+      "custom/mission_3/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_3/mission_3.py": "bd3fb3282a039b7c5a801873fb39e707d0cec5acd897413e5a98fc40f00892d4",
+      "custom/mission_4/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_4/mission_4.py": "1cec5844ba50239a19c18cf023e8436f62194eb0223133f9bc90fd2a9a96a301",
+      "custom/mission_5/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_5/bc/__init__.py": "47c2e5f788aab12c14747b5e52437b037c3020a7df23fcd0a74b3846005e473a",
+      "custom/mission_5/bc/data.py": "fcf7c821b6bcb620ccf4ba1455f2d9d942c99d5ed168d0191c2470639f1c2192",
+      "custom/mission_5/bc/export.py": "fd4141d9bfe33ce99a882126da0f78aca59f71167f57ce35d59de66faaf1f01c",
+      "custom/mission_5/bc/frames.py": "a9daf859f8512fe5687ff32f35f1157d092b70319d1196db912e137cc321b2fe",
+      "custom/mission_5/bc/merge.py": "7add681774a5ac88af7e0563a4d6eb5eb472680602b4a6dd0d5a269f512661b0",
+      "custom/mission_5/bc/model.py": "e2236de08c9ac5eef1d91d46ba52281300cb1ebd3d0391cb2cdc1267cdcd640f",
+      "custom/mission_5/bc/policy.py": "0b6b20d78af5a8bc35edca442b4402e821feddfefe3868c748cb0b1fe66a88e8",
+      "custom/mission_5/bc/prepare.py": "fa688c782496492bcac4859463d15b842b37cf7fa3874e2f048a8aeaeeeec1f8",
+      "custom/mission_5/bc/train.py": "868fc8b8e2b10766ec1a0ed5f855d5d268da8e00bec333aa4007429b1f6243fe",
+      "custom/mission_5/collect.py": "724713c70c9d453dc97cb8fe1febded5497ace943657abf7b6a5443395c38ef5",
+      "custom/mission_5/evaluate.py": "56808e2263c639fb72569130c84d16105095743c4f1afdd278117ddfb922673b",
+      "custom/mission_5/keypose_policy.py": "0a261bb66716a3480e674cd4da47bc2e62be57a5874a50ea8920c0b77b77bd9b",
+      "custom/mission_5/mission_5.py": "9fda76d548d2819c646f19ae3c0e98d4e48a7ab21e5d4ed670b8d6ad72ed4933",
+      "custom/mission_5/perception.py": "16d2e6668d29dbff3a56d09a9d831f078c8017fabe1c6a9727892a70fba928ca",
+      "custom/mission_5/policy.py": "49ee223a7eecc001226842f8d91597a709f1f1f005dd1f9976fceb63b7416e0e",
+      "custom/mission_5/policy_adapter.py": "0843344db550660c8b35322a17c9ee78242a1c02588d813e80092174138c41b6",
+      "custom/mission_5/ros_io.py": "a30aba84ec521699c9ce76b5e94e114e270465e94951408b629a97ae88f41408",
+      "custom/mission_5/tests/test_keyposes.py": "bd742428a98b50509ddc76e6868f5af8e467d1a5d0db7c46da094735e4198347",
+      "custom/mission_5/tests/test_learning.py": "15ff3a59db429f5ec98eef42d7a196f72eedaef6a3a1cbcb390bee524cf74e90",
+      "custom/mission_5/tests/test_ros_io.py": "de56f65f6bf96acf30fc47fc873deada230d65774fbe09caf67b33285fdc6f6b",
+      "custom/mission_5/tests/test_teacher.py": "08bce20b8ea3c180fafae08569819130f0ac95aa282661fecbecd75c8802a611",
+      "custom/mission_5/train_keyposes.py": "dc91fc9cc220753c69fbf59729d381e6f0f372b24f6860fceff639956621bcc6",
+      "custom/mission_5/vision_teacher.py": "49d7a2d34264e3a7bde9c969fafb46b1b5594b2f7afa5ccd2693acf97deb2862",
+      "custom/mission_6/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_6/mission_6.py": "b59093d8c530aae16980db163eec10f2b14407699ab4a57e60e1564613116336",
+      "custom/navigation.py": "a218e9553c209ded1f1e27abb3305066e603e9b3eb7f1405ffac4b69fcf197a2",
+      "custom/planner/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/planner/local_model.py": "738dc494168b86d94a769ae14a2766220a30d5c481399853acc943889cb6d64a",
+      "custom/planner/planner.py": "322cd75a717d3f91e8ccc797a3c43b7eec54ebdf0c3e923984fc26ba5b710ce7",
+      "custom/public_map.py": "cbb6a31993c75d378e7b805d52311583e032122f34f361e8de234cb90b604695",
+      "custom/testing/capture.py": "be26d09fd23618c1e230891c95ac717455531bc363a00175606bcc78e134ee07",
+      "custom/testing/randomized_suite.py": "3740d37bf61c88984ee28377f8bb9938d5b4212759aa988a267e4187d93d584e",
+      "custom/testing/web_smoke.py": "68f10f96965aecc45db5b994c31fa69918b0c3c141d95811f0027f4406f45e1e",
+      "custom/tests/test_planner.py": "8b9247344ac4b50ef7941a34e7497d398fe35db2c37181aa9dd5dc55de069d3a",
+      "custom/tests/test_room_assignment.py": "650a4875d6b87c9c877ae9464687c74a81cf92ea83283f47de0c63e1fab91225",
+      "custom/tests/test_vision.py": "5ae70c4a11a40bcf9ba1eaf4d4b14d2e27fa5f32aac6088702b195c58fb12c3b",
+      "custom/tools/download_models.py": "f065d3de598843c8ab06b227f558eb88b23bf1623b05da07ede1d3dfba807c5f",
+      "custom/vision.py": "c81086a280acc35ea734d3ee948cd2cad66f765503436323fa04bd03b623fa63",
+      "custom/vlm.py": "6c59b7e8bb779e3b9ccace53ee0b89f2b17170557c02d63e9f2df4f3a4a233ef",
+      "main.py": "b1f9cbb8e84d6f508e35c04b24275c0294a2a992ab92f12f77c30352470eada8",
+      "mission_api.py": "990bb9a18fcbefe3e64df8cf6e489db952c9d3e450bd1fd3305bf3d8a9d5f13a",
+      "referee.py": "eff11c8fee38f997d22b7c90857f2b76bd3ea06a835cfa8abe0335f9023e7d34",
+      "custom/sensors.yaml": "f0f2e6aa0b03bb46bdcd5855b76a0a2e9797027f127c9b8a83dcf34e79628945",
+      "custom/walking.yaml": "a228aa0c9191ff572111565e93d41fc33f177294cae5b93e2cd1c70d5a46f1f0",
+      "custom/requirements.txt": "48aff5045a80f32d2df1f35536e08117a215d71f954ea5ed6cf1a539412cb510",
+      "ros2_bridge/tools/val861_scene.py": "2acf75a7d0442cf53b2277f6712b4bf84c3c475b7778deab9d0ed945bb16209e"
+    },
+    "checkpoint": {
+      "path": "/home/aril/RAI-301-m5/src/custom/mission_5/keyposes.json",
+      "sha256": "5399000712043f249abdc3414374ddd0bf710c696a6ed3b6f623497dd7b6b3ca",
+      "bytes": 7615
+    }
+  },
+  "artifacts_changed_during_case": false
+}

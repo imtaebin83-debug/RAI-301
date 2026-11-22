@@ -1,0 +1,21 @@
+{
+  "seed": 221122,
+  "requested_cases": 1,
+  "attempted": 1,
+  "passed": 0,
+  "failed": 1,
+  "not_judged": 0,
+  "cases": [
+    {
+      "index": 0,
+      "case_seed": 1844189509,
+      "success": false,
+      "wall_seconds": 42.59769493799831,
+      "failure_stage": "retreat",
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "a20f38484a1f98ba6ef419e3bd776218b57cbfcdabc4daac780e6ed40c6b6ecd",
+      "artifacts_changed_during_case": false
+    }
+  ]
+}

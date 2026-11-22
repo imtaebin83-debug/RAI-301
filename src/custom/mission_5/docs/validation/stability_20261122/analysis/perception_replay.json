@@ -1,0 +1,1789 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-11-22T14:26:37.872444+00:00",
+  "purpose": "Reproducible sensor-only offline perception comparison, not task success evaluation",
+  "script_sha256": "9392482606ab6f583b1c27f33912869967489c7d3984222a3955a2823b036498",
+  "inputs": {
+    "original_run_root": "/home/aril/m5-runs/stability-20261122",
+    "sources": {
+      "h20": {
+        "original_source_path": "/home/aril/RAI-301-m5/src/custom/mission_5/perception.py",
+        "original_source_sha256": "16d2e6668d29dbff3a56d09a9d831f078c8017fabe1c6a9727892a70fba928ca",
+        "snapshot_relative_path": "perception_replay_sources/h20.py",
+        "snapshot_sha256": "16d2e6668d29dbff3a56d09a9d831f078c8017fabe1c6a9727892a70fba928ca",
+        "size_bytes": 6985
+      },
+      "h18_branch_aligned": {
+        "original_source_path": "/home/aril/RAI-301-m5-stable/src/custom/mission_5/perception.py",
+        "original_source_sha256": "ecfbcff353630d7f861f25ec44c7aed62d47aa3233f3bf373547edd43e93f5b9",
+        "snapshot_relative_path": "perception_replay_sources/h18_branch_aligned.py",
+        "snapshot_sha256": "ecfbcff353630d7f861f25ec44c7aed62d47aa3233f3bf373547edd43e93f5b9",
+        "size_bytes": 7743
+      }
+    },
+    "images": [
+      {
+        "relative_path": "baseline/case_000/trace/00000_agent.png",
+        "original_image_path": "/home/aril/m5-runs/stability-20261122/baseline/case_000/trace/00000_agent.png",
+        "sha256": "2c7c140979ca6bb35feb5d205f6407411160f9a122870ec8447b544cc15bb2d6",
+        "size_bytes": 69490
+      },
+      {
+        "relative_path": "baseline/case_001/trace/00000_agent.png",
+        "original_image_path": "/home/aril/m5-runs/stability-20261122/baseline/case_001/trace/00000_agent.png",
+        "sha256": "768ef8990ab745e8455d3484789ec839c876da565c068c9dc9f9f9503cad0254",
+        "size_bytes": 69153
+      },
+      {
+        "relative_path": "baseline/case_002/trace/00000_agent.png",
+        "original_image_path": "/home/aril/m5-runs/stability-20261122/baseline/case_002/trace/00000_agent.png",
+        "sha256": "0e2ff933de7d94b2bfc4a43363847549a552ca942dfc9e61c3d1b825cc53f1a5",
+        "size_bytes": 68916
+      },
+      {
+        "relative_path": "baseline/case_003/trace/00000_agent.png",
+        "original_image_path": "/home/aril/m5-runs/stability-20261122/baseline/case_003/trace/00000_agent.png",
+        "sha256": "16307a9aa4e1ad1864e91c154dcb9b28b8cfbac3f41807b85534139c47d8d5e9",
+        "size_bytes": 69408
+      },
+      {
+        "relative_path": "baseline/case_004/trace/00000_agent.png",
+        "original_image_path": "/home/aril/m5-runs/stability-20261122/baseline/case_004/trace/00000_agent.png",
+        "sha256": "c87b6b0a45e5283f1ff48de70caef38c17aa7a412f234b3e8242d51c5b05578e",
+        "size_bytes": 69481
+      },
+      {
+        "relative_path": "baseline/case_005/trace/00000_agent.png",
+        "original_image_path": "/home/aril/m5-runs/stability-20261122/baseline/case_005/trace/00000_agent.png",
+        "sha256": "b8dbba5eb932c9c90de1bb8e2e3db7b09df53e08f836c0c7c0e0cc83826df399",
+        "size_bytes": 69256
+      },
+      {
+        "relative_path": "baseline/case_006/trace/00000_agent.png",
+        "original_image_path": "/home/aril/m5-runs/stability-20261122/baseline/case_006/trace/00000_agent.png",
+        "sha256": "96fbb1a7cbe8f2a5ae9151d792d315061174aeb49c21641d467a329fa4033f17",
+        "size_bytes": 68971
+      },
+      {
+        "relative_path": "baseline/case_007/trace/00000_agent.png",
+        "original_image_path": "/home/aril/m5-runs/stability-20261122/baseline/case_007/trace/00000_agent.png",
+        "sha256": "6b176bba23580f95e691cbdbfae32fdf7206e91f35179f034c0f458673930ee8",
+        "size_bytes": 69375
+      },
+      {
+        "relative_path": "candidate-v1/case_000/trace/00000_agent.png",
+        "original_image_path": "/home/aril/m5-runs/stability-20261122/candidate-v1/case_000/trace/00000_agent.png",
+        "sha256": "2c7c140979ca6bb35feb5d205f6407411160f9a122870ec8447b544cc15bb2d6",
+        "size_bytes": 69490
+      },
+      {
+        "relative_path": "candidate-v1/case_001/trace/00000_agent.png",
+        "original_image_path": "/home/aril/m5-runs/stability-20261122/candidate-v1/case_001/trace/00000_agent.png",
+        "sha256": "979d838dbf21121129ff67760015f25e7607f1e886e3f52c247973f1ac9490d3",
+        "size_bytes": 69150
+      },
+      {
+        "relative_path": "candidate-v1/case_002/trace/00000_agent.png",
+        "original_image_path": "/home/aril/m5-runs/stability-20261122/candidate-v1/case_002/trace/00000_agent.png",
+        "sha256": "0a258782ee7d13b8bc424cc51af128f45ce315f941b3ef78e893c0f50d4e5e07",
+        "size_bytes": 68933
+      },
+      {
+        "relative_path": "candidate-v1/case_003/trace/00000_agent.png",
+        "original_image_path": "/home/aril/m5-runs/stability-20261122/candidate-v1/case_003/trace/00000_agent.png",
+        "sha256": "409574f5b9a54abe66a8e0e0a05f1741c896d5d71a94b5eb11a026a6202fad9a",
+        "size_bytes": 69412
+      },
+      {
+        "relative_path": "candidate-v1/case_004/trace/00000_agent.png",
+        "original_image_path": "/home/aril/m5-runs/stability-20261122/candidate-v1/case_004/trace/00000_agent.png",
+        "sha256": "ac1371d5a8bc7c21a96e1dbbf52bdb0a34eea4df129f5306a5e3ad3251466f61",
+        "size_bytes": 69479
+      },
+      {
+        "relative_path": "candidate-v1/case_005/trace/00000_agent.png",
+        "original_image_path": "/home/aril/m5-runs/stability-20261122/candidate-v1/case_005/trace/00000_agent.png",
+        "sha256": "b7aa827d6d690791222f9dac4253716eb25c29252616881f13cd708d5061f337",
+        "size_bytes": 69267
+      },
+      {
+        "relative_path": "candidate-v1/case_006/trace/00000_agent.png",
+        "original_image_path": "/home/aril/m5-runs/stability-20261122/candidate-v1/case_006/trace/00000_agent.png",
+        "sha256": "96fbb1a7cbe8f2a5ae9151d792d315061174aeb49c21641d467a329fa4033f17",
+        "size_bytes": 68971
+      },
+      {
+        "relative_path": "candidate-v1/case_007/trace/00000_agent.png",
+        "original_image_path": "/home/aril/m5-runs/stability-20261122/candidate-v1/case_007/trace/00000_agent.png",
+        "sha256": "3f5fe8567427d9d97a806180216c7554f1c4eb7313b1d146d50847b44f3cfbb1",
+        "size_bytes": 69374
+      },
+      {
+        "relative_path": "final-unseen/case_000/trace/00000_agent.png",
+        "original_image_path": "/home/aril/m5-runs/stability-20261122/final-unseen/case_000/trace/00000_agent.png",
+        "sha256": "2b2bb4431de3f6fa8227628ce3ed205d75f15ae25fcbd3757aef5e6c4c6c05bd",
+        "size_bytes": 69043
+      },
+      {
+        "relative_path": "final-unseen/case_001/trace/00000_agent.png",
+        "original_image_path": "/home/aril/m5-runs/stability-20261122/final-unseen/case_001/trace/00000_agent.png",
+        "sha256": "5a6f470eec3f0f0ef6f0fa6b3d40bddfa615257372bd25fb6a5a54baefe838b4",
+        "size_bytes": 69275
+      },
+      {
+        "relative_path": "final-unseen/case_002/trace/00000_agent.png",
+        "original_image_path": "/home/aril/m5-runs/stability-20261122/final-unseen/case_002/trace/00000_agent.png",
+        "sha256": "492629606bbc49776cefba8b3640293abed563631233420580a460b20f98ebd1",
+        "size_bytes": 69699
+      },
+      {
+        "relative_path": "final-unseen/case_003/trace/00000_agent.png",
+        "original_image_path": "/home/aril/m5-runs/stability-20261122/final-unseen/case_003/trace/00000_agent.png",
+        "sha256": "d9d7a2e2ba2e0d7410cc22051c090cbac617eaac5fc3ef84daf7e3a29f7a72c2",
+        "size_bytes": 69283
+      },
+      {
+        "relative_path": "final-unseen/case_004/trace/00000_agent.png",
+        "original_image_path": "/home/aril/m5-runs/stability-20261122/final-unseen/case_004/trace/00000_agent.png",
+        "sha256": "e17ca12ab385ce8e2029093c302dad398654d729833b758a3904fc08dffd38e4",
+        "size_bytes": 69592
+      },
+      {
+        "relative_path": "final-unseen/case_005/trace/00000_agent.png",
+        "original_image_path": "/home/aril/m5-runs/stability-20261122/final-unseen/case_005/trace/00000_agent.png",
+        "sha256": "ea01090825bbbcf799df20ed9f8109bb7c435892d1d0bc86f2a936ada4ca182c",
+        "size_bytes": 69049
+      },
+      {
+        "relative_path": "final-unseen/case_006/trace/00000_agent.png",
+        "original_image_path": "/home/aril/m5-runs/stability-20261122/final-unseen/case_006/trace/00000_agent.png",
+        "sha256": "933df85040424c53f504725862f375cd0d95e370e896b3b3d621cbc4c12e162c",
+        "size_bytes": 68997
+      },
+      {
+        "relative_path": "final-unseen/case_007/trace/00000_agent.png",
+        "original_image_path": "/home/aril/m5-runs/stability-20261122/final-unseen/case_007/trace/00000_agent.png",
+        "sha256": "bd7328f0abd27b7d6a716fae9be3d645a345b159da4cae739248d557748a89c7",
+        "size_bytes": 69420
+      },
+      {
+        "relative_path": "final-unseen/case_008/trace/00000_agent.png",
+        "original_image_path": "/home/aril/m5-runs/stability-20261122/final-unseen/case_008/trace/00000_agent.png",
+        "sha256": "351c656197632170e852e4166fe08999f54dccac3c42d8f0095697b0eca4d355",
+        "size_bytes": 69706
+      },
+      {
+        "relative_path": "final-unseen/case_009/trace/00000_agent.png",
+        "original_image_path": "/home/aril/m5-runs/stability-20261122/final-unseen/case_009/trace/00000_agent.png",
+        "sha256": "3cbd9fe5b40166de631dbe7091be80fc1614cf52d6767285f160eadbd3ae68f9",
+        "size_bytes": 69508
+      },
+      {
+        "relative_path": "final-unseen/case_010/trace/00000_agent.png",
+        "original_image_path": "/home/aril/m5-runs/stability-20261122/final-unseen/case_010/trace/00000_agent.png",
+        "sha256": "0ccc25ddfcba736a73e368672ba0de0b891930c2284b2f844b45240ae9802dac",
+        "size_bytes": 69424
+      },
+      {
+        "relative_path": "final-unseen/case_011/trace/00000_agent.png",
+        "original_image_path": "/home/aril/m5-runs/stability-20261122/final-unseen/case_011/trace/00000_agent.png",
+        "sha256": "9f48cd96402e31b3c40e1a9a06d9b56aaa92b6e81735a8a9e62fd7287d776250",
+        "size_bytes": 69430
+      }
+    ]
+  },
+  "software": {
+    "python": "3.10.22",
+    "numpy": "1.26.4",
+    "opencv": "4.11.0",
+    "scipy": "1.15.3"
+  },
+  "camera": {
+    "intrinsics_K": [
+      [
+        301.54910282544034,
+        0.0,
+        127.5
+      ],
+      [
+        0.0,
+        301.54910282544034,
+        127.5
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "base_from_optical": [
+      [
+        0.0,
+        0.7599620109707389,
+        -0.6499674929420014,
+        1.28
+      ],
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -0.6499674929420014,
+        -0.7599620109707389,
+        0.92
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "projection_plane_z_m": 0.024650000000000002
+  },
+  "method": {
+    "old": "Unmodified saved H20 perception source snapshot",
+    "new": "H18 body mask and center; new PCA axis is pi-aligned to PCA of >=30 H20 pixels in the same H18 component; existing pink-eraser resolution retained",
+    "directed_yaw_delta": "atan2(sin(new-old), cos(new-old)), in degrees",
+    "center_delta": "Euclidean displacement between old/new sensor-estimated base-plane centers; not error against ground truth"
+  },
+  "limitations": [
+    "The28 images are saved initial views from prior runs; they are not independent successful task trials.",
+    "No hidden object positions, randomized scenario fields, referee measurements, simulator, GPU, or learned policy outputs are used.",
+    "A center shift demonstrates color-mask sensitivity, not improved absolute localization accuracy or a causal explanation of task failure.",
+    "No heading reversal occurred on these28 inputs; this is not a guarantee for unseen colors, connected-component merges, or occlusions.",
+    "H20 points inside one expanded H18 component provide the branch reference. Newly joined old components can therefore change the reference PCA.",
+    "Pink eraser evidence can legitimately override the raw PCA branch; <30 H20 points retain the H18 raw PCA branch.",
+    "Reproduction checks source snapshots and every RGB SHA256. Original source paths are provenance only and may later change."
+  ],
+  "summary": {
+    "count": 28,
+    "max_abs_directed_yaw_delta_deg": 0.8131923333377293,
+    "over90deg": 0,
+    "max_center_delta_mm": 32.11720380725058
+  },
+  "original_reported_summary": {
+    "count": 28,
+    "max_abs_directed_yaw_delta_deg": 0.8131923333377293,
+    "over90deg": 0,
+    "max_center_delta_mm": 32.11720380725058
+  },
+  "matches_original_report_within_1e_minus_6": true,
+  "results": [
+    {
+      "relative_image_path": "baseline/case_000/trace/00000_agent.png",
+      "image_sha256": "2c7c140979ca6bb35feb5d205f6407411160f9a122870ec8447b544cc15bb2d6",
+      "run": "baseline",
+      "case": "case_000",
+      "old_h20": {
+        "pencil_xy": [
+          0.3587850668181517,
+          -0.20220504158504796
+        ],
+        "pencil_yaw": 1.8484368604817933,
+        "holder_xy": [
+          0.4219646485550591,
+          0.24634886510445397
+        ],
+        "pencil_pixel": [
+          79.70498084291188,
+          99.68199233716476
+        ],
+        "holder_pixel": [
+          192.5,
+          87.5
+        ],
+        "pencil_area": 261,
+        "holder_area": 1614
+      },
+      "new_h18": {
+        "pencil_xy": [
+          0.3573499194008017,
+          -0.1986280614747821
+        ],
+        "pencil_yaw": 1.8514587825471378,
+        "holder_xy": [
+          0.4219646485550591,
+          0.24634886510445397
+        ],
+        "pencil_pixel": [
+          80.57475083056478,
+          99.4485049833887
+        ],
+        "holder_pixel": [
+          192.5,
+          87.5
+        ],
+        "pencil_area": 301,
+        "holder_area": 1614
+      },
+      "directed_yaw_delta_deg": 0.17314338036169466,
+      "center_delta_xy_m": [
+        -0.0014351474173500134,
+        0.0035769801102658594
+      ],
+      "center_delta_mm": 3.8541451475993966
+    },
+    {
+      "relative_image_path": "baseline/case_001/trace/00000_agent.png",
+      "image_sha256": "768ef8990ab745e8455d3484789ec839c876da565c068c9dc9f9f9503cad0254",
+      "run": "baseline",
+      "case": "case_001",
+      "old_h20": {
+        "pencil_xy": [
+          0.3307809902943574,
+          -0.20212617894382098
+        ],
+        "pencil_yaw": 1.5560139725902962,
+        "holder_xy": [
+          0.40492536724615735,
+          0.14541496063922102
+        ],
+        "pencil_pixel": [
+          80.52631578947368,
+          95.10121457489879
+        ],
+        "holder_pixel": [
+          165.5,
+          84.5
+        ],
+        "pencil_area": 247,
+        "holder_area": 1635
+      },
+      "new_h18": {
+        "pencil_xy": [
+          0.3299421613771748,
+          -0.19867315101235752
+        ],
+        "pencil_yaw": 1.5418210889215775,
+        "holder_xy": [
+          0.40492536724615735,
+          0.14541496063922102
+        ],
+        "pencil_pixel": [
+          81.355871886121,
+          94.96797153024912
+        ],
+        "holder_pixel": [
+          165.5,
+          84.5
+        ],
+        "pencil_area": 281,
+        "holder_area": 1635
+      },
+      "directed_yaw_delta_deg": -0.8131923333377293,
+      "center_delta_xy_m": [
+        -0.0008388289171826213,
+        0.0034530279314634593
+      ],
+      "center_delta_mm": 3.553454072837946
+    },
+    {
+      "relative_image_path": "baseline/case_002/trace/00000_agent.png",
+      "image_sha256": "0e2ff933de7d94b2bfc4a43363847549a552ca942dfc9e61c3d1b825cc53f1a5",
+      "run": "baseline",
+      "case": "case_002",
+      "old_h20": {
+        "pencil_xy": [
+          0.555565696073705,
+          -0.05997863796128056
+        ],
+        "pencil_yaw": 1.5572702192186738,
+        "holder_xy": [
+          0.4496480717425313,
+          0.23500971296394388
+        ],
+        "pencil_pixel": [
+          111.79813664596273,
+          135.73291925465838
+        ],
+        "holder_pixel": [
+          190.5,
+          92.5
+        ],
+        "pencil_area": 322,
+        "holder_area": 1700
+      },
+      "new_h18": {
+        "pencil_xy": [
+          0.553711631499918,
+          -0.058867833055525655
+        ],
+        "pencil_yaw": 1.556807875573594,
+        "holder_xy": [
+          0.4496480717425313,
+          0.23500971296394388
+        ],
+        "pencil_pixel": [
+          112.10569105691057,
+          135.35772357723576
+        ],
+        "holder_pixel": [
+          190.5,
+          92.5
+        ],
+        "pencil_area": 369,
+        "holder_area": 1700
+      },
+      "directed_yaw_delta_deg": -0.026490339547773318,
+      "center_delta_xy_m": [
+        -0.0018540645737870065,
+        0.0011108049057549085
+      ],
+      "center_delta_mm": 2.1613521190266907
+    },
+    {
+      "relative_image_path": "baseline/case_003/trace/00000_agent.png",
+      "image_sha256": "16307a9aa4e1ad1864e91c154dcb9b28b8cfbac3f41807b85534139c47d8d5e9",
+      "run": "baseline",
+      "case": "case_003",
+      "old_h20": {
+        "pencil_xy": [
+          0.5150587532556666,
+          -0.213915237188
+        ],
+        "pencil_yaw": 1.267151162355194,
+        "holder_xy": [
+          0.5712470261254838,
+          0.12832395749523948
+        ],
+        "pencil_pixel": [
+          72.87931034482759,
+          127.70114942528735
+        ],
+        "holder_pixel": [
+          164.5,
+          116.5
+        ],
+        "pencil_area": 174,
+        "holder_area": 1950
+      },
+      "new_h18": {
+        "pencil_xy": [
+          0.5156209620056723,
+          -0.21649907674383706
+        ],
+        "pencil_yaw": 1.2731696117265092,
+        "holder_xy": [
+          0.5712470261254838,
+          0.12832395749523948
+        ],
+        "pencil_pixel": [
+          72.20113314447592,
+          127.8158640226629
+        ],
+        "holder_pixel": [
+          164.5,
+          116.5
+        ],
+        "pencil_area": 353,
+        "holder_area": 1950
+      },
+      "directed_yaw_delta_deg": 0.34483174818952045,
+      "center_delta_xy_m": [
+        0.0005622087500056772,
+        -0.0025838395558370475
+      ],
+      "center_delta_mm": 2.644296792890529
+    },
+    {
+      "relative_image_path": "baseline/case_004/trace/00000_agent.png",
+      "image_sha256": "c87b6b0a45e5283f1ff48de70caef38c17aa7a412f234b3e8242d51c5b05578e",
+      "run": "baseline",
+      "case": "case_004",
+      "old_h20": {
+        "pencil_xy": [
+          0.47474282060419043,
+          -0.1206627049445291
+        ],
+        "pencil_yaw": -1.846294886503881,
+        "holder_xy": [
+          0.5521812246743162,
+          0.20353998213991406
+        ],
+        "pencil_pixel": [
+          97.41414141414141,
+          120.01515151515152
+        ],
+        "holder_pixel": [
+          185.5,
+          112.5
+        ],
+        "pencil_area": 198,
+        "holder_area": 1965
+      },
+      "new_h18": {
+        "pencil_xy": [
+          0.47494727933045106,
+          -0.12234177086646633
+        ],
+        "pencil_yaw": -1.8434490641418981,
+        "holder_xy": [
+          0.5521812246743162,
+          0.20353998213991406
+        ],
+        "pencil_pixel": [
+          96.99415204678363,
+          120.05847953216374
+        ],
+        "holder_pixel": [
+          185.5,
+          112.5
+        ],
+        "pencil_area": 342,
+        "holder_area": 1965
+      },
+      "directed_yaw_delta_deg": 0.1630536105855738,
+      "center_delta_xy_m": [
+        0.00020445872626062567,
+        -0.0016790659219372284
+      ],
+      "center_delta_mm": 1.69146851609926
+    },
+    {
+      "relative_image_path": "baseline/case_005/trace/00000_agent.png",
+      "image_sha256": "b8dbba5eb932c9c90de1bb8e2e3db7b09df53e08f836c0c7c0e0cc83826df399",
+      "run": "baseline",
+      "case": "case_005",
+      "old_h20": {
+        "pencil_xy": [
+          0.3759942953319045,
+          -0.21715010333741486
+        ],
+        "pencil_yaw": 1.8007192987097762,
+        "holder_xy": [
+          0.460478893098236,
+          0.26875516872666616
+        ],
+        "pencil_pixel": [
+          75.7463768115942,
+          102.53985507246377
+        ],
+        "holder_pixel": [
+          200.0,
+          94.5
+        ],
+        "pencil_area": 276,
+        "holder_area": 1774
+      },
+      "new_h18": {
+        "pencil_xy": [
+          0.37528199918847593,
+          -0.21531973821316747
+        ],
+        "pencil_yaw": 1.802607832854535,
+        "holder_xy": [
+          0.460478893098236,
+          0.26875516872666616
+        ],
+        "pencil_pixel": [
+          76.19677419354839,
+          102.42258064516129
+        ],
+        "holder_pixel": [
+          200.0,
+          94.5
+        ],
+        "pencil_area": 310,
+        "holder_area": 1774
+      },
+      "directed_yaw_delta_deg": 0.10820503596102528,
+      "center_delta_xy_m": [
+        -0.000712296143428548,
+        0.0018303651242473906
+      ],
+      "center_delta_mm": 1.964077972995051
+    },
+    {
+      "relative_image_path": "baseline/case_006/trace/00000_agent.png",
+      "image_sha256": "96fbb1a7cbe8f2a5ae9151d792d315061174aeb49c21641d467a329fa4033f17",
+      "run": "baseline",
+      "case": "case_006",
+      "old_h20": {
+        "pencil_xy": [
+          0.5957419491289934,
+          -0.1117442585962897
+        ],
+        "pencil_yaw": -1.458256506501356,
+        "holder_xy": [
+          0.5759439096217231,
+          0.2662730279034249
+        ],
+        "pencil_pixel": [
+          97.4796511627907,
+          144.11337209302326
+        ],
+        "holder_pixel": [
+          204.5,
+          117.5
+        ],
+        "pencil_area": 344,
+        "holder_area": 1987
+      },
+      "new_h18": {
+        "pencil_xy": [
+          0.593994013541642,
+          -0.11083568247965868
+        ],
+        "pencil_yaw": -1.4620274971320522,
+        "holder_xy": [
+          0.5759439096217231,
+          0.2662730279034249
+        ],
+        "pencil_pixel": [
+          97.75561097256858,
+          143.7431421446384
+        ],
+        "holder_pixel": [
+          204.5,
+          117.5
+        ],
+        "pencil_area": 401,
+        "holder_area": 1987
+      },
+      "directed_yaw_delta_deg": -0.21606184772226825,
+      "center_delta_xy_m": [
+        -0.0017479355873513125,
+        0.0009085761166310186
+      ],
+      "center_delta_mm": 1.9699719229576549
+    },
+    {
+      "relative_image_path": "baseline/case_007/trace/00000_agent.png",
+      "image_sha256": "6b176bba23580f95e691cbdbfae32fdf7206e91f35179f034c0f458673930ee8",
+      "run": "baseline",
+      "case": "case_007",
+      "old_h20": {
+        "pencil_xy": [
+          0.3719902940086878,
+          -0.17603622903593574
+        ],
+        "pencil_yaw": 1.442031050861751,
+        "holder_xy": [
+          0.39338118705782266,
+          0.13287992897005885
+        ],
+        "pencil_pixel": [
+          85.77911646586345,
+          101.855421686747
+        ],
+        "holder_pixel": [
+          162.0,
+          82.5
+        ],
+        "pencil_area": 249,
+        "holder_area": 1632
+      },
+      "new_h18": {
+        "pencil_xy": [
+          0.3709362622228772,
+          -0.17264758757009818
+        ],
+        "pencil_yaw": 1.4462195889401395,
+        "holder_xy": [
+          0.39338118705782266,
+          0.13287992897005885
+        ],
+        "pencil_pixel": [
+          86.60738255033557,
+          101.68120805369128
+        ],
+        "holder_pixel": [
+          162.0,
+          82.5
+        ],
+        "pencil_area": 298,
+        "holder_area": 1632
+      },
+      "directed_yaw_delta_deg": 0.23998555422148962,
+      "center_delta_xy_m": [
+        -0.0010540317858106496,
+        0.0033886414658375608
+      ],
+      "center_delta_mm": 3.548784860976067
+    },
+    {
+      "relative_image_path": "candidate-v1/case_000/trace/00000_agent.png",
+      "image_sha256": "2c7c140979ca6bb35feb5d205f6407411160f9a122870ec8447b544cc15bb2d6",
+      "run": "candidate-v1",
+      "case": "case_000",
+      "old_h20": {
+        "pencil_xy": [
+          0.3587850668181517,
+          -0.20220504158504796
+        ],
+        "pencil_yaw": 1.8484368604817933,
+        "holder_xy": [
+          0.4219646485550591,
+          0.24634886510445397
+        ],
+        "pencil_pixel": [
+          79.70498084291188,
+          99.68199233716476
+        ],
+        "holder_pixel": [
+          192.5,
+          87.5
+        ],
+        "pencil_area": 261,
+        "holder_area": 1614
+      },
+      "new_h18": {
+        "pencil_xy": [
+          0.3573499194008017,
+          -0.1986280614747821
+        ],
+        "pencil_yaw": 1.8514587825471378,
+        "holder_xy": [
+          0.4219646485550591,
+          0.24634886510445397
+        ],
+        "pencil_pixel": [
+          80.57475083056478,
+          99.4485049833887
+        ],
+        "holder_pixel": [
+          192.5,
+          87.5
+        ],
+        "pencil_area": 301,
+        "holder_area": 1614
+      },
+      "directed_yaw_delta_deg": 0.17314338036169466,
+      "center_delta_xy_m": [
+        -0.0014351474173500134,
+        0.0035769801102658594
+      ],
+      "center_delta_mm": 3.8541451475993966
+    },
+    {
+      "relative_image_path": "candidate-v1/case_001/trace/00000_agent.png",
+      "image_sha256": "979d838dbf21121129ff67760015f25e7607f1e886e3f52c247973f1ac9490d3",
+      "run": "candidate-v1",
+      "case": "case_001",
+      "old_h20": {
+        "pencil_xy": [
+          0.3307809902943574,
+          -0.20212617894382098
+        ],
+        "pencil_yaw": 1.5560139725902962,
+        "holder_xy": [
+          0.40492536724615735,
+          0.14541496063922102
+        ],
+        "pencil_pixel": [
+          80.52631578947368,
+          95.10121457489879
+        ],
+        "holder_pixel": [
+          165.5,
+          84.5
+        ],
+        "pencil_area": 247,
+        "holder_area": 1635
+      },
+      "new_h18": {
+        "pencil_xy": [
+          0.3299421613771748,
+          -0.19867315101235752
+        ],
+        "pencil_yaw": 1.5418210889215775,
+        "holder_xy": [
+          0.40492536724615735,
+          0.14541496063922102
+        ],
+        "pencil_pixel": [
+          81.355871886121,
+          94.96797153024912
+        ],
+        "holder_pixel": [
+          165.5,
+          84.5
+        ],
+        "pencil_area": 281,
+        "holder_area": 1635
+      },
+      "directed_yaw_delta_deg": -0.8131923333377293,
+      "center_delta_xy_m": [
+        -0.0008388289171826213,
+        0.0034530279314634593
+      ],
+      "center_delta_mm": 3.553454072837946
+    },
+    {
+      "relative_image_path": "candidate-v1/case_002/trace/00000_agent.png",
+      "image_sha256": "0a258782ee7d13b8bc424cc51af128f45ce315f941b3ef78e893c0f50d4e5e07",
+      "run": "candidate-v1",
+      "case": "case_002",
+      "old_h20": {
+        "pencil_xy": [
+          0.555565696073705,
+          -0.05997863796128056
+        ],
+        "pencil_yaw": 1.5572702192186738,
+        "holder_xy": [
+          0.4496480717425313,
+          0.23500971296394388
+        ],
+        "pencil_pixel": [
+          111.79813664596273,
+          135.73291925465838
+        ],
+        "holder_pixel": [
+          190.5,
+          92.5
+        ],
+        "pencil_area": 322,
+        "holder_area": 1700
+      },
+      "new_h18": {
+        "pencil_xy": [
+          0.553711631499918,
+          -0.058867833055525655
+        ],
+        "pencil_yaw": 1.556807875573594,
+        "holder_xy": [
+          0.4496480717425313,
+          0.23500971296394388
+        ],
+        "pencil_pixel": [
+          112.10569105691057,
+          135.35772357723576
+        ],
+        "holder_pixel": [
+          190.5,
+          92.5
+        ],
+        "pencil_area": 369,
+        "holder_area": 1700
+      },
+      "directed_yaw_delta_deg": -0.026490339547773318,
+      "center_delta_xy_m": [
+        -0.0018540645737870065,
+        0.0011108049057549085
+      ],
+      "center_delta_mm": 2.1613521190266907
+    },
+    {
+      "relative_image_path": "candidate-v1/case_003/trace/00000_agent.png",
+      "image_sha256": "409574f5b9a54abe66a8e0e0a05f1741c896d5d71a94b5eb11a026a6202fad9a",
+      "run": "candidate-v1",
+      "case": "case_003",
+      "old_h20": {
+        "pencil_xy": [
+          0.5150587532556666,
+          -0.213915237188
+        ],
+        "pencil_yaw": 1.267151162355194,
+        "holder_xy": [
+          0.5712470261254838,
+          0.12832395749523948
+        ],
+        "pencil_pixel": [
+          72.87931034482759,
+          127.70114942528735
+        ],
+        "holder_pixel": [
+          164.5,
+          116.5
+        ],
+        "pencil_area": 174,
+        "holder_area": 1950
+      },
+      "new_h18": {
+        "pencil_xy": [
+          0.5156209620056723,
+          -0.21649907674383706
+        ],
+        "pencil_yaw": 1.2731696117265092,
+        "holder_xy": [
+          0.5712470261254838,
+          0.12832395749523948
+        ],
+        "pencil_pixel": [
+          72.20113314447592,
+          127.8158640226629
+        ],
+        "holder_pixel": [
+          164.5,
+          116.5
+        ],
+        "pencil_area": 353,
+        "holder_area": 1950
+      },
+      "directed_yaw_delta_deg": 0.34483174818952045,
+      "center_delta_xy_m": [
+        0.0005622087500056772,
+        -0.0025838395558370475
+      ],
+      "center_delta_mm": 2.644296792890529
+    },
+    {
+      "relative_image_path": "candidate-v1/case_004/trace/00000_agent.png",
+      "image_sha256": "ac1371d5a8bc7c21a96e1dbbf52bdb0a34eea4df129f5306a5e3ad3251466f61",
+      "run": "candidate-v1",
+      "case": "case_004",
+      "old_h20": {
+        "pencil_xy": [
+          0.47474282060419043,
+          -0.1206627049445291
+        ],
+        "pencil_yaw": -1.846294886503881,
+        "holder_xy": [
+          0.5521812246743162,
+          0.20353998213991406
+        ],
+        "pencil_pixel": [
+          97.41414141414141,
+          120.01515151515152
+        ],
+        "holder_pixel": [
+          185.5,
+          112.5
+        ],
+        "pencil_area": 198,
+        "holder_area": 1965
+      },
+      "new_h18": {
+        "pencil_xy": [
+          0.47494727933045106,
+          -0.12234177086646633
+        ],
+        "pencil_yaw": -1.8434490641418981,
+        "holder_xy": [
+          0.5521812246743162,
+          0.20353998213991406
+        ],
+        "pencil_pixel": [
+          96.99415204678363,
+          120.05847953216374
+        ],
+        "holder_pixel": [
+          185.5,
+          112.5
+        ],
+        "pencil_area": 342,
+        "holder_area": 1965
+      },
+      "directed_yaw_delta_deg": 0.1630536105855738,
+      "center_delta_xy_m": [
+        0.00020445872626062567,
+        -0.0016790659219372284
+      ],
+      "center_delta_mm": 1.69146851609926
+    },
+    {
+      "relative_image_path": "candidate-v1/case_005/trace/00000_agent.png",
+      "image_sha256": "b7aa827d6d690791222f9dac4253716eb25c29252616881f13cd708d5061f337",
+      "run": "candidate-v1",
+      "case": "case_005",
+      "old_h20": {
+        "pencil_xy": [
+          0.3759942953319045,
+          -0.21715010333741486
+        ],
+        "pencil_yaw": 1.8007192987097762,
+        "holder_xy": [
+          0.460478893098236,
+          0.26875516872666616
+        ],
+        "pencil_pixel": [
+          75.7463768115942,
+          102.53985507246377
+        ],
+        "holder_pixel": [
+          200.0,
+          94.5
+        ],
+        "pencil_area": 276,
+        "holder_area": 1774
+      },
+      "new_h18": {
+        "pencil_xy": [
+          0.37528199918847593,
+          -0.21531973821316747
+        ],
+        "pencil_yaw": 1.802607832854535,
+        "holder_xy": [
+          0.460478893098236,
+          0.26875516872666616
+        ],
+        "pencil_pixel": [
+          76.19677419354839,
+          102.42258064516129
+        ],
+        "holder_pixel": [
+          200.0,
+          94.5
+        ],
+        "pencil_area": 310,
+        "holder_area": 1774
+      },
+      "directed_yaw_delta_deg": 0.10820503596102528,
+      "center_delta_xy_m": [
+        -0.000712296143428548,
+        0.0018303651242473906
+      ],
+      "center_delta_mm": 1.964077972995051
+    },
+    {
+      "relative_image_path": "candidate-v1/case_006/trace/00000_agent.png",
+      "image_sha256": "96fbb1a7cbe8f2a5ae9151d792d315061174aeb49c21641d467a329fa4033f17",
+      "run": "candidate-v1",
+      "case": "case_006",
+      "old_h20": {
+        "pencil_xy": [
+          0.5957419491289934,
+          -0.1117442585962897
+        ],
+        "pencil_yaw": -1.458256506501356,
+        "holder_xy": [
+          0.5759439096217231,
+          0.2662730279034249
+        ],
+        "pencil_pixel": [
+          97.4796511627907,
+          144.11337209302326
+        ],
+        "holder_pixel": [
+          204.5,
+          117.5
+        ],
+        "pencil_area": 344,
+        "holder_area": 1987
+      },
+      "new_h18": {
+        "pencil_xy": [
+          0.593994013541642,
+          -0.11083568247965868
+        ],
+        "pencil_yaw": -1.4620274971320522,
+        "holder_xy": [
+          0.5759439096217231,
+          0.2662730279034249
+        ],
+        "pencil_pixel": [
+          97.75561097256858,
+          143.7431421446384
+        ],
+        "holder_pixel": [
+          204.5,
+          117.5
+        ],
+        "pencil_area": 401,
+        "holder_area": 1987
+      },
+      "directed_yaw_delta_deg": -0.21606184772226825,
+      "center_delta_xy_m": [
+        -0.0017479355873513125,
+        0.0009085761166310186
+      ],
+      "center_delta_mm": 1.9699719229576549
+    },
+    {
+      "relative_image_path": "candidate-v1/case_007/trace/00000_agent.png",
+      "image_sha256": "3f5fe8567427d9d97a806180216c7554f1c4eb7313b1d146d50847b44f3cfbb1",
+      "run": "candidate-v1",
+      "case": "case_007",
+      "old_h20": {
+        "pencil_xy": [
+          0.3719902940086878,
+          -0.17603622903593574
+        ],
+        "pencil_yaw": 1.442031050861751,
+        "holder_xy": [
+          0.39338118705782266,
+          0.13287992897005885
+        ],
+        "pencil_pixel": [
+          85.77911646586345,
+          101.855421686747
+        ],
+        "holder_pixel": [
+          162.0,
+          82.5
+        ],
+        "pencil_area": 249,
+        "holder_area": 1632
+      },
+      "new_h18": {
+        "pencil_xy": [
+          0.3709362622228772,
+          -0.17264758757009818
+        ],
+        "pencil_yaw": 1.4462195889401395,
+        "holder_xy": [
+          0.39338118705782266,
+          0.13287992897005885
+        ],
+        "pencil_pixel": [
+          86.60738255033557,
+          101.68120805369128
+        ],
+        "holder_pixel": [
+          162.0,
+          82.5
+        ],
+        "pencil_area": 298,
+        "holder_area": 1632
+      },
+      "directed_yaw_delta_deg": 0.23998555422148962,
+      "center_delta_xy_m": [
+        -0.0010540317858106496,
+        0.0033886414658375608
+      ],
+      "center_delta_mm": 3.548784860976067
+    },
+    {
+      "relative_image_path": "final-unseen/case_000/trace/00000_agent.png",
+      "image_sha256": "2b2bb4431de3f6fa8227628ce3ed205d75f15ae25fcbd3757aef5e6c4c6c05bd",
+      "run": "final-unseen",
+      "case": "case_000",
+      "old_h20": {
+        "pencil_xy": [
+          0.40064761454344733,
+          -0.04502640588673998
+        ],
+        "pencil_yaw": -1.5362516648024158,
+        "holder_xy": [
+          0.5314224353707819,
+          0.2327905448867368
+        ],
+        "pencil_pixel": [
+          116.64251207729468,
+          106.71497584541063
+        ],
+        "holder_pixel": [
+          193.0,
+          108.25
+        ],
+        "pencil_area": 207,
+        "holder_area": 1935
+      },
+      "new_h18": {
+        "pencil_xy": [
+          0.3992670344735221,
+          -0.02593994978632264
+        ],
+        "pencil_yaw": -1.5453674928797514,
+        "holder_xy": [
+          0.5314224353707819,
+          0.2327905448867368
+        ],
+        "pencil_pixel": [
+          121.24406779661017,
+          106.47796610169492
+        ],
+        "holder_pixel": [
+          193.0,
+          108.25
+        ],
+        "pencil_area": 295,
+        "holder_area": 1935
+      },
+      "directed_yaw_delta_deg": -0.5222984755981842,
+      "center_delta_xy_m": [
+        -0.0013805800699252524,
+        0.01908645610041734
+      ],
+      "center_delta_mm": 19.13632168946355
+    },
+    {
+      "relative_image_path": "final-unseen/case_001/trace/00000_agent.png",
+      "image_sha256": "5a6f470eec3f0f0ef6f0fa6b3d40bddfa615257372bd25fb6a5a54baefe838b4",
+      "run": "final-unseen",
+      "case": "case_001",
+      "old_h20": {
+        "pencil_xy": [
+          0.5338206997753676,
+          -0.21327144082255056
+        ],
+        "pencil_yaw": -1.1236391336622915,
+        "holder_xy": [
+          0.5485559743668393,
+          0.2585086143143863
+        ],
+        "pencil_pixel": [
+          72.07120743034056,
+          131.44272445820434
+        ],
+        "holder_pixel": [
+          201.0,
+          111.75
+        ],
+        "pencil_area": 323,
+        "holder_area": 1930
+      },
+      "new_h18": {
+        "pencil_xy": [
+          0.5329750737800765,
+          -0.21404314738804012
+        ],
+        "pencil_yaw": -1.126912520343553,
+        "holder_xy": [
+          0.5485559743668393,
+          0.2585086143143863
+        ],
+        "pencil_pixel": [
+          71.90217391304348,
+          131.27445652173913
+        ],
+        "holder_pixel": [
+          201.0,
+          111.75
+        ],
+        "pencil_area": 368,
+        "holder_area": 1930
+      },
+      "directed_yaw_delta_deg": -0.18755124155062128,
+      "center_delta_xy_m": [
+        -0.0008456259952911438,
+        -0.000771706565489555
+      ],
+      "center_delta_mm": 1.1448206615587537
+    },
+    {
+      "relative_image_path": "final-unseen/case_002/trace/00000_agent.png",
+      "image_sha256": "492629606bbc49776cefba8b3640293abed563631233420580a460b20f98ebd1",
+      "run": "final-unseen",
+      "case": "case_002",
+      "old_h20": {
+        "pencil_xy": [
+          0.54071823050179,
+          -0.10295783230629274
+        ],
+        "pencil_yaw": 1.111888998863602,
+        "holder_xy": [
+          0.5139252708956893,
+          0.26040318037806726
+        ],
+        "pencil_pixel": [
+          100.99310344827586,
+          132.8206896551724
+        ],
+        "holder_pixel": [
+          200.0,
+          104.75
+        ],
+        "pencil_area": 145,
+        "holder_area": 1890
+      },
+      "new_h18": {
+        "pencil_xy": [
+          0.5432025740724487,
+          -0.10255199809387325
+        ],
+        "pencil_yaw": 1.1082006956947177,
+        "holder_xy": [
+          0.5139252708956893,
+          0.26040318037806726
+        ],
+        "pencil_pixel": [
+          101.05813953488372,
+          133.32558139534885
+        ],
+        "holder_pixel": [
+          200.0,
+          104.75
+        ],
+        "pencil_area": 344,
+        "holder_area": 1890
+      },
+      "directed_yaw_delta_deg": -0.21132420514180084,
+      "center_delta_xy_m": [
+        0.0024843435706586314,
+        0.00040583421241949247
+      ],
+      "center_delta_mm": 2.5172732042913077
+    },
+    {
+      "relative_image_path": "final-unseen/case_003/trace/00000_agent.png",
+      "image_sha256": "d9d7a2e2ba2e0d7410cc22051c090cbac617eaac5fc3ef84daf7e3a29f7a72c2",
+      "run": "final-unseen",
+      "case": "case_003",
+      "old_h20": {
+        "pencil_xy": [
+          0.5761344979018457,
+          -0.05983872079681271
+        ],
+        "pencil_yaw": -1.190826786335196,
+        "holder_xy": [
+          0.5700685050904375,
+          0.2568358910988341
+        ],
+        "pencil_pixel": [
+          111.42378048780488,
+          140.03963414634146
+        ],
+        "holder_pixel": [
+          201.5,
+          116.25
+        ],
+        "pencil_area": 328,
+        "holder_area": 1965
+      },
+      "new_h18": {
+        "pencil_xy": [
+          0.5743535121448696,
+          -0.06010954860514588
+        ],
+        "pencil_yaw": -1.1923189212875183,
+        "holder_xy": [
+          0.5700685050904375,
+          0.2568358910988341
+        ],
+        "pencil_pixel": [
+          111.36939313984169,
+          139.67018469656992
+        ],
+        "holder_pixel": [
+          201.5,
+          116.25
+        ],
+        "pencil_area": 379,
+        "holder_area": 1965
+      },
+      "directed_yaw_delta_deg": -0.08549303523201952,
+      "center_delta_xy_m": [
+        -0.00178098575697605,
+        -0.00027082780833316555
+      ],
+      "center_delta_mm": 1.801459954680675
+    },
+    {
+      "relative_image_path": "final-unseen/case_004/trace/00000_agent.png",
+      "image_sha256": "e17ca12ab385ce8e2029093c302dad398654d729833b758a3904fc08dffd38e4",
+      "run": "final-unseen",
+      "case": "case_004",
+      "old_h20": {
+        "pencil_xy": [
+          0.4054836706387134,
+          -0.09319627225638262
+        ],
+        "pencil_yaw": -1.0752710653213495,
+        "holder_xy": [
+          0.341058525197077,
+          0.20218286460085033
+        ],
+        "pencil_pixel": [
+          104.77165354330708,
+          107.63385826771653
+        ],
+        "holder_pixel": [
+          178.5,
+          73.75
+        ],
+        "pencil_area": 254,
+        "holder_area": 1541
+      },
+      "new_h18": {
+        "pencil_xy": [
+          0.4044448037232196,
+          -0.09250020256089543
+        ],
+        "pencil_yaw": -1.0750006887630308,
+        "holder_xy": [
+          0.341058525197077,
+          0.20218286460085033
+        ],
+        "pencil_pixel": [
+          104.95945945945945,
+          107.45270270270271
+        ],
+        "holder_pixel": [
+          178.5,
+          73.75
+        ],
+        "pencil_area": 296,
+        "holder_area": 1541
+      },
+      "directed_yaw_delta_deg": 0.01549143567093664,
+      "center_delta_xy_m": [
+        -0.0010388669154937635,
+        0.0006960696954871892
+      ],
+      "center_delta_mm": 1.250502894472122
+    },
+    {
+      "relative_image_path": "final-unseen/case_005/trace/00000_agent.png",
+      "image_sha256": "ea01090825bbbcf799df20ed9f8109bb7c435892d1d0bc86f2a936ada4ca182c",
+      "run": "final-unseen",
+      "case": "case_005",
+      "old_h20": {
+        "pencil_xy": [
+          0.4770320655008057,
+          -0.16273190371492036
+        ],
+        "pencil_yaw": -1.4597548957496225,
+        "holder_xy": [
+          0.5617702705600087,
+          0.10989220836181532
+        ],
+        "pencil_pixel": [
+          86.65727699530517,
+          120.41784037558685
+        ],
+        "holder_pixel": [
+          159.0,
+          114.5
+        ],
+        "pencil_area": 213,
+        "holder_area": 1846
+      },
+      "new_h18": {
+        "pencil_xy": [
+          0.4726408533846987,
+          -0.13091630947957994
+        ],
+        "pencil_yaw": -1.4686990080084337,
+        "holder_xy": [
+          0.5617702705600087,
+          0.10989220836181532
+        ],
+        "pencil_pixel": [
+          94.68807339449542,
+          119.60244648318043
+        ],
+        "holder_pixel": [
+          159.0,
+          114.5
+        ],
+        "pencil_area": 327,
+        "holder_area": 1846
+      },
+      "directed_yaw_delta_deg": -0.5124598839211032,
+      "center_delta_xy_m": [
+        -0.004391212116106991,
+        0.031815594235340416
+      ],
+      "center_delta_mm": 32.11720380725058
+    },
+    {
+      "relative_image_path": "final-unseen/case_006/trace/00000_agent.png",
+      "image_sha256": "933df85040424c53f504725862f375cd0d95e370e896b3b3d621cbc4c12e162c",
+      "run": "final-unseen",
+      "case": "case_006",
+      "old_h20": {
+        "pencil_xy": [
+          0.4349334873816681,
+          -0.174693625335405
+        ],
+        "pencil_yaw": 1.5025818947295546,
+        "holder_xy": [
+          0.48435947134254775,
+          0.13342556635120814
+        ],
+        "pencil_pixel": [
+          84.69718309859155,
+          112.72887323943662
+        ],
+        "holder_pixel": [
+          164.0,
+          99.0
+        ],
+        "pencil_area": 284,
+        "holder_area": 1791
+      },
+      "new_h18": {
+        "pencil_xy": [
+          0.43358056963885677,
+          -0.17367455447069893
+        ],
+        "pencil_yaw": 1.5057088568338883,
+        "holder_xy": [
+          0.48435947134254775,
+          0.13342556635120814
+        ],
+        "pencil_pixel": [
+          84.97553516819572,
+          112.48929663608563
+        ],
+        "holder_pixel": [
+          164.0,
+          99.0
+        ],
+        "pencil_area": 327,
+        "holder_area": 1791
+      },
+      "directed_yaw_delta_deg": 0.1791617312756687,
+      "center_delta_xy_m": [
+        -0.0013529177428113215,
+        0.0010190708647060676
+      ],
+      "center_delta_mm": 1.693780341752275
+    },
+    {
+      "relative_image_path": "final-unseen/case_007/trace/00000_agent.png",
+      "image_sha256": "bd7328f0abd27b7d6a716fae9be3d645a345b159da4cae739248d557748a89c7",
+      "run": "final-unseen",
+      "case": "case_007",
+      "old_h20": {
+        "pencil_xy": [
+          0.6068826446879797,
+          -0.20937271493900106
+        ],
+        "pencil_yaw": 1.7470159536697325,
+        "holder_xy": [
+          0.4564332587468881,
+          0.16534811242153025
+        ],
+        "pencil_pixel": [
+          70.90857142857143,
+          146.5142857142857
+        ],
+        "holder_pixel": [
+          172.0,
+          93.75
+        ],
+        "pencil_area": 350,
+        "holder_area": 1720
+      },
+      "new_h18": {
+        "pencil_xy": [
+          0.6048816519408559,
+          -0.20895840381805192
+        ],
+        "pencil_yaw": 1.7451130564840958,
+        "holder_xy": [
+          0.4564332587468881,
+          0.16534811242153025
+        ],
+        "pencil_pixel": [
+          71.08515815085158,
+          146.08515815085158
+        ],
+        "holder_pixel": [
+          172.0,
+          93.75
+        ],
+        "pencil_area": 411,
+        "holder_area": 1720
+      },
+      "directed_yaw_delta_deg": -0.10902797758430771,
+      "center_delta_xy_m": [
+        -0.002000992747123842,
+        0.00041431112094914013
+      ],
+      "center_delta_mm": 2.043434774829956
+    },
+    {
+      "relative_image_path": "final-unseen/case_008/trace/00000_agent.png",
+      "image_sha256": "351c656197632170e852e4166fe08999f54dccac3c42d8f0095697b0eca4d355",
+      "run": "final-unseen",
+      "case": "case_008",
+      "old_h20": {
+        "pencil_xy": [
+          0.4171923206666737,
+          -0.044008331519765756
+        ],
+        "pencil_yaw": 1.0769486311415113,
+        "holder_xy": [
+          0.42055721070023144,
+          0.2579250996659482
+        ],
+        "pencil_pixel": [
+          117.03361344537815,
+          109.67226890756302
+        ],
+        "holder_pixel": [
+          195.5,
+          87.25
+        ],
+        "pencil_area": 119,
+        "holder_area": 1702
+      },
+      "new_h18": {
+        "pencil_xy": [
+          0.42090966827755105,
+          -0.043915776629734726
+        ],
+        "pencil_yaw": 1.0690732898438793,
+        "holder_xy": [
+          0.42055721070023144,
+          0.2579250996659482
+        ],
+        "pencil_pixel": [
+          117.03533568904594,
+          110.3321554770318
+        ],
+        "holder_pixel": [
+          195.5,
+          87.25
+        ],
+        "pencil_area": 283,
+        "holder_area": 1702
+      },
+      "directed_yaw_delta_deg": -0.4512238185793952,
+      "center_delta_xy_m": [
+        0.0037173476108773307,
+        9.255489003102968e-05
+      ],
+      "center_delta_mm": 3.718499652785254
+    },
+    {
+      "relative_image_path": "final-unseen/case_009/trace/00000_agent.png",
+      "image_sha256": "3cbd9fe5b40166de631dbe7091be80fc1614cf52d6767285f160eadbd3ae68f9",
+      "run": "final-unseen",
+      "case": "case_009",
+      "old_h20": {
+        "pencil_xy": [
+          0.5551765754312963,
+          -0.0020035111439916944
+        ],
+        "pencil_yaw": -1.825501653307011,
+        "holder_xy": [
+          0.4564332587468881,
+          0.23594618289364427
+        ],
+        "pencil_pixel": [
+          127.11952191235059,
+          135.6812749003984
+        ],
+        "holder_pixel": [
+          191.0,
+          93.75
+        ],
+        "pencil_area": 251,
+        "holder_area": 1776
+      },
+      "new_h18": {
+        "pencil_xy": [
+          0.5533221902330558,
+          -0.005489948174609919
+        ],
+        "pencil_yaw": -1.8162058156064464,
+        "holder_xy": [
+          0.4564332587468881,
+          0.23594618289364427
+        ],
+        "pencil_pixel": [
+          126.20734908136482,
+          135.30708661417322
+        ],
+        "holder_pixel": [
+          191.0,
+          93.75
+        ],
+        "pencil_area": 381,
+        "holder_area": 1776
+      },
+      "directed_yaw_delta_deg": 0.532612267280943,
+      "center_delta_xy_m": [
+        -0.001854385198240438,
+        -0.0034864370306182248
+      ],
+      "center_delta_mm": 3.9489223380460716
+    },
+    {
+      "relative_image_path": "final-unseen/case_010/trace/00000_agent.png",
+      "image_sha256": "0ccc25ddfcba736a73e368672ba0de0b891930c2284b2f844b45240ae9802dac",
+      "run": "final-unseen",
+      "case": "case_010",
+      "old_h20": {
+        "pencil_xy": [
+          0.648053096239187,
+          -0.015358149288127246
+        ],
+        "pencil_yaw": 1.513778252161766,
+        "holder_xy": [
+          0.4106417028084943,
+          0.09917409680435073
+        ],
+        "pencil_pixel": [
+          123.29461756373938,
+          155.61189801699717
+        ],
+        "holder_pixel": [
+          153.5,
+          85.5
+        ],
+        "pencil_area": 353,
+        "holder_area": 1568
+      },
+      "new_h18": {
+        "pencil_xy": [
+          0.6461953053510413,
+          -0.013486796889913262
+        ],
+        "pencil_yaw": 1.515189525689743,
+        "holder_xy": [
+          0.4106417028084943,
+          0.09917409680435073
+        ],
+        "pencil_pixel": [
+          123.81481481481481,
+          155.19444444444446
+        ],
+        "holder_pixel": [
+          153.5,
+          85.5
+        ],
+        "pencil_area": 432,
+        "holder_area": 1568
+      },
+      "directed_yaw_delta_deg": 0.08086001689161923,
+      "center_delta_xy_m": [
+        -0.0018577908881457494,
+        0.001871352398213984
+      ],
+      "center_delta_mm": 2.636919942352934
+    },
+    {
+      "relative_image_path": "final-unseen/case_011/trace/00000_agent.png",
+      "image_sha256": "9f48cd96402e31b3c40e1a9a06d9b56aaa92b6e81735a8a9e62fd7287d776250",
+      "run": "final-unseen",
+      "case": "case_011",
+      "old_h20": {
+        "pencil_xy": [
+          0.33019096269659326,
+          -0.20010159802779326
+        ],
+        "pencil_yaw": -1.145863913571612,
+        "holder_xy": [
+          0.4034905084485638,
+          0.10723446232445769
+        ],
+        "pencil_pixel": [
+          80.8156862745098,
+          95.06274509803922
+        ],
+        "holder_pixel": [
+          155.5,
+          84.25
+        ],
+        "pencil_area": 255,
+        "holder_area": 1592
+      },
+      "new_h18": {
+        "pencil_xy": [
+          0.3300304715893086,
+          -0.19887626234467792
+        ],
+        "pencil_yaw": -1.147909323353765,
+        "holder_xy": [
+          0.4034905084485638,
+          0.10723446232445769
+        ],
+        "pencil_pixel": [
+          81.10616438356165,
+          95.03767123287672
+        ],
+        "holder_pixel": [
+          155.5,
+          84.25
+        ],
+        "pencil_area": 292,
+        "holder_area": 1592
+      },
+      "directed_yaw_delta_deg": -0.11719334789213726,
+      "center_delta_xy_m": [
+        -0.00016049110728466598,
+        0.0012253356831153361
+      ],
+      "center_delta_mm": 1.235801331862523
+    }
+  ]
+}

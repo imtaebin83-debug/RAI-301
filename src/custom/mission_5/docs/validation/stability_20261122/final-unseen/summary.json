@@ -1,0 +1,142 @@
+{
+  "seed": 221122,
+  "requested_cases": 12,
+  "attempted": 12,
+  "passed": 10,
+  "failed": 2,
+  "not_judged": 0,
+  "cases": [
+    {
+      "index": 0,
+      "case_seed": 1844189509,
+      "success": false,
+      "wall_seconds": 38.00105466900277,
+      "failure_stage": "retreat",
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "a20f38484a1f98ba6ef419e3bd776218b57cbfcdabc4daac780e6ed40c6b6ecd",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 1,
+      "case_seed": 3954581793,
+      "success": true,
+      "wall_seconds": 45.50717780800187,
+      "failure_stage": null,
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "f25004a26d782416053d9f5ccb761666367a804a13f556e57b344bdf03c359cf",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 2,
+      "case_seed": 2742929007,
+      "success": false,
+      "wall_seconds": 50.01302330198814,
+      "failure_stage": "carry",
+      "controller_error": "RuntimeError: Learned-keypose stage timed out: carry",
+      "error": null,
+      "scenario_sha256": "4234fa3eb7def39420897e3df3eeb6c1482478c110929704974672ac438de9c0",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 3,
+      "case_seed": 3959544676,
+      "success": true,
+      "wall_seconds": 39.798846417004825,
+      "failure_stage": null,
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "c0497f61df5760964568306c1dc7b025be7262782af556d3d3b3ca131a86c3be",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 4,
+      "case_seed": 1597265396,
+      "success": true,
+      "wall_seconds": 44.36057338200044,
+      "failure_stage": null,
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "de622819bed5e6181374ec05161bd0b9309c3b9ec990eeb57d4a11176890916f",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 5,
+      "case_seed": 627728683,
+      "success": true,
+      "wall_seconds": 43.499664798000595,
+      "failure_stage": null,
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "ab63008747a10ebd2438f3482f158708b77aa075f411fbd790f5b73ede756dfc",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 6,
+      "case_seed": 933621588,
+      "success": true,
+      "wall_seconds": 38.88976616700529,
+      "failure_stage": null,
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "4a195fab55e485dad4daff53900eee4ba8ce305a5d501cb02f8c10c7d8e71462",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 7,
+      "case_seed": 1567555360,
+      "success": true,
+      "wall_seconds": 40.610462781987735,
+      "failure_stage": null,
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "0e1b4f0ab79c416a4d81cacf6d1685d479969032a024224f043ec1dc1901eb12",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 8,
+      "case_seed": 2894628561,
+      "success": true,
+      "wall_seconds": 42.947408263004036,
+      "failure_stage": null,
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "bbc3f5e758fea80795b2aadca7303c220d4ba37e4580acdf41bbac71fc7de15a",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 9,
+      "case_seed": 3628388276,
+      "success": true,
+      "wall_seconds": 43.752910585011705,
+      "failure_stage": null,
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "880e0e1c2cec3405f41e0a434e4edcaaf9bb567a37558348f0ec7071e2a7018a",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 10,
+      "case_seed": 2877060483,
+      "success": true,
+      "wall_seconds": 38.849529713988886,
+      "failure_stage": null,
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "6fd101e36d6556e626a2b35a47675d664fe708db826174fd0bdbb82ac60aba5b",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 11,
+      "case_seed": 467213251,
+      "success": true,
+      "wall_seconds": 45.0017636600096,
+      "failure_stage": null,
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "ecb31e219483622ca130c91bd649d7843305f40b47214cd893c6eed6678a5312",
+      "artifacts_changed_during_case": false
+    }
+  ]
+}

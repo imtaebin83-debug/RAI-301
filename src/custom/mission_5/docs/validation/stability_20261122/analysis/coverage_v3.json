@@ -1,0 +1,702 @@
+{
+  "generated_at_kst": "2026-11-22T23:41:04.506659+09:00",
+  "baseline_development": {
+    "suite_seed": 8122,
+    "completed_attempts": 8,
+    "pending_indices": [],
+    "observed_ranges": {
+      "pencil_radius_m": {
+        "min": 0.38247860593800687,
+        "max": 0.600022689938725
+      },
+      "cup_radius_m": {
+        "min": 0.4077186535523467,
+        "max": 0.636589261904155
+      },
+      "pencil_angle_deg": {
+        "min": 236.86798996859403,
+        "max": 263.0211946192919
+      },
+      "cup_angle_deg": {
+        "min": 282.76206450240863,
+        "max": 301.8642766392053
+      },
+      "pencil_yaw_deg": {
+        "min": -16.807639807339623,
+        "max": 15.92031009190113
+      },
+      "cup_yaw_deg": {
+        "min": -14.067626066344669,
+        "max": 14.973806757115934
+      },
+      "object_separation_m": {
+        "min": 0.31809195429655535,
+        "max": 0.5114605418474479
+      },
+      "pencil_world_x": {
+        "min": 20.952604476486226,
+        "max": 21.113160377030155
+      },
+      "pencil_world_y": {
+        "min": 19.462437654527687,
+        "max": 19.729707255974667
+      },
+      "cup_world_x": {
+        "min": 21.309414920376454,
+        "max": 21.457134147779175
+      },
+      "cup_world_y": {
+        "min": 19.47574501478009,
+        "max": 19.66514895528335
+      }
+    },
+    "pencil_outer_radius_over_0_60m_count": 1,
+    "room_orders": [
+      [
+        "classroom",
+        "medical",
+        "cafeteria"
+      ]
+    ],
+    "cases": [
+      {
+        "index": 0,
+        "case_seed": 3897332011,
+        "success": false,
+        "interrupted": false,
+        "scenario_sha256": "7e779008b9775d76706e6907a3aa1ae66536de3edb44c450accd33e1fa80ad32",
+        "pencil_radius_m": 0.4079816034499062,
+        "cup_radius_m": 0.4881441770133307,
+        "pencil_angle_deg": 239.09721833517636,
+        "cup_angle_deg": 301.8642766392053,
+        "pencil_yaw_deg": 15.92031009190113,
+        "cup_yaw_deg": -14.067626066344669,
+        "object_separation_m": 0.47166138111186867,
+        "pencil_world_x": 20.97046762094467,
+        "pencil_world_y": 19.69993547611766,
+        "cup_world_x": 21.437695658682376,
+        "cup_world_y": 19.635418662928156
+      },
+      {
+        "index": 1,
+        "case_seed": 2122918758,
+        "success": true,
+        "interrupted": false,
+        "scenario_sha256": "e6e28489e40e9ff3dbd43fbd60a0d9d047ced5523cc900a23e0f826f92c2ba31",
+        "pencil_radius_m": 0.38247860593800687,
+        "cup_radius_m": 0.4240711415045236,
+        "pencil_angle_deg": 236.86798996859403,
+        "cup_angle_deg": 290.58511160518844,
+        "pencil_yaw_deg": -1.5345882404828828,
+        "cup_yaw_deg": 9.31314992945082,
+        "object_separation_m": 0.3662751421440886,
+        "pencil_world_x": 20.970948709343848,
+        "pencil_world_y": 19.729707255974667,
+        "cup_world_x": 21.32910273485831,
+        "cup_world_y": 19.653005406189553
+      },
+      {
+        "index": 2,
+        "case_seed": 1806208936,
+        "success": true,
+        "interrupted": false,
+        "scenario_sha256": "141e510fb544fcf5a8cffec804a05a74b370969b6e708bb070d8f28115923d9f",
+        "pencil_radius_m": 0.5501104992943874,
+        "cup_radius_m": 0.5022538150457317,
+        "pencil_angle_deg": 263.0211946192919,
+        "cup_angle_deg": 298.7266632062062,
+        "pencil_yaw_deg": -0.8629645576284091,
+        "cup_yaw_deg": -3.766022233395736,
+        "object_separation_m": 0.3258248634680322,
+        "pencil_world_x": 21.113160377030155,
+        "pencil_world_y": 19.5039651785507,
+        "cup_world_x": 21.421399072217646,
+        "cup_world_y": 19.60956228288162
+      },
+      {
+        "index": 3,
+        "case_seed": 1159463833,
+        "success": true,
+        "interrupted": false,
+        "scenario_sha256": "4e53fe78f14cd3dbc25c7299a8c46523c481c997a2226b7874f2e5295d6937a1",
+        "pencil_radius_m": 0.5538038050944094,
+        "cup_radius_m": 0.5858455320835114,
+        "pencil_angle_deg": 245.79330467654603,
+        "cup_angle_deg": 282.76206450240863,
+        "pencil_yaw_deg": -16.807639807339623,
+        "cup_yaw_deg": 12.42737891522808,
+        "object_separation_m": 0.36259704887515853,
+        "pencil_world_x": 20.952924037771684,
+        "pencil_world_y": 19.544890940573097,
+        "cup_world_x": 21.309414920376454,
+        "cup_world_y": 19.47862729690143
+      },
+      {
+        "index": 4,
+        "case_seed": 2513962977,
+        "success": true,
+        "interrupted": false,
+        "scenario_sha256": "97821a2cb4b7826f0af4135c234b7417d4bd9b146352dfcb62bd3de9676b10d3",
+        "pencil_radius_m": 0.4826806281890878,
+        "cup_radius_m": 0.5881433076998867,
+        "pencil_angle_deg": 253.98216489370594,
+        "cup_angle_deg": 290.827867831538,
+        "pencil_yaw_deg": -15.407660588390211,
+        "cup_yaw_deg": 14.769295927468331,
+        "object_separation_m": 0.352891932088832,
+        "pencil_world_x": 21.046810765332893,
+        "pencil_world_y": 19.586059037594435,
+        "cup_world_x": 21.389121179021277,
+        "cup_world_y": 19.500290183026614
+      },
+      {
+        "index": 5,
+        "case_seed": 3966943216,
+        "success": false,
+        "interrupted": false,
+        "scenario_sha256": "b60941dca2b01456f8bb5c5d4523de8210d069088be7d2386bbd3156475a332c",
+        "pencil_radius_m": 0.43239500116281576,
+        "cup_radius_m": 0.5299291397897414,
+        "pencil_angle_deg": 238.27130638377594,
+        "cup_angle_deg": 301.5313177573298,
+        "pencil_yaw_deg": 13.433031155428367,
+        "cup_yaw_deg": 2.554316009358299,
+        "object_separation_m": 0.5114605418474479,
+        "pencil_world_x": 20.952604476486226,
+        "pencil_world_y": 19.68222736246903,
+        "cup_world_x": 21.457134147779175,
+        "cup_world_y": 19.598312544636222
+      },
+      {
+        "index": 6,
+        "case_seed": 3479771859,
+        "success": false,
+        "interrupted": false,
+        "scenario_sha256": "3190097b18783c2bca8424bacaab5a9199a1ec7048bc6252c6a0e0683ea039a7",
+        "pencil_radius_m": 0.600022689938725,
+        "cup_radius_m": 0.636589261904155,
+        "pencil_angle_deg": 258.3030331621716,
+        "cup_angle_deg": 295.56705125029947,
+        "pencil_yaw_deg": 6.434135871798432,
+        "cup_yaw_deg": -6.767759960566108,
+        "object_separation_m": 0.39660015148889954,
+        "pencil_world_x": 21.058354126151453,
+        "pencil_world_y": 19.462437654527687,
+        "cup_world_x": 21.454730959889414,
+        "cup_world_y": 19.47574501478009
+      },
+      {
+        "index": 7,
+        "case_seed": 3734126279,
+        "success": false,
+        "interrupted": false,
+        "scenario_sha256": "190dece1f5c7a546a71e72c019b61fbce60a4aac59d5ad5859ff1749d5f9654f",
+        "pencil_radius_m": 0.4043563762164661,
+        "cup_radius_m": 0.4077186535523467,
+        "pencil_angle_deg": 243.16185652611398,
+        "cup_angle_deg": 289.28052095941115,
+        "pencil_yaw_deg": -7.002324878442877,
+        "cup_yaw_deg": 14.973806757115934,
+        "object_separation_m": 0.31809195429655535,
+        "pencil_world_x": 20.99744455512017,
+        "pencil_world_y": 19.689198685518416,
+        "cup_world_x": 21.314626051843767,
+        "cup_world_y": 19.66514895528335
+      }
+    ],
+    "notes": [
+      "All coordinates are from evaluation scenario specifications, not policy inputs or sensor estimates.",
+      "Ranges describe sampled completed cases only, not complete coverage of the official distribution."
+    ]
+  },
+  "candidate_development": {
+    "suite_seed": 8122,
+    "completed_attempts": 8,
+    "pending_indices": [],
+    "observed_ranges": {
+      "pencil_radius_m": {
+        "min": 0.38247860593800687,
+        "max": 0.600022689938725
+      },
+      "cup_radius_m": {
+        "min": 0.4077186535523467,
+        "max": 0.636589261904155
+      },
+      "pencil_angle_deg": {
+        "min": 236.86798996859403,
+        "max": 263.0211946192919
+      },
+      "cup_angle_deg": {
+        "min": 282.76206450240863,
+        "max": 301.8642766392053
+      },
+      "pencil_yaw_deg": {
+        "min": -16.807639807339623,
+        "max": 15.92031009190113
+      },
+      "cup_yaw_deg": {
+        "min": -14.067626066344669,
+        "max": 14.973806757115934
+      },
+      "object_separation_m": {
+        "min": 0.31809195429655535,
+        "max": 0.5114605418474479
+      },
+      "pencil_world_x": {
+        "min": 20.952604476486226,
+        "max": 21.113160377030155
+      },
+      "pencil_world_y": {
+        "min": 19.462437654527687,
+        "max": 19.729707255974667
+      },
+      "cup_world_x": {
+        "min": 21.309414920376454,
+        "max": 21.457134147779175
+      },
+      "cup_world_y": {
+        "min": 19.47574501478009,
+        "max": 19.66514895528335
+      }
+    },
+    "pencil_outer_radius_over_0_60m_count": 1,
+    "room_orders": [
+      [
+        "classroom",
+        "medical",
+        "cafeteria"
+      ]
+    ],
+    "cases": [
+      {
+        "index": 0,
+        "case_seed": 3897332011,
+        "success": true,
+        "interrupted": false,
+        "scenario_sha256": "7e779008b9775d76706e6907a3aa1ae66536de3edb44c450accd33e1fa80ad32",
+        "pencil_radius_m": 0.4079816034499062,
+        "cup_radius_m": 0.4881441770133307,
+        "pencil_angle_deg": 239.09721833517636,
+        "cup_angle_deg": 301.8642766392053,
+        "pencil_yaw_deg": 15.92031009190113,
+        "cup_yaw_deg": -14.067626066344669,
+        "object_separation_m": 0.47166138111186867,
+        "pencil_world_x": 20.97046762094467,
+        "pencil_world_y": 19.69993547611766,
+        "cup_world_x": 21.437695658682376,
+        "cup_world_y": 19.635418662928156
+      },
+      {
+        "index": 1,
+        "case_seed": 2122918758,
+        "success": true,
+        "interrupted": false,
+        "scenario_sha256": "e6e28489e40e9ff3dbd43fbd60a0d9d047ced5523cc900a23e0f826f92c2ba31",
+        "pencil_radius_m": 0.38247860593800687,
+        "cup_radius_m": 0.4240711415045236,
+        "pencil_angle_deg": 236.86798996859403,
+        "cup_angle_deg": 290.58511160518844,
+        "pencil_yaw_deg": -1.5345882404828828,
+        "cup_yaw_deg": 9.31314992945082,
+        "object_separation_m": 0.3662751421440886,
+        "pencil_world_x": 20.970948709343848,
+        "pencil_world_y": 19.729707255974667,
+        "cup_world_x": 21.32910273485831,
+        "cup_world_y": 19.653005406189553
+      },
+      {
+        "index": 2,
+        "case_seed": 1806208936,
+        "success": true,
+        "interrupted": false,
+        "scenario_sha256": "141e510fb544fcf5a8cffec804a05a74b370969b6e708bb070d8f28115923d9f",
+        "pencil_radius_m": 0.5501104992943874,
+        "cup_radius_m": 0.5022538150457317,
+        "pencil_angle_deg": 263.0211946192919,
+        "cup_angle_deg": 298.7266632062062,
+        "pencil_yaw_deg": -0.8629645576284091,
+        "cup_yaw_deg": -3.766022233395736,
+        "object_separation_m": 0.3258248634680322,
+        "pencil_world_x": 21.113160377030155,
+        "pencil_world_y": 19.5039651785507,
+        "cup_world_x": 21.421399072217646,
+        "cup_world_y": 19.60956228288162
+      },
+      {
+        "index": 3,
+        "case_seed": 1159463833,
+        "success": true,
+        "interrupted": false,
+        "scenario_sha256": "4e53fe78f14cd3dbc25c7299a8c46523c481c997a2226b7874f2e5295d6937a1",
+        "pencil_radius_m": 0.5538038050944094,
+        "cup_radius_m": 0.5858455320835114,
+        "pencil_angle_deg": 245.79330467654603,
+        "cup_angle_deg": 282.76206450240863,
+        "pencil_yaw_deg": -16.807639807339623,
+        "cup_yaw_deg": 12.42737891522808,
+        "object_separation_m": 0.36259704887515853,
+        "pencil_world_x": 20.952924037771684,
+        "pencil_world_y": 19.544890940573097,
+        "cup_world_x": 21.309414920376454,
+        "cup_world_y": 19.47862729690143
+      },
+      {
+        "index": 4,
+        "case_seed": 2513962977,
+        "success": true,
+        "interrupted": false,
+        "scenario_sha256": "97821a2cb4b7826f0af4135c234b7417d4bd9b146352dfcb62bd3de9676b10d3",
+        "pencil_radius_m": 0.4826806281890878,
+        "cup_radius_m": 0.5881433076998867,
+        "pencil_angle_deg": 253.98216489370594,
+        "cup_angle_deg": 290.827867831538,
+        "pencil_yaw_deg": -15.407660588390211,
+        "cup_yaw_deg": 14.769295927468331,
+        "object_separation_m": 0.352891932088832,
+        "pencil_world_x": 21.046810765332893,
+        "pencil_world_y": 19.586059037594435,
+        "cup_world_x": 21.389121179021277,
+        "cup_world_y": 19.500290183026614
+      },
+      {
+        "index": 5,
+        "case_seed": 3966943216,
+        "success": true,
+        "interrupted": false,
+        "scenario_sha256": "b60941dca2b01456f8bb5c5d4523de8210d069088be7d2386bbd3156475a332c",
+        "pencil_radius_m": 0.43239500116281576,
+        "cup_radius_m": 0.5299291397897414,
+        "pencil_angle_deg": 238.27130638377594,
+        "cup_angle_deg": 301.5313177573298,
+        "pencil_yaw_deg": 13.433031155428367,
+        "cup_yaw_deg": 2.554316009358299,
+        "object_separation_m": 0.5114605418474479,
+        "pencil_world_x": 20.952604476486226,
+        "pencil_world_y": 19.68222736246903,
+        "cup_world_x": 21.457134147779175,
+        "cup_world_y": 19.598312544636222
+      },
+      {
+        "index": 6,
+        "case_seed": 3479771859,
+        "success": true,
+        "interrupted": false,
+        "scenario_sha256": "3190097b18783c2bca8424bacaab5a9199a1ec7048bc6252c6a0e0683ea039a7",
+        "pencil_radius_m": 0.600022689938725,
+        "cup_radius_m": 0.636589261904155,
+        "pencil_angle_deg": 258.3030331621716,
+        "cup_angle_deg": 295.56705125029947,
+        "pencil_yaw_deg": 6.434135871798432,
+        "cup_yaw_deg": -6.767759960566108,
+        "object_separation_m": 0.39660015148889954,
+        "pencil_world_x": 21.058354126151453,
+        "pencil_world_y": 19.462437654527687,
+        "cup_world_x": 21.454730959889414,
+        "cup_world_y": 19.47574501478009
+      },
+      {
+        "index": 7,
+        "case_seed": 3734126279,
+        "success": true,
+        "interrupted": false,
+        "scenario_sha256": "190dece1f5c7a546a71e72c019b61fbce60a4aac59d5ad5859ff1749d5f9654f",
+        "pencil_radius_m": 0.4043563762164661,
+        "cup_radius_m": 0.4077186535523467,
+        "pencil_angle_deg": 243.16185652611398,
+        "cup_angle_deg": 289.28052095941115,
+        "pencil_yaw_deg": -7.002324878442877,
+        "cup_yaw_deg": 14.973806757115934,
+        "object_separation_m": 0.31809195429655535,
+        "pencil_world_x": 20.99744455512017,
+        "pencil_world_y": 19.689198685518416,
+        "cup_world_x": 21.314626051843767,
+        "cup_world_y": 19.66514895528335
+      }
+    ],
+    "notes": [
+      "All coordinates are from evaluation scenario specifications, not policy inputs or sensor estimates.",
+      "Ranges describe sampled completed cases only, not complete coverage of the official distribution."
+    ]
+  },
+  "candidate_held_out": {
+    "suite_seed": 221123,
+    "completed_attempts": 12,
+    "pending_indices": [],
+    "observed_ranges": {
+      "pencil_radius_m": {
+        "min": 0.3755548577952346,
+        "max": 0.6362242855773317
+      },
+      "cup_radius_m": {
+        "min": 0.38205566430317284,
+        "max": 0.6230111142639903
+      },
+      "pencil_angle_deg": {
+        "min": 237.56345820537712,
+        "max": 267.67690094250025
+      },
+      "cup_angle_deg": {
+        "min": 285.4344031845063,
+        "max": 304.7337005380374
+      },
+      "pencil_yaw_deg": {
+        "min": -29.372204434129127,
+        "max": 29.85638011523013
+      },
+      "cup_yaw_deg": {
+        "min": -13.160152741817143,
+        "max": 12.119884858595402
+      },
+      "object_separation_m": {
+        "min": 0.2628055001195166,
+        "max": 0.4306257360848903
+      },
+      "pencil_world_x": {
+        "min": 20.951338837104064,
+        "max": 21.158206132849934
+      },
+      "pencil_world_y": {
+        "min": 19.41467861539919,
+        "max": 19.728499698097163
+      },
+      "cup_world_x": {
+        "min": 21.325328666140145,
+        "max": 21.44521553675213
+      },
+      "cup_world_y": {
+        "min": 19.453150933197602,
+        "max": 19.696664310571286
+      }
+    },
+    "pencil_outer_radius_over_0_60m_count": 2,
+    "room_orders": [
+      [
+        "classroom",
+        "medical",
+        "cafeteria"
+      ]
+    ],
+    "cases": [
+      {
+        "index": 0,
+        "case_seed": 961027159,
+        "success": true,
+        "interrupted": false,
+        "scenario_sha256": "9137d81be23925ff12390bc4db9f8b1d84ed77f1382a44810bd0b8ca02ff9d4d",
+        "pencil_radius_m": 0.5376605884633128,
+        "cup_radius_m": 0.49812496975013604,
+        "pencil_angle_deg": 267.67690094250025,
+        "cup_angle_deg": 302.16963261114745,
+        "pencil_yaw_deg": 13.286088150021428,
+        "cup_yaw_deg": -13.160152741817143,
+        "object_separation_m": 0.30940328231665015,
+        "pencil_world_x": 21.158206132849934,
+        "pencil_world_y": 19.512781296173188,
+        "cup_world_x": 21.44521553675213,
+        "cup_world_y": 19.628349428372434
+      },
+      {
+        "index": 1,
+        "case_seed": 4217391314,
+        "success": true,
+        "interrupted": false,
+        "scenario_sha256": "42a9a2a077679931eb85ad0d2b93e0a8ecb6d1ed342f2a2cfcc7a300ff9ce8e9",
+        "pencil_radius_m": 0.3849650533061236,
+        "cup_radius_m": 0.5090212470169686,
+        "pencil_angle_deg": 264.498450373153,
+        "cup_angle_deg": 294.8390034757874,
+        "pencil_yaw_deg": 7.465611827096751,
+        "cup_yaw_deg": 10.667303821796946,
+        "object_separation_m": 0.2628055001195166,
+        "pencil_world_x": 21.14309237091951,
+        "pencil_world_y": 19.6668082475018,
+        "cup_world_x": 21.393824527140886,
+        "cup_world_y": 19.588067427531154
+      },
+      {
+        "index": 2,
+        "case_seed": 3655443140,
+        "success": true,
+        "interrupted": false,
+        "scenario_sha256": "4f6b45cf29e848e959e47ba82a7e9c9b8eae28250963eda529aebda5fa7e295c",
+        "pencil_radius_m": 0.4489437408093938,
+        "cup_radius_m": 0.38205566430317284,
+        "pencil_angle_deg": 241.9950150156352,
+        "cup_angle_deg": 292.35760095328305,
+        "pencil_yaw_deg": -29.372204434129127,
+        "cup_yaw_deg": -2.409198715196233,
+        "object_separation_m": 0.35872081487028284,
+        "pencil_world_x": 20.969199193196552,
+        "pencil_world_y": 19.653624543818683,
+        "cup_world_x": 21.325328666140145,
+        "cup_world_y": 19.696664310571286
+      },
+      {
+        "index": 3,
+        "case_seed": 368737811,
+        "success": true,
+        "interrupted": false,
+        "scenario_sha256": "d534b890c36a4b54c489c58ef71a83c8157354b601e08d53de184c20a68a585d",
+        "pencil_radius_m": 0.38888965269560605,
+        "cup_radius_m": 0.5022035531767177,
+        "pencil_angle_deg": 257.5326199328376,
+        "cup_angle_deg": 298.57752099949715,
+        "pencil_yaw_deg": 29.85638011523013,
+        "cup_yaw_deg": 5.399730515279117,
+        "object_separation_m": 0.3299276548127373,
+        "pencil_world_x": 21.096045043851277,
+        "pencil_world_y": 19.67028072565147,
+        "cup_world_x": 21.42022774373915,
+        "cup_world_y": 19.60897954700341
+      },
+      {
+        "index": 4,
+        "case_seed": 1643852895,
+        "success": true,
+        "interrupted": false,
+        "scenario_sha256": "38cc72623efd427bda748844a6bf8332f5a5ae37b172946f9e874e74162d212c",
+        "pencil_radius_m": 0.544518669609672,
+        "cup_radius_m": 0.4779192617835101,
+        "pencil_angle_deg": 264.81046419296626,
+        "cup_angle_deg": 302.6787886156043,
+        "pencil_yaw_deg": 26.138374490458936,
+        "cup_yaw_deg": -1.5225296282047953,
+        "object_separation_m": 0.3376900967881683,
+        "pencil_world_x": 21.130747907502517,
+        "pencil_world_y": 19.50771334799932,
+        "cup_world_x": 21.43804234914837,
+        "cup_world_y": 19.64773023127547
+      },
+      {
+        "index": 5,
+        "case_seed": 616079166,
+        "success": true,
+        "interrupted": false,
+        "scenario_sha256": "b0924dd1ccb461ce0f4892fb6fe6ac71a9e00cf5d470c61b25f5a66313ccc562",
+        "pencil_radius_m": 0.39248327187941345,
+        "cup_radius_m": 0.6126665941492893,
+        "pencil_angle_deg": 264.80122302122936,
+        "cup_angle_deg": 285.4344031845063,
+        "pencil_yaw_deg": -21.697118644662016,
+        "cup_yaw_deg": 12.119884858595402,
+        "object_separation_m": 0.2816543731271904,
+        "pencil_world_x": 21.14443657176205,
+        "pencil_world_y": 19.659131273600543,
+        "cup_world_x": 21.343051999251685,
+        "cup_world_y": 19.459428750169366
+      },
+      {
+        "index": 6,
+        "case_seed": 1547206312,
+        "success": true,
+        "interrupted": false,
+        "scenario_sha256": "553153fa96a85a916a1ea4c7dfe10a15d96b7687ce6c1d7fc078f562ea75a579",
+        "pencil_radius_m": 0.38093083937409905,
+        "cup_radius_m": 0.42290043672400923,
+        "pencil_angle_deg": 237.56345820537712,
+        "cup_angle_deg": 302.10138252013934,
+        "pencil_yaw_deg": 13.771012079666448,
+        "cup_yaw_deg": 8.583838253466464,
+        "object_separation_m": 0.4306257360848903,
+        "pencil_world_x": 20.975681962953242,
+        "pencil_world_y": 19.728499698097163,
+        "cup_world_x": 21.404737335648147,
+        "cup_world_y": 19.691757192190646
+      },
+      {
+        "index": 7,
+        "case_seed": 1115729939,
+        "success": true,
+        "interrupted": false,
+        "scenario_sha256": "85720222941f7a5a10eedef39e7dbd8eef4cb2d531ca20fde6f5d681c10dd0d5",
+        "pencil_radius_m": 0.6362242855773317,
+        "cup_radius_m": 0.45718364742920575,
+        "pencil_angle_deg": 266.9471606950434,
+        "cup_angle_deg": 304.7337005380374,
+        "pencil_yaw_deg": -1.1715430157709825,
+        "cup_yaw_deg": 11.062748533562985,
+        "object_separation_m": 0.39248896149587525,
+        "pencil_world_x": 21.146116673314232,
+        "pencil_world_y": 19.41467861539919,
+        "cup_world_x": 21.440486325599345,
+        "cup_world_y": 19.67428233784872
+      },
+      {
+        "index": 8,
+        "case_seed": 1971468308,
+        "success": true,
+        "interrupted": false,
+        "scenario_sha256": "cd3c952c20ebf62d6ac11ca1ba429c1079e6a80f7767a4e5b7ddda5323c2ac0f",
+        "pencil_radius_m": 0.44359478221462256,
+        "cup_radius_m": 0.44850585159732687,
+        "pencil_angle_deg": 250.55413463354822,
+        "cup_angle_deg": 291.4635975908084,
+        "pencil_yaw_deg": -8.250117460985315,
+        "cup_yaw_deg": -1.2989498716347008,
+        "object_separation_m": 0.3117938853742385,
+        "pencil_world_x": 21.032320165469844,
+        "pencil_world_y": 19.631709434386593,
+        "cup_world_x": 21.344112784917964,
+        "cup_world_y": 19.63259792436607
+      },
+      {
+        "index": 9,
+        "case_seed": 1938653499,
+        "success": true,
+        "interrupted": false,
+        "scenario_sha256": "5047c2c05ac77835d1d0e71c29f531f36b74da5c223f462219aebb24ef285e7c",
+        "pencil_radius_m": 0.4499305068290659,
+        "cup_radius_m": 0.43512966735317393,
+        "pencil_angle_deg": 243.92413439311719,
+        "cup_angle_deg": 300.81170655527075,
+        "pencil_yaw_deg": -28.046583742965854,
+        "cup_yaw_deg": -1.281105529265659,
+        "object_separation_m": 0.42175173202990357,
+        "pencil_world_x": 20.982228159698025,
+        "pencil_world_y": 19.645866655472442,
+        "cup_world_x": 21.40288140246366,
+        "cup_world_y": 19.676286596645618
+      },
+      {
+        "index": 10,
+        "case_seed": 1811494460,
+        "success": true,
+        "interrupted": false,
+        "scenario_sha256": "beb5cf267e96f613e3ed6a823a9bd4944bf16d4095dc0e9e67289c769fa8ebea",
+        "pencil_radius_m": 0.3755548577952346,
+        "cup_radius_m": 0.4771241880112897,
+        "pencil_angle_deg": 243.89718416928122,
+        "cup_angle_deg": 293.11030187381164,
+        "pencil_yaw_deg": 17.510280394889918,
+        "cup_yaw_deg": -1.7624625840571682,
+        "object_separation_m": 0.3668555696895417,
+        "pencil_world_x": 21.0147621330765,
+        "pencil_world_y": 19.712749501782177,
+        "cup_world_x": 21.367272434531085,
+        "cup_world_y": 19.61116457976796
+      },
+      {
+        "index": 11,
+        "case_seed": 3354048177,
+        "success": true,
+        "interrupted": false,
+        "scenario_sha256": "b0ff0870d296e9a872ce8685396d4bf6ffdec429680316230146974cad1004b8",
+        "pencil_radius_m": 0.618439638918681,
+        "cup_radius_m": 0.6230111142639903,
+        "pencil_angle_deg": 248.30048740799526,
+        "cup_angle_deg": 286.6631540438727,
+        "pencil_yaw_deg": 15.751335951585489,
+        "cup_yaw_deg": -12.909747211425374,
+        "object_separation_m": 0.40791261514997124,
+        "pencil_world_x": 20.951338837104064,
+        "pencil_world_y": 19.475385642740328,
+        "cup_world_x": 21.35864501099545,
+        "cup_world_y": 19.453150933197602
+      }
+    ],
+    "notes": [
+      "All coordinates are from evaluation scenario specifications, not policy inputs or sensor estimates.",
+      "Ranges describe sampled completed cases only, not complete coverage of the official distribution."
+    ]
+  }
+}

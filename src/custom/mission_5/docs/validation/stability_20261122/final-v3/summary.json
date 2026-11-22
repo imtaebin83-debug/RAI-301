@@ -1,0 +1,142 @@
+{
+  "seed": 221123,
+  "requested_cases": 12,
+  "attempted": 12,
+  "passed": 12,
+  "failed": 0,
+  "not_judged": 0,
+  "cases": [
+    {
+      "index": 0,
+      "case_seed": 961027159,
+      "success": true,
+      "wall_seconds": 45.255257955999696,
+      "failure_stage": null,
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "9137d81be23925ff12390bc4db9f8b1d84ed77f1382a44810bd0b8ca02ff9d4d",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 1,
+      "case_seed": 4217391314,
+      "success": true,
+      "wall_seconds": 43.85152753400325,
+      "failure_stage": null,
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "42a9a2a077679931eb85ad0d2b93e0a8ecb6d1ed342f2a2cfcc7a300ff9ce8e9",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 2,
+      "case_seed": 3655443140,
+      "success": true,
+      "wall_seconds": 44.55903082899749,
+      "failure_stage": null,
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "4f6b45cf29e848e959e47ba82a7e9c9b8eae28250963eda529aebda5fa7e295c",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 3,
+      "case_seed": 368737811,
+      "success": true,
+      "wall_seconds": 43.154534196990426,
+      "failure_stage": null,
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "d534b890c36a4b54c489c58ef71a83c8157354b601e08d53de184c20a68a585d",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 4,
+      "case_seed": 1643852895,
+      "success": true,
+      "wall_seconds": 38.8840175410005,
+      "failure_stage": null,
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "38cc72623efd427bda748844a6bf8332f5a5ae37b172946f9e874e74162d212c",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 5,
+      "case_seed": 616079166,
+      "success": true,
+      "wall_seconds": 42.89118476799922,
+      "failure_stage": null,
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "b0924dd1ccb461ce0f4892fb6fe6ac71a9e00cf5d470c61b25f5a66313ccc562",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 6,
+      "case_seed": 1547206312,
+      "success": true,
+      "wall_seconds": 41.095740649005165,
+      "failure_stage": null,
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "553153fa96a85a916a1ea4c7dfe10a15d96b7687ce6c1d7fc078f562ea75a579",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 7,
+      "case_seed": 1115729939,
+      "success": true,
+      "wall_seconds": 43.603277963004075,
+      "failure_stage": null,
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "85720222941f7a5a10eedef39e7dbd8eef4cb2d531ca20fde6f5d681c10dd0d5",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 8,
+      "case_seed": 1971468308,
+      "success": true,
+      "wall_seconds": 44.95302817800257,
+      "failure_stage": null,
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "cd3c952c20ebf62d6ac11ca1ba429c1079e6a80f7767a4e5b7ddda5323c2ac0f",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 9,
+      "case_seed": 1938653499,
+      "success": true,
+      "wall_seconds": 44.202033358000335,
+      "failure_stage": null,
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "5047c2c05ac77835d1d0e71c29f531f36b74da5c223f462219aebb24ef285e7c",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 10,
+      "case_seed": 1811494460,
+      "success": true,
+      "wall_seconds": 42.90868783999758,
+      "failure_stage": null,
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "beb5cf267e96f613e3ed6a823a9bd4944bf16d4095dc0e9e67289c769fa8ebea",
+      "artifacts_changed_during_case": false
+    },
+    {
+      "index": 11,
+      "case_seed": 3354048177,
+      "success": true,
+      "wall_seconds": 39.492840274993796,
+      "failure_stage": null,
+      "controller_error": null,
+      "error": null,
+      "scenario_sha256": "b0ff0870d296e9a872ce8685396d4bf6ffdec429680316230146974cad1004b8",
+      "artifacts_changed_during_case": false
+    }
+  ]
+}

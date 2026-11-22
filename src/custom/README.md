@@ -1,6 +1,6 @@
 # RAI 301 기본 구현
 
-규칙과 원본 API를 검토한 센서 기반 초기 구현이다. 미션 1·2는 실제 시뮬레이터 PASS를 확인했다. 미션 4는 방 분류 3/3 정답이나 배달 실패이며, 미션 3·6도 아직 성공하지 못했다. 미션 5는 팀 시연으로 학습한 keypose 정책을 추가해 기본 배치 PASS(학습 배치), 새 무작위 배치 5회 중 4회 PASS를 확인했다. 실행·재학습은 [미션 5 안내](mission_5/README.md), 증거·한계는 [미션 5 보고서](mission_5/REPORT.md)에 있다. 다른 미션의 기존 결과는 `docs/VALIDATION_REPORT.md`와 `docs/validation/`을 확인한다. 팀별 작업 방법은 `docs/TEAM_OPTIMIZATION.md`에 있다.
+규칙과 원본 API를 검토한 센서 기반 초기 구현이다. 미션 1·2는 실제 시뮬레이터 PASS를 확인했다. 미션 4는 방 분류 3/3 정답이나 배달 실패이며, 미션 3·6도 아직 성공하지 못했다. 미션 5는 팀 학습 keypose 정책의 파지·몸통 검출을 안정화해 동일 배치 8개에서 기존 4/8 → 개선 8/8 PASS, 별도 새 배치에서 12/12 PASS를 확인했다. 실행·재학습은 [미션 5 안내](mission_5/README.md), 최신 증거·한계는 [파지 안정화 보고서](mission_5/STABILITY_20261122.md)에 있다. 다른 미션의 기존 결과는 `docs/VALIDATION_REPORT.md`와 `docs/validation/`을 확인한다. 팀별 작업 방법은 `docs/TEAM_OPTIMIZATION.md`에 있다.
 
 ## 설치와 실행
 

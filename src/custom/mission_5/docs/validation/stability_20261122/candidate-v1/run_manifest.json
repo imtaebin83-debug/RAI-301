@@ -1,0 +1,23 @@
+{
+  "seed": 8122,
+  "cases": 8,
+  "indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "root": "/home/aril/RAI-301-m5-stable/src",
+  "git": {
+    "head": "5bfd039807843c89e75a3a73f23d2841e22f6c78",
+    "branch": "opt/m5-grasp-20261122",
+    "status": "M src/custom/mission_5/keypose_policy.py\n M src/custom/mission_5/mission_5.py"
+  },
+  "checkpoint": "/home/aril/RAI-301-m5-stable/src/custom/mission_5/keyposes.json",
+  "sampler_sha256": "2acf75a7d0442cf53b2277f6712b4bf84c3c475b7778deab9d0ed945bb16209e",
+  "note": "Evaluation only; scenario/official truth are never policy inputs"
+}
