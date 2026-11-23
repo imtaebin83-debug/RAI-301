@@ -1,0 +1,2537 @@
+[
+  {
+    "case": {
+      "id": "after-m1-blue",
+      "split": "held-out",
+      "missions": [
+        1,
+        2
+      ],
+      "cone_order": [
+        "orange",
+        "blue",
+        "green"
+      ],
+      "m2_color": "blue",
+      "m1_goal": [
+        16.38,
+        18.64,
+        90.0
+      ]
+    },
+    "command": [
+      "bash",
+      "custom/tools/run_sim.sh",
+      "--headless",
+      "--missions",
+      "1",
+      "2",
+      "--no-wait",
+      "--scenario",
+      "/tmp/ys-m2-candidate-cone-geometry-1123/after-m1-blue/evaluation_scenario.yaml"
+    ],
+    "source_root": "/home/aril/rai-worktrees/ys-m2-fixes-20261123/src",
+    "commit": "15fc73a73316bbf3df853911055cdcfacb367dbc",
+    "code_sha256": {
+      "custom/bringup.launch.py": "439468d3cdfe278e08908df2c1729dbdcdd97eaadc0f9be459f8c89697dbc4d2",
+      "custom/public_map.py": "cbb6a31993c75d378e7b805d52311583e032122f34f361e8de234cb90b604695",
+      "custom/navigation.py": "a218e9553c209ded1f1e27abb3305066e603e9b3eb7f1405ffac4b69fcf197a2",
+      "custom/localizer_node.py": "16fc54aea3fc1fb1e0d22916df1c9be96f4fa8d5df1a4872e22ac8c26c11d9f9",
+      "custom/localization.py": "6a6341f214ea068a3815a0505c38c4db4a3dffd9dee8a5bd0033dfacccb386c0",
+      "custom/vlm.py": "6c59b7e8bb779e3b9ccace53ee0b89f2b17170557c02d63e9f2df4f3a4a233ef",
+      "custom/vision.py": "66294acd184d388b308ee618084470bd86a5b521ef896a06000a88d1b81b855d",
+      "custom/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/tools/download_models.py": "f065d3de598843c8ab06b227f558eb88b23bf1623b05da07ede1d3dfba807c5f",
+      "custom/tests/test_vision.py": "5ae70c4a11a40bcf9ba1eaf4d4b14d2e27fa5f32aac6088702b195c58fb12c3b",
+      "custom/tests/test_planner.py": "8b9247344ac4b50ef7941a34e7497d398fe35db2c37181aa9dd5dc55de069d3a",
+      "custom/tests/test_room_assignment.py": "650a4875d6b87c9c877ae9464687c74a81cf92ea83283f47de0c63e1fab91225",
+      "custom/mission_6/mission_6.py": "b59093d8c530aae16980db163eec10f2b14407699ab4a57e60e1564613116336",
+      "custom/mission_6/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/testing/web_smoke.py": "68f10f96965aecc45db5b994c31fa69918b0c3c141d95811f0027f4406f45e1e",
+      "custom/testing/capture.py": "be26d09fd23618c1e230891c95ac717455531bc363a00175606bcc78e134ee07",
+      "custom/testing/randomized_suite.py": "3740d37bf61c88984ee28377f8bb9938d5b4212759aa988a267e4187d93d584e",
+      "custom/planner/planner.py": "322cd75a717d3f91e8ccc797a3c43b7eec54ebdf0c3e923984fc26ba5b710ce7",
+      "custom/planner/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/planner/local_model.py": "738dc494168b86d94a769ae14a2766220a30d5c481399853acc943889cb6d64a",
+      "custom/mission_1/mission_1.py": "573361a9b8704a6c7836ff570e825a1b7ca4248d1f6ddcb54b150be9605a8d0f",
+      "custom/mission_1/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_3/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_3/mission_3.py": "bd3fb3282a039b7c5a801873fb39e707d0cec5acd897413e5a98fc40f00892d4",
+      "custom/mission_4/mission_4.py": "1cec5844ba50239a19c18cf023e8436f62194eb0223133f9bc90fd2a9a96a301",
+      "custom/mission_4/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_2/test_mission_2.py": "150044b3606e2330d742e774f20f1057ae0ed548be635fcc956d53e3c4028c5b",
+      "custom/mission_2/evaluate.py": "876d273c3371587ee1f7f60f3943b06ef201f8d4cbd098b911c6b7b921508297",
+      "custom/mission_2/replay_frame.py": "83e7c45ec52f2547cc309fb6e3717e3555eafdeff00be498510eeee83b69aece",
+      "custom/mission_2/perception.py": "0559ac44375688a67f57cf25f778e7ec99d4563167223b10041bebc05b73049b",
+      "custom/mission_2/mission_2.py": "dc28485ec98995591f89455556077ff992d9fe079feaa83005b25ecfef69a93a",
+      "custom/mission_2/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_5/evaluate.py": "56808e2263c639fb72569130c84d16105095743c4f1afdd278117ddfb922673b",
+      "custom/mission_5/policy.py": "49ee223a7eecc001226842f8d91597a709f1f1f005dd1f9976fceb63b7416e0e",
+      "custom/mission_5/perception.py": "16d2e6668d29dbff3a56d09a9d831f078c8017fabe1c6a9727892a70fba928ca",
+      "custom/mission_5/train_keyposes.py": "dc91fc9cc220753c69fbf59729d381e6f0f372b24f6860fceff639956621bcc6",
+      "custom/mission_5/collect.py": "724713c70c9d453dc97cb8fe1febded5497ace943657abf7b6a5443395c38ef5",
+      "custom/mission_5/ros_io.py": "a30aba84ec521699c9ce76b5e94e114e270465e94951408b629a97ae88f41408",
+      "custom/mission_5/mission_5.py": "9fda76d548d2819c646f19ae3c0e98d4e48a7ab21e5d4ed670b8d6ad72ed4933",
+      "custom/mission_5/policy_adapter.py": "0843344db550660c8b35322a17c9ee78242a1c02588d813e80092174138c41b6",
+      "custom/mission_5/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_5/vision_teacher.py": "49d7a2d34264e3a7bde9c969fafb46b1b5594b2f7afa5ccd2693acf97deb2862",
+      "custom/mission_5/keypose_policy.py": "0a261bb66716a3480e674cd4da47bc2e62be57a5874a50ea8920c0b77b77bd9b",
+      "custom/mission_5/tests/test_teacher.py": "08bce20b8ea3c180fafae08569819130f0ac95aa282661fecbecd75c8802a611",
+      "custom/mission_5/tests/test_learning.py": "15ff3a59db429f5ec98eef42d7a196f72eedaef6a3a1cbcb390bee524cf74e90",
+      "custom/mission_5/tests/test_keyposes.py": "bd742428a98b50509ddc76e6868f5af8e467d1a5d0db7c46da094735e4198347",
+      "custom/mission_5/tests/test_ros_io.py": "de56f65f6bf96acf30fc47fc873deada230d65774fbe09caf67b33285fdc6f6b",
+      "custom/mission_5/bc/export.py": "fd4141d9bfe33ce99a882126da0f78aca59f71167f57ce35d59de66faaf1f01c",
+      "custom/mission_5/bc/merge.py": "7add681774a5ac88af7e0563a4d6eb5eb472680602b4a6dd0d5a269f512661b0",
+      "custom/mission_5/bc/policy.py": "0b6b20d78af5a8bc35edca442b4402e821feddfefe3868c748cb0b1fe66a88e8",
+      "custom/mission_5/bc/prepare.py": "fa688c782496492bcac4859463d15b842b37cf7fa3874e2f048a8aeaeeeec1f8",
+      "custom/mission_5/bc/__init__.py": "47c2e5f788aab12c14747b5e52437b037c3020a7df23fcd0a74b3846005e473a",
+      "custom/mission_5/bc/train.py": "868fc8b8e2b10766ec1a0ed5f855d5d268da8e00bec333aa4007429b1f6243fe",
+      "custom/mission_5/bc/model.py": "e2236de08c9ac5eef1d91d46ba52281300cb1ebd3d0391cb2cdc1267cdcd640f",
+      "custom/mission_5/bc/frames.py": "a9daf859f8512fe5687ff32f35f1157d092b70319d1196db912e137cc321b2fe",
+      "custom/mission_5/bc/data.py": "fcf7c821b6bcb620ccf4ba1455f2d9d942c99d5ed168d0191c2470639f1c2192"
+    },
+    "initial_pose": [
+      16.0,
+      11.0,
+      0.0
+    ],
+    "ros_domain_id": "74",
+    "runtime_options": {
+      "HAIC_MAP_CORRECTION": null,
+      "HAIC_VLM_THREADS": null,
+      "HAIC_M2_CAPTURE_DIR": null
+    },
+    "returncode": 0,
+    "wall_seconds": 60.72862038598396,
+    "official_result": {
+      "run": {
+        "started_at": "2026-11-23T20:36:09+09:00",
+        "package": "ys-m2-fixes-20261123",
+        "mode": "auto",
+        "config": "/tmp/rai-headless.lZMcvR.yaml",
+        "scenario": "/tmp/ys-m2-candidate-cone-geometry-1123/after-m1-blue/evaluation_scenario.yaml",
+        "referee": {
+          "goal_radius_m": 0.5,
+          "cone_box_m": 0.5,
+          "cone_box_offset_m": 0.75,
+          "m4_room": "classroom",
+          "m1_goal": [
+            16.38,
+            18.64,
+            90.0
+          ],
+          "m2_color": "blue"
+        },
+        "plans": [],
+        "ended_at": "2026-11-23T20:37:02+09:00"
+      },
+      "missions": [
+        {
+          "mission": 1,
+          "label": "Point-goal navigation",
+          "verdict": "PASS",
+          "success": true,
+          "seconds": 23.67,
+          "started_at": "2026-11-23T20:36:09+09:00",
+          "ended_at": "2026-11-23T20:36:33+09:00",
+          "checks": [
+            {
+              "name": "check",
+              "ok": true,
+              "summary": "0.04 m < 0.50 m from goal world (16.38, 18.64)"
+            }
+          ],
+          "reported": {
+            "status": "done",
+            "detail": ""
+          },
+          "referee": {
+            "mission": 1,
+            "pelvis": [
+              16.392,
+              18.601,
+              0.78
+            ],
+            "success": true,
+            "summary": "0.04 m < 0.50 m from goal world (16.38, 18.64)",
+            "goal": [
+              16.38,
+              18.64
+            ],
+            "goal_world": [
+              16.38,
+              18.64
+            ],
+            "distance_m": 0.041,
+            "threshold_m": 0.5
+          },
+          "data": {
+            "controller_reached": true,
+            "estimated_pose": [
+              16.408372402582103,
+              18.545654610829104,
+              1.8010028132018308
+            ]
+          }
+        },
+        {
+          "mission": 2,
+          "label": "Cone colour navigation",
+          "verdict": "PASS",
+          "success": true,
+          "seconds": 26.95,
+          "started_at": "2026-11-23T20:36:34+09:00",
+          "ended_at": "2026-11-23T20:37:00+09:00",
+          "checks": [
+            {
+              "name": "check",
+              "ok": true,
+              "summary": "blue cone box: |dx| 0.00 < 0.25, |dy| 0.01 < 0.25 m"
+            }
+          ],
+          "reported": {
+            "status": "done",
+            "detail": ""
+          },
+          "referee": {
+            "mission": 2,
+            "pelvis": [
+              15.5,
+              24.059,
+              0.78
+            ],
+            "success": true,
+            "summary": "blue cone box: |dx| 0.00 < 0.25, |dy| 0.01 < 0.25 m",
+            "color": "blue",
+            "box_center": [
+              15.5,
+              24.05
+            ],
+            "box_m": 0.5,
+            "dx_m": 0.0,
+            "dy_m": 0.009
+          },
+          "data": {
+            "color": "blue",
+            "reached": true,
+            "cone_xy": [
+              15.497615544311433,
+              24.74044865279336
+            ],
+            "measurements": [
+              {
+                "surface_xy": [
+                  15.497615544311433,
+                  24.74044865279336
+                ],
+                "target_xy": [
+                  15.497615544311433,
+                  24.07044865279336
+                ],
+                "error_m": 1.735355739901753
+              }
+            ],
+            "surface_correction_m": 0.08,
+            "final_leg_m": 1.735355739901753,
+            "final_pose_error_m": 0.022817476347234283,
+            "final_verification": "continuous_sensor_pose_against_fresh_cone_target"
+          }
+        }
+      ],
+      "total": {
+        "missions": 2,
+        "passed": 2,
+        "failed": 0,
+        "not_judged": 0,
+        "mission_seconds": 50.62,
+        "run_seconds": 53.34,
+        "by_mission": [
+          "1 PASS 23.7s",
+          "2 PASS 26.9s"
+        ],
+        "complete": true,
+        "updated_at": "2026-11-23T20:37:02+09:00"
+      }
+    }
+  },
+  {
+    "case": {
+      "id": "after-m1-green",
+      "split": "held-out",
+      "missions": [
+        1,
+        2
+      ],
+      "cone_order": [
+        "orange",
+        "blue",
+        "green"
+      ],
+      "m2_color": "green",
+      "m1_goal": [
+        14.98,
+        7.99,
+        90.0
+      ]
+    },
+    "command": [
+      "bash",
+      "custom/tools/run_sim.sh",
+      "--headless",
+      "--missions",
+      "1",
+      "2",
+      "--no-wait",
+      "--scenario",
+      "/tmp/ys-m2-candidate-cone-geometry-1123/after-m1-green/evaluation_scenario.yaml"
+    ],
+    "source_root": "/home/aril/rai-worktrees/ys-m2-fixes-20261123/src",
+    "commit": "15fc73a73316bbf3df853911055cdcfacb367dbc",
+    "code_sha256": {
+      "custom/bringup.launch.py": "439468d3cdfe278e08908df2c1729dbdcdd97eaadc0f9be459f8c89697dbc4d2",
+      "custom/public_map.py": "cbb6a31993c75d378e7b805d52311583e032122f34f361e8de234cb90b604695",
+      "custom/navigation.py": "a218e9553c209ded1f1e27abb3305066e603e9b3eb7f1405ffac4b69fcf197a2",
+      "custom/localizer_node.py": "16fc54aea3fc1fb1e0d22916df1c9be96f4fa8d5df1a4872e22ac8c26c11d9f9",
+      "custom/localization.py": "6a6341f214ea068a3815a0505c38c4db4a3dffd9dee8a5bd0033dfacccb386c0",
+      "custom/vlm.py": "6c59b7e8bb779e3b9ccace53ee0b89f2b17170557c02d63e9f2df4f3a4a233ef",
+      "custom/vision.py": "66294acd184d388b308ee618084470bd86a5b521ef896a06000a88d1b81b855d",
+      "custom/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/tools/download_models.py": "f065d3de598843c8ab06b227f558eb88b23bf1623b05da07ede1d3dfba807c5f",
+      "custom/tests/test_vision.py": "5ae70c4a11a40bcf9ba1eaf4d4b14d2e27fa5f32aac6088702b195c58fb12c3b",
+      "custom/tests/test_planner.py": "8b9247344ac4b50ef7941a34e7497d398fe35db2c37181aa9dd5dc55de069d3a",
+      "custom/tests/test_room_assignment.py": "650a4875d6b87c9c877ae9464687c74a81cf92ea83283f47de0c63e1fab91225",
+      "custom/mission_6/mission_6.py": "b59093d8c530aae16980db163eec10f2b14407699ab4a57e60e1564613116336",
+      "custom/mission_6/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/testing/web_smoke.py": "68f10f96965aecc45db5b994c31fa69918b0c3c141d95811f0027f4406f45e1e",
+      "custom/testing/capture.py": "be26d09fd23618c1e230891c95ac717455531bc363a00175606bcc78e134ee07",
+      "custom/testing/randomized_suite.py": "3740d37bf61c88984ee28377f8bb9938d5b4212759aa988a267e4187d93d584e",
+      "custom/planner/planner.py": "322cd75a717d3f91e8ccc797a3c43b7eec54ebdf0c3e923984fc26ba5b710ce7",
+      "custom/planner/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/planner/local_model.py": "738dc494168b86d94a769ae14a2766220a30d5c481399853acc943889cb6d64a",
+      "custom/mission_1/mission_1.py": "573361a9b8704a6c7836ff570e825a1b7ca4248d1f6ddcb54b150be9605a8d0f",
+      "custom/mission_1/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_3/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_3/mission_3.py": "bd3fb3282a039b7c5a801873fb39e707d0cec5acd897413e5a98fc40f00892d4",
+      "custom/mission_4/mission_4.py": "1cec5844ba50239a19c18cf023e8436f62194eb0223133f9bc90fd2a9a96a301",
+      "custom/mission_4/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_2/test_mission_2.py": "150044b3606e2330d742e774f20f1057ae0ed548be635fcc956d53e3c4028c5b",
+      "custom/mission_2/evaluate.py": "876d273c3371587ee1f7f60f3943b06ef201f8d4cbd098b911c6b7b921508297",
+      "custom/mission_2/replay_frame.py": "83e7c45ec52f2547cc309fb6e3717e3555eafdeff00be498510eeee83b69aece",
+      "custom/mission_2/perception.py": "0559ac44375688a67f57cf25f778e7ec99d4563167223b10041bebc05b73049b",
+      "custom/mission_2/mission_2.py": "dc28485ec98995591f89455556077ff992d9fe079feaa83005b25ecfef69a93a",
+      "custom/mission_2/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_5/evaluate.py": "56808e2263c639fb72569130c84d16105095743c4f1afdd278117ddfb922673b",
+      "custom/mission_5/policy.py": "49ee223a7eecc001226842f8d91597a709f1f1f005dd1f9976fceb63b7416e0e",
+      "custom/mission_5/perception.py": "16d2e6668d29dbff3a56d09a9d831f078c8017fabe1c6a9727892a70fba928ca",
+      "custom/mission_5/train_keyposes.py": "dc91fc9cc220753c69fbf59729d381e6f0f372b24f6860fceff639956621bcc6",
+      "custom/mission_5/collect.py": "724713c70c9d453dc97cb8fe1febded5497ace943657abf7b6a5443395c38ef5",
+      "custom/mission_5/ros_io.py": "a30aba84ec521699c9ce76b5e94e114e270465e94951408b629a97ae88f41408",
+      "custom/mission_5/mission_5.py": "9fda76d548d2819c646f19ae3c0e98d4e48a7ab21e5d4ed670b8d6ad72ed4933",
+      "custom/mission_5/policy_adapter.py": "0843344db550660c8b35322a17c9ee78242a1c02588d813e80092174138c41b6",
+      "custom/mission_5/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_5/vision_teacher.py": "49d7a2d34264e3a7bde9c969fafb46b1b5594b2f7afa5ccd2693acf97deb2862",
+      "custom/mission_5/keypose_policy.py": "0a261bb66716a3480e674cd4da47bc2e62be57a5874a50ea8920c0b77b77bd9b",
+      "custom/mission_5/tests/test_teacher.py": "08bce20b8ea3c180fafae08569819130f0ac95aa282661fecbecd75c8802a611",
+      "custom/mission_5/tests/test_learning.py": "15ff3a59db429f5ec98eef42d7a196f72eedaef6a3a1cbcb390bee524cf74e90",
+      "custom/mission_5/tests/test_keyposes.py": "bd742428a98b50509ddc76e6868f5af8e467d1a5d0db7c46da094735e4198347",
+      "custom/mission_5/tests/test_ros_io.py": "de56f65f6bf96acf30fc47fc873deada230d65774fbe09caf67b33285fdc6f6b",
+      "custom/mission_5/bc/export.py": "fd4141d9bfe33ce99a882126da0f78aca59f71167f57ce35d59de66faaf1f01c",
+      "custom/mission_5/bc/merge.py": "7add681774a5ac88af7e0563a4d6eb5eb472680602b4a6dd0d5a269f512661b0",
+      "custom/mission_5/bc/policy.py": "0b6b20d78af5a8bc35edca442b4402e821feddfefe3868c748cb0b1fe66a88e8",
+      "custom/mission_5/bc/prepare.py": "fa688c782496492bcac4859463d15b842b37cf7fa3874e2f048a8aeaeeeec1f8",
+      "custom/mission_5/bc/__init__.py": "47c2e5f788aab12c14747b5e52437b037c3020a7df23fcd0a74b3846005e473a",
+      "custom/mission_5/bc/train.py": "868fc8b8e2b10766ec1a0ed5f855d5d268da8e00bec333aa4007429b1f6243fe",
+      "custom/mission_5/bc/model.py": "e2236de08c9ac5eef1d91d46ba52281300cb1ebd3d0391cb2cdc1267cdcd640f",
+      "custom/mission_5/bc/frames.py": "a9daf859f8512fe5687ff32f35f1157d092b70319d1196db912e137cc321b2fe",
+      "custom/mission_5/bc/data.py": "fcf7c821b6bcb620ccf4ba1455f2d9d942c99d5ed168d0191c2470639f1c2192"
+    },
+    "initial_pose": [
+      16.0,
+      11.0,
+      0.0
+    ],
+    "ros_domain_id": "74",
+    "runtime_options": {
+      "HAIC_MAP_CORRECTION": null,
+      "HAIC_VLM_THREADS": null,
+      "HAIC_M2_CAPTURE_DIR": null
+    },
+    "returncode": 1,
+    "wall_seconds": 164.98412545298925,
+    "official_result": {
+      "run": {
+        "started_at": "2026-11-23T20:37:09+09:00",
+        "package": "ys-m2-fixes-20261123",
+        "mode": "auto",
+        "config": "/tmp/rai-headless.13IMnQ.yaml",
+        "scenario": "/tmp/ys-m2-candidate-cone-geometry-1123/after-m1-green/evaluation_scenario.yaml",
+        "referee": {
+          "goal_radius_m": 0.5,
+          "cone_box_m": 0.5,
+          "cone_box_offset_m": 0.75,
+          "m4_room": "classroom",
+          "m1_goal": [
+            14.98,
+            7.99,
+            90.0
+          ],
+          "m2_color": "green"
+        },
+        "plans": [],
+        "ended_at": "2026-11-23T20:39:47+09:00"
+      },
+      "missions": [
+        {
+          "mission": 1,
+          "label": "Point-goal navigation",
+          "verdict": "PASS",
+          "success": true,
+          "seconds": 14.31,
+          "started_at": "2026-11-23T20:37:09+09:00",
+          "ended_at": "2026-11-23T20:37:24+09:00",
+          "checks": [
+            {
+              "name": "check",
+              "ok": true,
+              "summary": "0.12 m < 0.50 m from goal world (14.98, 7.99)"
+            }
+          ],
+          "reported": {
+            "status": "done",
+            "detail": ""
+          },
+          "referee": {
+            "mission": 1,
+            "pelvis": [
+              14.876,
+              8.049,
+              0.779
+            ],
+            "success": true,
+            "summary": "0.12 m < 0.50 m from goal world (14.98, 7.99)",
+            "goal": [
+              14.98,
+              7.99
+            ],
+            "goal_world": [
+              14.98,
+              7.99
+            ],
+            "distance_m": 0.119,
+            "threshold_m": 0.5
+          },
+          "data": {
+            "controller_reached": true,
+            "estimated_pose": [
+              15.048134152153066,
+              8.096242470272145,
+              -1.7437930905790777
+            ]
+          }
+        },
+        {
+          "mission": 2,
+          "label": "Cone colour navigation",
+          "verdict": "FAIL",
+          "success": false,
+          "seconds": 140.53,
+          "started_at": "2026-11-23T20:37:25+09:00",
+          "ended_at": "2026-11-23T20:39:45+09:00",
+          "checks": [
+            {
+              "name": "check",
+              "ok": false,
+              "summary": "green cone box: |dx| 0.61 > 0.25, |dy| 10.31 > 0.25 m"
+            }
+          ],
+          "reported": {
+            "status": "done",
+            "detail": ""
+          },
+          "referee": {
+            "mission": 2,
+            "pelvis": [
+              17.605,
+              13.741,
+              0.779
+            ],
+            "success": false,
+            "summary": "green cone box: |dx| 0.61 > 0.25, |dy| 10.31 > 0.25 m",
+            "color": "green",
+            "box_center": [
+              17.0,
+              24.05
+            ],
+            "box_m": 0.5,
+            "dx_m": 0.605,
+            "dy_m": -10.309
+          },
+          "data": {
+            "error": "Could not reach cone observation point",
+            "reached": false
+          }
+        }
+      ],
+      "total": {
+        "missions": 2,
+        "passed": 1,
+        "failed": 1,
+        "not_judged": 0,
+        "mission_seconds": 154.84,
+        "run_seconds": 157.85,
+        "by_mission": [
+          "1 PASS 14.3s",
+          "2 FAIL 140.5s"
+        ],
+        "complete": true,
+        "updated_at": "2026-11-23T20:39:47+09:00"
+      }
+    }
+  },
+  {
+    "case": {
+      "id": "after-m1-orange",
+      "split": "held-out",
+      "missions": [
+        1,
+        2
+      ],
+      "cone_order": [
+        "orange",
+        "blue",
+        "green"
+      ],
+      "m2_color": "orange",
+      "m1_goal": [
+        15.42,
+        9.65,
+        90.0
+      ]
+    },
+    "command": [
+      "bash",
+      "custom/tools/run_sim.sh",
+      "--headless",
+      "--missions",
+      "1",
+      "2",
+      "--no-wait",
+      "--scenario",
+      "/tmp/ys-m2-candidate-cone-geometry-1123/after-m1-orange/evaluation_scenario.yaml"
+    ],
+    "source_root": "/home/aril/rai-worktrees/ys-m2-fixes-20261123/src",
+    "commit": "15fc73a73316bbf3df853911055cdcfacb367dbc",
+    "code_sha256": {
+      "custom/bringup.launch.py": "439468d3cdfe278e08908df2c1729dbdcdd97eaadc0f9be459f8c89697dbc4d2",
+      "custom/public_map.py": "cbb6a31993c75d378e7b805d52311583e032122f34f361e8de234cb90b604695",
+      "custom/navigation.py": "a218e9553c209ded1f1e27abb3305066e603e9b3eb7f1405ffac4b69fcf197a2",
+      "custom/localizer_node.py": "16fc54aea3fc1fb1e0d22916df1c9be96f4fa8d5df1a4872e22ac8c26c11d9f9",
+      "custom/localization.py": "6a6341f214ea068a3815a0505c38c4db4a3dffd9dee8a5bd0033dfacccb386c0",
+      "custom/vlm.py": "6c59b7e8bb779e3b9ccace53ee0b89f2b17170557c02d63e9f2df4f3a4a233ef",
+      "custom/vision.py": "66294acd184d388b308ee618084470bd86a5b521ef896a06000a88d1b81b855d",
+      "custom/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/tools/download_models.py": "f065d3de598843c8ab06b227f558eb88b23bf1623b05da07ede1d3dfba807c5f",
+      "custom/tests/test_vision.py": "5ae70c4a11a40bcf9ba1eaf4d4b14d2e27fa5f32aac6088702b195c58fb12c3b",
+      "custom/tests/test_planner.py": "8b9247344ac4b50ef7941a34e7497d398fe35db2c37181aa9dd5dc55de069d3a",
+      "custom/tests/test_room_assignment.py": "650a4875d6b87c9c877ae9464687c74a81cf92ea83283f47de0c63e1fab91225",
+      "custom/mission_6/mission_6.py": "b59093d8c530aae16980db163eec10f2b14407699ab4a57e60e1564613116336",
+      "custom/mission_6/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/testing/web_smoke.py": "68f10f96965aecc45db5b994c31fa69918b0c3c141d95811f0027f4406f45e1e",
+      "custom/testing/capture.py": "be26d09fd23618c1e230891c95ac717455531bc363a00175606bcc78e134ee07",
+      "custom/testing/randomized_suite.py": "3740d37bf61c88984ee28377f8bb9938d5b4212759aa988a267e4187d93d584e",
+      "custom/planner/planner.py": "322cd75a717d3f91e8ccc797a3c43b7eec54ebdf0c3e923984fc26ba5b710ce7",
+      "custom/planner/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/planner/local_model.py": "738dc494168b86d94a769ae14a2766220a30d5c481399853acc943889cb6d64a",
+      "custom/mission_1/mission_1.py": "573361a9b8704a6c7836ff570e825a1b7ca4248d1f6ddcb54b150be9605a8d0f",
+      "custom/mission_1/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_3/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_3/mission_3.py": "bd3fb3282a039b7c5a801873fb39e707d0cec5acd897413e5a98fc40f00892d4",
+      "custom/mission_4/mission_4.py": "1cec5844ba50239a19c18cf023e8436f62194eb0223133f9bc90fd2a9a96a301",
+      "custom/mission_4/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_2/test_mission_2.py": "150044b3606e2330d742e774f20f1057ae0ed548be635fcc956d53e3c4028c5b",
+      "custom/mission_2/evaluate.py": "876d273c3371587ee1f7f60f3943b06ef201f8d4cbd098b911c6b7b921508297",
+      "custom/mission_2/replay_frame.py": "83e7c45ec52f2547cc309fb6e3717e3555eafdeff00be498510eeee83b69aece",
+      "custom/mission_2/perception.py": "0559ac44375688a67f57cf25f778e7ec99d4563167223b10041bebc05b73049b",
+      "custom/mission_2/mission_2.py": "dc28485ec98995591f89455556077ff992d9fe079feaa83005b25ecfef69a93a",
+      "custom/mission_2/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_5/evaluate.py": "56808e2263c639fb72569130c84d16105095743c4f1afdd278117ddfb922673b",
+      "custom/mission_5/policy.py": "49ee223a7eecc001226842f8d91597a709f1f1f005dd1f9976fceb63b7416e0e",
+      "custom/mission_5/perception.py": "16d2e6668d29dbff3a56d09a9d831f078c8017fabe1c6a9727892a70fba928ca",
+      "custom/mission_5/train_keyposes.py": "dc91fc9cc220753c69fbf59729d381e6f0f372b24f6860fceff639956621bcc6",
+      "custom/mission_5/collect.py": "724713c70c9d453dc97cb8fe1febded5497ace943657abf7b6a5443395c38ef5",
+      "custom/mission_5/ros_io.py": "a30aba84ec521699c9ce76b5e94e114e270465e94951408b629a97ae88f41408",
+      "custom/mission_5/mission_5.py": "9fda76d548d2819c646f19ae3c0e98d4e48a7ab21e5d4ed670b8d6ad72ed4933",
+      "custom/mission_5/policy_adapter.py": "0843344db550660c8b35322a17c9ee78242a1c02588d813e80092174138c41b6",
+      "custom/mission_5/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_5/vision_teacher.py": "49d7a2d34264e3a7bde9c969fafb46b1b5594b2f7afa5ccd2693acf97deb2862",
+      "custom/mission_5/keypose_policy.py": "0a261bb66716a3480e674cd4da47bc2e62be57a5874a50ea8920c0b77b77bd9b",
+      "custom/mission_5/tests/test_teacher.py": "08bce20b8ea3c180fafae08569819130f0ac95aa282661fecbecd75c8802a611",
+      "custom/mission_5/tests/test_learning.py": "15ff3a59db429f5ec98eef42d7a196f72eedaef6a3a1cbcb390bee524cf74e90",
+      "custom/mission_5/tests/test_keyposes.py": "bd742428a98b50509ddc76e6868f5af8e467d1a5d0db7c46da094735e4198347",
+      "custom/mission_5/tests/test_ros_io.py": "de56f65f6bf96acf30fc47fc873deada230d65774fbe09caf67b33285fdc6f6b",
+      "custom/mission_5/bc/export.py": "fd4141d9bfe33ce99a882126da0f78aca59f71167f57ce35d59de66faaf1f01c",
+      "custom/mission_5/bc/merge.py": "7add681774a5ac88af7e0563a4d6eb5eb472680602b4a6dd0d5a269f512661b0",
+      "custom/mission_5/bc/policy.py": "0b6b20d78af5a8bc35edca442b4402e821feddfefe3868c748cb0b1fe66a88e8",
+      "custom/mission_5/bc/prepare.py": "fa688c782496492bcac4859463d15b842b37cf7fa3874e2f048a8aeaeeeec1f8",
+      "custom/mission_5/bc/__init__.py": "47c2e5f788aab12c14747b5e52437b037c3020a7df23fcd0a74b3846005e473a",
+      "custom/mission_5/bc/train.py": "868fc8b8e2b10766ec1a0ed5f855d5d268da8e00bec333aa4007429b1f6243fe",
+      "custom/mission_5/bc/model.py": "e2236de08c9ac5eef1d91d46ba52281300cb1ebd3d0391cb2cdc1267cdcd640f",
+      "custom/mission_5/bc/frames.py": "a9daf859f8512fe5687ff32f35f1157d092b70319d1196db912e137cc321b2fe",
+      "custom/mission_5/bc/data.py": "fcf7c821b6bcb620ccf4ba1455f2d9d942c99d5ed168d0191c2470639f1c2192"
+    },
+    "initial_pose": [
+      16.0,
+      11.0,
+      0.0
+    ],
+    "ros_domain_id": "74",
+    "runtime_options": {
+      "HAIC_MAP_CORRECTION": null,
+      "HAIC_VLM_THREADS": null,
+      "HAIC_M2_CAPTURE_DIR": null
+    },
+    "returncode": 0,
+    "wall_seconds": 79.92534843701287,
+    "official_result": {
+      "run": {
+        "started_at": "2026-11-23T20:39:54+09:00",
+        "package": "ys-m2-fixes-20261123",
+        "mode": "auto",
+        "config": "/tmp/rai-headless.zWWU7S.yaml",
+        "scenario": "/tmp/ys-m2-candidate-cone-geometry-1123/after-m1-orange/evaluation_scenario.yaml",
+        "referee": {
+          "goal_radius_m": 0.5,
+          "cone_box_m": 0.5,
+          "cone_box_offset_m": 0.75,
+          "m4_room": "classroom",
+          "m1_goal": [
+            15.42,
+            9.65,
+            90.0
+          ],
+          "m2_color": "orange"
+        },
+        "plans": [],
+        "ended_at": "2026-11-23T20:41:07+09:00"
+      },
+      "missions": [
+        {
+          "mission": 1,
+          "label": "Point-goal navigation",
+          "verdict": "PASS",
+          "success": true,
+          "seconds": 11.16,
+          "started_at": "2026-11-23T20:39:54+09:00",
+          "ended_at": "2026-11-23T20:40:05+09:00",
+          "checks": [
+            {
+              "name": "check",
+              "ok": true,
+              "summary": "0.20 m < 0.50 m from goal world (15.42, 9.65)"
+            }
+          ],
+          "reported": {
+            "status": "done",
+            "detail": ""
+          },
+          "referee": {
+            "mission": 1,
+            "pelvis": [
+              15.228,
+              9.699,
+              0.78
+            ],
+            "success": true,
+            "summary": "0.20 m < 0.50 m from goal world (15.42, 9.65)",
+            "goal": [
+              15.42,
+              9.65
+            ],
+            "goal_world": [
+              15.42,
+              9.65
+            ],
+            "distance_m": 0.198,
+            "threshold_m": 0.5
+          },
+          "data": {
+            "controller_reached": true,
+            "estimated_pose": [
+              15.42326552266841,
+              9.762247839878746,
+              -1.9433777375430286
+            ]
+          }
+        },
+        {
+          "mission": 2,
+          "label": "Cone colour navigation",
+          "verdict": "PASS",
+          "success": true,
+          "seconds": 58.86,
+          "started_at": "2026-11-23T20:40:06+09:00",
+          "ended_at": "2026-11-23T20:41:05+09:00",
+          "checks": [
+            {
+              "name": "check",
+              "ok": true,
+              "summary": "orange cone box: |dx| 0.14 < 0.25, |dy| 0.06 < 0.25 m"
+            }
+          ],
+          "reported": {
+            "status": "done",
+            "detail": ""
+          },
+          "referee": {
+            "mission": 2,
+            "pelvis": [
+              14.135,
+              24.109,
+              0.78
+            ],
+            "success": true,
+            "summary": "orange cone box: |dx| 0.14 < 0.25, |dy| 0.06 < 0.25 m",
+            "color": "orange",
+            "box_center": [
+              14.0,
+              24.05
+            ],
+            "box_m": 0.5,
+            "dx_m": 0.135,
+            "dy_m": 0.059
+          },
+          "data": {
+            "color": "orange",
+            "reached": true,
+            "cone_xy": [
+              14.19031651988741,
+              24.674898216627923
+            ],
+            "measurements": [
+              {
+                "surface_xy": [
+                  14.19031651988741,
+                  24.674898216627923
+                ],
+                "target_xy": [
+                  14.19031651988741,
+                  24.00489821662792
+                ],
+                "error_m": 2.168086559165534
+              }
+            ],
+            "surface_correction_m": 0.08,
+            "final_leg_m": 2.168086559165534,
+            "final_pose_error_m": 0.031105963834466586,
+            "final_verification": "continuous_sensor_pose_against_fresh_cone_target"
+          }
+        }
+      ],
+      "total": {
+        "missions": 2,
+        "passed": 2,
+        "failed": 0,
+        "not_judged": 0,
+        "mission_seconds": 70.02,
+        "run_seconds": 73.07,
+        "by_mission": [
+          "1 PASS 11.2s",
+          "2 PASS 58.9s"
+        ],
+        "complete": true,
+        "updated_at": "2026-11-23T20:41:07+09:00"
+      }
+    }
+  },
+  {
+    "case": {
+      "id": "order-0-blue",
+      "split": "development",
+      "missions": [
+        2
+      ],
+      "cone_order": [
+        "blue",
+        "green",
+        "orange"
+      ],
+      "m2_color": "blue"
+    },
+    "command": [
+      "bash",
+      "custom/tools/run_sim.sh",
+      "--headless",
+      "--missions",
+      "2",
+      "--no-wait",
+      "--scenario",
+      "/tmp/ys-m2-candidate-cone-geometry-1123/order-0-blue/evaluation_scenario.yaml"
+    ],
+    "source_root": "/home/aril/rai-worktrees/ys-m2-fixes-20261123/src",
+    "commit": "15fc73a73316bbf3df853911055cdcfacb367dbc",
+    "code_sha256": {
+      "custom/bringup.launch.py": "439468d3cdfe278e08908df2c1729dbdcdd97eaadc0f9be459f8c89697dbc4d2",
+      "custom/public_map.py": "cbb6a31993c75d378e7b805d52311583e032122f34f361e8de234cb90b604695",
+      "custom/navigation.py": "a218e9553c209ded1f1e27abb3305066e603e9b3eb7f1405ffac4b69fcf197a2",
+      "custom/localizer_node.py": "16fc54aea3fc1fb1e0d22916df1c9be96f4fa8d5df1a4872e22ac8c26c11d9f9",
+      "custom/localization.py": "6a6341f214ea068a3815a0505c38c4db4a3dffd9dee8a5bd0033dfacccb386c0",
+      "custom/vlm.py": "6c59b7e8bb779e3b9ccace53ee0b89f2b17170557c02d63e9f2df4f3a4a233ef",
+      "custom/vision.py": "66294acd184d388b308ee618084470bd86a5b521ef896a06000a88d1b81b855d",
+      "custom/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/tools/download_models.py": "f065d3de598843c8ab06b227f558eb88b23bf1623b05da07ede1d3dfba807c5f",
+      "custom/tests/test_vision.py": "5ae70c4a11a40bcf9ba1eaf4d4b14d2e27fa5f32aac6088702b195c58fb12c3b",
+      "custom/tests/test_planner.py": "8b9247344ac4b50ef7941a34e7497d398fe35db2c37181aa9dd5dc55de069d3a",
+      "custom/tests/test_room_assignment.py": "650a4875d6b87c9c877ae9464687c74a81cf92ea83283f47de0c63e1fab91225",
+      "custom/mission_6/mission_6.py": "b59093d8c530aae16980db163eec10f2b14407699ab4a57e60e1564613116336",
+      "custom/mission_6/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/testing/web_smoke.py": "68f10f96965aecc45db5b994c31fa69918b0c3c141d95811f0027f4406f45e1e",
+      "custom/testing/capture.py": "be26d09fd23618c1e230891c95ac717455531bc363a00175606bcc78e134ee07",
+      "custom/testing/randomized_suite.py": "3740d37bf61c88984ee28377f8bb9938d5b4212759aa988a267e4187d93d584e",
+      "custom/planner/planner.py": "322cd75a717d3f91e8ccc797a3c43b7eec54ebdf0c3e923984fc26ba5b710ce7",
+      "custom/planner/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/planner/local_model.py": "738dc494168b86d94a769ae14a2766220a30d5c481399853acc943889cb6d64a",
+      "custom/mission_1/mission_1.py": "573361a9b8704a6c7836ff570e825a1b7ca4248d1f6ddcb54b150be9605a8d0f",
+      "custom/mission_1/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_3/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_3/mission_3.py": "bd3fb3282a039b7c5a801873fb39e707d0cec5acd897413e5a98fc40f00892d4",
+      "custom/mission_4/mission_4.py": "1cec5844ba50239a19c18cf023e8436f62194eb0223133f9bc90fd2a9a96a301",
+      "custom/mission_4/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_2/test_mission_2.py": "150044b3606e2330d742e774f20f1057ae0ed548be635fcc956d53e3c4028c5b",
+      "custom/mission_2/evaluate.py": "876d273c3371587ee1f7f60f3943b06ef201f8d4cbd098b911c6b7b921508297",
+      "custom/mission_2/replay_frame.py": "83e7c45ec52f2547cc309fb6e3717e3555eafdeff00be498510eeee83b69aece",
+      "custom/mission_2/perception.py": "0559ac44375688a67f57cf25f778e7ec99d4563167223b10041bebc05b73049b",
+      "custom/mission_2/mission_2.py": "dc28485ec98995591f89455556077ff992d9fe079feaa83005b25ecfef69a93a",
+      "custom/mission_2/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_5/evaluate.py": "56808e2263c639fb72569130c84d16105095743c4f1afdd278117ddfb922673b",
+      "custom/mission_5/policy.py": "49ee223a7eecc001226842f8d91597a709f1f1f005dd1f9976fceb63b7416e0e",
+      "custom/mission_5/perception.py": "16d2e6668d29dbff3a56d09a9d831f078c8017fabe1c6a9727892a70fba928ca",
+      "custom/mission_5/train_keyposes.py": "dc91fc9cc220753c69fbf59729d381e6f0f372b24f6860fceff639956621bcc6",
+      "custom/mission_5/collect.py": "724713c70c9d453dc97cb8fe1febded5497ace943657abf7b6a5443395c38ef5",
+      "custom/mission_5/ros_io.py": "a30aba84ec521699c9ce76b5e94e114e270465e94951408b629a97ae88f41408",
+      "custom/mission_5/mission_5.py": "9fda76d548d2819c646f19ae3c0e98d4e48a7ab21e5d4ed670b8d6ad72ed4933",
+      "custom/mission_5/policy_adapter.py": "0843344db550660c8b35322a17c9ee78242a1c02588d813e80092174138c41b6",
+      "custom/mission_5/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_5/vision_teacher.py": "49d7a2d34264e3a7bde9c969fafb46b1b5594b2f7afa5ccd2693acf97deb2862",
+      "custom/mission_5/keypose_policy.py": "0a261bb66716a3480e674cd4da47bc2e62be57a5874a50ea8920c0b77b77bd9b",
+      "custom/mission_5/tests/test_teacher.py": "08bce20b8ea3c180fafae08569819130f0ac95aa282661fecbecd75c8802a611",
+      "custom/mission_5/tests/test_learning.py": "15ff3a59db429f5ec98eef42d7a196f72eedaef6a3a1cbcb390bee524cf74e90",
+      "custom/mission_5/tests/test_keyposes.py": "bd742428a98b50509ddc76e6868f5af8e467d1a5d0db7c46da094735e4198347",
+      "custom/mission_5/tests/test_ros_io.py": "de56f65f6bf96acf30fc47fc873deada230d65774fbe09caf67b33285fdc6f6b",
+      "custom/mission_5/bc/export.py": "fd4141d9bfe33ce99a882126da0f78aca59f71167f57ce35d59de66faaf1f01c",
+      "custom/mission_5/bc/merge.py": "7add681774a5ac88af7e0563a4d6eb5eb472680602b4a6dd0d5a269f512661b0",
+      "custom/mission_5/bc/policy.py": "0b6b20d78af5a8bc35edca442b4402e821feddfefe3868c748cb0b1fe66a88e8",
+      "custom/mission_5/bc/prepare.py": "fa688c782496492bcac4859463d15b842b37cf7fa3874e2f048a8aeaeeeec1f8",
+      "custom/mission_5/bc/__init__.py": "47c2e5f788aab12c14747b5e52437b037c3020a7df23fcd0a74b3846005e473a",
+      "custom/mission_5/bc/train.py": "868fc8b8e2b10766ec1a0ed5f855d5d268da8e00bec333aa4007429b1f6243fe",
+      "custom/mission_5/bc/model.py": "e2236de08c9ac5eef1d91d46ba52281300cb1ebd3d0391cb2cdc1267cdcd640f",
+      "custom/mission_5/bc/frames.py": "a9daf859f8512fe5687ff32f35f1157d092b70319d1196db912e137cc321b2fe",
+      "custom/mission_5/bc/data.py": "fcf7c821b6bcb620ccf4ba1455f2d9d942c99d5ed168d0191c2470639f1c2192"
+    },
+    "initial_pose": [
+      16.0,
+      11.0,
+      0.0
+    ],
+    "ros_domain_id": "74",
+    "runtime_options": {
+      "HAIC_MAP_CORRECTION": null,
+      "HAIC_VLM_THREADS": null,
+      "HAIC_M2_CAPTURE_DIR": null
+    },
+    "returncode": 0,
+    "wall_seconds": 63.69200157397427,
+    "official_result": {
+      "run": {
+        "started_at": "2026-11-23T20:26:41+09:00",
+        "package": "ys-m2-fixes-20261123",
+        "mode": "auto",
+        "config": "/tmp/rai-headless.nmSuez.yaml",
+        "scenario": "/tmp/ys-m2-candidate-cone-geometry-1123/order-0-blue/evaluation_scenario.yaml",
+        "referee": {
+          "goal_radius_m": 0.5,
+          "cone_box_m": 0.5,
+          "cone_box_offset_m": 0.75,
+          "m4_room": "classroom",
+          "m1_goal": [
+            15.5,
+            18.0,
+            90.0
+          ],
+          "m2_color": "blue"
+        },
+        "plans": [],
+        "ended_at": "2026-11-23T20:27:37+09:00"
+      },
+      "missions": [
+        {
+          "mission": 2,
+          "label": "Cone colour navigation",
+          "verdict": "PASS",
+          "success": true,
+          "seconds": 54.51,
+          "started_at": "2026-11-23T20:26:41+09:00",
+          "ended_at": "2026-11-23T20:27:35+09:00",
+          "checks": [
+            {
+              "name": "check",
+              "ok": true,
+              "summary": "blue cone box: |dx| 0.05 < 0.25, |dy| 0.07 < 0.25 m"
+            }
+          ],
+          "reported": {
+            "status": "done",
+            "detail": ""
+          },
+          "referee": {
+            "mission": 2,
+            "pelvis": [
+              14.045,
+              24.118,
+              0.78
+            ],
+            "success": true,
+            "summary": "blue cone box: |dx| 0.05 < 0.25, |dy| 0.07 < 0.25 m",
+            "color": "blue",
+            "box_center": [
+              14.0,
+              24.05
+            ],
+            "box_m": 0.5,
+            "dx_m": 0.045,
+            "dy_m": 0.068
+          },
+          "data": {
+            "color": "blue",
+            "reached": true,
+            "cone_xy": [
+              14.188674994606538,
+              24.70212277115888
+            ],
+            "measurements": [
+              {
+                "surface_xy": [
+                  14.188674994606538,
+                  24.70212277115888
+                ],
+                "target_xy": [
+                  14.188674994606538,
+                  24.03212277115888
+                ],
+                "error_m": 2.2050068343636946
+              }
+            ],
+            "surface_correction_m": 0.08,
+            "final_leg_m": 2.2050068343636946,
+            "final_pose_error_m": 0.013301428854630797,
+            "final_verification": "continuous_sensor_pose_against_fresh_cone_target"
+          }
+        }
+      ],
+      "total": {
+        "missions": 1,
+        "passed": 1,
+        "failed": 0,
+        "not_judged": 0,
+        "mission_seconds": 54.51,
+        "run_seconds": 56.44,
+        "by_mission": [
+          "2 PASS 54.5s"
+        ],
+        "complete": true,
+        "updated_at": "2026-11-23T20:27:37+09:00"
+      }
+    }
+  },
+  {
+    "case": {
+      "id": "order-0-green",
+      "split": "development",
+      "missions": [
+        2
+      ],
+      "cone_order": [
+        "blue",
+        "green",
+        "orange"
+      ],
+      "m2_color": "green"
+    },
+    "command": [
+      "bash",
+      "custom/tools/run_sim.sh",
+      "--headless",
+      "--missions",
+      "2",
+      "--no-wait",
+      "--scenario",
+      "/tmp/ys-m2-candidate-cone-geometry-1123/order-0-green/evaluation_scenario.yaml"
+    ],
+    "source_root": "/home/aril/rai-worktrees/ys-m2-fixes-20261123/src",
+    "commit": "15fc73a73316bbf3df853911055cdcfacb367dbc",
+    "code_sha256": {
+      "custom/bringup.launch.py": "439468d3cdfe278e08908df2c1729dbdcdd97eaadc0f9be459f8c89697dbc4d2",
+      "custom/public_map.py": "cbb6a31993c75d378e7b805d52311583e032122f34f361e8de234cb90b604695",
+      "custom/navigation.py": "a218e9553c209ded1f1e27abb3305066e603e9b3eb7f1405ffac4b69fcf197a2",
+      "custom/localizer_node.py": "16fc54aea3fc1fb1e0d22916df1c9be96f4fa8d5df1a4872e22ac8c26c11d9f9",
+      "custom/localization.py": "6a6341f214ea068a3815a0505c38c4db4a3dffd9dee8a5bd0033dfacccb386c0",
+      "custom/vlm.py": "6c59b7e8bb779e3b9ccace53ee0b89f2b17170557c02d63e9f2df4f3a4a233ef",
+      "custom/vision.py": "66294acd184d388b308ee618084470bd86a5b521ef896a06000a88d1b81b855d",
+      "custom/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/tools/download_models.py": "f065d3de598843c8ab06b227f558eb88b23bf1623b05da07ede1d3dfba807c5f",
+      "custom/tests/test_vision.py": "5ae70c4a11a40bcf9ba1eaf4d4b14d2e27fa5f32aac6088702b195c58fb12c3b",
+      "custom/tests/test_planner.py": "8b9247344ac4b50ef7941a34e7497d398fe35db2c37181aa9dd5dc55de069d3a",
+      "custom/tests/test_room_assignment.py": "650a4875d6b87c9c877ae9464687c74a81cf92ea83283f47de0c63e1fab91225",
+      "custom/mission_6/mission_6.py": "b59093d8c530aae16980db163eec10f2b14407699ab4a57e60e1564613116336",
+      "custom/mission_6/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/testing/web_smoke.py": "68f10f96965aecc45db5b994c31fa69918b0c3c141d95811f0027f4406f45e1e",
+      "custom/testing/capture.py": "be26d09fd23618c1e230891c95ac717455531bc363a00175606bcc78e134ee07",
+      "custom/testing/randomized_suite.py": "3740d37bf61c88984ee28377f8bb9938d5b4212759aa988a267e4187d93d584e",
+      "custom/planner/planner.py": "322cd75a717d3f91e8ccc797a3c43b7eec54ebdf0c3e923984fc26ba5b710ce7",
+      "custom/planner/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/planner/local_model.py": "738dc494168b86d94a769ae14a2766220a30d5c481399853acc943889cb6d64a",
+      "custom/mission_1/mission_1.py": "573361a9b8704a6c7836ff570e825a1b7ca4248d1f6ddcb54b150be9605a8d0f",
+      "custom/mission_1/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_3/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_3/mission_3.py": "bd3fb3282a039b7c5a801873fb39e707d0cec5acd897413e5a98fc40f00892d4",
+      "custom/mission_4/mission_4.py": "1cec5844ba50239a19c18cf023e8436f62194eb0223133f9bc90fd2a9a96a301",
+      "custom/mission_4/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_2/test_mission_2.py": "150044b3606e2330d742e774f20f1057ae0ed548be635fcc956d53e3c4028c5b",
+      "custom/mission_2/evaluate.py": "876d273c3371587ee1f7f60f3943b06ef201f8d4cbd098b911c6b7b921508297",
+      "custom/mission_2/replay_frame.py": "83e7c45ec52f2547cc309fb6e3717e3555eafdeff00be498510eeee83b69aece",
+      "custom/mission_2/perception.py": "0559ac44375688a67f57cf25f778e7ec99d4563167223b10041bebc05b73049b",
+      "custom/mission_2/mission_2.py": "dc28485ec98995591f89455556077ff992d9fe079feaa83005b25ecfef69a93a",
+      "custom/mission_2/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_5/evaluate.py": "56808e2263c639fb72569130c84d16105095743c4f1afdd278117ddfb922673b",
+      "custom/mission_5/policy.py": "49ee223a7eecc001226842f8d91597a709f1f1f005dd1f9976fceb63b7416e0e",
+      "custom/mission_5/perception.py": "16d2e6668d29dbff3a56d09a9d831f078c8017fabe1c6a9727892a70fba928ca",
+      "custom/mission_5/train_keyposes.py": "dc91fc9cc220753c69fbf59729d381e6f0f372b24f6860fceff639956621bcc6",
+      "custom/mission_5/collect.py": "724713c70c9d453dc97cb8fe1febded5497ace943657abf7b6a5443395c38ef5",
+      "custom/mission_5/ros_io.py": "a30aba84ec521699c9ce76b5e94e114e270465e94951408b629a97ae88f41408",
+      "custom/mission_5/mission_5.py": "9fda76d548d2819c646f19ae3c0e98d4e48a7ab21e5d4ed670b8d6ad72ed4933",
+      "custom/mission_5/policy_adapter.py": "0843344db550660c8b35322a17c9ee78242a1c02588d813e80092174138c41b6",
+      "custom/mission_5/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_5/vision_teacher.py": "49d7a2d34264e3a7bde9c969fafb46b1b5594b2f7afa5ccd2693acf97deb2862",
+      "custom/mission_5/keypose_policy.py": "0a261bb66716a3480e674cd4da47bc2e62be57a5874a50ea8920c0b77b77bd9b",
+      "custom/mission_5/tests/test_teacher.py": "08bce20b8ea3c180fafae08569819130f0ac95aa282661fecbecd75c8802a611",
+      "custom/mission_5/tests/test_learning.py": "15ff3a59db429f5ec98eef42d7a196f72eedaef6a3a1cbcb390bee524cf74e90",
+      "custom/mission_5/tests/test_keyposes.py": "bd742428a98b50509ddc76e6868f5af8e467d1a5d0db7c46da094735e4198347",
+      "custom/mission_5/tests/test_ros_io.py": "de56f65f6bf96acf30fc47fc873deada230d65774fbe09caf67b33285fdc6f6b",
+      "custom/mission_5/bc/export.py": "fd4141d9bfe33ce99a882126da0f78aca59f71167f57ce35d59de66faaf1f01c",
+      "custom/mission_5/bc/merge.py": "7add681774a5ac88af7e0563a4d6eb5eb472680602b4a6dd0d5a269f512661b0",
+      "custom/mission_5/bc/policy.py": "0b6b20d78af5a8bc35edca442b4402e821feddfefe3868c748cb0b1fe66a88e8",
+      "custom/mission_5/bc/prepare.py": "fa688c782496492bcac4859463d15b842b37cf7fa3874e2f048a8aeaeeeec1f8",
+      "custom/mission_5/bc/__init__.py": "47c2e5f788aab12c14747b5e52437b037c3020a7df23fcd0a74b3846005e473a",
+      "custom/mission_5/bc/train.py": "868fc8b8e2b10766ec1a0ed5f855d5d268da8e00bec333aa4007429b1f6243fe",
+      "custom/mission_5/bc/model.py": "e2236de08c9ac5eef1d91d46ba52281300cb1ebd3d0391cb2cdc1267cdcd640f",
+      "custom/mission_5/bc/frames.py": "a9daf859f8512fe5687ff32f35f1157d092b70319d1196db912e137cc321b2fe",
+      "custom/mission_5/bc/data.py": "fcf7c821b6bcb620ccf4ba1455f2d9d942c99d5ed168d0191c2470639f1c2192"
+    },
+    "initial_pose": [
+      16.0,
+      11.0,
+      0.0
+    ],
+    "ros_domain_id": "74",
+    "runtime_options": {
+      "HAIC_MAP_CORRECTION": null,
+      "HAIC_VLM_THREADS": null,
+      "HAIC_M2_CAPTURE_DIR": null
+    },
+    "returncode": 0,
+    "wall_seconds": 57.146126731007826,
+    "official_result": {
+      "run": {
+        "started_at": "2026-11-23T20:27:44+09:00",
+        "package": "ys-m2-fixes-20261123",
+        "mode": "auto",
+        "config": "/tmp/rai-headless.rVbTPv.yaml",
+        "scenario": "/tmp/ys-m2-candidate-cone-geometry-1123/order-0-green/evaluation_scenario.yaml",
+        "referee": {
+          "goal_radius_m": 0.5,
+          "cone_box_m": 0.5,
+          "cone_box_offset_m": 0.75,
+          "m4_room": "classroom",
+          "m1_goal": [
+            15.5,
+            18.0,
+            90.0
+          ],
+          "m2_color": "green"
+        },
+        "plans": [],
+        "ended_at": "2026-11-23T20:28:34+09:00"
+      },
+      "missions": [
+        {
+          "mission": 2,
+          "label": "Cone colour navigation",
+          "verdict": "PASS",
+          "success": true,
+          "seconds": 48.78,
+          "started_at": "2026-11-23T20:27:44+09:00",
+          "ended_at": "2026-11-23T20:28:32+09:00",
+          "checks": [
+            {
+              "name": "check",
+              "ok": true,
+              "summary": "green cone box: |dx| 0.02 < 0.25, |dy| 0.02 < 0.25 m"
+            }
+          ],
+          "reported": {
+            "status": "done",
+            "detail": ""
+          },
+          "referee": {
+            "mission": 2,
+            "pelvis": [
+              15.518,
+              24.073,
+              0.78
+            ],
+            "success": true,
+            "summary": "green cone box: |dx| 0.02 < 0.25, |dy| 0.02 < 0.25 m",
+            "color": "green",
+            "box_center": [
+              15.5,
+              24.05
+            ],
+            "box_m": 0.5,
+            "dx_m": 0.018,
+            "dy_m": 0.023
+          },
+          "data": {
+            "color": "green",
+            "reached": true,
+            "cone_xy": [
+              15.59863835238033,
+              24.689800168693427
+            ],
+            "measurements": [
+              {
+                "surface_xy": [
+                  15.59863835238033,
+                  24.689800168693427
+                ],
+                "target_xy": [
+                  15.59863835238033,
+                  24.019800168693425
+                ],
+                "error_m": 1.7460115035167343
+              }
+            ],
+            "surface_correction_m": 0.08,
+            "final_leg_m": 1.7460115035167343,
+            "final_pose_error_m": 0.016484031221749573,
+            "final_verification": "continuous_sensor_pose_against_fresh_cone_target"
+          }
+        }
+      ],
+      "total": {
+        "missions": 1,
+        "passed": 1,
+        "failed": 0,
+        "not_judged": 0,
+        "mission_seconds": 48.78,
+        "run_seconds": 50.58,
+        "by_mission": [
+          "2 PASS 48.8s"
+        ],
+        "complete": true,
+        "updated_at": "2026-11-23T20:28:34+09:00"
+      }
+    }
+  },
+  {
+    "case": {
+      "id": "order-0-orange",
+      "split": "development",
+      "missions": [
+        2
+      ],
+      "cone_order": [
+        "blue",
+        "green",
+        "orange"
+      ],
+      "m2_color": "orange"
+    },
+    "command": [
+      "bash",
+      "custom/tools/run_sim.sh",
+      "--headless",
+      "--missions",
+      "2",
+      "--no-wait",
+      "--scenario",
+      "/tmp/ys-m2-candidate-cone-geometry-1123/order-0-orange/evaluation_scenario.yaml"
+    ],
+    "source_root": "/home/aril/rai-worktrees/ys-m2-fixes-20261123/src",
+    "commit": "15fc73a73316bbf3df853911055cdcfacb367dbc",
+    "code_sha256": {
+      "custom/bringup.launch.py": "439468d3cdfe278e08908df2c1729dbdcdd97eaadc0f9be459f8c89697dbc4d2",
+      "custom/public_map.py": "cbb6a31993c75d378e7b805d52311583e032122f34f361e8de234cb90b604695",
+      "custom/navigation.py": "a218e9553c209ded1f1e27abb3305066e603e9b3eb7f1405ffac4b69fcf197a2",
+      "custom/localizer_node.py": "16fc54aea3fc1fb1e0d22916df1c9be96f4fa8d5df1a4872e22ac8c26c11d9f9",
+      "custom/localization.py": "6a6341f214ea068a3815a0505c38c4db4a3dffd9dee8a5bd0033dfacccb386c0",
+      "custom/vlm.py": "6c59b7e8bb779e3b9ccace53ee0b89f2b17170557c02d63e9f2df4f3a4a233ef",
+      "custom/vision.py": "66294acd184d388b308ee618084470bd86a5b521ef896a06000a88d1b81b855d",
+      "custom/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/tools/download_models.py": "f065d3de598843c8ab06b227f558eb88b23bf1623b05da07ede1d3dfba807c5f",
+      "custom/tests/test_vision.py": "5ae70c4a11a40bcf9ba1eaf4d4b14d2e27fa5f32aac6088702b195c58fb12c3b",
+      "custom/tests/test_planner.py": "8b9247344ac4b50ef7941a34e7497d398fe35db2c37181aa9dd5dc55de069d3a",
+      "custom/tests/test_room_assignment.py": "650a4875d6b87c9c877ae9464687c74a81cf92ea83283f47de0c63e1fab91225",
+      "custom/mission_6/mission_6.py": "b59093d8c530aae16980db163eec10f2b14407699ab4a57e60e1564613116336",
+      "custom/mission_6/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/testing/web_smoke.py": "68f10f96965aecc45db5b994c31fa69918b0c3c141d95811f0027f4406f45e1e",
+      "custom/testing/capture.py": "be26d09fd23618c1e230891c95ac717455531bc363a00175606bcc78e134ee07",
+      "custom/testing/randomized_suite.py": "3740d37bf61c88984ee28377f8bb9938d5b4212759aa988a267e4187d93d584e",
+      "custom/planner/planner.py": "322cd75a717d3f91e8ccc797a3c43b7eec54ebdf0c3e923984fc26ba5b710ce7",
+      "custom/planner/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/planner/local_model.py": "738dc494168b86d94a769ae14a2766220a30d5c481399853acc943889cb6d64a",
+      "custom/mission_1/mission_1.py": "573361a9b8704a6c7836ff570e825a1b7ca4248d1f6ddcb54b150be9605a8d0f",
+      "custom/mission_1/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_3/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_3/mission_3.py": "bd3fb3282a039b7c5a801873fb39e707d0cec5acd897413e5a98fc40f00892d4",
+      "custom/mission_4/mission_4.py": "1cec5844ba50239a19c18cf023e8436f62194eb0223133f9bc90fd2a9a96a301",
+      "custom/mission_4/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_2/test_mission_2.py": "150044b3606e2330d742e774f20f1057ae0ed548be635fcc956d53e3c4028c5b",
+      "custom/mission_2/evaluate.py": "876d273c3371587ee1f7f60f3943b06ef201f8d4cbd098b911c6b7b921508297",
+      "custom/mission_2/replay_frame.py": "83e7c45ec52f2547cc309fb6e3717e3555eafdeff00be498510eeee83b69aece",
+      "custom/mission_2/perception.py": "0559ac44375688a67f57cf25f778e7ec99d4563167223b10041bebc05b73049b",
+      "custom/mission_2/mission_2.py": "dc28485ec98995591f89455556077ff992d9fe079feaa83005b25ecfef69a93a",
+      "custom/mission_2/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_5/evaluate.py": "56808e2263c639fb72569130c84d16105095743c4f1afdd278117ddfb922673b",
+      "custom/mission_5/policy.py": "49ee223a7eecc001226842f8d91597a709f1f1f005dd1f9976fceb63b7416e0e",
+      "custom/mission_5/perception.py": "16d2e6668d29dbff3a56d09a9d831f078c8017fabe1c6a9727892a70fba928ca",
+      "custom/mission_5/train_keyposes.py": "dc91fc9cc220753c69fbf59729d381e6f0f372b24f6860fceff639956621bcc6",
+      "custom/mission_5/collect.py": "724713c70c9d453dc97cb8fe1febded5497ace943657abf7b6a5443395c38ef5",
+      "custom/mission_5/ros_io.py": "a30aba84ec521699c9ce76b5e94e114e270465e94951408b629a97ae88f41408",
+      "custom/mission_5/mission_5.py": "9fda76d548d2819c646f19ae3c0e98d4e48a7ab21e5d4ed670b8d6ad72ed4933",
+      "custom/mission_5/policy_adapter.py": "0843344db550660c8b35322a17c9ee78242a1c02588d813e80092174138c41b6",
+      "custom/mission_5/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_5/vision_teacher.py": "49d7a2d34264e3a7bde9c969fafb46b1b5594b2f7afa5ccd2693acf97deb2862",
+      "custom/mission_5/keypose_policy.py": "0a261bb66716a3480e674cd4da47bc2e62be57a5874a50ea8920c0b77b77bd9b",
+      "custom/mission_5/tests/test_teacher.py": "08bce20b8ea3c180fafae08569819130f0ac95aa282661fecbecd75c8802a611",
+      "custom/mission_5/tests/test_learning.py": "15ff3a59db429f5ec98eef42d7a196f72eedaef6a3a1cbcb390bee524cf74e90",
+      "custom/mission_5/tests/test_keyposes.py": "bd742428a98b50509ddc76e6868f5af8e467d1a5d0db7c46da094735e4198347",
+      "custom/mission_5/tests/test_ros_io.py": "de56f65f6bf96acf30fc47fc873deada230d65774fbe09caf67b33285fdc6f6b",
+      "custom/mission_5/bc/export.py": "fd4141d9bfe33ce99a882126da0f78aca59f71167f57ce35d59de66faaf1f01c",
+      "custom/mission_5/bc/merge.py": "7add681774a5ac88af7e0563a4d6eb5eb472680602b4a6dd0d5a269f512661b0",
+      "custom/mission_5/bc/policy.py": "0b6b20d78af5a8bc35edca442b4402e821feddfefe3868c748cb0b1fe66a88e8",
+      "custom/mission_5/bc/prepare.py": "fa688c782496492bcac4859463d15b842b37cf7fa3874e2f048a8aeaeeeec1f8",
+      "custom/mission_5/bc/__init__.py": "47c2e5f788aab12c14747b5e52437b037c3020a7df23fcd0a74b3846005e473a",
+      "custom/mission_5/bc/train.py": "868fc8b8e2b10766ec1a0ed5f855d5d268da8e00bec333aa4007429b1f6243fe",
+      "custom/mission_5/bc/model.py": "e2236de08c9ac5eef1d91d46ba52281300cb1ebd3d0391cb2cdc1267cdcd640f",
+      "custom/mission_5/bc/frames.py": "a9daf859f8512fe5687ff32f35f1157d092b70319d1196db912e137cc321b2fe",
+      "custom/mission_5/bc/data.py": "fcf7c821b6bcb620ccf4ba1455f2d9d942c99d5ed168d0191c2470639f1c2192"
+    },
+    "initial_pose": [
+      16.0,
+      11.0,
+      0.0
+    ],
+    "ros_domain_id": "74",
+    "runtime_options": {
+      "HAIC_MAP_CORRECTION": null,
+      "HAIC_VLM_THREADS": null,
+      "HAIC_M2_CAPTURE_DIR": null
+    },
+    "returncode": 0,
+    "wall_seconds": 64.43720020301407,
+    "official_result": {
+      "run": {
+        "started_at": "2026-11-23T20:28:41+09:00",
+        "package": "ys-m2-fixes-20261123",
+        "mode": "auto",
+        "config": "/tmp/rai-headless.qCPfaJ.yaml",
+        "scenario": "/tmp/ys-m2-candidate-cone-geometry-1123/order-0-orange/evaluation_scenario.yaml",
+        "referee": {
+          "goal_radius_m": 0.5,
+          "cone_box_m": 0.5,
+          "cone_box_offset_m": 0.75,
+          "m4_room": "classroom",
+          "m1_goal": [
+            15.5,
+            18.0,
+            90.0
+          ],
+          "m2_color": "orange"
+        },
+        "plans": [],
+        "ended_at": "2026-11-23T20:29:39+09:00"
+      },
+      "missions": [
+        {
+          "mission": 2,
+          "label": "Cone colour navigation",
+          "verdict": "PASS",
+          "success": true,
+          "seconds": 55.38,
+          "started_at": "2026-11-23T20:28:41+09:00",
+          "ended_at": "2026-11-23T20:29:37+09:00",
+          "checks": [
+            {
+              "name": "check",
+              "ok": true,
+              "summary": "orange cone box: |dx| 0.02 < 0.25, |dy| 0.02 < 0.25 m"
+            }
+          ],
+          "reported": {
+            "status": "done",
+            "detail": ""
+          },
+          "referee": {
+            "mission": 2,
+            "pelvis": [
+              17.016,
+              24.026,
+              0.78
+            ],
+            "success": true,
+            "summary": "orange cone box: |dx| 0.02 < 0.25, |dy| 0.02 < 0.25 m",
+            "color": "orange",
+            "box_center": [
+              17.0,
+              24.05
+            ],
+            "box_m": 0.5,
+            "dx_m": 0.016,
+            "dy_m": -0.024
+          },
+          "data": {
+            "color": "orange",
+            "reached": true,
+            "cone_xy": [
+              17.03278018186197,
+              24.66025266993767
+            ],
+            "measurements": [
+              {
+                "surface_xy": [
+                  17.03278018186197,
+                  24.66025266993767
+                ],
+                "target_xy": [
+                  17.03278018186197,
+                  23.990252669937668
+                ],
+                "error_m": 2.254445602691834
+              }
+            ],
+            "surface_correction_m": 0.08,
+            "final_leg_m": 2.254445602691834,
+            "final_pose_error_m": 0.03268877604944321,
+            "final_verification": "continuous_sensor_pose_against_fresh_cone_target"
+          }
+        }
+      ],
+      "total": {
+        "missions": 1,
+        "passed": 1,
+        "failed": 0,
+        "not_judged": 0,
+        "mission_seconds": 55.38,
+        "run_seconds": 57.29,
+        "by_mission": [
+          "2 PASS 55.4s"
+        ],
+        "complete": true,
+        "updated_at": "2026-11-23T20:29:39+09:00"
+      }
+    }
+  },
+  {
+    "case": {
+      "id": "order-1-blue",
+      "split": "development",
+      "missions": [
+        2
+      ],
+      "cone_order": [
+        "orange",
+        "blue",
+        "green"
+      ],
+      "m2_color": "blue"
+    },
+    "command": [
+      "bash",
+      "custom/tools/run_sim.sh",
+      "--headless",
+      "--missions",
+      "2",
+      "--no-wait",
+      "--scenario",
+      "/tmp/ys-m2-candidate-cone-geometry-1123/order-1-blue/evaluation_scenario.yaml"
+    ],
+    "source_root": "/home/aril/rai-worktrees/ys-m2-fixes-20261123/src",
+    "commit": "15fc73a73316bbf3df853911055cdcfacb367dbc",
+    "code_sha256": {
+      "custom/bringup.launch.py": "439468d3cdfe278e08908df2c1729dbdcdd97eaadc0f9be459f8c89697dbc4d2",
+      "custom/public_map.py": "cbb6a31993c75d378e7b805d52311583e032122f34f361e8de234cb90b604695",
+      "custom/navigation.py": "a218e9553c209ded1f1e27abb3305066e603e9b3eb7f1405ffac4b69fcf197a2",
+      "custom/localizer_node.py": "16fc54aea3fc1fb1e0d22916df1c9be96f4fa8d5df1a4872e22ac8c26c11d9f9",
+      "custom/localization.py": "6a6341f214ea068a3815a0505c38c4db4a3dffd9dee8a5bd0033dfacccb386c0",
+      "custom/vlm.py": "6c59b7e8bb779e3b9ccace53ee0b89f2b17170557c02d63e9f2df4f3a4a233ef",
+      "custom/vision.py": "66294acd184d388b308ee618084470bd86a5b521ef896a06000a88d1b81b855d",
+      "custom/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/tools/download_models.py": "f065d3de598843c8ab06b227f558eb88b23bf1623b05da07ede1d3dfba807c5f",
+      "custom/tests/test_vision.py": "5ae70c4a11a40bcf9ba1eaf4d4b14d2e27fa5f32aac6088702b195c58fb12c3b",
+      "custom/tests/test_planner.py": "8b9247344ac4b50ef7941a34e7497d398fe35db2c37181aa9dd5dc55de069d3a",
+      "custom/tests/test_room_assignment.py": "650a4875d6b87c9c877ae9464687c74a81cf92ea83283f47de0c63e1fab91225",
+      "custom/mission_6/mission_6.py": "b59093d8c530aae16980db163eec10f2b14407699ab4a57e60e1564613116336",
+      "custom/mission_6/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/testing/web_smoke.py": "68f10f96965aecc45db5b994c31fa69918b0c3c141d95811f0027f4406f45e1e",
+      "custom/testing/capture.py": "be26d09fd23618c1e230891c95ac717455531bc363a00175606bcc78e134ee07",
+      "custom/testing/randomized_suite.py": "3740d37bf61c88984ee28377f8bb9938d5b4212759aa988a267e4187d93d584e",
+      "custom/planner/planner.py": "322cd75a717d3f91e8ccc797a3c43b7eec54ebdf0c3e923984fc26ba5b710ce7",
+      "custom/planner/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/planner/local_model.py": "738dc494168b86d94a769ae14a2766220a30d5c481399853acc943889cb6d64a",
+      "custom/mission_1/mission_1.py": "573361a9b8704a6c7836ff570e825a1b7ca4248d1f6ddcb54b150be9605a8d0f",
+      "custom/mission_1/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_3/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_3/mission_3.py": "bd3fb3282a039b7c5a801873fb39e707d0cec5acd897413e5a98fc40f00892d4",
+      "custom/mission_4/mission_4.py": "1cec5844ba50239a19c18cf023e8436f62194eb0223133f9bc90fd2a9a96a301",
+      "custom/mission_4/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_2/test_mission_2.py": "150044b3606e2330d742e774f20f1057ae0ed548be635fcc956d53e3c4028c5b",
+      "custom/mission_2/evaluate.py": "876d273c3371587ee1f7f60f3943b06ef201f8d4cbd098b911c6b7b921508297",
+      "custom/mission_2/replay_frame.py": "83e7c45ec52f2547cc309fb6e3717e3555eafdeff00be498510eeee83b69aece",
+      "custom/mission_2/perception.py": "0559ac44375688a67f57cf25f778e7ec99d4563167223b10041bebc05b73049b",
+      "custom/mission_2/mission_2.py": "dc28485ec98995591f89455556077ff992d9fe079feaa83005b25ecfef69a93a",
+      "custom/mission_2/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_5/evaluate.py": "56808e2263c639fb72569130c84d16105095743c4f1afdd278117ddfb922673b",
+      "custom/mission_5/policy.py": "49ee223a7eecc001226842f8d91597a709f1f1f005dd1f9976fceb63b7416e0e",
+      "custom/mission_5/perception.py": "16d2e6668d29dbff3a56d09a9d831f078c8017fabe1c6a9727892a70fba928ca",
+      "custom/mission_5/train_keyposes.py": "dc91fc9cc220753c69fbf59729d381e6f0f372b24f6860fceff639956621bcc6",
+      "custom/mission_5/collect.py": "724713c70c9d453dc97cb8fe1febded5497ace943657abf7b6a5443395c38ef5",
+      "custom/mission_5/ros_io.py": "a30aba84ec521699c9ce76b5e94e114e270465e94951408b629a97ae88f41408",
+      "custom/mission_5/mission_5.py": "9fda76d548d2819c646f19ae3c0e98d4e48a7ab21e5d4ed670b8d6ad72ed4933",
+      "custom/mission_5/policy_adapter.py": "0843344db550660c8b35322a17c9ee78242a1c02588d813e80092174138c41b6",
+      "custom/mission_5/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_5/vision_teacher.py": "49d7a2d34264e3a7bde9c969fafb46b1b5594b2f7afa5ccd2693acf97deb2862",
+      "custom/mission_5/keypose_policy.py": "0a261bb66716a3480e674cd4da47bc2e62be57a5874a50ea8920c0b77b77bd9b",
+      "custom/mission_5/tests/test_teacher.py": "08bce20b8ea3c180fafae08569819130f0ac95aa282661fecbecd75c8802a611",
+      "custom/mission_5/tests/test_learning.py": "15ff3a59db429f5ec98eef42d7a196f72eedaef6a3a1cbcb390bee524cf74e90",
+      "custom/mission_5/tests/test_keyposes.py": "bd742428a98b50509ddc76e6868f5af8e467d1a5d0db7c46da094735e4198347",
+      "custom/mission_5/tests/test_ros_io.py": "de56f65f6bf96acf30fc47fc873deada230d65774fbe09caf67b33285fdc6f6b",
+      "custom/mission_5/bc/export.py": "fd4141d9bfe33ce99a882126da0f78aca59f71167f57ce35d59de66faaf1f01c",
+      "custom/mission_5/bc/merge.py": "7add681774a5ac88af7e0563a4d6eb5eb472680602b4a6dd0d5a269f512661b0",
+      "custom/mission_5/bc/policy.py": "0b6b20d78af5a8bc35edca442b4402e821feddfefe3868c748cb0b1fe66a88e8",
+      "custom/mission_5/bc/prepare.py": "fa688c782496492bcac4859463d15b842b37cf7fa3874e2f048a8aeaeeeec1f8",
+      "custom/mission_5/bc/__init__.py": "47c2e5f788aab12c14747b5e52437b037c3020a7df23fcd0a74b3846005e473a",
+      "custom/mission_5/bc/train.py": "868fc8b8e2b10766ec1a0ed5f855d5d268da8e00bec333aa4007429b1f6243fe",
+      "custom/mission_5/bc/model.py": "e2236de08c9ac5eef1d91d46ba52281300cb1ebd3d0391cb2cdc1267cdcd640f",
+      "custom/mission_5/bc/frames.py": "a9daf859f8512fe5687ff32f35f1157d092b70319d1196db912e137cc321b2fe",
+      "custom/mission_5/bc/data.py": "fcf7c821b6bcb620ccf4ba1455f2d9d942c99d5ed168d0191c2470639f1c2192"
+    },
+    "initial_pose": [
+      16.0,
+      11.0,
+      0.0
+    ],
+    "ros_domain_id": "74",
+    "runtime_options": {
+      "HAIC_MAP_CORRECTION": null,
+      "HAIC_VLM_THREADS": null,
+      "HAIC_M2_CAPTURE_DIR": null
+    },
+    "returncode": 0,
+    "wall_seconds": 56.86854414502159,
+    "official_result": {
+      "run": {
+        "started_at": "2026-11-23T20:29:45+09:00",
+        "package": "ys-m2-fixes-20261123",
+        "mode": "auto",
+        "config": "/tmp/rai-headless.3KEAQI.yaml",
+        "scenario": "/tmp/ys-m2-candidate-cone-geometry-1123/order-1-blue/evaluation_scenario.yaml",
+        "referee": {
+          "goal_radius_m": 0.5,
+          "cone_box_m": 0.5,
+          "cone_box_offset_m": 0.75,
+          "m4_room": "classroom",
+          "m1_goal": [
+            15.5,
+            18.0,
+            90.0
+          ],
+          "m2_color": "blue"
+        },
+        "plans": [],
+        "ended_at": "2026-11-23T20:30:36+09:00"
+      },
+      "missions": [
+        {
+          "mission": 2,
+          "label": "Cone colour navigation",
+          "verdict": "PASS",
+          "success": true,
+          "seconds": 48.54,
+          "started_at": "2026-11-23T20:29:45+09:00",
+          "ended_at": "2026-11-23T20:30:34+09:00",
+          "checks": [
+            {
+              "name": "check",
+              "ok": true,
+              "summary": "blue cone box: |dx| 0.04 < 0.25, |dy| 0.01 < 0.25 m"
+            }
+          ],
+          "reported": {
+            "status": "done",
+            "detail": ""
+          },
+          "referee": {
+            "mission": 2,
+            "pelvis": [
+              15.537,
+              24.043,
+              0.78
+            ],
+            "success": true,
+            "summary": "blue cone box: |dx| 0.04 < 0.25, |dy| 0.01 < 0.25 m",
+            "color": "blue",
+            "box_center": [
+              15.5,
+              24.05
+            ],
+            "box_m": 0.5,
+            "dx_m": 0.037,
+            "dy_m": -0.007
+          },
+          "data": {
+            "color": "blue",
+            "reached": true,
+            "cone_xy": [
+              15.535257858557456,
+              24.72309241014318
+            ],
+            "measurements": [
+              {
+                "surface_xy": [
+                  15.535257858557456,
+                  24.72309241014318
+                ],
+                "target_xy": [
+                  15.535257858557456,
+                  24.05309241014318
+                ],
+                "error_m": 1.7883075525759442
+              }
+            ],
+            "surface_correction_m": 0.08,
+            "final_leg_m": 1.7883075525759442,
+            "final_pose_error_m": 0.03855659805511642,
+            "final_verification": "continuous_sensor_pose_against_fresh_cone_target"
+          }
+        }
+      ],
+      "total": {
+        "missions": 1,
+        "passed": 1,
+        "failed": 0,
+        "not_judged": 0,
+        "mission_seconds": 48.54,
+        "run_seconds": 50.35,
+        "by_mission": [
+          "2 PASS 48.5s"
+        ],
+        "complete": true,
+        "updated_at": "2026-11-23T20:30:36+09:00"
+      }
+    }
+  },
+  {
+    "case": {
+      "id": "order-1-green",
+      "split": "development",
+      "missions": [
+        2
+      ],
+      "cone_order": [
+        "orange",
+        "blue",
+        "green"
+      ],
+      "m2_color": "green"
+    },
+    "command": [
+      "bash",
+      "custom/tools/run_sim.sh",
+      "--headless",
+      "--missions",
+      "2",
+      "--no-wait",
+      "--scenario",
+      "/tmp/ys-m2-candidate-cone-geometry-1123/order-1-green/evaluation_scenario.yaml"
+    ],
+    "source_root": "/home/aril/rai-worktrees/ys-m2-fixes-20261123/src",
+    "commit": "15fc73a73316bbf3df853911055cdcfacb367dbc",
+    "code_sha256": {
+      "custom/bringup.launch.py": "439468d3cdfe278e08908df2c1729dbdcdd97eaadc0f9be459f8c89697dbc4d2",
+      "custom/public_map.py": "cbb6a31993c75d378e7b805d52311583e032122f34f361e8de234cb90b604695",
+      "custom/navigation.py": "a218e9553c209ded1f1e27abb3305066e603e9b3eb7f1405ffac4b69fcf197a2",
+      "custom/localizer_node.py": "16fc54aea3fc1fb1e0d22916df1c9be96f4fa8d5df1a4872e22ac8c26c11d9f9",
+      "custom/localization.py": "6a6341f214ea068a3815a0505c38c4db4a3dffd9dee8a5bd0033dfacccb386c0",
+      "custom/vlm.py": "6c59b7e8bb779e3b9ccace53ee0b89f2b17170557c02d63e9f2df4f3a4a233ef",
+      "custom/vision.py": "66294acd184d388b308ee618084470bd86a5b521ef896a06000a88d1b81b855d",
+      "custom/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/tools/download_models.py": "f065d3de598843c8ab06b227f558eb88b23bf1623b05da07ede1d3dfba807c5f",
+      "custom/tests/test_vision.py": "5ae70c4a11a40bcf9ba1eaf4d4b14d2e27fa5f32aac6088702b195c58fb12c3b",
+      "custom/tests/test_planner.py": "8b9247344ac4b50ef7941a34e7497d398fe35db2c37181aa9dd5dc55de069d3a",
+      "custom/tests/test_room_assignment.py": "650a4875d6b87c9c877ae9464687c74a81cf92ea83283f47de0c63e1fab91225",
+      "custom/mission_6/mission_6.py": "b59093d8c530aae16980db163eec10f2b14407699ab4a57e60e1564613116336",
+      "custom/mission_6/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/testing/web_smoke.py": "68f10f96965aecc45db5b994c31fa69918b0c3c141d95811f0027f4406f45e1e",
+      "custom/testing/capture.py": "be26d09fd23618c1e230891c95ac717455531bc363a00175606bcc78e134ee07",
+      "custom/testing/randomized_suite.py": "3740d37bf61c88984ee28377f8bb9938d5b4212759aa988a267e4187d93d584e",
+      "custom/planner/planner.py": "322cd75a717d3f91e8ccc797a3c43b7eec54ebdf0c3e923984fc26ba5b710ce7",
+      "custom/planner/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/planner/local_model.py": "738dc494168b86d94a769ae14a2766220a30d5c481399853acc943889cb6d64a",
+      "custom/mission_1/mission_1.py": "573361a9b8704a6c7836ff570e825a1b7ca4248d1f6ddcb54b150be9605a8d0f",
+      "custom/mission_1/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_3/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_3/mission_3.py": "bd3fb3282a039b7c5a801873fb39e707d0cec5acd897413e5a98fc40f00892d4",
+      "custom/mission_4/mission_4.py": "1cec5844ba50239a19c18cf023e8436f62194eb0223133f9bc90fd2a9a96a301",
+      "custom/mission_4/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_2/test_mission_2.py": "150044b3606e2330d742e774f20f1057ae0ed548be635fcc956d53e3c4028c5b",
+      "custom/mission_2/evaluate.py": "876d273c3371587ee1f7f60f3943b06ef201f8d4cbd098b911c6b7b921508297",
+      "custom/mission_2/replay_frame.py": "83e7c45ec52f2547cc309fb6e3717e3555eafdeff00be498510eeee83b69aece",
+      "custom/mission_2/perception.py": "0559ac44375688a67f57cf25f778e7ec99d4563167223b10041bebc05b73049b",
+      "custom/mission_2/mission_2.py": "dc28485ec98995591f89455556077ff992d9fe079feaa83005b25ecfef69a93a",
+      "custom/mission_2/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_5/evaluate.py": "56808e2263c639fb72569130c84d16105095743c4f1afdd278117ddfb922673b",
+      "custom/mission_5/policy.py": "49ee223a7eecc001226842f8d91597a709f1f1f005dd1f9976fceb63b7416e0e",
+      "custom/mission_5/perception.py": "16d2e6668d29dbff3a56d09a9d831f078c8017fabe1c6a9727892a70fba928ca",
+      "custom/mission_5/train_keyposes.py": "dc91fc9cc220753c69fbf59729d381e6f0f372b24f6860fceff639956621bcc6",
+      "custom/mission_5/collect.py": "724713c70c9d453dc97cb8fe1febded5497ace943657abf7b6a5443395c38ef5",
+      "custom/mission_5/ros_io.py": "a30aba84ec521699c9ce76b5e94e114e270465e94951408b629a97ae88f41408",
+      "custom/mission_5/mission_5.py": "9fda76d548d2819c646f19ae3c0e98d4e48a7ab21e5d4ed670b8d6ad72ed4933",
+      "custom/mission_5/policy_adapter.py": "0843344db550660c8b35322a17c9ee78242a1c02588d813e80092174138c41b6",
+      "custom/mission_5/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_5/vision_teacher.py": "49d7a2d34264e3a7bde9c969fafb46b1b5594b2f7afa5ccd2693acf97deb2862",
+      "custom/mission_5/keypose_policy.py": "0a261bb66716a3480e674cd4da47bc2e62be57a5874a50ea8920c0b77b77bd9b",
+      "custom/mission_5/tests/test_teacher.py": "08bce20b8ea3c180fafae08569819130f0ac95aa282661fecbecd75c8802a611",
+      "custom/mission_5/tests/test_learning.py": "15ff3a59db429f5ec98eef42d7a196f72eedaef6a3a1cbcb390bee524cf74e90",
+      "custom/mission_5/tests/test_keyposes.py": "bd742428a98b50509ddc76e6868f5af8e467d1a5d0db7c46da094735e4198347",
+      "custom/mission_5/tests/test_ros_io.py": "de56f65f6bf96acf30fc47fc873deada230d65774fbe09caf67b33285fdc6f6b",
+      "custom/mission_5/bc/export.py": "fd4141d9bfe33ce99a882126da0f78aca59f71167f57ce35d59de66faaf1f01c",
+      "custom/mission_5/bc/merge.py": "7add681774a5ac88af7e0563a4d6eb5eb472680602b4a6dd0d5a269f512661b0",
+      "custom/mission_5/bc/policy.py": "0b6b20d78af5a8bc35edca442b4402e821feddfefe3868c748cb0b1fe66a88e8",
+      "custom/mission_5/bc/prepare.py": "fa688c782496492bcac4859463d15b842b37cf7fa3874e2f048a8aeaeeeec1f8",
+      "custom/mission_5/bc/__init__.py": "47c2e5f788aab12c14747b5e52437b037c3020a7df23fcd0a74b3846005e473a",
+      "custom/mission_5/bc/train.py": "868fc8b8e2b10766ec1a0ed5f855d5d268da8e00bec333aa4007429b1f6243fe",
+      "custom/mission_5/bc/model.py": "e2236de08c9ac5eef1d91d46ba52281300cb1ebd3d0391cb2cdc1267cdcd640f",
+      "custom/mission_5/bc/frames.py": "a9daf859f8512fe5687ff32f35f1157d092b70319d1196db912e137cc321b2fe",
+      "custom/mission_5/bc/data.py": "fcf7c821b6bcb620ccf4ba1455f2d9d942c99d5ed168d0191c2470639f1c2192"
+    },
+    "initial_pose": [
+      16.0,
+      11.0,
+      0.0
+    ],
+    "ros_domain_id": "74",
+    "runtime_options": {
+      "HAIC_MAP_CORRECTION": null,
+      "HAIC_VLM_THREADS": null,
+      "HAIC_M2_CAPTURE_DIR": null
+    },
+    "returncode": 0,
+    "wall_seconds": 65.29197407100582,
+    "official_result": {
+      "run": {
+        "started_at": "2026-11-23T20:30:42+09:00",
+        "package": "ys-m2-fixes-20261123",
+        "mode": "auto",
+        "config": "/tmp/rai-headless.QJPenn.yaml",
+        "scenario": "/tmp/ys-m2-candidate-cone-geometry-1123/order-1-green/evaluation_scenario.yaml",
+        "referee": {
+          "goal_radius_m": 0.5,
+          "cone_box_m": 0.5,
+          "cone_box_offset_m": 0.75,
+          "m4_room": "classroom",
+          "m1_goal": [
+            15.5,
+            18.0,
+            90.0
+          ],
+          "m2_color": "green"
+        },
+        "plans": [],
+        "ended_at": "2026-11-23T20:31:41+09:00"
+      },
+      "missions": [
+        {
+          "mission": 2,
+          "label": "Cone colour navigation",
+          "verdict": "PASS",
+          "success": true,
+          "seconds": 56.86,
+          "started_at": "2026-11-23T20:30:42+09:00",
+          "ended_at": "2026-11-23T20:31:39+09:00",
+          "checks": [
+            {
+              "name": "check",
+              "ok": true,
+              "summary": "green cone box: |dx| 0.03 < 0.25, |dy| 0.01 < 0.25 m"
+            }
+          ],
+          "reported": {
+            "status": "done",
+            "detail": ""
+          },
+          "referee": {
+            "mission": 2,
+            "pelvis": [
+              16.973,
+              24.06,
+              0.78
+            ],
+            "success": true,
+            "summary": "green cone box: |dx| 0.03 < 0.25, |dy| 0.01 < 0.25 m",
+            "color": "green",
+            "box_center": [
+              17.0,
+              24.05
+            ],
+            "box_m": 0.5,
+            "dx_m": -0.027,
+            "dy_m": 0.01
+          },
+          "data": {
+            "color": "green",
+            "reached": true,
+            "cone_xy": [
+              17.08562607751495,
+              24.673103043383335
+            ],
+            "measurements": [
+              {
+                "surface_xy": [
+                  17.08562607751495,
+                  24.673103043383335
+                ],
+                "target_xy": [
+                  17.08562607751495,
+                  24.003103043383334
+                ],
+                "error_m": 2.3317511905133133
+              }
+            ],
+            "surface_correction_m": 0.08,
+            "final_leg_m": 2.3317511905133133,
+            "final_pose_error_m": 0.022074026079065303,
+            "final_verification": "continuous_sensor_pose_against_fresh_cone_target"
+          }
+        }
+      ],
+      "total": {
+        "missions": 1,
+        "passed": 1,
+        "failed": 0,
+        "not_judged": 0,
+        "mission_seconds": 56.86,
+        "run_seconds": 58.66,
+        "by_mission": [
+          "2 PASS 56.9s"
+        ],
+        "complete": true,
+        "updated_at": "2026-11-23T20:31:41+09:00"
+      }
+    }
+  },
+  {
+    "case": {
+      "id": "order-1-orange",
+      "split": "development",
+      "missions": [
+        2
+      ],
+      "cone_order": [
+        "orange",
+        "blue",
+        "green"
+      ],
+      "m2_color": "orange"
+    },
+    "command": [
+      "bash",
+      "custom/tools/run_sim.sh",
+      "--headless",
+      "--missions",
+      "2",
+      "--no-wait",
+      "--scenario",
+      "/tmp/ys-m2-candidate-cone-geometry-1123/order-1-orange/evaluation_scenario.yaml"
+    ],
+    "source_root": "/home/aril/rai-worktrees/ys-m2-fixes-20261123/src",
+    "commit": "15fc73a73316bbf3df853911055cdcfacb367dbc",
+    "code_sha256": {
+      "custom/bringup.launch.py": "439468d3cdfe278e08908df2c1729dbdcdd97eaadc0f9be459f8c89697dbc4d2",
+      "custom/public_map.py": "cbb6a31993c75d378e7b805d52311583e032122f34f361e8de234cb90b604695",
+      "custom/navigation.py": "a218e9553c209ded1f1e27abb3305066e603e9b3eb7f1405ffac4b69fcf197a2",
+      "custom/localizer_node.py": "16fc54aea3fc1fb1e0d22916df1c9be96f4fa8d5df1a4872e22ac8c26c11d9f9",
+      "custom/localization.py": "6a6341f214ea068a3815a0505c38c4db4a3dffd9dee8a5bd0033dfacccb386c0",
+      "custom/vlm.py": "6c59b7e8bb779e3b9ccace53ee0b89f2b17170557c02d63e9f2df4f3a4a233ef",
+      "custom/vision.py": "66294acd184d388b308ee618084470bd86a5b521ef896a06000a88d1b81b855d",
+      "custom/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/tools/download_models.py": "f065d3de598843c8ab06b227f558eb88b23bf1623b05da07ede1d3dfba807c5f",
+      "custom/tests/test_vision.py": "5ae70c4a11a40bcf9ba1eaf4d4b14d2e27fa5f32aac6088702b195c58fb12c3b",
+      "custom/tests/test_planner.py": "8b9247344ac4b50ef7941a34e7497d398fe35db2c37181aa9dd5dc55de069d3a",
+      "custom/tests/test_room_assignment.py": "650a4875d6b87c9c877ae9464687c74a81cf92ea83283f47de0c63e1fab91225",
+      "custom/mission_6/mission_6.py": "b59093d8c530aae16980db163eec10f2b14407699ab4a57e60e1564613116336",
+      "custom/mission_6/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/testing/web_smoke.py": "68f10f96965aecc45db5b994c31fa69918b0c3c141d95811f0027f4406f45e1e",
+      "custom/testing/capture.py": "be26d09fd23618c1e230891c95ac717455531bc363a00175606bcc78e134ee07",
+      "custom/testing/randomized_suite.py": "3740d37bf61c88984ee28377f8bb9938d5b4212759aa988a267e4187d93d584e",
+      "custom/planner/planner.py": "322cd75a717d3f91e8ccc797a3c43b7eec54ebdf0c3e923984fc26ba5b710ce7",
+      "custom/planner/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/planner/local_model.py": "738dc494168b86d94a769ae14a2766220a30d5c481399853acc943889cb6d64a",
+      "custom/mission_1/mission_1.py": "573361a9b8704a6c7836ff570e825a1b7ca4248d1f6ddcb54b150be9605a8d0f",
+      "custom/mission_1/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_3/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_3/mission_3.py": "bd3fb3282a039b7c5a801873fb39e707d0cec5acd897413e5a98fc40f00892d4",
+      "custom/mission_4/mission_4.py": "1cec5844ba50239a19c18cf023e8436f62194eb0223133f9bc90fd2a9a96a301",
+      "custom/mission_4/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_2/test_mission_2.py": "150044b3606e2330d742e774f20f1057ae0ed548be635fcc956d53e3c4028c5b",
+      "custom/mission_2/evaluate.py": "876d273c3371587ee1f7f60f3943b06ef201f8d4cbd098b911c6b7b921508297",
+      "custom/mission_2/replay_frame.py": "83e7c45ec52f2547cc309fb6e3717e3555eafdeff00be498510eeee83b69aece",
+      "custom/mission_2/perception.py": "0559ac44375688a67f57cf25f778e7ec99d4563167223b10041bebc05b73049b",
+      "custom/mission_2/mission_2.py": "dc28485ec98995591f89455556077ff992d9fe079feaa83005b25ecfef69a93a",
+      "custom/mission_2/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_5/evaluate.py": "56808e2263c639fb72569130c84d16105095743c4f1afdd278117ddfb922673b",
+      "custom/mission_5/policy.py": "49ee223a7eecc001226842f8d91597a709f1f1f005dd1f9976fceb63b7416e0e",
+      "custom/mission_5/perception.py": "16d2e6668d29dbff3a56d09a9d831f078c8017fabe1c6a9727892a70fba928ca",
+      "custom/mission_5/train_keyposes.py": "dc91fc9cc220753c69fbf59729d381e6f0f372b24f6860fceff639956621bcc6",
+      "custom/mission_5/collect.py": "724713c70c9d453dc97cb8fe1febded5497ace943657abf7b6a5443395c38ef5",
+      "custom/mission_5/ros_io.py": "a30aba84ec521699c9ce76b5e94e114e270465e94951408b629a97ae88f41408",
+      "custom/mission_5/mission_5.py": "9fda76d548d2819c646f19ae3c0e98d4e48a7ab21e5d4ed670b8d6ad72ed4933",
+      "custom/mission_5/policy_adapter.py": "0843344db550660c8b35322a17c9ee78242a1c02588d813e80092174138c41b6",
+      "custom/mission_5/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_5/vision_teacher.py": "49d7a2d34264e3a7bde9c969fafb46b1b5594b2f7afa5ccd2693acf97deb2862",
+      "custom/mission_5/keypose_policy.py": "0a261bb66716a3480e674cd4da47bc2e62be57a5874a50ea8920c0b77b77bd9b",
+      "custom/mission_5/tests/test_teacher.py": "08bce20b8ea3c180fafae08569819130f0ac95aa282661fecbecd75c8802a611",
+      "custom/mission_5/tests/test_learning.py": "15ff3a59db429f5ec98eef42d7a196f72eedaef6a3a1cbcb390bee524cf74e90",
+      "custom/mission_5/tests/test_keyposes.py": "bd742428a98b50509ddc76e6868f5af8e467d1a5d0db7c46da094735e4198347",
+      "custom/mission_5/tests/test_ros_io.py": "de56f65f6bf96acf30fc47fc873deada230d65774fbe09caf67b33285fdc6f6b",
+      "custom/mission_5/bc/export.py": "fd4141d9bfe33ce99a882126da0f78aca59f71167f57ce35d59de66faaf1f01c",
+      "custom/mission_5/bc/merge.py": "7add681774a5ac88af7e0563a4d6eb5eb472680602b4a6dd0d5a269f512661b0",
+      "custom/mission_5/bc/policy.py": "0b6b20d78af5a8bc35edca442b4402e821feddfefe3868c748cb0b1fe66a88e8",
+      "custom/mission_5/bc/prepare.py": "fa688c782496492bcac4859463d15b842b37cf7fa3874e2f048a8aeaeeeec1f8",
+      "custom/mission_5/bc/__init__.py": "47c2e5f788aab12c14747b5e52437b037c3020a7df23fcd0a74b3846005e473a",
+      "custom/mission_5/bc/train.py": "868fc8b8e2b10766ec1a0ed5f855d5d268da8e00bec333aa4007429b1f6243fe",
+      "custom/mission_5/bc/model.py": "e2236de08c9ac5eef1d91d46ba52281300cb1ebd3d0391cb2cdc1267cdcd640f",
+      "custom/mission_5/bc/frames.py": "a9daf859f8512fe5687ff32f35f1157d092b70319d1196db912e137cc321b2fe",
+      "custom/mission_5/bc/data.py": "fcf7c821b6bcb620ccf4ba1455f2d9d942c99d5ed168d0191c2470639f1c2192"
+    },
+    "initial_pose": [
+      16.0,
+      11.0,
+      0.0
+    ],
+    "ros_domain_id": "74",
+    "runtime_options": {
+      "HAIC_MAP_CORRECTION": null,
+      "HAIC_VLM_THREADS": null,
+      "HAIC_M2_CAPTURE_DIR": null
+    },
+    "returncode": 0,
+    "wall_seconds": 74.11165908101248,
+    "official_result": {
+      "run": {
+        "started_at": "2026-11-23T20:31:48+09:00",
+        "package": "ys-m2-fixes-20261123",
+        "mode": "auto",
+        "config": "/tmp/rai-headless.W0qnz5.yaml",
+        "scenario": "/tmp/ys-m2-candidate-cone-geometry-1123/order-1-orange/evaluation_scenario.yaml",
+        "referee": {
+          "goal_radius_m": 0.5,
+          "cone_box_m": 0.5,
+          "cone_box_offset_m": 0.75,
+          "m4_room": "classroom",
+          "m1_goal": [
+            15.5,
+            18.0,
+            90.0
+          ],
+          "m2_color": "orange"
+        },
+        "plans": [],
+        "ended_at": "2026-11-23T20:32:55+09:00"
+      },
+      "missions": [
+        {
+          "mission": 2,
+          "label": "Cone colour navigation",
+          "verdict": "PASS",
+          "success": true,
+          "seconds": 65.09,
+          "started_at": "2026-11-23T20:31:48+09:00",
+          "ended_at": "2026-11-23T20:32:53+09:00",
+          "checks": [
+            {
+              "name": "check",
+              "ok": true,
+              "summary": "orange cone box: |dx| 0.06 < 0.25, |dy| 0.09 < 0.25 m"
+            }
+          ],
+          "reported": {
+            "status": "done",
+            "detail": ""
+          },
+          "referee": {
+            "mission": 2,
+            "pelvis": [
+              14.058,
+              24.142,
+              0.78
+            ],
+            "success": true,
+            "summary": "orange cone box: |dx| 0.06 < 0.25, |dy| 0.09 < 0.25 m",
+            "color": "orange",
+            "box_center": [
+              14.0,
+              24.05
+            ],
+            "box_m": 0.5,
+            "dx_m": 0.058,
+            "dy_m": 0.092
+          },
+          "data": {
+            "color": "orange",
+            "reached": true,
+            "cone_xy": [
+              14.09721353202464,
+              24.659728187091133
+            ],
+            "measurements": [
+              {
+                "surface_xy": [
+                  14.09721353202464,
+                  24.659728187091133
+                ],
+                "target_xy": [
+                  14.09721353202464,
+                  23.98972818709113
+                ],
+                "error_m": 2.0989356594494097
+              }
+            ],
+            "surface_correction_m": 0.08,
+            "final_leg_m": 2.0989356594494097,
+            "final_pose_error_m": 0.041445652866146945,
+            "final_verification": "continuous_sensor_pose_against_fresh_cone_target"
+          }
+        }
+      ],
+      "total": {
+        "missions": 1,
+        "passed": 1,
+        "failed": 0,
+        "not_judged": 0,
+        "mission_seconds": 65.09,
+        "run_seconds": 66.82,
+        "by_mission": [
+          "2 PASS 65.1s"
+        ],
+        "complete": true,
+        "updated_at": "2026-11-23T20:32:55+09:00"
+      }
+    }
+  },
+  {
+    "case": {
+      "id": "order-2-blue",
+      "split": "development",
+      "missions": [
+        2
+      ],
+      "cone_order": [
+        "green",
+        "orange",
+        "blue"
+      ],
+      "m2_color": "blue"
+    },
+    "command": [
+      "bash",
+      "custom/tools/run_sim.sh",
+      "--headless",
+      "--missions",
+      "2",
+      "--no-wait",
+      "--scenario",
+      "/tmp/ys-m2-candidate-cone-geometry-1123/order-2-blue/evaluation_scenario.yaml"
+    ],
+    "source_root": "/home/aril/rai-worktrees/ys-m2-fixes-20261123/src",
+    "commit": "15fc73a73316bbf3df853911055cdcfacb367dbc",
+    "code_sha256": {
+      "custom/bringup.launch.py": "439468d3cdfe278e08908df2c1729dbdcdd97eaadc0f9be459f8c89697dbc4d2",
+      "custom/public_map.py": "cbb6a31993c75d378e7b805d52311583e032122f34f361e8de234cb90b604695",
+      "custom/navigation.py": "a218e9553c209ded1f1e27abb3305066e603e9b3eb7f1405ffac4b69fcf197a2",
+      "custom/localizer_node.py": "16fc54aea3fc1fb1e0d22916df1c9be96f4fa8d5df1a4872e22ac8c26c11d9f9",
+      "custom/localization.py": "6a6341f214ea068a3815a0505c38c4db4a3dffd9dee8a5bd0033dfacccb386c0",
+      "custom/vlm.py": "6c59b7e8bb779e3b9ccace53ee0b89f2b17170557c02d63e9f2df4f3a4a233ef",
+      "custom/vision.py": "66294acd184d388b308ee618084470bd86a5b521ef896a06000a88d1b81b855d",
+      "custom/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/tools/download_models.py": "f065d3de598843c8ab06b227f558eb88b23bf1623b05da07ede1d3dfba807c5f",
+      "custom/tests/test_vision.py": "5ae70c4a11a40bcf9ba1eaf4d4b14d2e27fa5f32aac6088702b195c58fb12c3b",
+      "custom/tests/test_planner.py": "8b9247344ac4b50ef7941a34e7497d398fe35db2c37181aa9dd5dc55de069d3a",
+      "custom/tests/test_room_assignment.py": "650a4875d6b87c9c877ae9464687c74a81cf92ea83283f47de0c63e1fab91225",
+      "custom/mission_6/mission_6.py": "b59093d8c530aae16980db163eec10f2b14407699ab4a57e60e1564613116336",
+      "custom/mission_6/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/testing/web_smoke.py": "68f10f96965aecc45db5b994c31fa69918b0c3c141d95811f0027f4406f45e1e",
+      "custom/testing/capture.py": "be26d09fd23618c1e230891c95ac717455531bc363a00175606bcc78e134ee07",
+      "custom/testing/randomized_suite.py": "3740d37bf61c88984ee28377f8bb9938d5b4212759aa988a267e4187d93d584e",
+      "custom/planner/planner.py": "322cd75a717d3f91e8ccc797a3c43b7eec54ebdf0c3e923984fc26ba5b710ce7",
+      "custom/planner/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/planner/local_model.py": "738dc494168b86d94a769ae14a2766220a30d5c481399853acc943889cb6d64a",
+      "custom/mission_1/mission_1.py": "573361a9b8704a6c7836ff570e825a1b7ca4248d1f6ddcb54b150be9605a8d0f",
+      "custom/mission_1/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_3/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_3/mission_3.py": "bd3fb3282a039b7c5a801873fb39e707d0cec5acd897413e5a98fc40f00892d4",
+      "custom/mission_4/mission_4.py": "1cec5844ba50239a19c18cf023e8436f62194eb0223133f9bc90fd2a9a96a301",
+      "custom/mission_4/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_2/test_mission_2.py": "150044b3606e2330d742e774f20f1057ae0ed548be635fcc956d53e3c4028c5b",
+      "custom/mission_2/evaluate.py": "876d273c3371587ee1f7f60f3943b06ef201f8d4cbd098b911c6b7b921508297",
+      "custom/mission_2/replay_frame.py": "83e7c45ec52f2547cc309fb6e3717e3555eafdeff00be498510eeee83b69aece",
+      "custom/mission_2/perception.py": "0559ac44375688a67f57cf25f778e7ec99d4563167223b10041bebc05b73049b",
+      "custom/mission_2/mission_2.py": "dc28485ec98995591f89455556077ff992d9fe079feaa83005b25ecfef69a93a",
+      "custom/mission_2/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_5/evaluate.py": "56808e2263c639fb72569130c84d16105095743c4f1afdd278117ddfb922673b",
+      "custom/mission_5/policy.py": "49ee223a7eecc001226842f8d91597a709f1f1f005dd1f9976fceb63b7416e0e",
+      "custom/mission_5/perception.py": "16d2e6668d29dbff3a56d09a9d831f078c8017fabe1c6a9727892a70fba928ca",
+      "custom/mission_5/train_keyposes.py": "dc91fc9cc220753c69fbf59729d381e6f0f372b24f6860fceff639956621bcc6",
+      "custom/mission_5/collect.py": "724713c70c9d453dc97cb8fe1febded5497ace943657abf7b6a5443395c38ef5",
+      "custom/mission_5/ros_io.py": "a30aba84ec521699c9ce76b5e94e114e270465e94951408b629a97ae88f41408",
+      "custom/mission_5/mission_5.py": "9fda76d548d2819c646f19ae3c0e98d4e48a7ab21e5d4ed670b8d6ad72ed4933",
+      "custom/mission_5/policy_adapter.py": "0843344db550660c8b35322a17c9ee78242a1c02588d813e80092174138c41b6",
+      "custom/mission_5/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_5/vision_teacher.py": "49d7a2d34264e3a7bde9c969fafb46b1b5594b2f7afa5ccd2693acf97deb2862",
+      "custom/mission_5/keypose_policy.py": "0a261bb66716a3480e674cd4da47bc2e62be57a5874a50ea8920c0b77b77bd9b",
+      "custom/mission_5/tests/test_teacher.py": "08bce20b8ea3c180fafae08569819130f0ac95aa282661fecbecd75c8802a611",
+      "custom/mission_5/tests/test_learning.py": "15ff3a59db429f5ec98eef42d7a196f72eedaef6a3a1cbcb390bee524cf74e90",
+      "custom/mission_5/tests/test_keyposes.py": "bd742428a98b50509ddc76e6868f5af8e467d1a5d0db7c46da094735e4198347",
+      "custom/mission_5/tests/test_ros_io.py": "de56f65f6bf96acf30fc47fc873deada230d65774fbe09caf67b33285fdc6f6b",
+      "custom/mission_5/bc/export.py": "fd4141d9bfe33ce99a882126da0f78aca59f71167f57ce35d59de66faaf1f01c",
+      "custom/mission_5/bc/merge.py": "7add681774a5ac88af7e0563a4d6eb5eb472680602b4a6dd0d5a269f512661b0",
+      "custom/mission_5/bc/policy.py": "0b6b20d78af5a8bc35edca442b4402e821feddfefe3868c748cb0b1fe66a88e8",
+      "custom/mission_5/bc/prepare.py": "fa688c782496492bcac4859463d15b842b37cf7fa3874e2f048a8aeaeeeec1f8",
+      "custom/mission_5/bc/__init__.py": "47c2e5f788aab12c14747b5e52437b037c3020a7df23fcd0a74b3846005e473a",
+      "custom/mission_5/bc/train.py": "868fc8b8e2b10766ec1a0ed5f855d5d268da8e00bec333aa4007429b1f6243fe",
+      "custom/mission_5/bc/model.py": "e2236de08c9ac5eef1d91d46ba52281300cb1ebd3d0391cb2cdc1267cdcd640f",
+      "custom/mission_5/bc/frames.py": "a9daf859f8512fe5687ff32f35f1157d092b70319d1196db912e137cc321b2fe",
+      "custom/mission_5/bc/data.py": "fcf7c821b6bcb620ccf4ba1455f2d9d942c99d5ed168d0191c2470639f1c2192"
+    },
+    "initial_pose": [
+      16.0,
+      11.0,
+      0.0
+    ],
+    "ros_domain_id": "74",
+    "runtime_options": {
+      "HAIC_MAP_CORRECTION": null,
+      "HAIC_VLM_THREADS": null,
+      "HAIC_M2_CAPTURE_DIR": null
+    },
+    "returncode": 0,
+    "wall_seconds": 65.14173957399908,
+    "official_result": {
+      "run": {
+        "started_at": "2026-11-23T20:33:02+09:00",
+        "package": "ys-m2-fixes-20261123",
+        "mode": "auto",
+        "config": "/tmp/rai-headless.URtWAk.yaml",
+        "scenario": "/tmp/ys-m2-candidate-cone-geometry-1123/order-2-blue/evaluation_scenario.yaml",
+        "referee": {
+          "goal_radius_m": 0.5,
+          "cone_box_m": 0.5,
+          "cone_box_offset_m": 0.75,
+          "m4_room": "classroom",
+          "m1_goal": [
+            15.5,
+            18.0,
+            90.0
+          ],
+          "m2_color": "blue"
+        },
+        "plans": [],
+        "ended_at": "2026-11-23T20:34:00+09:00"
+      },
+      "missions": [
+        {
+          "mission": 2,
+          "label": "Cone colour navigation",
+          "verdict": "PASS",
+          "success": true,
+          "seconds": 55.84,
+          "started_at": "2026-11-23T20:33:02+09:00",
+          "ended_at": "2026-11-23T20:33:58+09:00",
+          "checks": [
+            {
+              "name": "check",
+              "ok": true,
+              "summary": "blue cone box: |dx| 0.00 < 0.25, |dy| 0.03 < 0.25 m"
+            }
+          ],
+          "reported": {
+            "status": "done",
+            "detail": ""
+          },
+          "referee": {
+            "mission": 2,
+            "pelvis": [
+              17.004,
+              24.016,
+              0.78
+            ],
+            "success": true,
+            "summary": "blue cone box: |dx| 0.00 < 0.25, |dy| 0.03 < 0.25 m",
+            "color": "blue",
+            "box_center": [
+              17.0,
+              24.05
+            ],
+            "box_m": 0.5,
+            "dx_m": 0.004,
+            "dy_m": -0.034
+          },
+          "data": {
+            "color": "blue",
+            "reached": true,
+            "cone_xy": [
+              17.083645074708766,
+              24.675721665415665
+            ],
+            "measurements": [
+              {
+                "surface_xy": [
+                  17.083645074708766,
+                  24.675721665415665
+                ],
+                "target_xy": [
+                  17.083645074708766,
+                  24.005721665415663
+                ],
+                "error_m": 2.3787132837511678
+              }
+            ],
+            "surface_correction_m": 0.08,
+            "final_leg_m": 2.3787132837511678,
+            "final_pose_error_m": 0.05076673156869815,
+            "final_verification": "continuous_sensor_pose_against_fresh_cone_target"
+          }
+        }
+      ],
+      "total": {
+        "missions": 1,
+        "passed": 1,
+        "failed": 0,
+        "not_judged": 0,
+        "mission_seconds": 55.84,
+        "run_seconds": 57.84,
+        "by_mission": [
+          "2 PASS 55.8s"
+        ],
+        "complete": true,
+        "updated_at": "2026-11-23T20:34:00+09:00"
+      }
+    }
+  },
+  {
+    "case": {
+      "id": "order-2-green",
+      "split": "development",
+      "missions": [
+        2
+      ],
+      "cone_order": [
+        "green",
+        "orange",
+        "blue"
+      ],
+      "m2_color": "green"
+    },
+    "command": [
+      "bash",
+      "custom/tools/run_sim.sh",
+      "--headless",
+      "--missions",
+      "2",
+      "--no-wait",
+      "--scenario",
+      "/tmp/ys-m2-candidate-cone-geometry-1123/order-2-green/evaluation_scenario.yaml"
+    ],
+    "source_root": "/home/aril/rai-worktrees/ys-m2-fixes-20261123/src",
+    "commit": "15fc73a73316bbf3df853911055cdcfacb367dbc",
+    "code_sha256": {
+      "custom/bringup.launch.py": "439468d3cdfe278e08908df2c1729dbdcdd97eaadc0f9be459f8c89697dbc4d2",
+      "custom/public_map.py": "cbb6a31993c75d378e7b805d52311583e032122f34f361e8de234cb90b604695",
+      "custom/navigation.py": "a218e9553c209ded1f1e27abb3305066e603e9b3eb7f1405ffac4b69fcf197a2",
+      "custom/localizer_node.py": "16fc54aea3fc1fb1e0d22916df1c9be96f4fa8d5df1a4872e22ac8c26c11d9f9",
+      "custom/localization.py": "6a6341f214ea068a3815a0505c38c4db4a3dffd9dee8a5bd0033dfacccb386c0",
+      "custom/vlm.py": "6c59b7e8bb779e3b9ccace53ee0b89f2b17170557c02d63e9f2df4f3a4a233ef",
+      "custom/vision.py": "66294acd184d388b308ee618084470bd86a5b521ef896a06000a88d1b81b855d",
+      "custom/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/tools/download_models.py": "f065d3de598843c8ab06b227f558eb88b23bf1623b05da07ede1d3dfba807c5f",
+      "custom/tests/test_vision.py": "5ae70c4a11a40bcf9ba1eaf4d4b14d2e27fa5f32aac6088702b195c58fb12c3b",
+      "custom/tests/test_planner.py": "8b9247344ac4b50ef7941a34e7497d398fe35db2c37181aa9dd5dc55de069d3a",
+      "custom/tests/test_room_assignment.py": "650a4875d6b87c9c877ae9464687c74a81cf92ea83283f47de0c63e1fab91225",
+      "custom/mission_6/mission_6.py": "b59093d8c530aae16980db163eec10f2b14407699ab4a57e60e1564613116336",
+      "custom/mission_6/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/testing/web_smoke.py": "68f10f96965aecc45db5b994c31fa69918b0c3c141d95811f0027f4406f45e1e",
+      "custom/testing/capture.py": "be26d09fd23618c1e230891c95ac717455531bc363a00175606bcc78e134ee07",
+      "custom/testing/randomized_suite.py": "3740d37bf61c88984ee28377f8bb9938d5b4212759aa988a267e4187d93d584e",
+      "custom/planner/planner.py": "322cd75a717d3f91e8ccc797a3c43b7eec54ebdf0c3e923984fc26ba5b710ce7",
+      "custom/planner/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/planner/local_model.py": "738dc494168b86d94a769ae14a2766220a30d5c481399853acc943889cb6d64a",
+      "custom/mission_1/mission_1.py": "573361a9b8704a6c7836ff570e825a1b7ca4248d1f6ddcb54b150be9605a8d0f",
+      "custom/mission_1/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_3/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_3/mission_3.py": "bd3fb3282a039b7c5a801873fb39e707d0cec5acd897413e5a98fc40f00892d4",
+      "custom/mission_4/mission_4.py": "1cec5844ba50239a19c18cf023e8436f62194eb0223133f9bc90fd2a9a96a301",
+      "custom/mission_4/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_2/test_mission_2.py": "150044b3606e2330d742e774f20f1057ae0ed548be635fcc956d53e3c4028c5b",
+      "custom/mission_2/evaluate.py": "876d273c3371587ee1f7f60f3943b06ef201f8d4cbd098b911c6b7b921508297",
+      "custom/mission_2/replay_frame.py": "83e7c45ec52f2547cc309fb6e3717e3555eafdeff00be498510eeee83b69aece",
+      "custom/mission_2/perception.py": "0559ac44375688a67f57cf25f778e7ec99d4563167223b10041bebc05b73049b",
+      "custom/mission_2/mission_2.py": "dc28485ec98995591f89455556077ff992d9fe079feaa83005b25ecfef69a93a",
+      "custom/mission_2/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_5/evaluate.py": "56808e2263c639fb72569130c84d16105095743c4f1afdd278117ddfb922673b",
+      "custom/mission_5/policy.py": "49ee223a7eecc001226842f8d91597a709f1f1f005dd1f9976fceb63b7416e0e",
+      "custom/mission_5/perception.py": "16d2e6668d29dbff3a56d09a9d831f078c8017fabe1c6a9727892a70fba928ca",
+      "custom/mission_5/train_keyposes.py": "dc91fc9cc220753c69fbf59729d381e6f0f372b24f6860fceff639956621bcc6",
+      "custom/mission_5/collect.py": "724713c70c9d453dc97cb8fe1febded5497ace943657abf7b6a5443395c38ef5",
+      "custom/mission_5/ros_io.py": "a30aba84ec521699c9ce76b5e94e114e270465e94951408b629a97ae88f41408",
+      "custom/mission_5/mission_5.py": "9fda76d548d2819c646f19ae3c0e98d4e48a7ab21e5d4ed670b8d6ad72ed4933",
+      "custom/mission_5/policy_adapter.py": "0843344db550660c8b35322a17c9ee78242a1c02588d813e80092174138c41b6",
+      "custom/mission_5/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_5/vision_teacher.py": "49d7a2d34264e3a7bde9c969fafb46b1b5594b2f7afa5ccd2693acf97deb2862",
+      "custom/mission_5/keypose_policy.py": "0a261bb66716a3480e674cd4da47bc2e62be57a5874a50ea8920c0b77b77bd9b",
+      "custom/mission_5/tests/test_teacher.py": "08bce20b8ea3c180fafae08569819130f0ac95aa282661fecbecd75c8802a611",
+      "custom/mission_5/tests/test_learning.py": "15ff3a59db429f5ec98eef42d7a196f72eedaef6a3a1cbcb390bee524cf74e90",
+      "custom/mission_5/tests/test_keyposes.py": "bd742428a98b50509ddc76e6868f5af8e467d1a5d0db7c46da094735e4198347",
+      "custom/mission_5/tests/test_ros_io.py": "de56f65f6bf96acf30fc47fc873deada230d65774fbe09caf67b33285fdc6f6b",
+      "custom/mission_5/bc/export.py": "fd4141d9bfe33ce99a882126da0f78aca59f71167f57ce35d59de66faaf1f01c",
+      "custom/mission_5/bc/merge.py": "7add681774a5ac88af7e0563a4d6eb5eb472680602b4a6dd0d5a269f512661b0",
+      "custom/mission_5/bc/policy.py": "0b6b20d78af5a8bc35edca442b4402e821feddfefe3868c748cb0b1fe66a88e8",
+      "custom/mission_5/bc/prepare.py": "fa688c782496492bcac4859463d15b842b37cf7fa3874e2f048a8aeaeeeec1f8",
+      "custom/mission_5/bc/__init__.py": "47c2e5f788aab12c14747b5e52437b037c3020a7df23fcd0a74b3846005e473a",
+      "custom/mission_5/bc/train.py": "868fc8b8e2b10766ec1a0ed5f855d5d268da8e00bec333aa4007429b1f6243fe",
+      "custom/mission_5/bc/model.py": "e2236de08c9ac5eef1d91d46ba52281300cb1ebd3d0391cb2cdc1267cdcd640f",
+      "custom/mission_5/bc/frames.py": "a9daf859f8512fe5687ff32f35f1157d092b70319d1196db912e137cc321b2fe",
+      "custom/mission_5/bc/data.py": "fcf7c821b6bcb620ccf4ba1455f2d9d942c99d5ed168d0191c2470639f1c2192"
+    },
+    "initial_pose": [
+      16.0,
+      11.0,
+      0.0
+    ],
+    "ros_domain_id": "74",
+    "runtime_options": {
+      "HAIC_MAP_CORRECTION": null,
+      "HAIC_VLM_THREADS": null,
+      "HAIC_M2_CAPTURE_DIR": null
+    },
+    "returncode": 0,
+    "wall_seconds": 63.19722718800767,
+    "official_result": {
+      "run": {
+        "started_at": "2026-11-23T20:34:08+09:00",
+        "package": "ys-m2-fixes-20261123",
+        "mode": "auto",
+        "config": "/tmp/rai-headless.mRIKyZ.yaml",
+        "scenario": "/tmp/ys-m2-candidate-cone-geometry-1123/order-2-green/evaluation_scenario.yaml",
+        "referee": {
+          "goal_radius_m": 0.5,
+          "cone_box_m": 0.5,
+          "cone_box_offset_m": 0.75,
+          "m4_room": "classroom",
+          "m1_goal": [
+            15.5,
+            18.0,
+            90.0
+          ],
+          "m2_color": "green"
+        },
+        "plans": [],
+        "ended_at": "2026-11-23T20:35:03+09:00"
+      },
+      "missions": [
+        {
+          "mission": 2,
+          "label": "Cone colour navigation",
+          "verdict": "PASS",
+          "success": true,
+          "seconds": 53.9,
+          "started_at": "2026-11-23T20:34:08+09:00",
+          "ended_at": "2026-11-23T20:35:01+09:00",
+          "checks": [
+            {
+              "name": "check",
+              "ok": true,
+              "summary": "green cone box: |dx| 0.07 < 0.25, |dy| 0.11 < 0.25 m"
+            }
+          ],
+          "reported": {
+            "status": "done",
+            "detail": ""
+          },
+          "referee": {
+            "mission": 2,
+            "pelvis": [
+              14.069,
+              24.162,
+              0.78
+            ],
+            "success": true,
+            "summary": "green cone box: |dx| 0.07 < 0.25, |dy| 0.11 < 0.25 m",
+            "color": "green",
+            "box_center": [
+              14.0,
+              24.05
+            ],
+            "box_m": 0.5,
+            "dx_m": 0.069,
+            "dy_m": 0.112
+          },
+          "data": {
+            "color": "green",
+            "reached": true,
+            "cone_xy": [
+              14.275811029571969,
+              24.766867779080002
+            ],
+            "measurements": [
+              {
+                "surface_xy": [
+                  14.275811029571969,
+                  24.766867779080002
+                ],
+                "target_xy": [
+                  14.275811029571969,
+                  24.09686777908
+                ],
+                "error_m": 2.20315349947226
+              }
+            ],
+            "surface_correction_m": 0.08,
+            "final_leg_m": 2.20315349947226,
+            "final_pose_error_m": 0.030656641727402463,
+            "final_verification": "continuous_sensor_pose_against_fresh_cone_target"
+          }
+        }
+      ],
+      "total": {
+        "missions": 1,
+        "passed": 1,
+        "failed": 0,
+        "not_judged": 0,
+        "mission_seconds": 53.9,
+        "run_seconds": 55.84,
+        "by_mission": [
+          "2 PASS 53.9s"
+        ],
+        "complete": true,
+        "updated_at": "2026-11-23T20:35:03+09:00"
+      }
+    }
+  },
+  {
+    "case": {
+      "id": "order-2-orange",
+      "split": "development",
+      "missions": [
+        2
+      ],
+      "cone_order": [
+        "green",
+        "orange",
+        "blue"
+      ],
+      "m2_color": "orange"
+    },
+    "command": [
+      "bash",
+      "custom/tools/run_sim.sh",
+      "--headless",
+      "--missions",
+      "2",
+      "--no-wait",
+      "--scenario",
+      "/tmp/ys-m2-candidate-cone-geometry-1123/order-2-orange/evaluation_scenario.yaml"
+    ],
+    "source_root": "/home/aril/rai-worktrees/ys-m2-fixes-20261123/src",
+    "commit": "15fc73a73316bbf3df853911055cdcfacb367dbc",
+    "code_sha256": {
+      "custom/bringup.launch.py": "439468d3cdfe278e08908df2c1729dbdcdd97eaadc0f9be459f8c89697dbc4d2",
+      "custom/public_map.py": "cbb6a31993c75d378e7b805d52311583e032122f34f361e8de234cb90b604695",
+      "custom/navigation.py": "a218e9553c209ded1f1e27abb3305066e603e9b3eb7f1405ffac4b69fcf197a2",
+      "custom/localizer_node.py": "16fc54aea3fc1fb1e0d22916df1c9be96f4fa8d5df1a4872e22ac8c26c11d9f9",
+      "custom/localization.py": "6a6341f214ea068a3815a0505c38c4db4a3dffd9dee8a5bd0033dfacccb386c0",
+      "custom/vlm.py": "6c59b7e8bb779e3b9ccace53ee0b89f2b17170557c02d63e9f2df4f3a4a233ef",
+      "custom/vision.py": "66294acd184d388b308ee618084470bd86a5b521ef896a06000a88d1b81b855d",
+      "custom/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/tools/download_models.py": "f065d3de598843c8ab06b227f558eb88b23bf1623b05da07ede1d3dfba807c5f",
+      "custom/tests/test_vision.py": "5ae70c4a11a40bcf9ba1eaf4d4b14d2e27fa5f32aac6088702b195c58fb12c3b",
+      "custom/tests/test_planner.py": "8b9247344ac4b50ef7941a34e7497d398fe35db2c37181aa9dd5dc55de069d3a",
+      "custom/tests/test_room_assignment.py": "650a4875d6b87c9c877ae9464687c74a81cf92ea83283f47de0c63e1fab91225",
+      "custom/mission_6/mission_6.py": "b59093d8c530aae16980db163eec10f2b14407699ab4a57e60e1564613116336",
+      "custom/mission_6/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/testing/web_smoke.py": "68f10f96965aecc45db5b994c31fa69918b0c3c141d95811f0027f4406f45e1e",
+      "custom/testing/capture.py": "be26d09fd23618c1e230891c95ac717455531bc363a00175606bcc78e134ee07",
+      "custom/testing/randomized_suite.py": "3740d37bf61c88984ee28377f8bb9938d5b4212759aa988a267e4187d93d584e",
+      "custom/planner/planner.py": "322cd75a717d3f91e8ccc797a3c43b7eec54ebdf0c3e923984fc26ba5b710ce7",
+      "custom/planner/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/planner/local_model.py": "738dc494168b86d94a769ae14a2766220a30d5c481399853acc943889cb6d64a",
+      "custom/mission_1/mission_1.py": "573361a9b8704a6c7836ff570e825a1b7ca4248d1f6ddcb54b150be9605a8d0f",
+      "custom/mission_1/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_3/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_3/mission_3.py": "bd3fb3282a039b7c5a801873fb39e707d0cec5acd897413e5a98fc40f00892d4",
+      "custom/mission_4/mission_4.py": "1cec5844ba50239a19c18cf023e8436f62194eb0223133f9bc90fd2a9a96a301",
+      "custom/mission_4/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_2/test_mission_2.py": "150044b3606e2330d742e774f20f1057ae0ed548be635fcc956d53e3c4028c5b",
+      "custom/mission_2/evaluate.py": "876d273c3371587ee1f7f60f3943b06ef201f8d4cbd098b911c6b7b921508297",
+      "custom/mission_2/replay_frame.py": "83e7c45ec52f2547cc309fb6e3717e3555eafdeff00be498510eeee83b69aece",
+      "custom/mission_2/perception.py": "0559ac44375688a67f57cf25f778e7ec99d4563167223b10041bebc05b73049b",
+      "custom/mission_2/mission_2.py": "dc28485ec98995591f89455556077ff992d9fe079feaa83005b25ecfef69a93a",
+      "custom/mission_2/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_5/evaluate.py": "56808e2263c639fb72569130c84d16105095743c4f1afdd278117ddfb922673b",
+      "custom/mission_5/policy.py": "49ee223a7eecc001226842f8d91597a709f1f1f005dd1f9976fceb63b7416e0e",
+      "custom/mission_5/perception.py": "16d2e6668d29dbff3a56d09a9d831f078c8017fabe1c6a9727892a70fba928ca",
+      "custom/mission_5/train_keyposes.py": "dc91fc9cc220753c69fbf59729d381e6f0f372b24f6860fceff639956621bcc6",
+      "custom/mission_5/collect.py": "724713c70c9d453dc97cb8fe1febded5497ace943657abf7b6a5443395c38ef5",
+      "custom/mission_5/ros_io.py": "a30aba84ec521699c9ce76b5e94e114e270465e94951408b629a97ae88f41408",
+      "custom/mission_5/mission_5.py": "9fda76d548d2819c646f19ae3c0e98d4e48a7ab21e5d4ed670b8d6ad72ed4933",
+      "custom/mission_5/policy_adapter.py": "0843344db550660c8b35322a17c9ee78242a1c02588d813e80092174138c41b6",
+      "custom/mission_5/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "custom/mission_5/vision_teacher.py": "49d7a2d34264e3a7bde9c969fafb46b1b5594b2f7afa5ccd2693acf97deb2862",
+      "custom/mission_5/keypose_policy.py": "0a261bb66716a3480e674cd4da47bc2e62be57a5874a50ea8920c0b77b77bd9b",
+      "custom/mission_5/tests/test_teacher.py": "08bce20b8ea3c180fafae08569819130f0ac95aa282661fecbecd75c8802a611",
+      "custom/mission_5/tests/test_learning.py": "15ff3a59db429f5ec98eef42d7a196f72eedaef6a3a1cbcb390bee524cf74e90",
+      "custom/mission_5/tests/test_keyposes.py": "bd742428a98b50509ddc76e6868f5af8e467d1a5d0db7c46da094735e4198347",
+      "custom/mission_5/tests/test_ros_io.py": "de56f65f6bf96acf30fc47fc873deada230d65774fbe09caf67b33285fdc6f6b",
+      "custom/mission_5/bc/export.py": "fd4141d9bfe33ce99a882126da0f78aca59f71167f57ce35d59de66faaf1f01c",
+      "custom/mission_5/bc/merge.py": "7add681774a5ac88af7e0563a4d6eb5eb472680602b4a6dd0d5a269f512661b0",
+      "custom/mission_5/bc/policy.py": "0b6b20d78af5a8bc35edca442b4402e821feddfefe3868c748cb0b1fe66a88e8",
+      "custom/mission_5/bc/prepare.py": "fa688c782496492bcac4859463d15b842b37cf7fa3874e2f048a8aeaeeeec1f8",
+      "custom/mission_5/bc/__init__.py": "47c2e5f788aab12c14747b5e52437b037c3020a7df23fcd0a74b3846005e473a",
+      "custom/mission_5/bc/train.py": "868fc8b8e2b10766ec1a0ed5f855d5d268da8e00bec333aa4007429b1f6243fe",
+      "custom/mission_5/bc/model.py": "e2236de08c9ac5eef1d91d46ba52281300cb1ebd3d0391cb2cdc1267cdcd640f",
+      "custom/mission_5/bc/frames.py": "a9daf859f8512fe5687ff32f35f1157d092b70319d1196db912e137cc321b2fe",
+      "custom/mission_5/bc/data.py": "fcf7c821b6bcb620ccf4ba1455f2d9d942c99d5ed168d0191c2470639f1c2192"
+    },
+    "initial_pose": [
+      16.0,
+      11.0,
+      0.0
+    ],
+    "ros_domain_id": "74",
+    "runtime_options": {
+      "HAIC_MAP_CORRECTION": null,
+      "HAIC_VLM_THREADS": null,
+      "HAIC_M2_CAPTURE_DIR": null
+    },
+    "returncode": 0,
+    "wall_seconds": 58.076238540990744,
+    "official_result": {
+      "run": {
+        "started_at": "2026-11-23T20:35:11+09:00",
+        "package": "ys-m2-fixes-20261123",
+        "mode": "auto",
+        "config": "/tmp/rai-headless.F585nM.yaml",
+        "scenario": "/tmp/ys-m2-candidate-cone-geometry-1123/order-2-orange/evaluation_scenario.yaml",
+        "referee": {
+          "goal_radius_m": 0.5,
+          "cone_box_m": 0.5,
+          "cone_box_offset_m": 0.75,
+          "m4_room": "classroom",
+          "m1_goal": [
+            15.5,
+            18.0,
+            90.0
+          ],
+          "m2_color": "orange"
+        },
+        "plans": [],
+        "ended_at": "2026-11-23T20:36:01+09:00"
+      },
+      "missions": [
+        {
+          "mission": 2,
+          "label": "Cone colour navigation",
+          "verdict": "PASS",
+          "success": true,
+          "seconds": 48.9,
+          "started_at": "2026-11-23T20:35:11+09:00",
+          "ended_at": "2026-11-23T20:36:00+09:00",
+          "checks": [
+            {
+              "name": "check",
+              "ok": true,
+              "summary": "orange cone box: |dx| 0.02 < 0.25, |dy| 0.04 < 0.25 m"
+            }
+          ],
+          "reported": {
+            "status": "done",
+            "detail": ""
+          },
+          "referee": {
+            "mission": 2,
+            "pelvis": [
+              15.521,
+              24.092,
+              0.78
+            ],
+            "success": true,
+            "summary": "orange cone box: |dx| 0.02 < 0.25, |dy| 0.04 < 0.25 m",
+            "color": "orange",
+            "box_center": [
+              15.5,
+              24.05
+            ],
+            "box_m": 0.5,
+            "dx_m": 0.02,
+            "dy_m": 0.042
+          },
+          "data": {
+            "color": "orange",
+            "reached": true,
+            "cone_xy": [
+              15.606568823933621,
+              24.721733964254376
+            ],
+            "measurements": [
+              {
+                "surface_xy": [
+                  15.606568823933621,
+                  24.721733964254376
+                ],
+                "target_xy": [
+                  15.606568823933621,
+                  24.051733964254375
+                ],
+                "error_m": 1.6962991257767122
+              }
+            ],
+            "surface_correction_m": 0.08,
+            "final_leg_m": 1.6962991257767122,
+            "final_pose_error_m": 0.018953988476591237,
+            "final_verification": "continuous_sensor_pose_against_fresh_cone_target"
+          }
+        }
+      ],
+      "total": {
+        "missions": 1,
+        "passed": 1,
+        "failed": 0,
+        "not_judged": 0,
+        "mission_seconds": 48.9,
+        "run_seconds": 50.83,
+        "by_mission": [
+          "2 PASS 48.9s"
+        ],
+        "complete": true,
+        "updated_at": "2026-11-23T20:36:01+09:00"
+      }
+    }
+  }
+]

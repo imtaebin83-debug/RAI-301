@@ -47,7 +47,7 @@ class Mission2(Mission):
             for yaw in (math.pi/2, math.pi/2-.4, math.pi/2+.4):
                 if not nav.face(yaw, timeout=remaining(12.)):
                     raise RuntimeError('Could not face cone survey heading')
-                detection = sensor.observe_cone(color, seconds=remaining(1.5))
+                detection = sensor.observe_cone(color, seconds=remaining(3.0))
                 if detection is not None:
                     break
             if detection is None:

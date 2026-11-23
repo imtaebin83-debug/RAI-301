@@ -28,3 +28,14 @@ stale localization. Separate standalone failures were no stable orange RGB-D
 detection and a green stop0.304m from the official target in y (limit0.25m).
 Both passed on repetition; these are not all proven localization failures.
 See ys_m2_checks_20261123.md for the complete, final-code matrix and repeats.
+
+November 23 cone-only fix validation: the full nine-case standalone matrix
+passed, but after-m1-green again failed before any cone survey. Mission 1
+passed in 14.3s; Mission 2 timed out in 140.5s while the estimated pose stayed
+around (15.9,14.3), targeting (15.5,20.3), roughly 6m away. Reproduce with the
+same --case after-m1-green command; shared map correction remains OFF.
+Evidence: /tmp/ys-m2-candidate-cone-geometry-1123/after-m1-green/record.json
+and simulator.log; compact results in ys_m2_fixes_20261123/matrix.json.
+Inspect continuous pose accuracy and route progress/collision handling at this
+corridor after Mission 1. Do not infer that the cone detector caused a route
+failure which occurs before it is called. No shared-code changes were made.

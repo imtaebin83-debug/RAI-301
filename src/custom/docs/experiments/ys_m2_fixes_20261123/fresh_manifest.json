@@ -1,0 +1,41 @@
+[
+  {
+    "id": "fresh-blue",
+    "split": "held-out-layout",
+    "missions": [
+      2
+    ],
+    "cone_order": [
+      "blue",
+      "orange",
+      "green"
+    ],
+    "m2_color": "blue"
+  },
+  {
+    "id": "fresh-green",
+    "split": "held-out-layout",
+    "missions": [
+      2
+    ],
+    "cone_order": [
+      "green",
+      "blue",
+      "orange"
+    ],
+    "m2_color": "green"
+  },
+  {
+    "id": "fresh-orange",
+    "split": "held-out-layout",
+    "missions": [
+      2
+    ],
+    "cone_order": [
+      "orange",
+      "green",
+      "blue"
+    ],
+    "m2_color": "orange"
+  }
+]

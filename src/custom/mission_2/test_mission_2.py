@@ -44,6 +44,33 @@ class ConsensusTests(unittest.TestCase):
              patch('custom.mission_2.perception.time.sleep'):
             self.assertIsNotNone(sensor.observe_cone('blue', .3))
 
+    def test_survey_settles_before_reading_frames_and_keeps_timeout(self):
+        events = []
+        clock = [0.]
+        mission = SimpleNamespace(stop=lambda: events.append('stop'), log=Mock(),
+            latest=lambda *a, **k: events.append('read'))
+        sensor = ConeSensor(mission, Mock())
+        def sleep(seconds):
+            events.append(('sleep', seconds))
+            clock[0] += seconds
+        with patch('custom.mission_2.perception.time.monotonic', side_effect=lambda: clock[0]), \
+             patch('custom.mission_2.perception.time.sleep', side_effect=sleep):
+            self.assertIsNone(sensor.observe_cone('orange', .4))
+        self.assertEqual(events[:2], ['stop', ('sleep', .4)])
+        self.assertLessEqual(clock[0], .4)
+
+    def test_cone_survives_wrong_floor_but_flat_patch_is_rejected(self):
+        hsv = np.zeros((30,30,3),dtype=np.uint8)
+        hsv[3:28,10:20] = [115,220,210]
+        rgb = cv2.cvtColor(hsv,cv2.COLOR_HSV2RGB)
+        world = np.zeros((30,30,3)); world[:] = [17.,24.7,0.]
+        world[:,:,2] = np.arange(30)[:,None]/40.
+        data = (rgb,np.full((30,30),2.),world,np.full((30,30),-1.6),np.ones((30,30),bool))
+        sensor = ConeSensor.__new__(ConeSensor)
+        self.assertIsNotNone(sensor.cone('blue',data))
+        world[:,:,2] = .3
+        self.assertIsNone(sensor.cone('blue',data))
+
     def test_manifest_covers_three_colors_and_prior_mission_endpoints(self):
         cases = evaluate.cases()
         self.assertEqual(len({item['id'] for item in cases}), 12)
