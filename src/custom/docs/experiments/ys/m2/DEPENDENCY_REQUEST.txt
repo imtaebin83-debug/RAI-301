@@ -20,3 +20,11 @@ never reinitialise from nominal mission selection data or hidden ground truth.
 Official evidence: /tmp/ys-m2-candidate-expanded/after-m1-green/record.json
 Diagnostic: /tmp/ys-m2-candidate-map-green/after-m1-green/record.json
 Copied evidence is stored in output/ys-missions/sim-20261122 on the Mac.
+
+November 23 broader checks: after-m1-green passed under unchanged defaults,
+but after-m1-orange stalled near estimated(15.5,14.6) targeting(15.5,20.3)
+and timed out before detection. A standalone orange repeat also failed on
+stale localization. Separate standalone failures were no stable orange RGB-D
+detection and a green stop0.304m from the official target in y (limit0.25m).
+Both passed on repetition; these are not all proven localization failures.
+See ys_m2_checks_20261123.md for the complete, final-code matrix and repeats.

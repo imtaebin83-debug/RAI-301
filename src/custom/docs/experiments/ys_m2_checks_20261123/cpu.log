@@ -1,0 +1,28 @@
+----------------------------------------------------------------------
+Ran 14 tests in 0.029s
+
+OK
+[planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+[planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+[planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+[planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+[planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+[planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+[planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+[planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+[planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+[planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+[planner] local Qwen CPU language-model inference
+[planner] local Qwen CPU language-model inference
+[planner] local Qwen CPU language-model inference
+[planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+[planner] local Qwen CPU language-model inference
+[planner] local Qwen CPU language-model inference
+[planner] local Qwen CPU language-model inference
+[planner] local Qwen CPU language-model inference
+[planner] local Qwen CPU language-model inference
+[planner] removed trailing quoting after complete LLM JSON
+----------------------------------------------------------------------
+Ran 46 tests in 0.035s
+
+OK
