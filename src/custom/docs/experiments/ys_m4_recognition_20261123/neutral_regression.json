@@ -1,0 +1,110 @@
+[
+  {
+    "case": "rooms-0",
+    "expected": [
+      "classroom",
+      "medical",
+      "cafeteria"
+    ],
+    "baseline": [
+      "medical",
+      "medical",
+      "medical"
+    ],
+    "neutral": [
+      "medical",
+      "medical",
+      "medical"
+    ]
+  },
+  {
+    "case": "rooms-1",
+    "expected": [
+      "classroom",
+      "cafeteria",
+      "medical"
+    ],
+    "baseline": [
+      "medical",
+      "medical",
+      "medical"
+    ],
+    "neutral": [
+      "medical",
+      "medical",
+      "medical"
+    ]
+  },
+  {
+    "case": "rooms-2",
+    "expected": [
+      "medical",
+      "classroom",
+      "cafeteria"
+    ],
+    "baseline": [
+      "medical",
+      "medical",
+      "medical"
+    ],
+    "neutral": [
+      "medical",
+      "medical",
+      "medical"
+    ]
+  },
+  {
+    "case": "rooms-3",
+    "expected": [
+      "medical",
+      "cafeteria",
+      "classroom"
+    ],
+    "baseline": [
+      "medical",
+      "medical",
+      "medical"
+    ],
+    "neutral": [
+      "medical",
+      "medical",
+      "medical"
+    ]
+  },
+  {
+    "case": "rooms-4",
+    "expected": [
+      "cafeteria",
+      "classroom",
+      "medical"
+    ],
+    "baseline": [
+      "medical",
+      "medical",
+      "medical"
+    ],
+    "neutral": [
+      "cafeteria",
+      "cafeteria",
+      "medical"
+    ]
+  },
+  {
+    "case": "rooms-5",
+    "expected": [
+      "cafeteria",
+      "medical",
+      "classroom"
+    ],
+    "baseline": [
+      "medical",
+      "medical",
+      "medical"
+    ],
+    "neutral": [
+      "cafeteria",
+      "medical",
+      "cafeteria"
+    ]
+  }
+]

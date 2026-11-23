@@ -1,0 +1,64 @@
+[
+  {
+    "case_dir": "/tmp/ys-m4-candidate-reattempt-final-six/rooms-0",
+    "variant": "neutral",
+    "bias": {
+      "classroom": -13.061983006366063,
+      "medical": -10.808180809020996,
+      "cafeteria": -16.59991306066513
+    },
+    "observations": [
+      {
+        "scores": {
+          "classroom": -0.33609971156693064,
+          "medical": -0.08222675323486328,
+          "cafeteria": -1.6427985252812505
+        },
+        "label": "medical",
+        "expected": "classroom",
+        "image_sha256": "93462b1ca0c3d39d8011a5b85c79c16815538ac2c3e3b2ea8df66c509c91ec8f",
+        "seconds": 0.00013906400999985635
+      },
+      {
+        "scores": {
+          "classroom": -2.236520303587895,
+          "medical": 2.178050994873047,
+          "cafeteria": -2.442224120721221
+        },
+        "label": "medical",
+        "expected": "medical",
+        "image_sha256": "859216ab8cdbac084ef237f1c9ff2b860e90c8794df752047143d422044fbd21",
+        "seconds": 0.00011896499199792743
+      },
+      {
+        "scores": {
+          "classroom": 0.24999204074265435,
+          "medical": 1.9128236770629883,
+          "cafeteria": 0.6634162124246359
+        },
+        "label": "medical",
+        "expected": "cafeteria",
+        "image_sha256": "ead78887c2fa6849f4201afdf633996d726770476f5377b4d61d87b33b367d9f",
+        "seconds": 0.00014313100837171078
+      }
+    ],
+    "assignment": [
+      "classroom",
+      "medical",
+      "cafeteria"
+    ],
+    "details": {
+      "method": "vlm_likelihood_unique_room_assignment",
+      "unconstrained_labels": [
+        "medical",
+        "medical",
+        "medical"
+      ],
+      "score": 2.505367495730752,
+      "runner_up_margin": 1.7201229853963014
+    },
+    "baseline_correct": 1,
+    "candidate_correct": 1,
+    "assignment_correct": true
+  }
+]
