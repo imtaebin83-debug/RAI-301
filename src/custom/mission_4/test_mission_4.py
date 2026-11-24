@@ -7,7 +7,7 @@ from unittest.mock import Mock, patch
 import numpy as np
 from sensor_msgs.msg import Image
 
-from custom.mission_4.mission_4 import Mission4
+from custom.mission_4.mission_4 import Mission4, ROOM_HEADING_TIMEOUT
 from custom.mission_4 import evaluate
 from custom.vlm import ROOM_LABELS, assign_rooms, classify_views, combine_views
 from custom.mission_4.room_scoring import calibrated_observation, score_room_image
@@ -223,6 +223,35 @@ class CameraTests(unittest.TestCase):
 
 
 class PoseRecoveryTests(unittest.TestCase):
+    def test_heading_budget_allows_two_stopped_recoveries_without_extending_deadline(self):
+        clock, outage_until = [0.], [0.]
+        def latest(*args, **kwargs):
+            if clock[0] < outage_until[0]:
+                return None
+            return SimpleNamespace(header=SimpleNamespace(stamp=SimpleNamespace(
+                sec=0, nanosec=int(clock[0]*1_000_000))))
+        mission = SimpleNamespace(stop=Mock(), log=Mock(), _recovery_attempts=0,
+                                  _pose_recoveries=[], latest=latest)
+        timeouts = []
+        def action(timeout):
+            timeouts.append(timeout)
+            if len(timeouts) <= 2:
+                outage_until[0] = clock[0] + (4.1 if len(timeouts) == 1 else 5.1)
+                raise RuntimeError('Stale localization: test')
+            self.assertGreaterEqual(timeout, 8.)
+            clock[0] += 8.
+            return True
+        def sleep(seconds):
+            clock[0] += seconds
+        with patch('custom.mission_4.mission_4.time.monotonic', side_effect=lambda: clock[0]), \
+             patch('custom.mission_4.mission_4.time.sleep', side_effect=sleep):
+            self.assertTrue(Mission4._navigate(mission, Mock(), action, ROOM_HEADING_TIMEOUT))
+        self.assertEqual(len(timeouts), 3)
+        self.assertTrue(all(a > b for a,b in zip(timeouts, timeouts[1:])))
+        self.assertGreater(clock[0], 18.)
+        self.assertLessEqual(clock[0], ROOM_HEADING_TIMEOUT)
+        self.assertTrue(all(event['recovered'] for event in mission._pose_recoveries))
+
     def mission(self, stamps):
         def message(stamp):
             return SimpleNamespace(header=SimpleNamespace(stamp=SimpleNamespace(sec=stamp, nanosec=0)))

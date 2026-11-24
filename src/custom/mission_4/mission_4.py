@@ -18,6 +18,9 @@ from custom.vlm import assign_rooms, classify_views, combine_views
 from geometry_msgs.msg import PoseStamped
 
 DOOR_Y = (17.5, 10.5, 3.59)  # Published north-to-south door geometry.
+# Two observed stopped recoveries consumed 11.4s of the old 18s alignment leg.
+# Keep a fixed leg bound, allowing recovery time without relaxing pose freshness.
+ROOM_HEADING_TIMEOUT = 30.
 
 
 class Mission4(Mission):
@@ -146,7 +149,7 @@ class Mission4(Mission):
                 stage = f'survey door {door_y}'
                 self._travel(nav, door_y, remaining)
                 self._navigate(nav, lambda timeout: self._face_room(
-                    nav, time.monotonic()+timeout), remaining(18))
+                    nav, time.monotonic()+timeout), remaining(ROOM_HEADING_TIMEOUT))
                 # The forward heading gives an actual sensor view, with no
                 # assumed room labels. No cached pre-turn image is accepted.
                 for yaw in (0.,):
@@ -199,7 +202,7 @@ class Mission4(Mission):
             stage = 'classroom return'
             self._travel(nav, classroom_y, remaining)
             self._navigate(nav, lambda timeout: self._face_room(
-                nav, time.monotonic()+timeout), remaining(18))
+                nav, time.monotonic()+timeout), remaining(ROOM_HEADING_TIMEOUT))
             stage = 'classroom entry'
             # Aim well inside the published room, rather than stopping only
             # 0.4m beyond a doorway using a drifting global pose estimate.
