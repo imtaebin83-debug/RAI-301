@@ -17,6 +17,36 @@ def detection(x=15.5, y=24.72):
 
 
 class ConsensusTests(unittest.TestCase):
+    def test_only_fresh_synchronised_supported_pairs_reach_projection(self):
+        # A live stream with advancing stamps still must pass the pairing gate.
+        for lag, encoding, frozen_depth, expected in (
+                (.080, '32FC1', False, True),
+                (.081, '32FC1', False, False),
+                (0., '8UC1', False, False),
+                (0., '32FC1', True, False)):
+            with self.subTest(lag=lag, encoding=encoding, frozen=frozen_depth):
+                clock = [0.]
+                def latest(topic, *args, **kwargs):
+                    depth = 'depth' in topic
+                    stamp_ns = int(round((clock[0] + (lag if depth else 0.))*1e9))
+                    if depth and frozen_depth:
+                        stamp_ns = 1
+                    return SimpleNamespace(encoding=encoding if depth else 'rgb8',
+                        header=SimpleNamespace(stamp=SimpleNamespace(
+                            sec=stamp_ns//1_000_000_000, nanosec=stamp_ns%1_000_000_000)))
+                sensor = ConeSensor(SimpleNamespace(latest=latest, stop=Mock(), log=Mock()), Mock())
+                def sleep(seconds):
+                    clock[0] += seconds
+                with patch('custom.mission_2.perception.time.monotonic', side_effect=lambda: clock[0]), \
+                     patch('custom.mission_2.perception.time.sleep', side_effect=sleep), \
+                     patch.object(sensor._projection, 'frame', return_value=('data',)) as frame, \
+                     patch.object(sensor, 'cone', return_value=detection()), \
+                     patch.dict('os.environ', {}, clear=True):
+                    result = sensor.observe_cone('blue', 1.5)
+                self.assertEqual(result is not None, expected)
+                self.assertEqual(frame.called, expected)
+                self.assertLessEqual(clock[0], 1.5)
+
     def test_projection_uses_paired_snapshot_despite_live_camera_updates(self):
         sequence = [0]
 
@@ -73,12 +103,15 @@ class ConsensusTests(unittest.TestCase):
 
     def test_manifest_covers_three_colors_and_prior_mission_endpoints(self):
         cases = evaluate.cases()
-        self.assertEqual(len({item['id'] for item in cases}), 12)
+        self.assertEqual(len({item['id'] for item in cases}), 21)
         for color in ('blue', 'green', 'orange'):
             self.assertTrue(any(item['m2_color'] == color and item['missions'] == [1, 2]
                                 for item in cases))
             self.assertEqual(sum(item['m2_color'] == color and item['missions'] == [2]
-                                 for item in cases), 3)
+                                 for item in cases), 6)
+            self.assertEqual(sorted(item['cone_order'].index(color) for item in cases
+                                    if item['m2_color'] == color and item['missions'] == [2]),
+                             [0, 0, 1, 1, 2, 2])
 
     def test_evaluator_refuses_active_training(self):
         with patch.object(evaluate.subprocess, 'run', return_value=SimpleNamespace(stdout='89688, python')):
@@ -135,6 +168,11 @@ class ConsensusTests(unittest.TestCase):
 
 
 class MissionFailureTests(unittest.TestCase):
+    def setUp(self):
+        sleeper = patch('custom.mission_2.mission_2.time.sleep')
+        sleeper.start()
+        self.addCleanup(sleeper.stop)
+
     def mission(self):
         return SimpleNamespace(begin_mission=Mock(return_value={}), params={'color': 'blue'},
             m2_color='green', log=Mock(), result=lambda **data: data, stop=Mock())
@@ -196,7 +234,41 @@ class MissionFailureTests(unittest.TestCase):
             self.assertLessEqual(result['final_leg_m'], 3.5)
             self.assertLess(result['final_pose_error_m'], .12)
         self.assertEqual(nav.goto.call_count, 1)
-        mission.stop.assert_called_once()
+        self.assertEqual(nav.face.call_count, 1)  # Survey only; no turn after reaching the target.
+        mission.stop.assert_called()
+
+    def test_nonfinite_pose_cannot_start_approach_or_claim_a_successful_stop(self):
+        for at_end in (False, True):
+            for axis in range(3):
+                for value in (float('nan'), float('inf')):
+                    with self.subTest(at_end=at_end, axis=axis, value=value):
+                        mission = self.mission()
+                        nav = Mock()
+                        invalid = [15.5, 24.05, 1.57]
+                        invalid[axis] = value
+                        nav.pose.side_effect = ([(15.5, 22.3, 1.57), invalid]
+                                                if at_end else [invalid, (15.5, 24.05, 1.57)])
+                        with patch('custom.mission_2.mission_2.Navigator', return_value=nav), \
+                             patch('custom.mission_2.mission_2.ConeSensor') as sensor:
+                            sensor.return_value.observe_cone.return_value = detection()
+                            result = Mission2.run(mission)
+                        self.assertFalse(result['reached'])
+                        self.assertTrue(result['error'])
+                        self.assertEqual(nav.goto.call_count, int(at_end))
+                        mission.stop.assert_called()
+
+    def test_settled_stop_outside_tolerance_is_rejected(self):
+        mission = self.mission()
+        nav = Mock()
+        nav.pose.side_effect = [(15.5,22.3,1.57), (15.5,24.3,1.57)]
+        with patch('custom.mission_2.mission_2.Navigator', return_value=nav), \
+             patch('custom.mission_2.mission_2.ConeSensor') as sensor:
+            sensor.return_value.observe_cone.return_value = detection()
+            result = Mission2.run(mission)
+        self.assertFalse(result['reached'])
+        self.assertIn('Settled stop moved outside', result['error'])
+        self.assertAlmostEqual(result['final_stop']['error_m'], .25)
+        mission.stop.assert_called()
 
 
 if __name__ == '__main__':

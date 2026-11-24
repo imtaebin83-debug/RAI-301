@@ -28,11 +28,17 @@ def cases():
                        'room_order': ['medical', 'cafeteria', 'classroom']})
         return result
     result = []
+    # Preserve existing case IDs, then cover the three reverse permutations.
+    # Each target now appears twice in every slot, with different neighbours.
     for index, order in enumerate((['blue', 'green', 'orange'],
                                    ['orange', 'blue', 'green'],
-                                   ['green', 'orange', 'blue'])):
+                                   ['green', 'orange', 'blue'],
+                                   ['blue', 'orange', 'green'],
+                                   ['green', 'blue', 'orange'],
+                                   ['orange', 'green', 'blue'])):
         for color in ('blue', 'green', 'orange'):
-            result.append({'id': f'order-{index}-{color}', 'split': 'development',
+            result.append({'id': f'order-{index}-{color}',
+                           'split': 'development' if index < 3 else 'additional-coverage',
                            'missions': [2], 'cone_order': order, 'm2_color': color})
     for color in ('blue', 'green', 'orange'):
         rng = random.Random(9227 + ('blue', 'green', 'orange').index(color))

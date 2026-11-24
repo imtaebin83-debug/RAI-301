@@ -25,6 +25,7 @@ class Mission2(Mission):
     def run(self) -> MissionResult:
         deadline = time.monotonic() + 240.
         measurements = []
+        final_stop = None
 
         def remaining(limit):
             value = deadline - time.monotonic()
@@ -57,7 +58,9 @@ class Mission2(Mission):
             # simulation data supports changing it. It is not a measured radius.
             surface_correction = .08
             target = (detection.x, detection.y + surface_correction - .75)
-            px, py, _ = nav.pose()
+            px, py, yaw = nav.pose()
+            if not all(math.isfinite(value) for value in (px, py, yaw)):
+                raise RuntimeError('Nonfinite sensor pose before cone approach')
             distance = math.hypot(target[0]-px, target[1]-py)
             measurements.append({'surface_xy': [detection.x, detection.y],
                                  'target_xy': list(target), 'error_m': distance})
@@ -68,19 +71,29 @@ class Mission2(Mission):
             # shared continuous LiDAR pose, as the passing baseline does.
             if not nav.goto(*target, tolerance=.08, timeout=remaining(40.), speed=.18):
                 raise RuntimeError('Final cone approach was not reached')
-            if not nav.face(math.pi/2, timeout=remaining(8.)):
-                raise RuntimeError('Final cone heading was not reached')
-            vx, vy, _ = nav.pose()
+            # Mission 2 judges position only. An extra final rotation can move
+            # the pelvis out of the reached stop box and trigger pose drift.
+            # Hold the arrival heading, let walking settle, then verify position.
+            self.stop()
+            settle_seconds = remaining(.5)
+            time.sleep(settle_seconds)
+            vx, vy, yaw = nav.pose()
+            if not all(math.isfinite(value) for value in (vx, vy, yaw)):
+                raise RuntimeError('Nonfinite sensor pose at final cone stop')
             error = math.hypot(target[0]-vx, target[1]-vy)
+            final_stop = {'estimated_pose': [vx, vy, yaw], 'target_xy': list(target),
+                          'error_m': error, 'settle_seconds': settle_seconds}
             if error >= .15:
-                raise RuntimeError('Final rotation moved outside the estimated cone target')
+                raise RuntimeError('Settled stop moved outside the estimated cone target')
             return self.result(color=color, reached=True,
                 cone_xy=[detection.x, detection.y], measurements=measurements,
                 surface_correction_m=surface_correction,
                 final_leg_m=distance, final_pose_error_m=error,
-                final_verification='continuous_sensor_pose_against_fresh_cone_target')
+                final_stop=final_stop,
+                final_verification='settled_sensor_pose_against_fresh_cone_target')
         except Exception as exc:
-            return self.result(error=str(exc), reached=False, measurements=measurements)
+            return self.result(error=str(exc), reached=False, measurements=measurements,
+                               final_stop=final_stop)
         finally:
             self.stop()
 
