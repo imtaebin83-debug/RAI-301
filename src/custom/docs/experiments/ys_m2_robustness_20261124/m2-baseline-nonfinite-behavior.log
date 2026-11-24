@@ -1,0 +1,69 @@
+test_nonfinite_pose_cannot_start_approach_or_claim_a_successful_stop (custom.mission_2.test_mission_2.MissionFailureTests) ... 
+======================================================================
+FAIL: test_nonfinite_pose_cannot_start_approach_or_claim_a_successful_stop (custom.mission_2.test_mission_2.MissionFailureTests) (at_end=False, axis=0, value=nan)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/aril/rai-worktrees/ys-m2-opt-20261124/src/custom/mission_2/test_mission_2.py", line 249, in test_nonfinite_pose_cannot_start_approach_or_claim_a_successful_stop
+    self.assertFalse(result['reached'])
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_nonfinite_pose_cannot_start_approach_or_claim_a_successful_stop (custom.mission_2.test_mission_2.MissionFailureTests) (at_end=False, axis=1, value=nan)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/aril/rai-worktrees/ys-m2-opt-20261124/src/custom/mission_2/test_mission_2.py", line 249, in test_nonfinite_pose_cannot_start_approach_or_claim_a_successful_stop
+    self.assertFalse(result['reached'])
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_nonfinite_pose_cannot_start_approach_or_claim_a_successful_stop (custom.mission_2.test_mission_2.MissionFailureTests) (at_end=False, axis=2, value=nan)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/aril/rai-worktrees/ys-m2-opt-20261124/src/custom/mission_2/test_mission_2.py", line 249, in test_nonfinite_pose_cannot_start_approach_or_claim_a_successful_stop
+    self.assertFalse(result['reached'])
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_nonfinite_pose_cannot_start_approach_or_claim_a_successful_stop (custom.mission_2.test_mission_2.MissionFailureTests) (at_end=False, axis=2, value=inf)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/aril/rai-worktrees/ys-m2-opt-20261124/src/custom/mission_2/test_mission_2.py", line 249, in test_nonfinite_pose_cannot_start_approach_or_claim_a_successful_stop
+    self.assertFalse(result['reached'])
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_nonfinite_pose_cannot_start_approach_or_claim_a_successful_stop (custom.mission_2.test_mission_2.MissionFailureTests) (at_end=True, axis=0, value=nan)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/aril/rai-worktrees/ys-m2-opt-20261124/src/custom/mission_2/test_mission_2.py", line 249, in test_nonfinite_pose_cannot_start_approach_or_claim_a_successful_stop
+    self.assertFalse(result['reached'])
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_nonfinite_pose_cannot_start_approach_or_claim_a_successful_stop (custom.mission_2.test_mission_2.MissionFailureTests) (at_end=True, axis=1, value=nan)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/aril/rai-worktrees/ys-m2-opt-20261124/src/custom/mission_2/test_mission_2.py", line 249, in test_nonfinite_pose_cannot_start_approach_or_claim_a_successful_stop
+    self.assertFalse(result['reached'])
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_nonfinite_pose_cannot_start_approach_or_claim_a_successful_stop (custom.mission_2.test_mission_2.MissionFailureTests) (at_end=True, axis=2, value=nan)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/aril/rai-worktrees/ys-m2-opt-20261124/src/custom/mission_2/test_mission_2.py", line 249, in test_nonfinite_pose_cannot_start_approach_or_claim_a_successful_stop
+    self.assertFalse(result['reached'])
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_nonfinite_pose_cannot_start_approach_or_claim_a_successful_stop (custom.mission_2.test_mission_2.MissionFailureTests) (at_end=True, axis=2, value=inf)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/aril/rai-worktrees/ys-m2-opt-20261124/src/custom/mission_2/test_mission_2.py", line 249, in test_nonfinite_pose_cannot_start_approach_or_claim_a_successful_stop
+    self.assertFalse(result['reached'])
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 1 test in 0.014s
+
+FAILED (failures=8)

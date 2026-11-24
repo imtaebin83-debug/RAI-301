@@ -39,3 +39,30 @@ and simulator.log; compact results in ys_m2_fixes_20261123/matrix.json.
 Inspect continuous pose accuracy and route progress/collision handling at this
 corridor after Mission 1. Do not infer that the cone detector caused a route
 failure which occurs before it is called. No shared-code changes were made.
+
+November 24 additional coverage found one post-approach failure in 9 cases:
+order-5-blue (cone order orange/green/blue) detected the target, overshot during
+the approach, and failed its final estimated-position check after rotating.
+Measured surface=(17.1311,24.6928), approach target=(17.1311,24.0228).
+Official pelvis=(17.309,24.140), box center=(17.0,24.05): dx=0.310m outside
+the 0.25m limit. The shared localizer reported a reanchor after rejecting a
+0.480m translation / 7.2deg turn over 0.200s. This does not prove which part
+of the final error came from physical motion versus estimation drift.
+Evidence: /tmp/ys-m2-opt-all-orders-1124/order-5-blue/{record.json,simulator.log}.
+Reproduce with mission_2/evaluate.py --run --case order-5-blue using the
+pre-stop-change source recorded in ys_m2_robustness_20261124/prestop-matrix.json.
+
+Mission 2 now uses a scope-local mitigation: the referee needs position only,
+so hold the arrival heading instead of issuing another final rotation; settle
+for 0.5s and verify position. This does not repair the shared estimator or
+Navigator. The original behavior passed a repeat (55.68s), and the candidate
+passed the dedicated target run (58.52s) and its matrix repeat (54.61s), so do not treat the single original
+failure as a deterministic reproduction. Full results and code fingerprints
+are in ys_m2_robustness_20261124.md. No global pose snapping or shared changes.
+
+The completed final-code validation passed all 13 Mission 2 runs (10 standalone,
+3 continuous), but both continuous blue Mission 4 attempts failed before VLM.
+A comparison restoring the old M2 final turn also failed the shared route;
+its M2 official PASS additionally reported a controller stop-check error.
+See Mission 4's DEPENDENCY_REQUEST.txt and the linked reports for current-code
+reproduction. Final Mission 2 success does not establish downstream pose accuracy.

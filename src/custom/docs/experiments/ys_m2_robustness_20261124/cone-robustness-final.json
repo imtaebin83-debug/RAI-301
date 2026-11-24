@@ -1,0 +1,649 @@
+{
+  "frames": [
+    {
+      "capture": "/tmp/ys-m2-settled-captures/blue-1795415520900940009.npz",
+      "sha256": "c0735d3e99b644322383af3e7e9876dbeb220d1739194ebbe3b10b9e99248c9a",
+      "color": "blue",
+      "reference_detected": false,
+      "results": [
+        {
+          "variant": "original",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": null
+        },
+        {
+          "variant": "dim-60-percent",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": null
+        },
+        {
+          "variant": "bright-130-percent",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": null
+        },
+        {
+          "variant": "missing-depth-20-percent",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": null
+        },
+        {
+          "variant": "vertical-offset-2m",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": null
+        },
+        {
+          "variant": "all-invalid",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "capture": "/tmp/ys-m2-settled-captures/blue-1795415525843246459.npz",
+      "sha256": "de59b0fb22b865f5523194d13c8c8f8c20a82fb2622455082caaf172e28d4cb7",
+      "color": "blue",
+      "reference_detected": true,
+      "results": [
+        {
+          "variant": "original",
+          "detected": true,
+          "xy": [
+            16.962400439738666,
+            24.71704282578039
+          ],
+          "shift_from_original_m": 0.0,
+          "passed": true
+        },
+        {
+          "variant": "dim-60-percent",
+          "detected": true,
+          "xy": [
+            16.963814413777985,
+            24.714798737665678
+          ],
+          "shift_from_original_m": 0.002652405332987093,
+          "passed": true
+        },
+        {
+          "variant": "bright-130-percent",
+          "detected": true,
+          "xy": [
+            16.962400439738666,
+            24.717078644652176
+          ],
+          "shift_from_original_m": 3.5818871786830186e-05,
+          "passed": true
+        },
+        {
+          "variant": "missing-depth-20-percent",
+          "detected": true,
+          "xy": [
+            16.962719680184296,
+            24.717447393122644
+          ],
+          "shift_from_original_m": 0.0005153534675787299,
+          "passed": true
+        },
+        {
+          "variant": "vertical-offset-2m",
+          "detected": true,
+          "xy": [
+            16.962400439738666,
+            24.71704282578039
+          ],
+          "shift_from_original_m": 0.0,
+          "passed": true
+        },
+        {
+          "variant": "all-invalid",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "capture": "/tmp/ys-m2-settled-captures/blue-1795415531158126975.npz",
+      "sha256": "0fbdf04c4cbcaf66de90ca6a1b70d5fde5c70a800b8682083142631eb9965052",
+      "color": "blue",
+      "reference_detected": false,
+      "results": [
+        {
+          "variant": "original",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": null
+        },
+        {
+          "variant": "dim-60-percent",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": null
+        },
+        {
+          "variant": "bright-130-percent",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": null
+        },
+        {
+          "variant": "missing-depth-20-percent",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": null
+        },
+        {
+          "variant": "vertical-offset-2m",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": null
+        },
+        {
+          "variant": "all-invalid",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "capture": "/tmp/ys-m2-settled-captures/green-1795415391076323181.npz",
+      "sha256": "dcb7492316d44f19327a4a2350f256dd026f8c9b3817336c83be4e8fdeef8c47",
+      "color": "green",
+      "reference_detected": false,
+      "results": [
+        {
+          "variant": "original",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": null
+        },
+        {
+          "variant": "dim-60-percent",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": null
+        },
+        {
+          "variant": "bright-130-percent",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": null
+        },
+        {
+          "variant": "missing-depth-20-percent",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": null
+        },
+        {
+          "variant": "vertical-offset-2m",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": null
+        },
+        {
+          "variant": "all-invalid",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "capture": "/tmp/ys-m2-settled-captures/green-1795415396274099481.npz",
+      "sha256": "785b781ed075a8424927140e56092450ab7cdf9c840fdd860d3db85987689130",
+      "color": "green",
+      "reference_detected": true,
+      "results": [
+        {
+          "variant": "original",
+          "detected": true,
+          "xy": [
+            17.084757583356613,
+            24.663817779219034
+          ],
+          "shift_from_original_m": 0.0,
+          "passed": true
+        },
+        {
+          "variant": "dim-60-percent",
+          "detected": true,
+          "xy": [
+            17.091647090469973,
+            24.657745109367255
+          ],
+          "shift_from_original_m": 0.00918382422489392,
+          "passed": true
+        },
+        {
+          "variant": "bright-130-percent",
+          "detected": true,
+          "xy": [
+            17.08476182434094,
+            24.664327054027346
+          ],
+          "shift_from_original_m": 0.0005092924663977455,
+          "passed": true
+        },
+        {
+          "variant": "missing-depth-20-percent",
+          "detected": true,
+          "xy": [
+            17.084806741086147,
+            24.664613070608176
+          ],
+          "shift_from_original_m": 0.0007968091841945856,
+          "passed": true
+        },
+        {
+          "variant": "vertical-offset-2m",
+          "detected": true,
+          "xy": [
+            17.084757583356613,
+            24.663817779219034
+          ],
+          "shift_from_original_m": 0.0,
+          "passed": true
+        },
+        {
+          "variant": "all-invalid",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "capture": "/tmp/ys-m2-settled-captures/orange-1795415457198041220.npz",
+      "sha256": "f7989e5a939cc31e30b35377d2eb600b0b034f5f8b7a04685772e516b154d967",
+      "color": "orange",
+      "reference_detected": true,
+      "results": [
+        {
+          "variant": "original",
+          "detected": true,
+          "xy": [
+            14.251685473756648,
+            24.661814922232992
+          ],
+          "shift_from_original_m": 0.0,
+          "passed": true
+        },
+        {
+          "variant": "dim-60-percent",
+          "detected": true,
+          "xy": [
+            14.251415709644313,
+            24.661080285244996
+          ],
+          "shift_from_original_m": 0.0007826009075104566,
+          "passed": true
+        },
+        {
+          "variant": "bright-130-percent",
+          "detected": true,
+          "xy": [
+            14.251777313964453,
+            24.662084953686442
+          ],
+          "shift_from_original_m": 0.00028522203565294144,
+          "passed": true
+        },
+        {
+          "variant": "missing-depth-20-percent",
+          "detected": true,
+          "xy": [
+            14.252142699415664,
+            24.66105485012393
+          ],
+          "shift_from_original_m": 0.0008869976968619178,
+          "passed": true
+        },
+        {
+          "variant": "vertical-offset-2m",
+          "detected": true,
+          "xy": [
+            14.251685473756648,
+            24.661814922232992
+          ],
+          "shift_from_original_m": 0.0,
+          "passed": true
+        },
+        {
+          "variant": "all-invalid",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "capture": "/tmp/ys-m2-fixes-baseline-captures/blue-1795415244519716618.npz",
+      "sha256": "5142359ee470b3a818bc90d82fb46fb6acc893a909d3bc8d3bda863a4fa21354",
+      "color": "blue",
+      "reference_detected": false,
+      "results": [
+        {
+          "variant": "original",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": null
+        },
+        {
+          "variant": "dim-60-percent",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": null
+        },
+        {
+          "variant": "bright-130-percent",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": null
+        },
+        {
+          "variant": "missing-depth-20-percent",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": null
+        },
+        {
+          "variant": "vertical-offset-2m",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": null
+        },
+        {
+          "variant": "all-invalid",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "capture": "/tmp/ys-m2-fixes-baseline-captures/blue-1795415248673965153.npz",
+      "sha256": "1e83a800b814b842f2f120486dd2f64b464014fcd726b8ea1bfba8e6b6708d13",
+      "color": "blue",
+      "reference_detected": true,
+      "results": [
+        {
+          "variant": "original",
+          "detected": true,
+          "xy": [
+            17.00366815574958,
+            24.626517156238144
+          ],
+          "shift_from_original_m": 0.0,
+          "passed": true
+        },
+        {
+          "variant": "dim-60-percent",
+          "detected": true,
+          "xy": [
+            17.009720247213785,
+            24.639607132459233
+          ],
+          "shift_from_original_m": 0.014421348361362683,
+          "passed": true
+        },
+        {
+          "variant": "bright-130-percent",
+          "detected": true,
+          "xy": [
+            17.003561112975788,
+            24.62668479942281
+          ],
+          "shift_from_original_m": 0.0001989029732971656,
+          "passed": true
+        },
+        {
+          "variant": "missing-depth-20-percent",
+          "detected": true,
+          "xy": [
+            17.0049580273264,
+            24.626704288307657
+          ],
+          "shift_from_original_m": 0.0013033752706442618,
+          "passed": true
+        },
+        {
+          "variant": "vertical-offset-2m",
+          "detected": true,
+          "xy": [
+            17.00366815574958,
+            24.626517156238144
+          ],
+          "shift_from_original_m": 0.0,
+          "passed": true
+        },
+        {
+          "variant": "all-invalid",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "capture": "/tmp/ys-m2-fixes-baseline-captures/green-1795415120392814692.npz",
+      "sha256": "f3d8f6373298d0ca5b94f4ab46570e65cf0350ce9526e330405d18376ec96349",
+      "color": "green",
+      "reference_detected": false,
+      "results": [
+        {
+          "variant": "original",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": null
+        },
+        {
+          "variant": "dim-60-percent",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": null
+        },
+        {
+          "variant": "bright-130-percent",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": null
+        },
+        {
+          "variant": "missing-depth-20-percent",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": null
+        },
+        {
+          "variant": "vertical-offset-2m",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": null
+        },
+        {
+          "variant": "all-invalid",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "capture": "/tmp/ys-m2-fixes-baseline-captures/green-1795415123913320701.npz",
+      "sha256": "b4ea3832a249cd86667dfa9fb1922a49760dcfe296e86be883bd0ec329ac83b1",
+      "color": "green",
+      "reference_detected": true,
+      "results": [
+        {
+          "variant": "original",
+          "detected": true,
+          "xy": [
+            17.08401143864946,
+            24.687459621143788
+          ],
+          "shift_from_original_m": 0.0,
+          "passed": true
+        },
+        {
+          "variant": "dim-60-percent",
+          "detected": true,
+          "xy": [
+            17.088139321632276,
+            24.682950392780082
+          ],
+          "shift_from_original_m": 0.006113309934551265,
+          "passed": true
+        },
+        {
+          "variant": "bright-130-percent",
+          "detected": true,
+          "xy": [
+            17.083983984297074,
+            24.687797752947883
+          ],
+          "shift_from_original_m": 0.00033924454071647566,
+          "passed": true
+        },
+        {
+          "variant": "missing-depth-20-percent",
+          "detected": true,
+          "xy": [
+            17.085411297720327,
+            24.687465576643238
+          ],
+          "shift_from_original_m": 0.001399871739220204,
+          "passed": true
+        },
+        {
+          "variant": "vertical-offset-2m",
+          "detected": true,
+          "xy": [
+            17.08401143864946,
+            24.687459621143788
+          ],
+          "shift_from_original_m": 0.0,
+          "passed": true
+        },
+        {
+          "variant": "all-invalid",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "capture": "/tmp/ys-m2-fixes-baseline-captures/orange-1795415183728456932.npz",
+      "sha256": "04d3bcd85c0f9d5f0bc9f4d7b26adda94aca3fa970dfa0f2d6b414b5bce0e2f6",
+      "color": "orange",
+      "reference_detected": true,
+      "results": [
+        {
+          "variant": "original",
+          "detected": true,
+          "xy": [
+            14.218631509800154,
+            24.74542604261927
+          ],
+          "shift_from_original_m": 0.0,
+          "passed": true
+        },
+        {
+          "variant": "dim-60-percent",
+          "detected": true,
+          "xy": [
+            14.218631509800154,
+            24.74542604261927
+          ],
+          "shift_from_original_m": 0.0,
+          "passed": true
+        },
+        {
+          "variant": "bright-130-percent",
+          "detected": true,
+          "xy": [
+            14.218631509800154,
+            24.74542604261927
+          ],
+          "shift_from_original_m": 0.0,
+          "passed": true
+        },
+        {
+          "variant": "missing-depth-20-percent",
+          "detected": true,
+          "xy": [
+            14.219128164701383,
+            24.745466449714087
+          ],
+          "shift_from_original_m": 0.0004982959203383853,
+          "passed": true
+        },
+        {
+          "variant": "vertical-offset-2m",
+          "detected": true,
+          "xy": [
+            14.218631509800154,
+            24.74542604261927
+          ],
+          "shift_from_original_m": 0.0,
+          "passed": true
+        },
+        {
+          "variant": "all-invalid",
+          "detected": false,
+          "xy": null,
+          "shift_from_original_m": null,
+          "passed": true
+        }
+      ]
+    }
+  ],
+  "passed": 41,
+  "scored": 41,
+  "unscored": 25,
+  "detector_sha256": "0559ac44375688a67f57cf25f778e7ec99d4563167223b10041bebc05b73049b",
+  "scope": "Saved-frame perturbations, not simulator success or new camera observations"
+}
