@@ -149,6 +149,7 @@ def _local_batch(image_paths: list[str]) -> list[dict]:
     import torch
     from PIL import Image
     from transformers import AutoModelForVision2Seq, AutoProcessor
+    from custom.mission_4.room_scoring import DESCRIPTION_PROMPT, DESCRIPTIONS, score_room_image
 
     default = Path(__file__).resolve().parent / "models" / "SmolVLM-500M-Instruct"
     model_name = os.getenv("HAIC_VLM_MODEL", str(default))
@@ -161,21 +162,25 @@ def _local_batch(image_paths: list[str]) -> list[dict]:
                                                   _attn_implementation="eager").to('cpu').eval()
     load_seconds = time.monotonic() - started
     results = []
+    calibration_cache = {}
+    def score(path):
+        return _score_image(path, model, processor, model_name,
+                            prompt_text=DESCRIPTION_PROMPT, answers=DESCRIPTIONS)
     for image_path in image_paths:
         started = time.monotonic()
-        result = _score_image(image_path, model, processor, model_name)
+        result = score_room_image(image_path, score, calibration_cache)
         result['load_seconds'] = load_seconds if not results else 0.
         result['inference_seconds'] = time.monotonic() - started
         results.append(result)
     return results
 
 
-def _score_image(image_path, model, processor, model_name):
+def _score_image(image_path, model, processor, model_name, *, prompt_text=None, answers=None):
     import torch
     from PIL import Image
 
     messages = [{"role": "user", "content": [{"type": "image"},
-                  {"type": "text", "text": PROMPT}]}]
+                  {"type": "text", "text": PROMPT if prompt_text is None else prompt_text}]}]
     prompt = processor.apply_chat_template(messages, add_generation_prompt=True)
     inputs = processor(text=prompt, images=[Image.open(image_path).convert("RGB")],
                        return_tensors="pt")
@@ -186,7 +191,8 @@ def _score_image(image_path, model, processor, model_name):
         prefix = model(**inputs, use_cache=True)
         first_log_probs = torch.log_softmax(prefix.logits[:, -1, :].float(), dim=-1)
     for label in ROOM_LABELS:
-        suffix = processor.tokenizer(label, add_special_tokens=False, return_tensors="pt")["input_ids"]
+        suffix = processor.tokenizer(label if answers is None else answers[label],
+            add_special_tokens=False, return_tensors="pt")["input_ids"]
         score = first_log_probs[0, suffix[0, 0]].item()
         if suffix.shape[1] > 1:
             attention = torch.cat((inputs["attention_mask"], torch.ones_like(suffix[:, :-1])), dim=1)

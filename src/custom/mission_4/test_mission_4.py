@@ -10,6 +10,7 @@ from sensor_msgs.msg import Image
 from custom.mission_4.mission_4 import Mission4
 from custom.mission_4 import evaluate
 from custom.vlm import ROOM_LABELS, assign_rooms, classify_views, combine_views
+from custom.mission_4.room_scoring import calibrated_observation, score_room_image
 
 
 def observation(label):
@@ -17,6 +18,51 @@ def observation(label):
 
 
 class RoomEvidenceTests(unittest.TestCase):
+    def test_calibration_corrects_independent_bias_without_changing_joint_margin(self):
+        bias = {'classroom': -12., 'medical': -2., 'cafeteria': -15.}
+        raw = [{'label': 'medical', 'scores': {
+                    label: bias[label] + (4. if label == actual else -1.)
+                    for label in ROOM_LABELS}} for actual in ROOM_LABELS]
+        corrected = [calibrated_observation(item, {'scores': bias}, (640,480)) for item in raw]
+        self.assertEqual([item['label'] for item in corrected], list(ROOM_LABELS))
+        before, before_details = assign_rooms(raw, min_margin=.25)
+        after, after_details = assign_rooms(corrected, min_margin=.25)
+        self.assertEqual(before, after)
+        self.assertAlmostEqual(before_details['runner_up_margin'], after_details['runner_up_margin'])
+        self.assertEqual(raw[0]['label'], 'medical')
+        self.assertEqual(corrected[0]['raw_scores'], raw[0]['scores'])
+        self.assertEqual(corrected[0]['text'], corrected[0]['label'])
+
+    def test_invalid_neutral_scores_and_overflow_are_rejected(self):
+        raw = observation('classroom')
+        for scores in ({'classroom': 0.}, dict.fromkeys(ROOM_LABELS, float('nan')),
+                       dict.fromkeys(ROOM_LABELS, True)):
+            with self.assertRaises(ValueError):
+                calibrated_observation(raw, {'scores': scores}, (640,480))
+        with self.assertRaisesRegex(ValueError, 'Nonfinite'):
+            calibrated_observation({'scores': dict.fromkeys(ROOM_LABELS, 1e308)},
+                                   {'scores': dict.fromkeys(ROOM_LABELS, -1e308)}, (640,480))
+
+    def test_neutral_reference_is_cached_per_resolution_and_is_not_a_room_view(self):
+        import tempfile
+        from pathlib import Path
+        from PIL import Image as PILImage
+        seen = []
+        def score(path):
+            with PILImage.open(path) as image:
+                seen.append((image.size, image.getpixel((0,0))))
+            return observation('medical')
+        cache = {}
+        with tempfile.TemporaryDirectory() as directory:
+            for index, size in enumerate(((40,30), (40,30), (20,15))):
+                path = Path(directory)/f'{index}.png'
+                PILImage.new('RGB', size, (10,20,30)).save(path)
+                result = score_room_image(path, score, cache)
+                self.assertEqual(result['calibration']['size'], list(size))
+        self.assertEqual([color for _,color in seen],
+                         [(127,127,127), (10,20,30), (10,20,30), (127,127,127), (10,20,30)])
+        self.assertEqual(len(cache), 2)
+
     def test_manifest_has_six_distinct_orders_and_prior_mission_endpoint(self):
         cases = evaluate.cases()
         self.assertEqual(len({tuple(case['room_order']) for case in cases}), 6)
