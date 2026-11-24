@@ -1,0 +1,7 @@
+Frozen before reading crop results:
+Development surveys: rooms-0 and rooms-3 from descriptions-live-1124.
+Evaluate the already-defined fixed crop (10%-90% width, top 80% height).
+Consider crop-only only if independent labels improve above 4/6 and both joint assignments remain correct.
+If it qualifies, evaluate unchanged crop on rooms-1,2,4,5; require correct joint assignments for all and no independent-accuracy regression against those saved baselines.
+Averaging full/crop scores is diagnostic only; do not deploy a double-inference path without a separate time/benefit justification.
+Saved surveys are regression/development evidence, not unseen physical room layouts.

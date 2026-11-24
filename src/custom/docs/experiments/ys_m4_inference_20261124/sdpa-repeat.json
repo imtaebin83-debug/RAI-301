@@ -1,0 +1,137 @@
+{
+  "attention": "sdpa",
+  "last_logit": true,
+  "quantize": false,
+  "text_only": false,
+  "load_seconds": 0.4795193010359071,
+  "seconds": 60.74176233203616,
+  "peak_rss_kib": 3399764,
+  "results": [
+    {
+      "image": "/tmp/ys-m4-candidate-descriptions-live-1124/rooms-0/camera/view-0.png",
+      "seconds": 32.10686081997119,
+      "label": "classroom",
+      "text": "classroom",
+      "text_kind": "highest_calibrated_description_likelihood",
+      "scores": {
+        "classroom": 8.30077838897705,
+        "medical": -4.9334917068481445,
+        "cafeteria": -5.272427558898926
+      },
+      "score_kind": "neutral_calibrated_description_log_likelihood",
+      "model": "/home/aril/RAI-301/src/custom/models/SmolVLM-500M-Instruct",
+      "backend": "local-cpu",
+      "raw_scores": {
+        "classroom": -44.67755603790283,
+        "medical": -41.638142585754395,
+        "cafeteria": -48.533480644226074
+      },
+      "neutral_scores": {
+        "classroom": -52.97833442687988,
+        "medical": -36.70465087890625,
+        "cafeteria": -43.26105308532715
+      },
+      "calibration": {
+        "rgb": [
+          127,
+          127,
+          127
+        ],
+        "size": [
+          640,
+          480
+        ]
+      },
+      "prompt": "Describe the visible furniture and objects in the room through the doorway.",
+      "candidate_descriptions": {
+        "classroom": "The room contains student desks, chairs and a teaching board.",
+        "medical": "The room contains a hospital bed and medical equipment.",
+        "cafeteria": "The room contains dining tables, chairs and food equipment."
+      }
+    },
+    {
+      "image": "/tmp/ys-m4-candidate-descriptions-live-1124/rooms-0/camera/view-1.png",
+      "seconds": 13.26785026100697,
+      "label": "medical",
+      "text": "medical",
+      "text_kind": "highest_calibrated_description_likelihood",
+      "scores": {
+        "classroom": -3.634943962097168,
+        "medical": 2.9828062057495117,
+        "cafeteria": -3.8959264755249023
+      },
+      "score_kind": "neutral_calibrated_description_log_likelihood",
+      "model": "/home/aril/RAI-301/src/custom/models/SmolVLM-500M-Instruct",
+      "backend": "local-cpu",
+      "raw_scores": {
+        "classroom": -56.61327838897705,
+        "medical": -33.72184467315674,
+        "cafeteria": -47.15697956085205
+      },
+      "neutral_scores": {
+        "classroom": -52.97833442687988,
+        "medical": -36.70465087890625,
+        "cafeteria": -43.26105308532715
+      },
+      "calibration": {
+        "rgb": [
+          127,
+          127,
+          127
+        ],
+        "size": [
+          640,
+          480
+        ]
+      },
+      "prompt": "Describe the visible furniture and objects in the room through the doorway.",
+      "candidate_descriptions": {
+        "classroom": "The room contains student desks, chairs and a teaching board.",
+        "medical": "The room contains a hospital bed and medical equipment.",
+        "cafeteria": "The room contains dining tables, chairs and food equipment."
+      }
+    },
+    {
+      "image": "/tmp/ys-m4-candidate-descriptions-live-1124/rooms-0/camera/view-2.png",
+      "seconds": 14.887283292016946,
+      "label": "classroom",
+      "text": "classroom",
+      "text_kind": "highest_calibrated_description_likelihood",
+      "scores": {
+        "classroom": 0.7504138946533203,
+        "medical": -5.689556121826172,
+        "cafeteria": -8.239141464233398
+      },
+      "score_kind": "neutral_calibrated_description_log_likelihood",
+      "model": "/home/aril/RAI-301/src/custom/models/SmolVLM-500M-Instruct",
+      "backend": "local-cpu",
+      "raw_scores": {
+        "classroom": -52.22792053222656,
+        "medical": -42.39420700073242,
+        "cafeteria": -51.50019454956055
+      },
+      "neutral_scores": {
+        "classroom": -52.97833442687988,
+        "medical": -36.70465087890625,
+        "cafeteria": -43.26105308532715
+      },
+      "calibration": {
+        "rgb": [
+          127,
+          127,
+          127
+        ],
+        "size": [
+          640,
+          480
+        ]
+      },
+      "prompt": "Describe the visible furniture and objects in the room through the doorway.",
+      "candidate_descriptions": {
+        "classroom": "The room contains student desks, chairs and a teaching board.",
+        "medical": "The room contains a hospital bed and medical equipment.",
+        "cafeteria": "The room contains dining tables, chairs and food equipment."
+      }
+    }
+  ]
+}

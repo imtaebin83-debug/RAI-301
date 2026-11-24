@@ -1,0 +1,8 @@
+Frozen before reading the int8 result:
+Use only the installed PyTorch CPU quantizer, with in-memory Linear conversion; do not change weights on disk.
+Development: three rooms-0 images. Require correct joint assignment, no fewer independently correct labels than baseline, at least 15% lower load-plus-inference time than SDPA float32 (65.57s), and no more than 10% peak memory growth.
+Only if development passes, freeze the implementation and compare all six saved surveys: all joint assignments must remain correct and independent accuracy must not decrease from 13/18.
+Keep quantization experimental unless the production implementation and real simulator also pass; CPU timings on this shared machine are not isolated hardware claims.
+
+Full-Linear int8 development result: 26.93s, 3.569GiB peak RSS (10.10% above float32 SDPA; narrowly fails the frozen 10% memory gate). Joint assignment stayed correct, but the previously correct medical image changed to cafeteria. Not adopted.
+A separate narrower trial quantizes only the text decoder, keeping the vision encoder and output head in float32. Apply the same performance/memory criteria and additionally require the correctly recognized classroom and medical development images to remain correct. Do not relax the gate based on the result.

@@ -123,3 +123,43 @@ heading/frame consistency and loss of absolute pose after reanchor, including
 cases in which poses are fresh and Navigator reports arrival incorrectly.
 Evidence: /tmp/ys-m4-candidate-heading-{targeted,combined,repeat}-1124/;
 compact original records: ys_m4_descriptions_20261124/heading-*.json.
+
+
+November 24–25 optimization follow-up (shared code still unchanged):
+Three final-code standalone deliveries passed (north/middle/south classroom).
+The continuous green Mission 2→4 run also passed, but its official final pelvis
+was (18.422,3.175), only 0.172m inside the classroom's x minimum of 18.25m,
+despite a requested entry target x=20.0m. No pose outage/recovery was reported.
+This passing result does not demonstrate accurate global localization or remove
+the older drift/false-arrival failures. Do not tune a hidden truth correction
+from this observation. The integration owner should assess actual pose accuracy,
+entry progress and final error across repeated continuous runs.
+Evidence: /tmp/ys-m2-m4-opt-live-1124/after-cone/{record.json,simulator.log}.
+Runtime sources: Mission 2 38c4a8f and Mission 4 257965b; the isolated combined
+worktree's base commit alone does not identify the overlay (use recorded hashes).
+See ys_m4_inference_20261124.md and ys_m2_robustness_20261124.md for all outcomes.
+
+
+New current-code reproduction: --case after-cone-blue in the isolated combined
+worktree (Mission 2 38c4a8f + Mission 4 257965b), stock spawn (16,11,0), cone
+order orange/green/blue, target blue; rooms north/middle/south = medical,
+cafeteria,classroom. No reset between missions. Mission 2 PASS 56.01s;
+Mission 4 FAIL 161.72s at survey door 3.59: Could not reach room observation
+waypoint. One stopped freshness recovery took 2.2109s; the route then stalled
+near estimated (17.1,4.9), while the official final pelvis was (13.18,5.06).
+The log records three sensor reanchors, including a rejected 0.454m step over
+0.100s. Only two room images were captured and the VLM was never called, so
+this is a route/pose failure, not three incorrect VLM predictions.
+Evidence: /tmp/ys-m2-m4-opt-live-1124/after-cone-blue/{record.json,simulator.log}.
+A same-code repeat is retained separately in the report; do not omit this failure.
+
+The unchanged-code blue repeat failed in 73.94s at survey door 10.5:
+Localization did not recover while stopped (8.0001s wait). Official final pelvis
+(11.52,10.81). Evidence: /tmp/ys-m2-m4-opt-blue-repeat-1125/after-cone-blue/.
+A diagnostic comparison restoring only the previous M2 final-turn controller
+also failed M4, at its first observation route in 100.08s, final pelvis
+(14.23,21.16). Its M2 official PASS had a controller stop-check error.
+Evidence: /tmp/ys-m2-m4-prestop-compare-1125/after-cone-blue/.
+All other custom Python files are identical between final and comparison roots.
+These results show the blue-endpoint blocker exists with both endings, not
+that either ending has a quantified failure probability. No shared fix was made.
