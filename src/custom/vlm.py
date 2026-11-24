@@ -4,6 +4,7 @@ from __future__ import annotations
 import base64
 import copy
 import io
+import inspect
 import itertools
 import json
 import math
@@ -148,7 +149,7 @@ def classify_room(image, timeout: float = 65.0) -> dict:
 def _local_batch(image_paths: list[str]) -> list[dict]:
     import torch
     from PIL import Image
-    from transformers import AutoModelForVision2Seq, AutoProcessor
+    from transformers import AutoConfig, AutoModelForVision2Seq, AutoProcessor
     from custom.mission_4.room_scoring import DESCRIPTION_PROMPT, DESCRIPTIONS, score_room_image
 
     default = Path(__file__).resolve().parent / "models" / "SmolVLM-500M-Instruct"
@@ -158,8 +159,13 @@ def _local_batch(image_paths: list[str]) -> list[dict]:
     torch.set_num_threads(max(1, int(os.getenv("HAIC_VLM_THREADS", "4"))))
     started = time.monotonic()
     processor = AutoProcessor.from_pretrained(model_name)
+    # The deployed SmolVLM uses Idefics3, whose installed CPU SDPA path was
+    # checked against eager inference on actual camera frames. Preserve the
+    # previous backend for other user-selected model architectures.
+    config = AutoConfig.from_pretrained(model_name)
+    attention = 'sdpa' if config.model_type == 'idefics3' else 'eager'
     model = AutoModelForVision2Seq.from_pretrained(model_name, torch_dtype=torch.float32,
-                                                  _attn_implementation="eager").to('cpu').eval()
+        config=config, attn_implementation=attention).to('cpu').eval()
     load_seconds = time.monotonic() - started
     results = []
     calibration_cache = {}
@@ -171,11 +177,13 @@ def _local_batch(image_paths: list[str]) -> list[dict]:
         result = score_room_image(image_path, score, calibration_cache)
         result['load_seconds'] = load_seconds if not results else 0.
         result['inference_seconds'] = time.monotonic() - started
+        result['attention_implementation'] = attention
         results.append(result)
     return results
 
 
-def _score_image(image_path, model, processor, model_name, *, prompt_text=None, answers=None):
+def _score_image(image_path, model, processor, model_name, *, prompt_text=None, answers=None,
+                 last_logit_only=True):
     import torch
     from PIL import Image
 
@@ -187,8 +195,14 @@ def _score_image(image_path, model, processor, model_name, *, prompt_text=None, 
     scores = {}
     # Encode the image/prompt once. Candidate answers share this exact prefix.
     # This is teacher-forced conditional log likelihood; no ground truth is used.
+    # Only the final prefix token predicts the first answer token. Earlier
+    # vocabulary projections are discarded by this scorer, so avoid allocating
+    # them when the model explicitly supports selective logits. Answer tokens
+    # still require all logits, and each candidate retains its own cache copy.
+    selective = (last_logit_only and
+                 'logits_to_keep' in inspect.signature(model.forward).parameters)
     with torch.inference_mode():
-        prefix = model(**inputs, use_cache=True)
+        prefix = model(**inputs, use_cache=True, **({'logits_to_keep': 1} if selective else {}))
         first_log_probs = torch.log_softmax(prefix.logits[:, -1, :].float(), dim=-1)
     for label in ROOM_LABELS:
         suffix = processor.tokenizer(label if answers is None else answers[label],

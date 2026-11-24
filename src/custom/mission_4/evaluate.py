@@ -26,6 +26,11 @@ def cases():
                       ('classroom', 'medical', 'cafeteria')))]
         result.append({'id': 'after-cone', 'split': 'integration', 'missions': [2, 4],
                        'room_order': ['medical', 'cafeteria', 'classroom']})
+        # Exercise a side-cone endpoint: Mission 2 now keeps its arrival heading.
+        result.append({'id': 'after-cone-blue', 'split': 'additional-integration',
+                       'missions': [2, 4], 'm2_color': 'blue',
+                       'cone_order': ['orange', 'green', 'blue'],
+                       'room_order': ['medical', 'cafeteria', 'classroom']})
         return result
     result = []
     for index, order in enumerate((['blue', 'green', 'orange'],
