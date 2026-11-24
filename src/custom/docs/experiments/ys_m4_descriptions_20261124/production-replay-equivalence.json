@@ -1,0 +1,11 @@
+{
+  "reference": "frozen-replay.json, rooms-0",
+  "production": "ys-m4-description-profile-1124.json",
+  "images": 3,
+  "maximum_absolute_score_difference": 0.0,
+  "labels": [
+    "classroom",
+    "medical",
+    "cafeteria"
+  ]
+}

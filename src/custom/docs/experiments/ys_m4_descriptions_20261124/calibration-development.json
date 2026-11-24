@@ -1,0 +1,183 @@
+{
+  "prompt": "Describe the visible furniture and objects in the room through the doorway.",
+  "candidates": {
+    "classroom": "The room contains student desks, chairs and a teaching board.",
+    "medical": "The room contains a hospital bed and medical equipment.",
+    "cafeteria": "The room contains dining tables, chairs and food equipment."
+  },
+  "neutral_scores": {
+    "classroom": -52.97834587097168,
+    "medical": -36.704660415649414,
+    "cafeteria": -43.261056900024414
+  },
+  "results": [
+    {
+      "case_dir": "/tmp/ys-m4-candidate-reattempt-final-six/rooms-0",
+      "observations": [
+        {
+          "label": "classroom",
+          "text": "medical",
+          "text_kind": "highest_likelihood_candidate",
+          "scores": {
+            "classroom": 2.8668012619018555,
+            "medical": -6.246214866638184,
+            "cafeteria": -8.979798316955566
+          },
+          "score_kind": "answer_sequence_log_likelihood",
+          "model": "/home/aril/rai-worktrees/ys-m4-20261124/src/custom/models/SmolVLM-500M-Instruct",
+          "backend": "local-cpu",
+          "expected": "classroom",
+          "image_sha256": "93462b1ca0c3d39d8011a5b85c79c16815538ac2c3e3b2ea8df66c509c91ec8f",
+          "seconds": 21.646049773989944,
+          "raw_scores": {
+            "classroom": -50.111544609069824,
+            "medical": -42.9508752822876,
+            "cafeteria": -52.24085521697998
+          }
+        },
+        {
+          "label": "medical",
+          "text": "medical",
+          "text_kind": "highest_likelihood_candidate",
+          "scores": {
+            "classroom": -4.844045639038086,
+            "medical": 6.065097808837891,
+            "cafeteria": -10.70094108581543
+          },
+          "score_kind": "answer_sequence_log_likelihood",
+          "model": "/home/aril/rai-worktrees/ys-m4-20261124/src/custom/models/SmolVLM-500M-Instruct",
+          "backend": "local-cpu",
+          "expected": "medical",
+          "image_sha256": "859216ab8cdbac084ef237f1c9ff2b860e90c8794df752047143d422044fbd21",
+          "seconds": 20.785732500982704,
+          "raw_scores": {
+            "classroom": -57.822391510009766,
+            "medical": -30.639562606811523,
+            "cafeteria": -53.961997985839844
+          }
+        },
+        {
+          "label": "cafeteria",
+          "text": "medical",
+          "text_kind": "highest_likelihood_candidate",
+          "scores": {
+            "classroom": -5.816633224487305,
+            "medical": -4.987085342407227,
+            "cafeteria": -2.4434146881103516
+          },
+          "score_kind": "answer_sequence_log_likelihood",
+          "model": "/home/aril/rai-worktrees/ys-m4-20261124/src/custom/models/SmolVLM-500M-Instruct",
+          "backend": "local-cpu",
+          "expected": "cafeteria",
+          "image_sha256": "ead78887c2fa6849f4201afdf633996d726770476f5377b4d61d87b33b367d9f",
+          "seconds": 21.39448335999623,
+          "raw_scores": {
+            "classroom": -58.794979095458984,
+            "medical": -41.69174575805664,
+            "cafeteria": -45.704471588134766
+          }
+        }
+      ],
+      "assignment": [
+        "classroom",
+        "medical",
+        "cafeteria"
+      ],
+      "details": {
+        "method": "vlm_likelihood_unique_room_assignment",
+        "unconstrained_labels": [
+          "classroom",
+          "medical",
+          "cafeteria"
+        ],
+        "score": 6.4884843826293945,
+        "runner_up_margin": 15.219818115234375
+      },
+      "independent_correct": 3
+    },
+    {
+      "case_dir": "/tmp/ys-m4-candidate-reattempt-recovery/rooms-3",
+      "observations": [
+        {
+          "label": "medical",
+          "text": "medical",
+          "text_kind": "highest_likelihood_candidate",
+          "scores": {
+            "classroom": -3.5057058334350586,
+            "medical": 8.339133262634277,
+            "cafeteria": -7.917056083679199
+          },
+          "score_kind": "answer_sequence_log_likelihood",
+          "model": "/home/aril/rai-worktrees/ys-m4-20261124/src/custom/models/SmolVLM-500M-Instruct",
+          "backend": "local-cpu",
+          "expected": "medical",
+          "image_sha256": "a682acac2d9058a62970b5ceef13529d7d47773b38cc45dfa43cc0dd585a16bb",
+          "seconds": 20.76173558802111,
+          "raw_scores": {
+            "classroom": -56.48405170440674,
+            "medical": -28.365527153015137,
+            "cafeteria": -51.17811298370361
+          }
+        },
+        {
+          "label": "classroom",
+          "text": "medical",
+          "text_kind": "highest_likelihood_candidate",
+          "scores": {
+            "classroom": 3.726886749267578,
+            "medical": -5.369106292724609,
+            "cafeteria": -2.6279983520507812
+          },
+          "score_kind": "answer_sequence_log_likelihood",
+          "model": "/home/aril/rai-worktrees/ys-m4-20261124/src/custom/models/SmolVLM-500M-Instruct",
+          "backend": "local-cpu",
+          "expected": "cafeteria",
+          "image_sha256": "94686e0fd7ef4e029e07fac30ae0f468ad5fa51e9cacb85688652f665b575f87",
+          "seconds": 24.329056877002586,
+          "raw_scores": {
+            "classroom": -49.2514591217041,
+            "medical": -42.07376670837402,
+            "cafeteria": -45.889055252075195
+          }
+        },
+        {
+          "label": "classroom",
+          "text": "medical",
+          "text_kind": "highest_likelihood_candidate",
+          "scores": {
+            "classroom": 6.224637031555176,
+            "medical": -6.464154243469238,
+            "cafeteria": -8.99268627166748
+          },
+          "score_kind": "answer_sequence_log_likelihood",
+          "model": "/home/aril/rai-worktrees/ys-m4-20261124/src/custom/models/SmolVLM-500M-Instruct",
+          "backend": "local-cpu",
+          "expected": "classroom",
+          "image_sha256": "1c67ce3762a08a89fa315559a97cc5ca0c5d6563ce42c01d6dcadf2ee00d2c21",
+          "seconds": 25.618891139980406,
+          "raw_scores": {
+            "classroom": -46.753708839416504,
+            "medical": -43.16881465911865,
+            "cafeteria": -52.253743171691895
+          }
+        }
+      ],
+      "assignment": [
+        "medical",
+        "cafeteria",
+        "classroom"
+      ],
+      "details": {
+        "method": "vlm_likelihood_unique_room_assignment",
+        "unconstrained_labels": [
+          "medical",
+          "classroom",
+          "classroom"
+        ],
+        "score": 11.935771942138672,
+        "runner_up_margin": 8.862438201904297
+      },
+      "independent_correct": 2
+    }
+  ]
+}

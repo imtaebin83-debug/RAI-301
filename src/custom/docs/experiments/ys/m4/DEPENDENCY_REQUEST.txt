@@ -87,3 +87,39 @@ height is consistent with falling; the cause is not established by this record.
 Please investigate scan-map loss/reanchors and propagate the blocked health
 state to navigation. More mission retries or a longer stale timeout cannot
 recover an estimator that has deliberately stopped publishing until restart.
+
+November 24: updated Mission 2 ed2ce50 + published Mission 4 4972de3 were
+tested together twice in /home/aril/rai-worktrees/ys-m2-m4-20261124.
+- First run: Mission 2 PASS49.35s; Mission 4 PASS191.18s, rooms3/3 and delivery.
+- Repeat: Mission 2 PASS50.11s; Mission 4 FAIL163.18s, before the final survey.
+  Error: Could not reach room observation waypoint (survey door3.59).
+  Last logged estimate approximately(17.40,4.22,-2.47rad), target(16.00,3.59).
+  Official stopped pelvis(13.617,4.833,0.780): a large position disagreement.
+  These are final log/referee samples, not a synchronized localization trace.
+  Two sensor reanchors rejected translations0.547m/0.582m and turns6.0/11.4deg.
+  No VLM inference was reached in the failed repeat, so this was not a room
+  recognition failure. Neither run used the new description-scoring candidate.
+Reproduce with --case after-cone and --source-root pointing to the combined
+checkout. Evidence: /tmp/ys-m4-candidate-latest-combined-repeat-1124/after-cone/.
+The successful first run is /tmp/ys-m4-candidate-latest-combined-1124/after-cone/.
+Compact records are in ys_m4_descriptions_20261124/ alongside the new report.
+Please prioritize continuous pose drift/reanchor handling and progress near
+the southern survey waypoint. No common source or setting was changed here.
+
+Final November 24 heading-revision tests (M4 d768848, M2 ed2ce50):
+- Continuous Mission2->4 PASS49.37s/PASS183.80s, with correct rooms and delivery.
+- Targeted rooms-4 first attempt FAIL156.66s before VLM inference, route to
+  southern survey point stalled. Estimate about(15.38,4.64), official final
+  pelvis(17.841,4.668,0.780). Reanchor after a rejected29.2deg turn.
+- Single rooms-4 repeat: rooms3/3 correct, heading alignment completed after
+  one3.87s stopped recovery, Navigator returned arrival, but official delivery
+  FAIL214.24s. Last printed estimate(19.85,10.46), official final pelvis
+  (12.842,10.958,0.779), outside classroom. Rejected motion0.403m/33.5deg and
+  sensor reanchor logged. These are final samples, not synchronized pose traces.
+The mission's heading allowance is now bounded at30s (previously18s), still
+inside600s overall; freshness gates and navigation algorithms are unchanged.
+The large pose disagreement is not repaired by this allowance. Investigate
+heading/frame consistency and loss of absolute pose after reanchor, including
+cases in which poses are fresh and Navigator reports arrival incorrectly.
+Evidence: /tmp/ys-m4-candidate-heading-{targeted,combined,repeat}-1124/;
+compact original records: ys_m4_descriptions_20261124/heading-*.json.

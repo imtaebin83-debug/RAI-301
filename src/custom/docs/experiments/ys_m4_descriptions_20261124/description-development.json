@@ -1,0 +1,160 @@
+[
+  {
+    "case_dir": "/tmp/ys-m4-candidate-reattempt-final-six/rooms-0",
+    "variant": "descriptions",
+    "bias": null,
+    "prompt": "Describe the visible furniture and objects in the room through the doorway.",
+    "candidate_texts": {
+      "classroom": "The room contains student desks, chairs and a teaching board.",
+      "medical": "The room contains a hospital bed and medical equipment.",
+      "cafeteria": "The room contains dining tables, chairs and food equipment."
+    },
+    "observations": [
+      {
+        "label": "medical",
+        "text": "medical",
+        "text_kind": "highest_likelihood_candidate",
+        "scores": {
+          "classroom": -50.111544609069824,
+          "medical": -42.9508752822876,
+          "cafeteria": -52.24085521697998
+        },
+        "score_kind": "answer_sequence_log_likelihood",
+        "model": "/home/aril/rai-worktrees/ys-m4-20261124/src/custom/models/SmolVLM-500M-Instruct",
+        "backend": "local-cpu",
+        "expected": "classroom",
+        "image_sha256": "93462b1ca0c3d39d8011a5b85c79c16815538ac2c3e3b2ea8df66c509c91ec8f",
+        "seconds": 21.646049773989944
+      },
+      {
+        "label": "medical",
+        "text": "medical",
+        "text_kind": "highest_likelihood_candidate",
+        "scores": {
+          "classroom": -57.822391510009766,
+          "medical": -30.639562606811523,
+          "cafeteria": -53.961997985839844
+        },
+        "score_kind": "answer_sequence_log_likelihood",
+        "model": "/home/aril/rai-worktrees/ys-m4-20261124/src/custom/models/SmolVLM-500M-Instruct",
+        "backend": "local-cpu",
+        "expected": "medical",
+        "image_sha256": "859216ab8cdbac084ef237f1c9ff2b860e90c8794df752047143d422044fbd21",
+        "seconds": 20.785732500982704
+      },
+      {
+        "label": "medical",
+        "text": "medical",
+        "text_kind": "highest_likelihood_candidate",
+        "scores": {
+          "classroom": -58.794979095458984,
+          "medical": -41.69174575805664,
+          "cafeteria": -45.704471588134766
+        },
+        "score_kind": "answer_sequence_log_likelihood",
+        "model": "/home/aril/rai-worktrees/ys-m4-20261124/src/custom/models/SmolVLM-500M-Instruct",
+        "backend": "local-cpu",
+        "expected": "cafeteria",
+        "image_sha256": "ead78887c2fa6849f4201afdf633996d726770476f5377b4d61d87b33b367d9f",
+        "seconds": 21.39448335999623
+      }
+    ],
+    "assignment": [
+      "classroom",
+      "medical",
+      "cafeteria"
+    ],
+    "details": {
+      "method": "vlm_likelihood_unique_room_assignment",
+      "unconstrained_labels": [
+        "medical",
+        "medical",
+        "medical"
+      ],
+      "score": -126.45557880401611,
+      "runner_up_margin": 15.219818115234375
+    },
+    "baseline_correct": 1,
+    "candidate_correct": 1,
+    "assignment_correct": true
+  },
+  {
+    "case_dir": "/tmp/ys-m4-candidate-reattempt-recovery/rooms-3",
+    "variant": "descriptions",
+    "bias": null,
+    "prompt": "Describe the visible furniture and objects in the room through the doorway.",
+    "candidate_texts": {
+      "classroom": "The room contains student desks, chairs and a teaching board.",
+      "medical": "The room contains a hospital bed and medical equipment.",
+      "cafeteria": "The room contains dining tables, chairs and food equipment."
+    },
+    "observations": [
+      {
+        "label": "medical",
+        "text": "medical",
+        "text_kind": "highest_likelihood_candidate",
+        "scores": {
+          "classroom": -56.48405170440674,
+          "medical": -28.365527153015137,
+          "cafeteria": -51.17811298370361
+        },
+        "score_kind": "answer_sequence_log_likelihood",
+        "model": "/home/aril/rai-worktrees/ys-m4-20261124/src/custom/models/SmolVLM-500M-Instruct",
+        "backend": "local-cpu",
+        "expected": "medical",
+        "image_sha256": "a682acac2d9058a62970b5ceef13529d7d47773b38cc45dfa43cc0dd585a16bb",
+        "seconds": 20.76173558802111
+      },
+      {
+        "label": "medical",
+        "text": "medical",
+        "text_kind": "highest_likelihood_candidate",
+        "scores": {
+          "classroom": -49.2514591217041,
+          "medical": -42.07376670837402,
+          "cafeteria": -45.889055252075195
+        },
+        "score_kind": "answer_sequence_log_likelihood",
+        "model": "/home/aril/rai-worktrees/ys-m4-20261124/src/custom/models/SmolVLM-500M-Instruct",
+        "backend": "local-cpu",
+        "expected": "cafeteria",
+        "image_sha256": "94686e0fd7ef4e029e07fac30ae0f468ad5fa51e9cacb85688652f665b575f87",
+        "seconds": 24.329056877002586
+      },
+      {
+        "label": "medical",
+        "text": "medical",
+        "text_kind": "highest_likelihood_candidate",
+        "scores": {
+          "classroom": -46.753708839416504,
+          "medical": -43.16881465911865,
+          "cafeteria": -52.253743171691895
+        },
+        "score_kind": "answer_sequence_log_likelihood",
+        "model": "/home/aril/rai-worktrees/ys-m4-20261124/src/custom/models/SmolVLM-500M-Instruct",
+        "backend": "local-cpu",
+        "expected": "classroom",
+        "image_sha256": "1c67ce3762a08a89fa315559a97cc5ca0c5d6563ce42c01d6dcadf2ee00d2c21",
+        "seconds": 25.618891139980406
+      }
+    ],
+    "assignment": [
+      "medical",
+      "cafeteria",
+      "classroom"
+    ],
+    "details": {
+      "method": "vlm_likelihood_unique_room_assignment",
+      "unconstrained_labels": [
+        "medical",
+        "medical",
+        "medical"
+      ],
+      "score": -121.00829124450684,
+      "runner_up_margin": 8.862438201904297
+    },
+    "baseline_correct": 1,
+    "candidate_correct": 1,
+    "assignment_correct": true
+  }
+]

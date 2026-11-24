@@ -1,5 +1,10 @@
 # Mission 4 recognition experiments — ys — November 23, 2026
 
+See [the November 24 description-scoring follow-up](ys_m4_descriptions_20261124.md)
+for the later method and its separate verification. It changes the scored
+content to visual descriptions before calibration. The rejected bare-label
+variants and their limitations below are retained as historical results.
+
 Runtime recognition remains at tested commit `6c17eec`. Neither experimental
 scorer is suitable for deployment. Shared code was not changed. Latest main
 was checked at `7542e7e`; its changes concern Mission 5, not shared localization.
