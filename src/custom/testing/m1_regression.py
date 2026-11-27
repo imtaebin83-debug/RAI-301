@@ -39,6 +39,8 @@ CASES = {
     'after-cone': {'missions': [2, 4], 'room_order': ['medical', 'cafeteria', 'classroom']},
     'after-delivery': {'missions': [4, 1], 'goal': [15., 5.],
                        'room_order': ['medical', 'cafeteria', 'classroom']},
+    'cone-delivery-return': {'missions': [2, 4, 1], 'goal': [15., 5.],
+                            'room_order': ['medical', 'classroom', 'cafeteria']},
     'mission6': {'missions': [6]},
 }
 

@@ -1,0 +1,16 @@
+{
+  "basis": "56f307d84934d3efc0076fa58a963ad9eb2204b2",
+  "runtime_freeze": "a3c56be",
+  "environment": "haic_rai301_v2",
+  "regression_seed": 301,
+  "evaluation_seed": 9607,
+  "evaluation_cases": 2,
+  "policy": "reserved after v2 API port and before running or inspecting the new goals; no controller tuning from this evaluation",
+  "legacy": "v1 results remain in SPLITS.json and are not counted as v2",
+  "cpu_load_note": "actual local Qwen 3-case probe overlapped low/high M1 starts; no LLM probe overlapped the baseline or candidate 45m round trip. No pure latency claim from those endpoint times.",
+  "planner_actual": {
+    "cases": 3,
+    "outputs": "v2_planner_probe.json",
+    "policy": "new commands after v2 port; actual local Qwen with strict validation, no prompt change after seeing outcomes"
+  }
+}

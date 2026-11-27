@@ -51,13 +51,15 @@ python main.py --llm-web
 
 - 기본 플래너는 `models/Qwen2.5-1.5B-Instruct`를 CPU로 실행하며, 전용 자식 프로세스에서 가중치를 재사용한다. v2는 외부 LLM API를 금지한다. 팀의 local 모델 서버를 쓸 때만 `HAIC_LLM_MODEL`, 명시적인 `HAIC_LLM_BASE_URL`(localhost/사설 IP/Tailscale IP), 필요한 경우 `HAIC_LLM_API_KEY`를 설정한다. 공개 API URL·기본 상용 endpoint·redirect·환경 proxy는 사용하지 않는다.
 - `HAIC_REQUIRE_LLM=1`: 규칙 기반 개발 모드를 차단한다. `HAIC_ALLOW_RULE_PLANNER=1`은 모델 없는 오프라인 개발 전용이며 대회 검증에 쓰지 않는다.
-- 기본 VLM은 `models/SmolVLM-500M-Instruct`를 CPU로 실행한다. 비전 API는 `HAIC_VLM_BASE_URL`, `HAIC_VLM_MODEL`, `HAIC_VLM_API_KEY`로 설정한다.
+- 기본 VLM은 `models/SmolVLM-500M-Instruct`를 CPU로 실행한다. v2에서 비전 API도 팀의 local 모델 서버만 허용된다. 이 경우에만 `HAIC_VLM_BASE_URL`, `HAIC_VLM_MODEL`, `HAIC_VLM_API_KEY`를 설정하며 외부 상용 API를 사용하지 않는다. VLM 실행 코드는 담당자 영역으로 유지했고 이 브랜치의 실제 검증은 로컬 모델을 사용했다.
 - `HAIC_INITIAL_POSE=x,y,yaw_deg`: 평가에서 초기 배치를 명시적으로 바꾼 경우에만 설정한다. 기본값은 README의 공개 시작 자세 `16,11,0`이다. 미션 선택 응답의 nominal 위치를 현재 위치로 사용하지 않는다.
 - `HAIC_MAP_CORRECTION=1`: 공개 벽 좌표에 대한 실험적 보정. 실제 절벽 시험에서 실패해 기본값은 꺼져 있다.
 - `HAIC_LOCALIZATION_TRACE=/path/to/run/localization.jsonl`: 허용된 센서 추정과 정합 품질·실패 이유를 JSONL로 기록한다. 상위 폴더는 먼저 만든다. 정답 위치는 기록기 입력에 사용하지 않는다.
 - `HAIC_PLANNER_ONESHOT=1`: 비교·진단용으로 매 명령마다 CPU 모델을 다시 읽는다. 기본값은 같은 플래너 프로세스의 소유 자식 프로세스 하나에서 모델을 재사용한다. 각 호출의 모델 로딩·입출력·추론 대기는 합계 45초로 제한되며 종료 정리는 최대 2초 추가된다. 오류 때 규칙 기반 플랜으로 대체하지 않는다.
 
 기본 KISS-ICP 경로는 스캔 시각 사이의 실제 LiDAR IMU 회전과 센서 간격으로 정합을 예측한다. 움직임·IMU 일치·대응점 비율·잔차·pelvis 변환 검사를 통과한 스캔만 로컬 지도에 추가한다. 불량 스캔은 기존 지도와 마지막 추정 자세를 보존한 채 다음 센서 관측으로 재시도한다. 마지막 정합 이후 센서 시각이 1초 이상 벌어지면 새 리스폰/재시작까지 정지하며, 정답이나 waypoint로 위치를 재설정하지 않는다. SciPy 대체 구현의 제한적 재앵커링은 기본 KISS 경로와 구분한다.
+
+localizer는 `custom.sensor_mission.Mission`으로 공개 센서만 구독한다. 조교 `SimLink`나 상태 토픽을 생성/조회하지 않는다. 공개 `/g1/respawned` Empty 알림에서만 문서의 시작점 `(16,11,0°)`으로 재초기화하며, 직전 캐시 스캔을 버리고 새 관측을 기다린다. `HAIC_INITIAL_POSE`는 별도 평가 하네스가 명시한 시작 자세에만 쓰고 미션 전환에는 사용하지 않는다.
 
 `/custom/estimated_pose`와 `map -> pelvis` TF는 실제로 채택한 스캔 시각을 유지한다. 새 스캔 없이 오래된 자세의 시각을 갱신하지 않는다. 추가 토픽 `/custom/localization_status`는 `std_msgs/String` JSON(`version=1`)으로 유효성·종료 필요 상태·원인·품질을 전달한다. Navigator의 공개 메서드는 그대로이며, `goto/face`는 무효 추정에서 정지하고 최대 0.8초 재관측한다. 직접 `pose()` 호출은 무효 추정에서 계속 예외를 반환한다. 정체 재관측은 구간당 최대 두 번, 공개 문 경로 재계획은 최대 한 번이며 기존 시간 제한 안에서 수행한다. 누적 드리프트와 위치를 완전히 잃은 뒤의 전역 재위치 추정은 여전히 별도 문제다.
 

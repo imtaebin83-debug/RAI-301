@@ -60,3 +60,15 @@ Starter v2 integration (origin/main 56f307d):
 - Actual fall -> public respawn -> full multi-mission resumption is not yet
   validated. The unit test verifies fixed documented anchoring and discarding
   the cached pre-respawn cloud without stamping it as an accepted measurement.
+
+M2 owner optional API prerequisite (not a change to our submitted vision.py):
+  origin/main RGBD.cone(color) lacks the owner's optional data argument.
+  Owner commit 2284468 already has this two-line compatible change:
+    def cone(self, color, data=None):
+        data = self.frame() if data is None else data
+  With main vision.py, the optional owner suite runs 44 tests but its single
+  RGBD.cone(data=...) test errors in all three color subtests. The actual M2
+  controller overrides cone and did not need that inherited call in our live
+  sequence. A separate CPU-only fixture using the exact owner vision.py passes
+  all 44 tests in v2 (v2_owner_tests_complete_overlay.log). Keep this dependency
+  with the owner's integration; no shared vision function was changed here.

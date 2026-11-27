@@ -1,0 +1,2 @@
+# Preserve original simulator output, including its spacing.
+**/*.log -whitespace

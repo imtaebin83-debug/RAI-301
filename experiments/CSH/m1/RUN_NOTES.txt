@@ -24,3 +24,17 @@ Evaluation interpretation
   context during shutdown, after verdicts. This is in the stock MissionRunner
   spin thread. The read-only mission_api.py was not patched; logs retain it.
 - No fresh Conda installation or all-six-mission continuous run was performed.
+
+Starter v2 port:
+- Runtime frozen at a3c56be, merged official/team origin/main 56f307d. All v1
+  evidence remains separately labelled; it is not counted as v2 validation.
+- First optional owner test launch had cwd resolving custom from the candidate
+  rather than the integration fixture. The corrected fixture import revealed
+  the owner's existing optional RGBD.cone(data=...) dependency (three color
+  subtest errors). The supplied owner API in a separate CPU-only temporary
+  source passes all 44 tests. An initial temporary-source setup omitted ROS
+  PYTHONPATH and was corrected before running those 44 tests. These CPU setup
+  attempts are preserved in named logs, not counted as simulator attempts.
+- The live v2 M2/M4 fixture retains origin/main vision.py. Its exact source
+  hashes were captured before simulation. The optional owner API was used
+  only in the CPU fixture; it is not a submitted shared-vision change.
