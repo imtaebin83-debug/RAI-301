@@ -1,0 +1,82 @@
+[main] starting the simulator: -m ros2_bridge.run_g1_ros --no-view --spawn 16 11 0 --m4-room classroom --judge-goal-radius 0.5 --judge-cone-box 0.5 --judge-cone-offset 0.75 --ball-friction 0.62 0.02 0.01 --m1-goal-region 14.0 17.0 1.0 20.0 --m1-goal-yaw 90 --ball-region 7.25 11.25 5.5 8.5 --scenario /tmp/ys-all-v2-20261127/m6-baseline/mission-6/evaluation_scenario.yaml --sensors /home/aril/rai-worktrees/ys-all-v2-20261127/src/custom/robot.yaml --max-vel 0.6 0.4 0.7
+[main] starting robot_state_publisher (G1 URDF -> /tf)
+[INFO] [1795751709.300809190] [mujoco_sim]: /clock 100 Hz | joint_states 50 Hz (29 joints) | G1 RGB-D 20 Hz | extra RGB 10 Hz | lidar 10 Hz (OS1-32 32x512, 1 worker(s)) | IMU 100 Hz | odom 0 Hz
+[INFO] [1795751709.301025475] [mujoco_sim]: listening on /cmd_vel; timeout 0.5s; limits vx/vy/wz=(0.6, 0.4, 0.7)
+[INFO] [1795751709.301553934] [mujoco_sim]: G1 rescue: keys 1-6 in viewer or publish std_msgs/Empty to /g1/respawn
+[INFO] [1795751709.301925208] [mujoco_sim]: G1 joint control: sensor_msgs/JointState on /g1/joint_command suspends the walking policy; it resumes 0.2 s (sim) after the last command; gains on /g1/joint_gains
+[INFO] [1795751709.302450191] [mujoco_sim]: referee: std_msgs/Int32 /g1/mission_end judges mission N on ground truth; mission 4 room classroom; scenario /tmp/ys-all-v2-20261127/m6-baseline/mission-6/evaluation_scenario.yaml
+[INFO] [1795751709.303101610] [mujoco_sim]: Mission API: std_msgs/Int32 /g1/mission_begin (1-6, G1 not moved), std_msgs/Empty /g1/randomize; status on /g1/mission_status
+[INFO] [1795751709.303224059] [mujoco_sim]: ground truth: NOT published (no /odom, no odom TF; add --ground-truth to enable); initial pose: manual (RViz 2D Pose Estimate)
+[INFO] [1795751709.305158058] [mujoco_sim]: Panda task (startup): arm home, pencil (20.991, 19.715), holder (21.378, 19.706)
+[INFO] [1795751709.305519825] [mujoco_sim]: Scenario (/tmp/ys-all-v2-20261127/m6-baseline/mission-6/evaluation_scenario.yaml): m1 goal (15.50, 18.00), m2 green, cones blue | green | orange, rooms classroom | medical | cafeteria, ball (9.25, 8.15)
+[INFO] [1795751709.305714099] [mujoco_sim]: scene=layout.json robot='g1/' spawn=(16.00, 11.00, floor 0.00); official Unitree 29-DoF ONNX READY; standing until /cmd_vel arrives
+[mission] waiting for the simulator on /g1/mission_status ...
+[mission] simulator up (mission point 1: launch point)
+[main] launching custom/bringup.launch.py (your nodes)
+[referee] results file: /home/aril/rai-worktrees/ys-all-v2-20261127/src/results/run_20261127-125509.json
+
+[main] ===== mission 6: Soccer goal scoring =====
+[INFO] [1795751709.400344085] [mujoco_sim]: mission 6 (soccer-room door) selected from ROS begin 6; G1 not moved; soccer ball restored
+[INFO] [launch]: All log files can be found below /home/aril/.ros/log/2026-11-27-12-55-09-526490-aril-13-499268
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [python-1]: process started with pid [499270]
+[python-1] [localizer] waiting: ConnectivityException: Could not find a connection between 'pelvis' and 'lidar_link' because they are not part of the same tree.Tf has two or more unconnected trees.
+[python-1] [localizer] guarded-kiss-icp, IMU roll/pitch=-0.0/-0.5 deg, pelvis height=0.780m floor support=0.82
+[nav] pose=(16.00,11.00,-0.00) target=(14.00,9.10) error=2.76
+[nav] pose=(16.04,10.95,-1.92) target=(14.00,9.10) error=2.75
+[nav] pose=(14.72,9.76,-2.36) target=(14.00,9.10) error=0.98
+[nav] pose=(13.67,9.13,-2.96) target=(12.00,9.10) error=1.67
+[mission 6] observe: frames=4 detections=4 steady=4
+[mission 6] acquired ball (9.24,8.14)
+[mission 6] cycle 1: ball=(9.24,8.14) stand=(9.24,9.74) aim=-90deg goal
+[mission 6] wall case: view from (7.61,9.77)
+[nav] pose=(12.03,9.08,-3.04) target=(7.61,9.77) error=4.47
+[nav] pose=(10.47,9.34,3.03) target=(7.61,9.77) error=2.89
+[nav] pose=(8.52,9.64,3.04) target=(7.61,9.77) error=0.92
+[mission 6] observe: frames=4 detections=4 steady=4
+[nav] pose=(7.56,9.59,-0.83) target=(9.26,9.75) error=1.70
+[nav] pose=(8.64,9.74,0.09) target=(9.26,9.75) error=0.62
+[nav] pose=(9.39,9.67,-1.45) target=(9.26,9.67) error=0.13
+[nav] pose=(9.31,9.63,-1.43) target=(9.26,9.67) error=0.07
+[nav] stalled; sensor reobservation 1/2
+[nav] timeout target=(9.257785210788011,9.672558045480796)
+[mission 6] wall kick 2.6 m, ball (9.26,8.15) 1.44 m ahead (blind)
+[mission 6] observe: frames=4 detections=4 steady=4
+[mission 6] cycle 2: ball=(8.17,4.17) stand=(7.34,6.32) aim=-69deg goal
+[nav] pose=(9.34,6.53,-1.57) target=(7.34,6.32) error=2.02
+[nav] pose=(8.81,6.46,-2.96) target=(7.34,6.32) error=1.48
+[mission 6] observe: frames=4 detections=4 steady=4
+[mission 6] align 0: ball 2.33 m ahead, +0.07 m left
+[mission 6] observe: frames=4 detections=4 steady=4
+[mission 6] align 1: ball 2.30 m ahead, +0.22 m left
+[mission 6] observe: frames=5 detections=4 steady=4
+[mission 6] align 2: ball 2.28 m ahead, -0.27 m left
+[mission 6] observe: frames=4 detections=4 steady=4
+[mission 6] align 3: ball 2.24 m ahead, -0.14 m left
+[mission 6] observe: frames=4 detections=4 steady=4
+[mission 6] align 4: ball 2.21 m ahead, -0.06 m left
+[mission 6] observe: frames=4 detections=4 steady=4
+[mission 6] align 5: ball 2.21 m ahead, -0.01 m left
+[mission 6] kick 14.2 m at 0.50 m/s, ball (8.25,4.07) 2.21 m ahead
+[mission 6] push stopped at pitch/goal limit (9.05,1.71)
+[mission 6] ball not visible after a dribble into the goal mouth; ending
+[WARN] [1795751974.397118382] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[INFO] [1795751974.888254632] [mujoco_sim]: referee: mission 6 PASS -- ball (9.28, 0.93) inside the goal (centre x 6.82..11.68, y 0.66..1.96: whole ball past the line, between the posts)
+[referee] ===== mission 6 Soccer goal scoring: PASS in 264.6 s =====
+[referee]   check     ball (9.28, 0.93) inside the goal (centre x 6.82..11.68, y 0.66..1.96: whole ball past the line, between the posts)  [PASS]
+[referee]   reported  done: 
+[main] stopping the simulator
+[main] stopping the robot_state_publisher
+[main] stopping the custom/bringup.launch.py
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [python-1]: sending signal 'SIGINT' to process[python-1]
+[INFO] [1795751975.378519523] [mujoco_sim]: stopped at sim=258.30s wall=266.07s RTF=0.97
+[INFO] [python-1]: process has finished cleanly [pid 499270]
+
+============================== Mission results (referee, ground truth) ==============================
+  step  #  mission                        result     time  check
+  -     6  Soccer goal scoring            PASS     264.6s  check: ball (9.28, 0.93) inside the goal (centre x 6.82..11.68, y 0.66..1.96: whole ball past the line, between the posts)
+  1/1 passed, missions 264.6 s, run 266.9 s
+  respawns 0 x 30 s = +0 s penalty -> total time 264.6 s (missions + penalty)
+  results file: /home/aril/rai-worktrees/ys-all-v2-20261127/src/results/run_20261127-125509.json
+======================================================================================================

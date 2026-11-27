@@ -1,3 +1,12 @@
+# Integrated v2 baseline — 2026-11-27
+
+**Missions 1–6 passed in one continuous official run: 889.12 seconds, zero respawns.**
+The tested runtime is ca9fa1f on integrate/ys-all-missions-v2-20261127.
+See the [integration report, exact results, reproduction command, and remaining limits](docs/experiments/ys_all_missions_v2_20261127.md).
+This supersedes the older progress snapshots below; it is a tested baseline, not all-layout or competition certification.
+
+---
+
 # RAI 301 기본 구현
 
 **2026-11-27 Starter/Rulebook v2 반영:** 조교 `f03a500`과 팀 구현을 병합하고 `robot.yaml`, 공개 센서 API·리스폰, Panda 행동 좌표를 호환시켰다. 새 `haic_rai301_v2`에서 M1→M2→M5 연속 3/3 PASS, 회귀 검사 110개 통과. 최신 미션별 main/팀원 브랜치 구분·미통합 성과·규칙상 준비 과제는 [v2 업데이트와 진행도](docs/V2_UPDATE_AND_MISSION_STATUS_20261127.md)를 먼저 읽는다. 아래 예전 성공 기록을 v2 전 배치 검증으로 해석하지 않는다.

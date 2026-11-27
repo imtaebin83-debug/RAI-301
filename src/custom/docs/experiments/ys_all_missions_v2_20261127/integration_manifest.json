@@ -1,0 +1,28 @@
+{
+  "runtime_commit": "ca9fa1f6894cc6320e9c9fc371cfc84a271f2718",
+  "official_upstream": "f03a50078bed86c8e751c5d82066dd14025d0e55",
+  "group_main": "56f307d84934d3efc0076fa58a963ad9eb2204b2",
+  "branch": "integrate/ys-all-missions-v2-20261127",
+  "environment": "/home/aril/miniconda3/envs/haic_rai301_v2",
+  "initial_pose": [
+    16.0,
+    11.0,
+    0.0
+  ],
+  "source_outside_custom_diff": [],
+  "m5_checkpoint_sha256": "5399000712043f249abdc3414374ddd0bf710c696a6ed3b6f623497dd7b6b3ca",
+  "mission5_runtime_unchanged_from_main": true,
+  "shared_model_directory": "/home/aril/RAI-301/src/custom/models",
+  "mac_model_copy": false,
+  "final_record": "chain-final/record.json",
+  "runtime_hashes_match_final_record": true,
+  "final_verdicts": [
+    "PASS",
+    "PASS",
+    "PASS",
+    "PASS",
+    "PASS",
+    "PASS"
+  ],
+  "respawns": 0
+}

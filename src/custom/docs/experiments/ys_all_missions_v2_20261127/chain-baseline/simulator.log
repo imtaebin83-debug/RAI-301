@@ -1,0 +1,232 @@
+[main] starting the simulator: -m ros2_bridge.run_g1_ros --no-view --spawn 16 11 0 --m4-room classroom --judge-goal-radius 0.5 --judge-cone-box 0.5 --judge-cone-offset 0.75 --ball-friction 0.62 0.02 0.01 --m1-goal-region 14.0 17.0 1.0 20.0 --m1-goal-yaw 90 --ball-region 7.25 11.25 5.5 8.5 --scenario /tmp/ys-all-v2-20261127/chain-baseline/all-six-blue/evaluation_scenario.yaml --sensors /home/aril/rai-worktrees/ys-all-v2-20261127/src/custom/robot.yaml --max-vel 0.6 0.4 0.7
+[main] starting robot_state_publisher (G1 URDF -> /tf)
+[INFO] [1795752038.667842748] [mujoco_sim]: /clock 100 Hz | joint_states 50 Hz (29 joints) | G1 RGB-D 20 Hz | extra RGB 10 Hz | lidar 10 Hz (OS1-32 32x512, 1 worker(s)) | IMU 100 Hz | odom 0 Hz
+[INFO] [1795752038.668062590] [mujoco_sim]: listening on /cmd_vel; timeout 0.5s; limits vx/vy/wz=(0.6, 0.4, 0.7)
+[INFO] [1795752038.668610066] [mujoco_sim]: G1 rescue: keys 1-6 in viewer or publish std_msgs/Empty to /g1/respawn
+[INFO] [1795752038.668979929] [mujoco_sim]: G1 joint control: sensor_msgs/JointState on /g1/joint_command suspends the walking policy; it resumes 0.2 s (sim) after the last command; gains on /g1/joint_gains
+[INFO] [1795752038.669519891] [mujoco_sim]: referee: std_msgs/Int32 /g1/mission_end judges mission N on ground truth; mission 4 room classroom; scenario /tmp/ys-all-v2-20261127/chain-baseline/all-six-blue/evaluation_scenario.yaml
+[INFO] [1795752038.670260429] [mujoco_sim]: Mission API: std_msgs/Int32 /g1/mission_begin (1-6, G1 not moved), std_msgs/Empty /g1/randomize; status on /g1/mission_status
+[INFO] [1795752038.670376045] [mujoco_sim]: ground truth: NOT published (no /odom, no odom TF; add --ground-truth to enable); initial pose: manual (RViz 2D Pose Estimate)
+[INFO] [1795752038.672710680] [mujoco_sim]: Panda task (startup): arm home, pencil (20.991, 19.715), holder (21.378, 19.706)
+[INFO] [1795752038.673069622] [mujoco_sim]: Scenario (/tmp/ys-all-v2-20261127/chain-baseline/all-six-blue/evaluation_scenario.yaml): m1 goal (15.50, 18.00), m2 blue, cones orange | green | blue, rooms medical | cafeteria | classroom, ball (9.25, 8.15)
+[INFO] [1795752038.673272713] [mujoco_sim]: scene=layout.json robot='g1/' spawn=(16.00, 11.00, floor 0.00); official Unitree 29-DoF ONNX READY; standing until /cmd_vel arrives
+[mission] waiting for the simulator on /g1/mission_status ...
+[mission] simulator up (mission point 1: launch point)
+[main] launching custom/bringup.launch.py (your nodes)
+[referee] results file: /home/aril/rai-worktrees/ys-all-v2-20261127/src/results/run_20261127-130038.json
+
+[main] ===== mission 1: Point-goal navigation =====
+[INFO] [1795752038.735889216] [mujoco_sim]: mission 1 (launch point) selected from ROS begin 1; G1 not moved
+[INFO] [launch]: All log files can be found below /home/aril/.ros/log/2026-11-27-13-00-38-893493-aril-13-500043
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [python-1]: process started with pid [500045]
+[python-1] [localizer] waiting: ExtrapolationException: Lookup would require extrapolation at time 1.000000, but only time 1.080000 is in the buffer, when looking up transform from frame [lidar_link] to frame [pelvis]
+[python-1] [localizer] guarded-kiss-icp, IMU roll/pitch=-0.0/-0.5 deg, pelvis height=0.780m floor support=0.83
+[nav] pose=(16.00,11.00,-0.00) target=(15.50,18.00) error=7.02
+[nav] pose=(15.91,11.77,1.64) target=(15.50,18.00) error=6.25
+[nav] pose=(15.77,13.68,1.67) target=(15.50,18.00) error=4.33
+[nav] pose=(15.66,15.72,1.67) target=(15.50,18.00) error=2.29
+[nav] pose=(15.52,17.68,1.67) target=(15.50,18.00) error=0.32
+[WARN] [1795752061.942524969] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[INFO] [1795752062.433689455] [mujoco_sim]: referee: mission 1 PASS -- 0.06 m < 0.50 m from goal world (15.50, 18.00)
+[referee] ===== mission 1 Point-goal navigation: PASS in 22.7 s =====
+[referee]   check     0.06 m < 0.50 m from goal world (15.50, 18.00)  [PASS]
+[referee]   reported  done: 
+
+[main] ===== mission 2: Cone colour navigation =====
+[INFO] [1795752062.832942522] [mujoco_sim]: mission 2 (cone-room door) selected from ROS begin 2; G1 not moved
+[mission 2] target cone: blue
+[nav] pose=(15.51,17.95,1.71) target=(15.50,20.30) error=2.35
+[python-1] [localizer] waiting: ICP motion jump: 0.149m/18.7deg dt=0.200s
+[nav] pose=(15.54,19.55,1.64) target=(15.50,20.30) error=0.75
+[nav] pose=(15.54,21.09,1.65) target=(15.50,22.00) error=0.91
+[WARN] [1795752079.029344558] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[WARN] [1795752080.238338708] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[cone] survey blue: 0 candidates; xy=[]
+[WARN] [1795752083.631485836] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[mission 2] sensor cone estimate: (16.96, 24.74)
+[nav] pose=(15.56,22.30,1.22) target=(16.96,24.07) error=2.26
+[nav] pose=(16.09,22.95,0.97) target=(16.96,24.07) error=1.41
+[nav] pose=(16.68,23.73,0.96) target=(16.96,24.07) error=0.44
+[WARN] [1795752099.529555150] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[INFO] [1795752100.026725162] [mujoco_sim]: referee: mission 2 PASS -- blue cone box: |dx| 0.03 < 0.25, |dy| 0.00 < 0.25 m
+[referee] ===== mission 2 Cone colour navigation: PASS in 36.2 s =====
+[referee]   check     blue cone box: |dx| 0.03 < 0.25, |dy| 0.00 < 0.25 m  [PASS]
+[referee]   reported  done: 
+
+[main] ===== mission 3: Cliff crossing =====
+[INFO] [1795752100.350263653] [mujoco_sim]: mission 3 (cliff-course entrance) selected from ROS begin 3; G1 not moved
+[nav] pose=(16.96,24.06,1.05) target=(15.50,22.00) error=2.52
+[nav] pose=(16.84,24.15,-2.80) target=(15.50,22.00) error=2.53
+[nav] pose=(16.00,22.75,-2.10) target=(15.50,22.00) error=0.90
+[nav] pose=(15.57,21.50,-1.60) target=(15.50,20.30) error=1.20
+[nav] pose=(15.48,20.31,-1.69) target=(14.00,20.12) error=1.49
+[nav] pose=(14.52,20.20,-3.00) target=(14.00,20.12) error=0.52
+[nav] pose=(13.27,20.18,-3.04) target=(12.40,20.12) error=0.87
+[nav] pose=(12.14,20.17,-3.07) target=(9.25,20.12) error=2.89
+[nav] pose=(10.53,20.14,-3.07) target=(9.25,20.12) error=1.28
+[nav] pose=(9.24,20.11,-3.07) target=(6.08,20.12) error=3.16
+[nav] pose=(7.95,20.12,-3.10) target=(6.08,20.12) error=1.88
+[nav] pose=(6.46,20.11,-3.11) target=(6.08,20.12) error=0.39
+[nav] pose=(6.06,20.01,-1.68) target=(6.08,18.90) error=1.11
+[nav] pose=(6.02,18.89,-1.38) target=(9.25,18.90) error=3.23
+[nav] pose=(6.88,18.88,0.06) target=(9.25,18.90) error=2.37
+[nav] pose=(8.34,18.92,0.05) target=(9.25,18.90) error=0.91
+[nav] pose=(9.55,18.91,0.07) target=(12.43,18.90) error=2.88
+[nav] pose=(10.97,18.92,0.04) target=(12.43,18.90) error=1.45
+[nav] pose=(12.40,18.92,0.04) target=(12.43,18.90) error=0.03
+[nav] pose=(12.44,18.77,-1.41) target=(12.43,17.20) error=1.57
+[nav] pose=(12.44,17.22,-1.49) target=(12.43,17.20) error=0.03
+[nav] pose=(12.23,17.12,-3.03) target=(9.25,17.20) error=2.98
+[nav] pose=(10.77,17.16,-3.11) target=(9.25,17.20) error=1.52
+[nav] pose=(9.33,17.19,-3.10) target=(9.25,17.20) error=0.08
+[nav] pose=(8.19,17.20,-3.08) target=(6.08,17.20) error=2.12
+[nav] pose=(6.71,17.20,-3.10) target=(6.08,17.20) error=0.63
+[nav] pose=(6.06,17.17,-1.90) target=(6.08,15.40) error=1.77
+[nav] pose=(6.06,15.81,-1.57) target=(6.08,15.40) error=0.41
+[nav] pose=(6.21,15.41,-0.18) target=(9.25,15.40) error=3.04
+[nav] pose=(7.53,15.42,0.05) target=(9.25,15.40) error=1.72
+[nav] pose=(8.87,15.42,0.02) target=(9.25,15.40) error=0.38
+[nav] pose=(9.87,15.43,0.05) target=(12.43,15.40) error=2.56
+[nav] pose=(11.21,15.43,0.02) target=(12.43,15.40) error=1.22
+[nav] pose=(12.45,15.41,0.06) target=(12.43,15.40) error=0.03
+[nav] pose=(12.52,15.23,-1.46) target=(12.43,13.40) error=1.83
+[nav] pose=(12.41,13.66,-1.59) target=(12.43,13.40) error=0.26
+[nav] pose=(12.39,13.35,-2.94) target=(9.25,13.40) error=3.14
+[nav] pose=(10.87,13.37,-3.11) target=(9.25,13.40) error=1.62
+[nav] pose=(9.30,13.39,-3.09) target=(9.25,13.40) error=0.05
+[nav] pose=(7.89,13.41,-3.09) target=(6.08,13.40) error=1.81
+[nav] pose=(6.46,13.38,-3.11) target=(6.08,13.40) error=0.39
+[nav] pose=(5.94,13.28,-1.69) target=(6.08,11.38) error=1.91
+[nav] pose=(6.03,11.77,-1.51) target=(6.08,11.38) error=0.40
+[nav] pose=(6.35,11.38,-0.07) target=(9.25,11.38) error=2.90
+[nav] pose=(7.80,11.39,0.05) target=(9.25,11.38) error=1.45
+[nav] pose=(9.19,11.38,0.07) target=(9.25,11.38) error=0.06
+[nav] pose=(10.29,11.43,0.04) target=(13.65,11.38) error=3.36
+[nav] pose=(11.69,11.43,0.03) target=(13.65,11.38) error=1.96
+[nav] pose=(13.12,11.40,0.01) target=(13.65,11.38) error=0.53
+[mission3] route complete; waypoints=18; last_target=(13.65, 11.375); reason=none
+[WARN] [1795752343.966562308] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[INFO] [1795752344.458062240] [mujoco_sim]: referee: mission 3 PASS -- crossed entrance -> exit; pelvis (13.68, 11.37) inside the exit zone x 13.00..14.20, y 10.78..11.97
+[referee] ===== mission 3 Cliff crossing: PASS in 243.1 s =====
+[referee]   check     crossed entrance -> exit; pelvis (13.68, 11.37) inside the exit zone x 13.00..14.20, y 10.78..11.97  [PASS]
+[referee]   reported  done: 
+
+[main] ===== mission 4: Semantic delivery =====
+[INFO] [1795752344.788955983] [mujoco_sim]: mission 4 (three-room hallway view) selected from ROS begin 4; G1 not moved
+[referee] mission 4 rooms to identify: cafeteria, classroom, medical (answer: result.data['rooms'] = {room: [x, y] world})
+[nav] pose=(13.67,11.38,0.07) target=(16.00,17.50) error=6.55
+[nav] pose=(14.04,12.54,1.24) target=(16.00,17.50) error=5.34
+[nav] pose=(14.75,14.32,1.23) target=(16.00,17.50) error=3.42
+[nav] pose=(15.46,16.11,1.22) target=(16.00,17.50) error=1.50
+[WARN] [1795752368.922714938] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[nav] pose=(16.04,17.54,0.03) target=(16.00,10.50) error=7.04
+[nav] pose=(16.10,17.21,-1.47) target=(16.00,10.50) error=6.71
+[nav] pose=(16.03,15.17,-1.56) target=(16.00,10.50) error=4.67
+[nav] pose=(16.01,13.17,-1.53) target=(16.00,10.50) error=2.67
+[nav] pose=(15.99,11.25,-1.54) target=(16.00,10.50) error=0.75
+[WARN] [1795752396.744581053] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[nav] pose=(16.08,10.47,0.02) target=(16.00,3.59) error=6.88
+[nav] pose=(16.12,10.22,-1.47) target=(16.00,3.59) error=6.63
+[nav] pose=(16.05,8.24,-1.54) target=(16.00,3.59) error=4.65
+[nav] pose=(16.02,6.24,-1.55) target=(16.00,3.59) error=2.65
+[nav] pose=(16.00,4.32,-1.54) target=(16.00,3.59) error=0.73
+[WARN] [1795752424.952147225] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[mission 4] VLM joint assignment ['medical', 'cafeteria', 'classroom']: {'method': 'vlm_likelihood_unique_room_assignment', 'unconstrained_labels': ['medical', 'classroom', 'classroom'], 'score': 9.582992553710938, 'runner_up_margin': 13.05070686340332}
+[nav] pose=(16.08,3.48,0.09) target=(16.00,3.59) error=0.14
+[mission 4] incomplete: could not face room before deadline
+[WARN] [1795752519.711779086] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[INFO] [1795752520.240394636] [mujoco_sim]: referee: mission 4 FAIL -- pelvis (16.12, 3.49) in no room; target classroom x 18.25..23.00, y 0.10..6.90
+[referee] ===== mission 4 Semantic delivery: FAIL in 174.4 s =====
+[referee]   rooms     truth  : north medical | middle cafeteria | south classroom
+[referee]             answer : north medical | middle cafeteria | south classroom
+[referee]             3/3 rooms right  [PASS]
+[referee]   delivery  pelvis (16.12, 3.49) in no room; target classroom x 18.25..23.00, y 0.10..6.90  [FAIL]
+[referee]   reported  done: 
+
+[main] ===== mission 5: Pencil pick-and-place (Panda) =====
+[INFO] [1795752520.553577497] [mujoco_sim]: mission 5 (Panda desk east side) selected from ROS begin 5; G1 not moved
+[mission 5] trained policy: 20 commands, sim=1.9s
+[mission 5] trained policy: 40 commands, sim=3.9s
+[mission 5] trained policy: 60 commands, sim=5.9s
+[mission 5] trained policy: 80 commands, sim=7.9s
+[WARN] [1795752531.036477915] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[INFO] [1795752531.531539304] [mujoco_sim]: referee: mission 5 FAIL -- pencil tip 0.136 > 0.02 m below the rim, outside the opening, released
+[referee] ===== mission 5 Pencil pick-and-place (Panda): FAIL in 10.0 s =====
+[referee]   check     pencil tip 0.136 > 0.02 m below the rim, outside the opening, released  [FAIL]
+[referee]   reported  done: 
+
+[main] ===== mission 6: Soccer goal scoring =====
+[INFO] [1795752531.845662777] [mujoco_sim]: mission 6 (soccer-room door) selected from ROS begin 6; G1 not moved; soccer ball restored
+[nav] pose=(16.11,3.49,0.08) target=(14.00,9.10) error=5.99
+[nav] pose=(16.04,3.71,1.84) target=(14.00,9.10) error=5.77
+[nav] pose=(15.33,5.53,1.97) target=(14.00,9.10) error=3.81
+[nav] pose=(14.66,7.36,1.96) target=(14.00,9.10) error=1.86
+[nav] pose=(13.96,9.21,1.99) target=(14.00,9.10) error=0.11
+[nav] pose=(13.01,9.09,-3.07) target=(12.00,9.10) error=1.01
+[mission 6] observe: frames=4 detections=4 steady=4
+[mission 6] acquired ball (9.22,8.17)
+[mission 6] cycle 1: ball=(9.22,8.17) stand=(9.21,9.77) aim=-90deg goal
+[mission 6] wall case: view from (7.59,9.79)
+[nav] pose=(11.93,9.11,-3.09) target=(7.59,9.79) error=4.40
+[nav] pose=(10.36,9.36,3.01) target=(7.59,9.79) error=2.81
+[nav] pose=(7.62,9.79,3.05) target=(7.59,9.79) error=0.03
+[mission 6] observe: frames=4 detections=4 steady=4
+[nav] pose=(7.48,9.59,-0.71) target=(9.70,9.75) error=2.22
+[nav] pose=(8.33,9.70,0.10) target=(9.70,9.75) error=1.37
+[nav] pose=(9.74,9.74,0.11) target=(9.70,9.75) error=0.04
+[nav] pose=(9.90,9.67,-1.54) target=(9.69,9.73) error=0.22
+[nav] pose=(9.74,9.67,-1.52) target=(9.69,9.73) error=0.07
+[nav] stalled; sensor reobservation 1/2
+[nav] timeout target=(9.691986853149224,9.732127532084252)
+[mission 6] wall kick 2.7 m, ball (9.28,8.20) 1.54 m ahead (blind)
+[mission 6] observe: frames=4 detections=4 steady=4
+[mission 6] cycle 2: ball=(7.39,5.08) stand=(6.36,7.14) aim=-63deg goal
+[nav] pose=(8.97,6.32,-2.72) target=(6.36,7.14) error=2.73
+[nav] pose=(8.02,6.62,2.86) target=(6.36,7.14) error=1.74
+[mission 6] observe: frames=4 detections=4 steady=4
+[mission 6] align 0: ball 2.28 m ahead, +0.23 m left
+[mission 6] observe: frames=4 detections=4 steady=4
+[mission 6] align 1: ball 2.22 m ahead, -0.09 m left
+[mission 6] observe: frames=5 detections=4 steady=4
+[mission 6] align 2: ball 2.22 m ahead, -0.01 m left
+[mission 6] kick 14.2 m at 0.50 m/s, ball (7.41,5.04) 2.22 m ahead
+[mission 6] push stopped at pitch/goal limit (9.10,1.72)
+[mission 6] observe: frames=4 detections=4 steady=4
+[mission 6] cycle 3: ball=(8.66,3.34) stand=(7.99,5.54) aim=-73deg goal
+[mission 6] detour around ball via (9.60,4.04)
+[nav] pose=(9.68,1.30,1.96) target=(9.60,4.04) error=2.74
+[nav] pose=(9.70,2.40,1.65) target=(9.60,4.04) error=1.64
+[nav] pose=(9.64,4.01,1.65) target=(7.99,5.54) error=2.25
+[nav] pose=(8.77,4.72,2.40) target=(7.99,5.54) error=1.13
+[mission 6] observe: frames=4 detections=4 steady=4
+[mission 6] align 0: ball 2.28 m ahead, +0.18 m left
+[mission 6] observe: frames=4 detections=4 steady=4
+[mission 6] align 1: ball 2.26 m ahead, +0.05 m left
+[mission 6] kick 14.3 m at 0.50 m/s, ball (8.75,3.38) 2.26 m ahead
+[mission 6] push stopped at pitch/goal limit (9.08,1.73)
+[WARN] [1795752832.457695110] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[INFO] [1795752832.962537641] [mujoco_sim]: referee: mission 6 FAIL -- ball (9.15, 2.58) outside the goal (centre x 6.82..11.68, y 0.66..1.96: whole ball past the line, between the posts)
+[referee] ===== mission 6 Soccer goal scoring: FAIL in 300.0 s =====
+[referee]   check     ball (9.15, 2.58) outside the goal (centre x 6.82..11.68, y 0.66..1.96: whole ball past the line, between the posts)  [FAIL]
+[referee]   reported  done: 
+[main] stopping the simulator
+[main] stopping the robot_state_publisher
+[main] stopping the custom/bringup.launch.py
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [python-1]: sending signal 'SIGINT' to process[python-1]
+[INFO] [1795752833.460399356] [mujoco_sim]: stopped at sim=754.70s wall=794.79s RTF=0.95
+[INFO] [python-1]: process has finished cleanly [pid 500045]
+
+============================== Mission results (referee, ground truth) ==============================
+  step  #  mission                        result     time  check
+  -     1  Point-goal navigation          PASS      22.7s  check: 0.06 m < 0.50 m from goal world (15.50, 18.00)
+  -     2  Cone colour navigation         PASS      36.2s  check: blue cone box: |dx| 0.03 < 0.25, |dy| 0.00 < 0.25 m
+  -     3  Cliff crossing                 PASS     243.1s  check: crossed entrance -> exit; pelvis (13.68, 11.37) inside the exit zone x 13.00..14.20, y 10.78..11.97
+  -     4  Semantic delivery              FAIL     174.4s  rooms: 3/3 rooms right; delivery: pelvis (16.12, 3.49) in no room; target classroom x 18.25..23.00, y 0.10..6.90
+  -     5  Pencil pick-and-place (Panda)  FAIL      10.0s  check: pencil tip 0.136 > 0.02 m below the rim, outside the opening, released
+  -     6  Soccer goal scoring            FAIL     300.0s  check: ball (9.15, 2.58) outside the goal (centre x 6.82..11.68, y 0.66..1.96: whole ball past the line, between the posts)
+  3/6 passed, missions 786.5 s, run 795.4 s
+  respawns 0 x 30 s = +0 s penalty -> total time 786.5 s (missions + penalty)
+  results file: /home/aril/rai-worktrees/ys-all-v2-20261127/src/results/run_20261127-130038.json
+======================================================================================================

@@ -1,0 +1,627 @@
+{
+  "case": {
+    "id": "finish-4-5-6",
+    "missions": [
+      4,
+      5,
+      6
+    ],
+    "split": "integration-development",
+    "m1_goal": [
+      15.5,
+      18.0,
+      90.0
+    ],
+    "m2_color": "blue",
+    "cone_order": [
+      "orange",
+      "green",
+      "blue"
+    ],
+    "room_order": [
+      "medical",
+      "cafeteria",
+      "classroom"
+    ]
+  },
+  "command": [
+    "bash",
+    "custom/tools/run_sim.sh",
+    "--headless",
+    "--missions",
+    "4",
+    "5",
+    "6",
+    "--no-wait",
+    "--scenario",
+    "/tmp/ys-all-v2-20261127/finish-fix1/finish-4-5-6/evaluation_scenario.yaml"
+  ],
+  "source_root": "/home/aril/rai-worktrees/ys-all-v2-20261127/src",
+  "starter_version": "v2",
+  "python": "/home/aril/miniconda3/envs/haic_rai301_v2/bin/python",
+  "config_sha256": {
+    "custom/robot.yaml": "0f1f60d3dbc687f609a0b7a5c7b9e8c5772094b863712e55ae591e94c09e3ec1",
+    "main_config.yaml": "70316b8e52499f5e679974630ecbe0e116bf179fad1e5de380da612e8cf7b745"
+  },
+  "commit": "cb0b915d0f69418b2258cc8bf825f568e02b1db8",
+  "code_sha256": {
+    "custom/bringup.launch.py": "439468d3cdfe278e08908df2c1729dbdcdd97eaadc0f9be459f8c89697dbc4d2",
+    "custom/sensor_mission.py": "34ba0ab1d6d4054f99bfa21e86d9722d490d301f264ab9ab4a5872443e956a80",
+    "custom/public_map.py": "cbb6a31993c75d378e7b805d52311583e032122f34f361e8de234cb90b604695",
+    "custom/navigation.py": "da3fc31fb3f61a47efcfba8819fb31c29a4a9250489fcaf1c7fc1a7e11293831",
+    "custom/localizer_node.py": "f540e53ee36fb7f37707567009b4a16a067a6f421f5cb5b7ad714b748f77ed7b",
+    "custom/localization.py": "d2e2503172e9e484f4f08a14bdfa9cd6e9e980f85ee81f84dd647245abb32e3d",
+    "custom/vlm.py": "26abd0af4ad3e0395a5864e6b352b8e8b90f2c4fa7619b567c0e22c1add9c6fb",
+    "custom/vision.py": "de191fabc40f136238de821f5307c5dd6882b51ceb81514930a679f558241ff2",
+    "custom/icp_registration.py": "a5bdd10a33fba6c40c407c2687137b1a95657616d469b596b8d0442b3ee6e837",
+    "custom/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "custom/inertial.py": "3ff53929fb98d8a785a4005963aefa73db0ead9a6fea72f73eb5bcfa23f59629",
+    "custom/tools/download_models.py": "f065d3de598843c8ab06b227f558eb88b23bf1623b05da07ede1d3dfba807c5f",
+    "custom/tests/test_vision.py": "234a39ba237a2f145f02918dc14a6a688804fe0999f47478044b2835a291e567",
+    "custom/tests/test_ball.py": "2c0c50aa55343f8e008a1e83eb290e5f116ada59b6cb7f4424631d26e291271c",
+    "custom/tests/test_all_mission_integration.py": "15574804f4fcddc4298329a9bab0d0845276c0ee68b8cf58c93bc1d302c51a83",
+    "custom/tests/test_v2_localizer_respawn.py": "01daa0dda68dfacbad80df5339b6316f72458d46dd397df1eba597d219eec912",
+    "custom/tests/test_inertial_registration.py": "783f82f387bae0abbd0a945e1eab28bf85fc434654c5849ac71fb0442e0596a5",
+    "custom/tests/test_planner_worker.py": "6099234964a7e4500c28f2dc3bfaa5c57ddb3c2bd268f56ee0ded160d360cb18",
+    "custom/tests/test_planner.py": "fd5afab4434e9e5b10401b86f7656dc19fb557b26cd2e050e8b25e1cc61d885c",
+    "custom/tests/test_v2_sensor_api.py": "4a3ac45e610204348537602d0efd647d596798b625a1d19855f48f8d926a2f92",
+    "custom/tests/test_room_assignment.py": "650a4875d6b87c9c877ae9464687c74a81cf92ea83283f47de0c63e1fab91225",
+    "custom/mission_6/mission_6.py": "7e529db313a7aac982d499cc74f14d928ed63b421388a8800264862d2e99e610",
+    "custom/mission_6/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "custom/testing/web_smoke.py": "fbe4642146d145314a9624f4a348d8c49a5f67910567cae1020e5633111385a5",
+    "custom/testing/m1_regression.py": "8b064e6b8c6938523366ef40527e7a7f298f988a1e036743c58b785362c23992",
+    "custom/testing/all_missions.py": "10a9b48fa177c19aa0811c672816636dfe79da0167c07d0f5f386d7697f1c9ba",
+    "custom/testing/capture.py": "be26d09fd23618c1e230891c95ac717455531bc363a00175606bcc78e134ee07",
+    "custom/testing/randomized_suite.py": "2144dd60a10cfa1fa3965556d75b4949ad454d599b6ecf746ed68089fc582597",
+    "custom/planner/planner.py": "853958fca3d229775c14089a698e8745a25e1223b7645bd72e4587505fb18e59",
+    "custom/planner/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "custom/planner/local_model.py": "58b5dfd26f5f77ebc0d4e0837013d5997486310449a87cd432f2c1a3b097511e",
+    "custom/planner/worker.py": "671c54e5639401cf00fb6607b12cffd5030a53acacbf3305ad41427b73999d19",
+    "custom/mission_1/mission_1.py": "39208fbc6a2c97aec89b885e5d3dd7b46bd2856c472dbc5cd5665ca9dac85209",
+    "custom/mission_1/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "custom/docs/experiments/ywj/m6/20261124/replay_ball_detector.py": "5c82fbd22ba5fe6638da066a0f12a30a906eb5ee001857a7267f4cff21076767",
+    "custom/mission_3/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "custom/mission_3/mission_3.py": "9f98070e3f924dade7568b19135ac99f82b16fd75baac8f10b2f07f12124312f",
+    "custom/mission_4/room_scoring.py": "fa3df5ec75b5e4e0a6feac3186622ef75f4457a9bf0386c158166864188fbba6",
+    "custom/mission_4/mission_4.py": "54401dce394dbbdba49d5b220d4d2996b6d53cb21b5d15da9bfe8c1b8d042e91",
+    "custom/mission_4/evaluate.py": "3f7e9774ae5c5d98ade894f93433923428506197ccae093a0824a7ed1d11fcc3",
+    "custom/mission_4/test_mission_4.py": "94ca1deb948c177819897890b56105107b4f76bddec5c8bb162c5c89192f6e96",
+    "custom/mission_4/recognition_replay.py": "7370b8f9d4852796b940205ff45eeaceda0a2d334ef75ff1b090502c69e5216e",
+    "custom/mission_4/test_v2.py": "0658ca6256543adb8655d7123a38b7bb417e573bbdea5a5adba924c5ef195bc3",
+    "custom/mission_4/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "custom/mission_4/inference_replay.py": "03a2a673d6214f0cc73ddccd3d603198647491df3ec80b2adbc7829d4b9b5800",
+    "custom/mission_2/test_mission_2.py": "c581bd9ea5bbd485b0f3ba0b25382d2624f40b0d8216de4e64675f4bac8a8c04",
+    "custom/mission_2/evaluate.py": "f5b0ceeb5902dc5dc2cd65b75655df2363faadd8cd2634b58edd9aceec32b5b2",
+    "custom/mission_2/replay_frame.py": "83e7c45ec52f2547cc309fb6e3717e3555eafdeff00be498510eeee83b69aece",
+    "custom/mission_2/perception.py": "a8d7a3e44f5409e85ec49037fcb23be5836def347e5a42b0455cb3071ca77191",
+    "custom/mission_2/test_v2.py": "268a8c51c96623b4f9d0040efa0155ad55d2671dbabfb4dd641e24f1417a0df3",
+    "custom/mission_2/mission_2.py": "8e1a1f07268a26c7c11e327c4b274e9f85c392bcbdd3f58faeefe9ac85fb7b8c",
+    "custom/mission_2/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "custom/mission_2/perception_replay.py": "f8e64db17af935639df00c511eec4d23788de2f6eeb7adb7f62b2e1c1d44bab6",
+    "custom/mission_5/evaluate.py": "1c3649c845ab4e0ce109edd801fe1af04a6b2cb03efa7929ed397e8e84af2531",
+    "custom/mission_5/policy.py": "49ee223a7eecc001226842f8d91597a709f1f1f005dd1f9976fceb63b7416e0e",
+    "custom/mission_5/perception.py": "ecfbcff353630d7f861f25ec44c7aed62d47aa3233f3bf373547edd43e93f5b9",
+    "custom/mission_5/train_keyposes.py": "dc91fc9cc220753c69fbf59729d381e6f0f372b24f6860fceff639956621bcc6",
+    "custom/mission_5/collect.py": "5985f6059677c2e60f06467887c6aecc62f3573c154067209bd1f5d2f8582945",
+    "custom/mission_5/ros_io.py": "32c6b7088ebbe45acb085d4700f1bf29ae910834207770e1fac0e03fb16c0a8a",
+    "custom/mission_5/mission_5.py": "ba5b22a141aa5234b38dc6531985f9a76b62c82d20517b7c2fd35184205420cc",
+    "custom/mission_5/policy_adapter.py": "0843344db550660c8b35322a17c9ee78242a1c02588d813e80092174138c41b6",
+    "custom/mission_5/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "custom/mission_5/vision_teacher.py": "49d7a2d34264e3a7bde9c969fafb46b1b5594b2f7afa5ccd2693acf97deb2862",
+    "custom/mission_5/benchmark.py": "8927b88b1a3e67260fee8eecdd4d86066c3452d98a5dab962c25bfe7110d5fb0",
+    "custom/mission_5/keypose_policy.py": "86bfdf918bcb2547f04e7402ee97d4a240c94e9d6c69f225495b09ae2050c16d",
+    "custom/mission_5/tests/test_perception.py": "31354907b46387dd722bb11fb1b6d40fba6763d1cf8220c4d3ae4f2df4b6527f",
+    "custom/mission_5/tests/test_teacher.py": "08bce20b8ea3c180fafae08569819130f0ac95aa282661fecbecd75c8802a611",
+    "custom/mission_5/tests/test_learning.py": "15ff3a59db429f5ec98eef42d7a196f72eedaef6a3a1cbcb390bee524cf74e90",
+    "custom/mission_5/tests/test_grasp.py": "0a0b5426c9fd0452e2acfc24a79c93ac98c283c429dfcb53d2dc5203eab15f62",
+    "custom/mission_5/tests/test_tools_v2.py": "445dda970b5e00050c7851fd8b9711e17e8f2302e71f80a68d7b4a86e7066a18",
+    "custom/mission_5/tests/test_keyposes.py": "bd742428a98b50509ddc76e6868f5af8e467d1a5d0db7c46da094735e4198347",
+    "custom/mission_5/tests/test_ros_io.py": "2a1a4849eb64fdd463a44357fabdb608270bd0c9b1b1c6b1810982140063b48a",
+    "custom/mission_5/bc/export.py": "fd4141d9bfe33ce99a882126da0f78aca59f71167f57ce35d59de66faaf1f01c",
+    "custom/mission_5/bc/merge.py": "7add681774a5ac88af7e0563a4d6eb5eb472680602b4a6dd0d5a269f512661b0",
+    "custom/mission_5/bc/policy.py": "0b6b20d78af5a8bc35edca442b4402e821feddfefe3868c748cb0b1fe66a88e8",
+    "custom/mission_5/bc/prepare.py": "fa688c782496492bcac4859463d15b842b37cf7fa3874e2f048a8aeaeeeec1f8",
+    "custom/mission_5/bc/__init__.py": "47c2e5f788aab12c14747b5e52437b037c3020a7df23fcd0a74b3846005e473a",
+    "custom/mission_5/bc/train.py": "868fc8b8e2b10766ec1a0ed5f855d5d268da8e00bec333aa4007429b1f6243fe",
+    "custom/mission_5/bc/model.py": "e2236de08c9ac5eef1d91d46ba52281300cb1ebd3d0391cb2cdc1267cdcd640f",
+    "custom/mission_5/bc/frames.py": "a9daf859f8512fe5687ff32f35f1157d092b70319d1196db912e137cc321b2fe",
+    "custom/mission_5/bc/data.py": "fcf7c821b6bcb620ccf4ba1455f2d9d942c99d5ed168d0191c2470639f1c2192",
+    "custom/mission_5/docs/validation/stability_20261122/analysis/reproduce_case0comparison.py": "dd80d7e0fff57c2cbfc3a98f40ff29b2c6e057463dc48bcebe660a96798cd682",
+    "custom/mission_5/docs/validation/stability_20261122/analysis/analyze_benchmarks.py": "9dde5ba39f283bb7c53f60a34e21e97b3b86bd4973927c90084bd48f6387ca73",
+    "custom/mission_5/docs/validation/stability_20261122/analysis/perception_replay.py": "9392482606ab6f583b1c27f33912869967489c7d3984222a3955a2823b036498",
+    "custom/mission_5/docs/validation/stability_20261122/analysis/perception_replay_sources/h18_branch_aligned.py": "ecfbcff353630d7f861f25ec44c7aed62d47aa3233f3bf373547edd43e93f5b9",
+    "custom/mission_5/docs/validation/stability_20261122/analysis/perception_replay_sources/h20.py": "16d2e6668d29dbff3a56d09a9d831f078c8017fabe1c6a9727892a70fba928ca"
+  },
+  "initial_pose": [
+    16.0,
+    11.0,
+    0.0
+  ],
+  "ros_domain_id": "94",
+  "runtime_options": {
+    "HAIC_MAP_CORRECTION": "0",
+    "HAIC_VLM_THREADS": "4",
+    "HAIC_M2_CAPTURE_DIR": null
+  },
+  "returncode": 0,
+  "wall_seconds": 511.19686124601867,
+  "official_result": {
+    "run": {
+      "started_at": "2026-11-27T13:16:51+09:00",
+      "package": "ys-all-v2-20261127",
+      "mode": "auto",
+      "config": "/tmp/rai-headless.9xpgLP.yaml",
+      "scenario": "/tmp/ys-all-v2-20261127/finish-fix1/finish-4-5-6/evaluation_scenario.yaml",
+      "referee": {
+        "goal_radius_m": 0.5,
+        "cone_box_m": 0.5,
+        "cone_box_offset_m": 0.75,
+        "m4_room": "classroom",
+        "m1_goal": [
+          15.5,
+          18.0,
+          90.0
+        ],
+        "m2_color": "blue"
+      },
+      "plans": [],
+      "ended_at": "2026-11-27T13:25:15+09:00"
+    },
+    "missions": [
+      {
+        "mission": 4,
+        "label": "Semantic delivery",
+        "verdict": "PASS",
+        "success": true,
+        "seconds": 164.2,
+        "started_at": "2026-11-27T13:16:51+09:00",
+        "ended_at": "2026-11-27T13:19:35+09:00",
+        "checks": [
+          {
+            "name": "rooms",
+            "ok": true,
+            "summary": "3/3 rooms right"
+          },
+          {
+            "name": "delivery",
+            "ok": true,
+            "summary": "pelvis (19.96, 3.58) in classroom; target classroom x 18.25..23.00, y 0.10..6.90"
+          }
+        ],
+        "reported": {
+          "status": "done",
+          "detail": ""
+        },
+        "referee": {
+          "mission": 4,
+          "pelvis": [
+            19.964,
+            3.579,
+            0.78
+          ],
+          "success": true,
+          "summary": "pelvis (19.96, 3.58) in classroom; target classroom x 18.25..23.00, y 0.10..6.90",
+          "room": "classroom",
+          "room_box": [
+            18.25,
+            23.0,
+            0.1,
+            6.9
+          ],
+          "pelvis_room": "classroom",
+          "rooms": {
+            "medical": [
+              18.25,
+              23.0,
+              14.1,
+              20.9
+            ],
+            "cafeteria": [
+              18.25,
+              23.0,
+              7.1,
+              13.9
+            ],
+            "classroom": [
+              18.25,
+              23.0,
+              0.1,
+              6.9
+            ]
+          }
+        },
+        "data": {
+          "rooms": [
+            "medical",
+            "cafeteria",
+            "classroom"
+          ],
+          "vlm_observations": [
+            {
+              "label": "medical",
+              "scores": {
+                "classroom": -8.363347053527832,
+                "medical": 5.831816673278809,
+                "cafeteria": -12.515843391418457
+              },
+              "score_kind": "mean_view_answer_sequence_log_likelihood",
+              "views": [
+                {
+                  "label": "medical",
+                  "text": "medical",
+                  "text_kind": "highest_calibrated_description_likelihood",
+                  "scores": {
+                    "classroom": -8.363347053527832,
+                    "medical": 5.831816673278809,
+                    "cafeteria": -12.515843391418457
+                  },
+                  "score_kind": "neutral_calibrated_description_log_likelihood",
+                  "model": "/home/aril/rai-worktrees/ys-all-v2-20261127/src/custom/models/SmolVLM-500M-Instruct",
+                  "backend": "local-cpu",
+                  "raw_scores": {
+                    "classroom": -61.341681480407715,
+                    "medical": -30.87283420562744,
+                    "cafeteria": -55.776896476745605
+                  },
+                  "neutral_scores": {
+                    "classroom": -52.97833442687988,
+                    "medical": -36.70465087890625,
+                    "cafeteria": -43.26105308532715
+                  },
+                  "calibration": {
+                    "rgb": [
+                      127,
+                      127,
+                      127
+                    ],
+                    "size": [
+                      640,
+                      480
+                    ]
+                  },
+                  "prompt": "Describe the visible furniture and objects in the room through the doorway.",
+                  "candidate_descriptions": {
+                    "classroom": "The room contains student desks, chairs and a teaching board.",
+                    "medical": "The room contains a hospital bed and medical equipment.",
+                    "cafeteria": "The room contains dining tables, chairs and food equipment."
+                  },
+                  "load_seconds": 0.46465616900241,
+                  "inference_seconds": 29.85431244695792,
+                  "attention_implementation": "sdpa"
+                }
+              ]
+            },
+            {
+              "label": "classroom",
+              "scores": {
+                "classroom": 3.5255680084228516,
+                "medical": -5.4725341796875,
+                "cafeteria": -5.82347297668457
+              },
+              "score_kind": "mean_view_answer_sequence_log_likelihood",
+              "views": [
+                {
+                  "label": "classroom",
+                  "text": "classroom",
+                  "text_kind": "highest_calibrated_description_likelihood",
+                  "scores": {
+                    "classroom": 3.5255680084228516,
+                    "medical": -5.4725341796875,
+                    "cafeteria": -5.82347297668457
+                  },
+                  "score_kind": "neutral_calibrated_description_log_likelihood",
+                  "model": "/home/aril/rai-worktrees/ys-all-v2-20261127/src/custom/models/SmolVLM-500M-Instruct",
+                  "backend": "local-cpu",
+                  "raw_scores": {
+                    "classroom": -49.45276641845703,
+                    "medical": -42.17718505859375,
+                    "cafeteria": -49.08452606201172
+                  },
+                  "neutral_scores": {
+                    "classroom": -52.97833442687988,
+                    "medical": -36.70465087890625,
+                    "cafeteria": -43.26105308532715
+                  },
+                  "calibration": {
+                    "rgb": [
+                      127,
+                      127,
+                      127
+                    ],
+                    "size": [
+                      640,
+                      480
+                    ]
+                  },
+                  "prompt": "Describe the visible furniture and objects in the room through the doorway.",
+                  "candidate_descriptions": {
+                    "classroom": "The room contains student desks, chairs and a teaching board.",
+                    "medical": "The room contains a hospital bed and medical equipment.",
+                    "cafeteria": "The room contains dining tables, chairs and food equipment."
+                  },
+                  "load_seconds": 0.0,
+                  "inference_seconds": 14.862816150998697,
+                  "attention_implementation": "sdpa"
+                }
+              ]
+            },
+            {
+              "label": "classroom",
+              "scores": {
+                "classroom": 4.172243118286133,
+                "medical": -4.429710388183594,
+                "cafeteria": -9.093496322631836
+              },
+              "score_kind": "mean_view_answer_sequence_log_likelihood",
+              "views": [
+                {
+                  "label": "classroom",
+                  "text": "classroom",
+                  "text_kind": "highest_calibrated_description_likelihood",
+                  "scores": {
+                    "classroom": 4.172243118286133,
+                    "medical": -4.429710388183594,
+                    "cafeteria": -9.093496322631836
+                  },
+                  "score_kind": "neutral_calibrated_description_log_likelihood",
+                  "model": "/home/aril/rai-worktrees/ys-all-v2-20261127/src/custom/models/SmolVLM-500M-Instruct",
+                  "backend": "local-cpu",
+                  "raw_scores": {
+                    "classroom": -48.80609130859375,
+                    "medical": -41.134361267089844,
+                    "cafeteria": -52.354549407958984
+                  },
+                  "neutral_scores": {
+                    "classroom": -52.97833442687988,
+                    "medical": -36.70465087890625,
+                    "cafeteria": -43.26105308532715
+                  },
+                  "calibration": {
+                    "rgb": [
+                      127,
+                      127,
+                      127
+                    ],
+                    "size": [
+                      640,
+                      480
+                    ]
+                  },
+                  "prompt": "Describe the visible furniture and objects in the room through the doorway.",
+                  "candidate_descriptions": {
+                    "classroom": "The room contains student desks, chairs and a teaching board.",
+                    "medical": "The room contains a hospital bed and medical equipment.",
+                    "cafeteria": "The room contains dining tables, chairs and food equipment."
+                  },
+                  "load_seconds": 0.0,
+                  "inference_seconds": 14.873815323982853,
+                  "attention_implementation": "sdpa"
+                }
+              ]
+            }
+          ],
+          "pose_recoveries": [],
+          "vlm_retries": [],
+          "room_assignment": {
+            "method": "vlm_likelihood_unique_room_assignment",
+            "unconstrained_labels": [
+              "medical",
+              "classroom",
+              "classroom"
+            ],
+            "score": 4.180586814880371,
+            "runner_up_margin": 3.916698455810547
+          },
+          "views": [
+            {
+              "door_y": 17.5,
+              "stamp": [
+                27,
+                452000000
+              ],
+              "estimated_pose": [
+                16.073249666561367,
+                17.559357819067593,
+                0.037662747214190224
+              ],
+              "elapsed_seconds": 27.47988121799426
+            },
+            {
+              "door_y": 10.5,
+              "stamp": [
+                54,
+                0
+              ],
+              "estimated_pose": [
+                16.09541888342155,
+                10.476861630097961,
+                0.030759868611509714
+              ],
+              "elapsed_seconds": 53.93339650600683
+            },
+            {
+              "door_y": 3.59,
+              "stamp": [
+                80,
+                502000000
+              ],
+              "estimated_pose": [
+                16.07792561110018,
+                3.53194744904885,
+                0.054141838982344134
+              ],
+              "elapsed_seconds": 80.41525293502491
+            }
+          ],
+          "elapsed_seconds": 164.090280806995
+        },
+        "rooms": {
+          "ok": true,
+          "correct": 3,
+          "total": 3,
+          "truth": "north medical | middle cafeteria | south classroom",
+          "answer": "north medical | middle cafeteria | south classroom",
+          "rows": [
+            {
+              "room": "medical",
+              "slot": "north",
+              "answer_xy": [
+                20.625,
+                17.5
+              ],
+              "answer_in": "medical",
+              "ok": true
+            },
+            {
+              "room": "cafeteria",
+              "slot": "middle",
+              "answer_xy": [
+                20.625,
+                10.5
+              ],
+              "answer_in": "cafeteria",
+              "ok": true
+            },
+            {
+              "room": "classroom",
+              "slot": "south",
+              "answer_xy": [
+                20.625,
+                3.5
+              ],
+              "answer_in": "classroom",
+              "ok": true
+            }
+          ],
+          "given": {
+            "medical": [
+              20.625,
+              17.5
+            ],
+            "cafeteria": [
+              20.625,
+              10.5
+            ],
+            "classroom": [
+              20.625,
+              3.5
+            ]
+          }
+        }
+      },
+      {
+        "mission": 5,
+        "label": "Pencil pick-and-place (Panda)",
+        "verdict": "PASS",
+        "success": true,
+        "seconds": 35.04,
+        "started_at": "2026-11-27T13:19:37+09:00",
+        "ended_at": "2026-11-27T13:20:12+09:00",
+        "checks": [
+          {
+            "name": "check",
+            "ok": true,
+            "summary": "pencil tip 0.143 > 0.02 m below the rim, inside the opening, released"
+          }
+        ],
+        "reported": {
+          "status": "done",
+          "detail": ""
+        },
+        "referee": {
+          "mission": 5,
+          "pelvis": [
+            19.965,
+            3.579,
+            0.78
+          ],
+          "success": true,
+          "summary": "pencil tip 0.143 > 0.02 m below the rim, inside the opening, released",
+          "tilt_deg": 36.01,
+          "tip_depth_m": 0.1435,
+          "in_opening": true,
+          "held": false
+        },
+        "data": {
+          "learned_policy": true,
+          "commands": 298,
+          "checkpoint": "keyposes.json",
+          "controller": "task-parameterized-keypose-bc",
+          "policy_complete": true,
+          "detail": "Bounded policy rollout complete; original referee determines insertion success"
+        }
+      },
+      {
+        "mission": 6,
+        "label": "Soccer goal scoring",
+        "verdict": "PASS",
+        "success": true,
+        "seconds": 300.02,
+        "started_at": "2026-11-27T13:20:13+09:00",
+        "ended_at": "2026-11-27T13:25:13+09:00",
+        "checks": [
+          {
+            "name": "check",
+            "ok": true,
+            "summary": "ball (9.48, 1.60) inside the goal (centre x 6.82..11.68, y 0.66..1.96: whole ball past the line, between the posts)"
+          }
+        ],
+        "reported": {
+          "status": "done",
+          "detail": ""
+        },
+        "referee": {
+          "mission": 6,
+          "pelvis": [
+            9.733,
+            3.712,
+            0.78
+          ],
+          "success": true,
+          "summary": "ball (9.48, 1.60) inside the goal (centre x 6.82..11.68, y 0.66..1.96: whole ball past the line, between the posts)",
+          "ball": [
+            9.479,
+            1.601,
+            0.11
+          ],
+          "goal_box": [
+            6.82,
+            11.68,
+            0.66,
+            1.96,
+            1.93
+          ]
+        },
+        "data": {
+          "error": "TimeoutError: Soccer mission deadline reached",
+          "restart_required": false,
+          "observed_frames": 48,
+          "pushes": 3,
+          "blind_pushes": 2,
+          "reacquisitions": 0,
+          "cycles": 4,
+          "localization_waits": 0,
+          "unseen_after_goal_push": 0
+        }
+      }
+    ],
+    "total": {
+      "missions": 3,
+      "passed": 3,
+      "failed": 0,
+      "not_judged": 0,
+      "mission_seconds": 499.26,
+      "respawns": 0,
+      "penalty_seconds": 0.0,
+      "total_seconds": 499.26,
+      "run_seconds": 504.16,
+      "by_mission": [
+        "4 PASS 164.2s",
+        "5 PASS 35.0s",
+        "6 PASS 300.0s"
+      ],
+      "complete": true,
+      "updated_at": "2026-11-27T13:25:15+09:00"
+    }
+  }
+}
