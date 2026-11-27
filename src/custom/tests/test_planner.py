@@ -72,7 +72,7 @@ class FallbackTests(unittest.TestCase):
         self.assertIn("DEVELOPMENT FALLBACK", stream.getvalue())
 
     def test_strict_gate_refuses_missing_llm(self):
-        with patch.dict("os.environ", {"HAIC_REQUIRE_LLM": "1"}):
+        with patch.dict("os.environ", {"HAIC_REQUIRE_LLM": "1", "HAIC_PLANNER_ONESHOT": "1"}):
             with patch.object(planner.subprocess, "run", return_value=subprocess.CompletedProcess(
                     [], 1, "", "weights missing")), self.assertRaises(RuntimeError):
                 planner.plan("score a goal")
@@ -80,7 +80,7 @@ class FallbackTests(unittest.TestCase):
     def test_strict_gate_refuses_partial_llm_configuration(self):
         for extra in ({"HAIC_LLM_MODEL": "example"}, {"HAIC_LLM_API_KEY": "dummy"}):
             with self.subTest(extra=extra), patch.dict("os.environ", {
-                    "HAIC_REQUIRE_LLM": "1", **extra}):
+                    "HAIC_REQUIRE_LLM": "1", "HAIC_PLANNER_ONESHOT": "1", **extra}):
                 with patch.object(planner.subprocess, "run", return_value=subprocess.CompletedProcess(
                         [], 1, "", "weights missing")), self.assertRaises(RuntimeError):
                     planner.plan("score a goal")
@@ -183,11 +183,11 @@ class ApiContractTests(unittest.TestCase):
 
 class LocalLlmContractTests(unittest.TestCase):
     def setUp(self):
-        self.environment = patch.dict("os.environ", {}, clear=True)
+        self.environment = patch.dict("os.environ", {"HAIC_PLANNER_ONESHOT": "1"}, clear=True)
         self.environment.start()
         self.addCleanup(self.environment.stop)
 
-    def test_default_path_invokes_actual_llm_helper_contract(self):
+    def test_oneshot_path_invokes_actual_llm_helper_contract(self):
         result = subprocess.CompletedProcess([], 0,
             '{"steps":[{"mission":2,"params":{"color":"orange"}},{"mission":6}]}', "")
         with patch.object(planner.subprocess, "run", return_value=result) as call:

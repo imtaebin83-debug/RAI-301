@@ -13,6 +13,7 @@ import re
 import subprocess
 import sys
 import urllib.request
+from custom.planner.worker import generate_local
 
 SYSTEM = '''Extract an ordered robot mission plan from the user's instruction.
 Return only valid JSON with a steps array. Every step has integer mission and object params.
@@ -28,6 +29,22 @@ Example instruction: Navigate to (14.2,7.7), then cross the cliff.
 Example answer: {"steps":[{"mission":1,"params":{"goal":[14.2,7.7]}},{"mission":3,"params":{}}]}
 Example instruction: Deliver the pencil to the classroom, then put a pencil into the holder.
 Example answer: {"steps":[{"mission":4,"params":{}},{"mission":5,"params":{}}]}'''
+
+SYSTEM += '''
+Understand both English and Korean. Output every requested action in order,
+including the final action in a long sentence. Color values must be English:
+초록/초록색/녹색 = green; 파랑/파란색/청색 = blue; 주황/주황색 = orange.
+절벽/틈 건너기 = mission 3; 방 알아내기/교실에 연필 배달 = mission 4;
+연필꽂이에 연필 꽂기 = mission 5; 축구/득점 = mission 6.
+Example instruction: 초록색 콘으로 이동하고 절벽을 건넌 후 교실에 연필을 배달해.
+Example answer: {"steps":[{"mission":2,"params":{"color":"green"}},{"mission":3,"params":{}},{"mission":4,"params":{}}]}
+Example instruction: (16, 4.5)로 가고 주황색 콘을 찾아가.
+Example answer: {"steps":[{"mission":1,"params":{"goal":[16,4.5]}},{"mission":2,"params":{"color":"orange"}}]}
+Example instruction: 콘을 찾아가.
+Example answer: {"steps":[]}
+Example instruction: Make coffee.
+Example answer: {"steps":[]}
+'''
 
 
 def validate(payload: dict) -> list:
@@ -136,6 +153,8 @@ def _fallback(instruction: str) -> list:
 def plan(instruction: str) -> list:
     if not isinstance(instruction, str) or not instruction.strip():
         raise ValueError("instruction is empty")
+    if len(instruction) > 4000:
+        raise ValueError("instruction exceeds 4000 characters")
     key = os.getenv("HAIC_LLM_API_KEY") or os.getenv("OPENAI_API_KEY")
     model = os.getenv("HAIC_LLM_MODEL")
     if key and model:
@@ -154,6 +173,8 @@ def plan(instruction: str) -> list:
         return _fallback(instruction)
     helper = Path(__file__).resolve().parent / "local_model.py"
     print("[planner] local Qwen CPU language-model inference", file=sys.stderr)
+    if os.getenv('HAIC_PLANNER_ONESHOT') != '1':
+        return parse_plan(generate_local({'system': SYSTEM, 'instruction': instruction}, timeout=45))
     completed = subprocess.run([sys.executable, str(helper)],
         input=json.dumps({"system": SYSTEM, "instruction": instruction}),
         text=True, capture_output=True, timeout=45, check=False)
