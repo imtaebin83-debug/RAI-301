@@ -87,11 +87,16 @@ class Mission4(Mission):
     def _face_room(self, nav, deadline):
         while time.monotonic() < deadline:
             self._check_respawn()
-            error = math.atan2(math.sin(-nav.pose()[2]), math.cos(-nav.pose()[2]))
+            yaw = nav.pose()[2]
+            error = math.atan2(math.sin(-yaw), math.cos(-yaw))
             if abs(error) < 0.06:
                 self.stop()
                 return
-            self.cmd_vel(0, 0, max(-0.4, min(0.4, error)))
+            # Small commands can leave the walking policy stationary just
+            # outside the heading tolerance. Keep the same acceptance gate,
+            # but use a bounded minimum turn until it is reached.
+            turn = math.copysign(max(.18, min(.4, abs(error))), error)
+            self.cmd_vel(0, 0, turn)
             time.sleep(0.08)
         raise TimeoutError("could not face room before deadline")
 

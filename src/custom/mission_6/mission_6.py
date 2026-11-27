@@ -327,6 +327,12 @@ class Mission6(Mission):
         i.e. inside the blind zone, so back away before looking.
         """
         guess = ball+direction*1.5
+        if at_goal:
+            # At the mouth a missed ball can be behind the pelvis, while a
+            # scored ball is hidden immediately ahead. Retreat before sweeping:
+            # a 3.5 m retreat exposes either case beyond the camera blind zone.
+            self._face(math.atan2(direction[1], direction[0]), timeout=10.)
+            self._back_up(3.5, seconds=30.)
         fresh = self._observe(3., prior=guess, gate=4.5, settle=.6)
         if fresh is None:
             # The ball can deflect sideways or behind off a leg: look around

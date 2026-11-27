@@ -12,6 +12,7 @@ def cases():
                    'split':'integration-development', 'm1_goal':[15.5,18.,90.],
                    'm2_color':'blue', 'cone_order':['orange','green','blue'],
                    'room_order':['medical','cafeteria','classroom']})
+    values.append({**values[-1], 'id':'finish-4-5-6', 'missions':[4,5,6]})
     return values
 
 

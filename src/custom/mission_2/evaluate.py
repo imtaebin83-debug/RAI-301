@@ -59,19 +59,37 @@ def check_gpu():
         raise RuntimeError('GPU compute processes are active; waiting for an idle GPU is required')
 
 
+def scenario_for_case(default, case):
+    """Evaluation only: keep fixed Panda objects on the relocated classroom desk.
+
+    Scenario coordinates are world-frame. Moving the classroom alone leaves
+    the default objects in another room. Translate the same test placement by
+    the published seven-metre room spacing; controllers never receive this.
+    """
+    from copy import deepcopy
+    scenario = deepcopy(default)
+    old_rooms = scenario['room_order']
+    for key in ('room_order', 'cone_order', 'm2_color', 'm1_goal'):
+        if key in case:
+            scenario[key] = deepcopy(case[key])
+    if scenario.get('panda_task') and scenario['room_order'] != old_rooms:
+        dy = 7. * (old_rooms.index('classroom') -
+                   scenario['room_order'].index('classroom'))
+        for key in ('pencil_xy', 'cup_xy'):
+            scenario['panda_task'][key][1] += dy
+    return scenario
+
+
 def run_case(case, root, output, timeout):
     import yaml
 
     check_gpu()
     directory = output / case['id']
     directory.mkdir(parents=True, exist_ok=False)
-    scenario = yaml.safe_load((root / 'scenarios/default.yaml').read_text())
+    scenario = scenario_for_case(yaml.safe_load((root / 'scenarios/default.yaml').read_text()), case)
     settings = yaml.safe_load((root / 'main_config.yaml').read_text())
     if list(settings['simulator']['start_pose']) != [16., 11., 0.]:
         raise ValueError('This case manifest requires the published default launch pose')
-    for key in ('room_order', 'cone_order', 'm2_color', 'm1_goal'):
-        if key in case:
-            scenario[key] = case[key]
     (directory / 'evaluation_scenario.yaml').write_text(yaml.safe_dump(scenario))
     before = set((root / 'results').glob('*.json'))
     env = {**os.environ, 'HAIC_ROOT': str(root.parent),

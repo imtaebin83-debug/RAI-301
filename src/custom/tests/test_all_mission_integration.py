@@ -22,6 +22,28 @@ class IntegrationTests(unittest.TestCase):
         self.assertEqual(chain['missions'],[1,2,3,4,5,6])
         self.assertEqual(chain['m2_color'],'blue')
 
+    def test_scenario_moves_objects_with_classroom_without_mutating_default(self):
+        from custom.mission_2.evaluate import scenario_for_case
+        default = {'room_order':['classroom','medical','cafeteria'],
+                   'panda_task':{'pencil_xy':[21.,19.7], 'cup_xy':[21.4,19.7]}}
+        for index, order in enumerate((['classroom','medical','cafeteria'],
+                                      ['medical','classroom','cafeteria'],
+                                      ['medical','cafeteria','classroom'])):
+            result = scenario_for_case(default, {'room_order':order})
+            self.assertAlmostEqual(result['panda_task']['pencil_xy'][1],19.7-7*index)
+            self.assertAlmostEqual(result['panda_task']['cup_xy'][1],19.7-7*index)
+        self.assertEqual(default['panda_task']['pencil_xy'],[21.,19.7])
+
+    def test_goal_push_reobserves_after_retreat_before_wide_search(self):
+        import numpy as np
+        fresh=np.array([9.2,1.4])
+        node=SimpleNamespace(_face=Mock(),_back_up=Mock(),
+                             _observe=Mock(return_value=fresh),_scan=Mock())
+        result=Mission6._after_push(node,np.array([9.2,3.]),np.array([0.,-1.]),True)
+        np.testing.assert_array_equal(result,fresh)
+        node._back_up.assert_called_once_with(3.5,seconds=30.)
+        node._scan.assert_not_called()
+
     def test_cliff_begin_error_still_stops(self):
         node=SimpleNamespace(begin_mission=Mock(side_effect=TimeoutError('no simulator')),
             result=lambda **data:data, stop=Mock(), gap_falls=0)

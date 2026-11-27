@@ -112,6 +112,19 @@ class RoomEvidenceTests(unittest.TestCase):
             self.assertEqual(run.call_args.kwargs['env']['CUDA_VISIBLE_DEVICES'], '')
 
 
+class HeadingTests(unittest.TestCase):
+    def test_small_heading_error_overcomes_deadband_without_relaxing_tolerance(self):
+        for sign in (-1., 1.):
+            nav = Mock()
+            nav.pose.side_effect = [(16., 3.5, sign*.09), (16., 3.5, sign*.04)]
+            mission = mission_stub(stop=Mock(), cmd_vel=Mock())
+            with patch('custom.mission_4.mission_4.time.monotonic', return_value=0.), \
+                 patch('custom.mission_4.mission_4.time.sleep'):
+                Mission4._face_room(mission, nav, 1.)
+            mission.cmd_vel.assert_called_once_with(0, 0, -sign*.18)
+            mission.stop.assert_called_once()
+
+
 class CameraTests(unittest.TestCase):
     def image(self, sec, encoding='bgr8'):
         item = Image()
