@@ -1,0 +1,16 @@
+{
+  "versions": {
+    "torch": "2.14.1+cpu",
+    "transformers": "4.57.6",
+    "mujoco": "3.7.0",
+    "opencv-python": "4.11.0.86",
+    "numpy": "1.26.4",
+    "kiss-icp": "1.3.0"
+  },
+  "sources": [
+    "/home/aril/rai-worktrees/ys-m24-v2-20261127/src/custom/mission_2/mission_2.py",
+    "/home/aril/rai-worktrees/ys-m24-v2-20261127/src/custom/mission_4/mission_4.py"
+  ],
+  "vlm_source": "/home/aril/rai-worktrees/ys-m24-v2-20261127/src/custom/vlm.py",
+  "sensor_source": "/home/aril/rai-worktrees/ys-m24-v2-20261127/src/custom/sensor_mission.py"
+}

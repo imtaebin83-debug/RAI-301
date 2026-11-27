@@ -1,0 +1,21 @@
+[
+  {
+    "id": "after-m1-green",
+    "split": "held-out",
+    "missions": [
+      1,
+      2
+    ],
+    "cone_order": [
+      "orange",
+      "blue",
+      "green"
+    ],
+    "m2_color": "green",
+    "m1_goal": [
+      14.98,
+      7.99,
+      90.0
+    ]
+  }
+]

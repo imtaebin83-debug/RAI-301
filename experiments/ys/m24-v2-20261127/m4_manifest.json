@@ -1,0 +1,46 @@
+[
+  {
+    "id": "after-cone-blue",
+    "split": "additional-integration",
+    "missions": [
+      2,
+      4
+    ],
+    "m2_color": "blue",
+    "cone_order": [
+      "orange",
+      "green",
+      "blue"
+    ],
+    "room_order": [
+      "medical",
+      "cafeteria",
+      "classroom"
+    ]
+  },
+  {
+    "id": "after-m1-cone-blue",
+    "split": "v2-integration",
+    "missions": [
+      1,
+      2,
+      4
+    ],
+    "m1_goal": [
+      16.3,
+      6.0,
+      90.0
+    ],
+    "m2_color": "blue",
+    "cone_order": [
+      "orange",
+      "green",
+      "blue"
+    ],
+    "room_order": [
+      "medical",
+      "cafeteria",
+      "classroom"
+    ]
+  }
+]
