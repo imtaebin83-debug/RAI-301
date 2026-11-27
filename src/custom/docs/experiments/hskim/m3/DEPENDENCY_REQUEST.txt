@@ -23,3 +23,12 @@ Request
 Please investigate a mission-safe, bounded reacquisition mechanism for this feature-poor / cliff-edge course using permitted LiDAR, IMU, robot TF, public initial pose, and public floor observations. Keep the current rule that the controller stops when localization is not trustworthy. Do not use /odom, referee state, or simulator ground truth.
 
 M3 will add RGB-D floor-continuity checks; it should not duplicate the shared localization/navigation stack. Please advise what public quality/recovery API M3 may rely on and whether the repeated two-reanchor hard stop can be recovered without a respawn.
+
+
+Shared localization interface finding
+------------------------------------
+Read-only comparison of Mission 1/2/4/6 confirms that all navigation missions construct the same Navigator and consume /custom/estimated_pose. Mission 2 and Mission 6 use RGB-D to estimate target object coordinates, not to localize the robot.
+
+Localizer currently keeps quality, floor_quality, and recovery_count internally, but localizer_node publishes only geometry_msgs/PoseStamped. Navigator's ContinuousPose checks that the timestamp is newer than 1.2 seconds; it does not receive localization quality or covariance. A fresh but incorrect pose can therefore continue driving until the localizer hard-stops after repeated reanchors.
+
+Please consider exposing a bounded public localization status (validity/quality plus recovery reason) to all mission clients, and a sensor-only recovery path that never reads /odom or referee state. M3 cannot safely repair this by changing its mission route or duplicating localization logic.
