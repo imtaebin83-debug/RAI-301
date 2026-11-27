@@ -86,6 +86,8 @@ class RegistrationTests(unittest.TestCase):
                 self.odom.register_frame(self.points, [], dt=.1)
         np.testing.assert_array_equal(before, self._map())
         np.testing.assert_array_equal(self.odom.last_pose, np.eye(4))
+        self.assertEqual(self.odom.metrics['translation'], 2.)
+        json.dumps(self.odom.metrics, allow_nan=False)
 
     def test_pelvis_validation_precedes_map_commit(self):
         before = self._map()

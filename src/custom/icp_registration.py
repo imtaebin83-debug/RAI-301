@@ -59,6 +59,11 @@ class GuardedKissICP:
         angle = float(Rotation.from_matrix(self.last_pose[:3, :3].T @ candidate[:3, :3]).magnitude())
         gyro_error = (float(Rotation.from_matrix(predicted[:3, :3].T @ candidate[:3, :3]).magnitude())
                       if rotation is not None else None)
+        # Keep the rejected proposal's diagnostics, rather than presenting the
+        # previous accepted frame's metrics as evidence for this failure.
+        self.metrics = {"dt": dt, "translation": translation, "rotation": angle,
+                        "gyro_error": gyro_error, "source_points": len(source),
+                        "seconds": time.monotonic() - started}
         if translation > max(0.40, 1.6 * dt) or angle > max(0.30, 1.5 * dt):
             raise RegistrationRejected(f"ICP motion jump: {translation:.3f}m/{math.degrees(angle):.1f}deg dt={dt:.3f}s")
         if gyro_error is not None and gyro_error > 0.12:
@@ -69,10 +74,8 @@ class GuardedKissICP:
         mask = distance < 0.22
         support = float(mask.mean())
         rmse = float(np.sqrt(np.mean(distance[mask] ** 2))) if mask.any() else 1e9
-        self.metrics = {"dt": dt, "translation": translation, "rotation": angle,
-                        "gyro_error": gyro_error, "support": support, "rmse": rmse,
-                        "source_points": len(source), "map_points": len(target),
-                        "seconds": time.monotonic() - started}
+        self.metrics.update(support=support, rmse=rmse, map_points=len(target),
+                            seconds=time.monotonic() - started)
         if support < 0.55 or rmse > 0.16:
             raise RegistrationRejected(f"ICP support={support:.2f} rmse={rmse:.3f}m")
         if validator is not None:
