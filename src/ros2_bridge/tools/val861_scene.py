@@ -849,8 +849,6 @@ def build_combined_model(args: argparse.Namespace):
     g1_root = g1_spec.body("pelvis")
     if g1_root is None:
         raise RuntimeError("G1 pelvis body is missing")
-    from ros2_bridge.tools.g1_gap_policy_29dof import add_gap_feet
-    add_gap_feet(g1_spec)
     pinned_height = 0.0
     if args.pin_g1:
         source_freejoint = next(
@@ -908,8 +906,6 @@ def build_combined_model(args: argparse.Namespace):
     scene_spec.worldbody.add_frame().attach_body(panda_root, PANDA_PREFIX, "")
 
     model = scene_spec.compile()
-    from ros2_bridge.tools.g1_gap_policy_29dof import disable_gap_feet
-    disable_gap_feet(model)
     # Keep collision alpha nonzero for ray queries; hide colliders through geom groups.
     data = mujoco.MjData(model)
     copy_stand_pose(source_g1_model, model, data)

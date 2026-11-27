@@ -1,0 +1,9 @@
+{
+  "returncode": 0,
+  "wall_seconds_including_reservation": 197.73625194298802,
+  "results": [
+    "/home/aril/RAI-301-v2/src/results/run_20261127-093205.json"
+  ],
+  "ros_domain_id": 87,
+  "official_upstream": "f03a50078bed86c8e751c5d82066dd14025d0e55"
+}

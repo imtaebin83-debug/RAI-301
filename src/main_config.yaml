@@ -2,8 +2,9 @@ missions:
   run: [1, 2, 3, 4, 5, 6]
   wait_for_space: true
   step: false
-  gap_falls_allowed: 2           # mission 3: falls into a gap a mission may have (the simulator puts
-                                 # G1 back at the start); one more ends the mission at once (FAIL)
+  falls_allowed: 2               # respawns at the start point (16, 11) allowed in the WHOLE run (all
+                                 # missions together): falling over, falling into a gap, viewer key B;
+                                 # one more ends the mission at once (FAIL) and the rest are not run
 
 scenario:
   file: scenarios/default.yaml
@@ -18,7 +19,7 @@ referee:
   # (through the door, x >= 18.25), and every room must be named right.
   m4_room: classroom
 
-randomize:                       # key R / tools/make_scenario.py draw from these boxes (world x0, x1, y0, y1)
+randomize:                       # key R draws from these boxes (world x0, x1, y0, y1)
   m1_goal_region: [14.0, 17.0, 1.0, 20.0]
   m1_goal_yaw_deg: 90
   ball_region: [7.25, 11.25, 5.5, 8.5]

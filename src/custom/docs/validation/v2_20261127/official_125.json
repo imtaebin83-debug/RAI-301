@@ -1,0 +1,179 @@
+{
+  "run": {
+    "started_at": "2026-11-27T09:32:05+09:00",
+    "package": "RAI-301-v2",
+    "mode": "auto",
+    "config": "/tmp/rai-v2-smoke-dq6zypuj/config.yaml",
+    "scenario": "/home/aril/RAI-301-v2/src/scenarios/default.yaml",
+    "referee": {
+      "goal_radius_m": 0.5,
+      "cone_box_m": 0.5,
+      "cone_box_offset_m": 0.75,
+      "m4_room": "classroom",
+      "m1_goal": [
+        15.5,
+        18.0,
+        90.0
+      ],
+      "m2_color": "green"
+    },
+    "plans": [],
+    "ended_at": "2026-11-27T09:33:29+09:00"
+  },
+  "missions": [
+    {
+      "mission": 1,
+      "label": "Point-goal navigation",
+      "verdict": "PASS",
+      "success": true,
+      "seconds": 23.79,
+      "started_at": "2026-11-27T09:32:05+09:00",
+      "ended_at": "2026-11-27T09:32:29+09:00",
+      "checks": [
+        {
+          "name": "check",
+          "ok": true,
+          "summary": "0.09 m < 0.50 m from goal world (15.50, 18.00)"
+        }
+      ],
+      "reported": {
+        "status": "done",
+        "detail": ""
+      },
+      "referee": {
+        "mission": 1,
+        "pelvis": [
+          15.418,
+          18.041,
+          0.779
+        ],
+        "success": true,
+        "summary": "0.09 m < 0.50 m from goal world (15.50, 18.00)",
+        "goal": [
+          15.5,
+          18.0
+        ],
+        "goal_world": [
+          15.5,
+          18.0
+        ],
+        "distance_m": 0.091,
+        "threshold_m": 0.5
+      },
+      "data": {
+        "controller_reached": true,
+        "estimated_pose": [
+          15.55497393715254,
+          17.835145207172587,
+          1.9289682299188027
+        ]
+      }
+    },
+    {
+      "mission": 2,
+      "label": "Cone colour navigation",
+      "verdict": "PASS",
+      "success": true,
+      "seconds": 21.95,
+      "started_at": "2026-11-27T09:32:30+09:00",
+      "ended_at": "2026-11-27T09:32:52+09:00",
+      "checks": [
+        {
+          "name": "check",
+          "ok": true,
+          "summary": "green cone box: |dx| 0.09 < 0.25, |dy| 0.01 < 0.25 m"
+        }
+      ],
+      "reported": {
+        "status": "done",
+        "detail": ""
+      },
+      "referee": {
+        "mission": 2,
+        "pelvis": [
+          15.59,
+          24.042,
+          0.78
+        ],
+        "success": true,
+        "summary": "green cone box: |dx| 0.09 < 0.25, |dy| 0.01 < 0.25 m",
+        "color": "green",
+        "box_center": [
+          15.5,
+          24.05
+        ],
+        "box_m": 0.5,
+        "dx_m": 0.09,
+        "dy_m": -0.008
+      },
+      "data": {
+        "color": "green",
+        "cone_xy": [
+          15.626491293250345,
+          24.679637943320667
+        ],
+        "reached": true
+      }
+    },
+    {
+      "mission": 5,
+      "label": "Pencil pick-and-place (Panda)",
+      "verdict": "PASS",
+      "success": true,
+      "seconds": 32.8,
+      "started_at": "2026-11-27T09:32:54+09:00",
+      "ended_at": "2026-11-27T09:33:26+09:00",
+      "checks": [
+        {
+          "name": "check",
+          "ok": true,
+          "summary": "pencil tip 0.143 > 0.02 m below the rim, inside the opening, released"
+        }
+      ],
+      "reported": {
+        "status": "done",
+        "detail": ""
+      },
+      "referee": {
+        "mission": 5,
+        "pelvis": [
+          15.59,
+          24.042,
+          0.78
+        ],
+        "success": true,
+        "summary": "pencil tip 0.143 > 0.02 m below the rim, inside the opening, released",
+        "tilt_deg": 36.02,
+        "tip_depth_m": 0.1435,
+        "in_opening": true,
+        "held": false
+      },
+      "data": {
+        "learned_policy": true,
+        "commands": 298,
+        "checkpoint": "keyposes.json",
+        "controller": "task-parameterized-keypose-bc",
+        "policy_complete": true,
+        "detail": "Bounded policy rollout complete; original referee determines insertion success"
+      }
+    }
+  ],
+  "total": {
+    "missions": 3,
+    "passed": 3,
+    "failed": 0,
+    "not_judged": 0,
+    "mission_seconds": 78.54,
+    "respawns": 0,
+    "penalty_seconds": 0.0,
+    "total_seconds": 78.54,
+    "run_seconds": 83.28,
+    "by_mission": [
+      "1 PASS 23.8s",
+      "2 PASS 21.9s",
+      "5 PASS 32.8s"
+    ],
+    "complete": true,
+    "updated_at": "2026-11-27T09:33:29+09:00"
+  }
+}

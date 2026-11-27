@@ -1,8 +1,0 @@
-# policy: path relative to custom/; null uses the bundled 29-DoF policy.
-# Replacements must match g1_walk_policy_29dof.py inputs and outputs.
-# max_vel clips /cmd_vel: vx/vy in m/s, wz in rad/s.
-policy: null
-max_vel:
-  vx: 0.6
-  vy: 0.4
-  wz: 0.7

@@ -1,0 +1,13 @@
+[haic] checking the env
+  ok   mujoco
+  ok   onnxruntime
+  ok   cv2
+  ok   PIL
+  ok   shapely
+  ok   scipy
+  ok   rclpy
+  ok   h5py
+  ok   teledex
+  ok   qrcode
+[haic] done.  conda env 'haic_rai301_v2' -> /home/aril/RAI-301-v2
+[haic] new terminals:  conda activate haic_rai301_v2

@@ -1,10 +1,8 @@
 from __future__ import annotations
 
-import importlib.util
 import math
 import os
 import time
-from collections import deque
 from pathlib import Path
 from typing import Any
 
@@ -186,7 +184,6 @@ class PandaLearningRuntime:
         data: mujoco.MjData,
         task: dict[str, Any],
         *,
-        mode: str,
         dataset_dir: Path,
         instruction: str,
         rate_hz: float = 15.0,
@@ -195,17 +192,9 @@ class PandaLearningRuntime:
         yaw_scale: float = 1.0,
         pitch_scale: float = 1.0,
         preview: bool = True,
-        policy_path: Path | None = None,
         controller: PandaController | None = None,
-        policy_replan_steps: int = 5,
-        start_active: bool = True,
-        policy_task_timeout: float = 60.0,
-        policy_auto_success: bool = False,
     ) -> None:
-        if mode not in {"collect", "policy"}:
-            raise ValueError(f"unsupported Panda learning mode: {mode}")
         self.model, self.data, self.task = model, data, task
-        self.mode = mode
         self.dataset_dir = Path(dataset_dir).expanduser().resolve()
         self.instruction = instruction
         self.rate_hz = float(rate_hz)
@@ -222,15 +211,6 @@ class PandaLearningRuntime:
         self.last_stop_reason: str | None = None
 
         self.controller = controller or PandaController(model, data)
-        self.policy_replan_steps = max(1, int(policy_replan_steps))
-        self.policy_task_timeout = max(0.0, float(policy_task_timeout))
-        self.policy_auto_success = bool(policy_auto_success)
-        self._policy_actions: deque[np.ndarray] = deque()
-        self._policy_inference_count = 0
-        self._policy_started_at: float | None = (
-            float(data.time) if mode == "policy" and start_active else None
-        )
-        self.policy_active = bool(mode == "collect" or start_active)
         self.joint_ids = self.controller.joint_ids
         self.qpos_adrs = self.controller.qpos_adrs
         self.dof_adrs = self.controller.dof_adrs
@@ -275,36 +255,25 @@ class PandaLearningRuntime:
                 raise RuntimeError(f"learning camera missing after composition: {camera_name}")
 
         self.session = None
-        self.policy = None
         self.writer: EpisodeWriter | None = None
         self.episode_index = self._next_episode_index()
-        if mode == "collect":
-            import teledex
+        import teledex
 
-            self.session = teledex.Session(port=int(teledex_port), show_qr=True)
-            self._install_secondary_button_compat(self.session)
-            self.session.start()
-            print(
-                "[Panda collect] TeleDex 연결 대기 중입니다. QR/IP를 iPhone 앱으로 연결하세요.\n"
-                "  phone-only/display-up: app +X=forward, -Y=right, +Z=up; "
-                "XYZ + gripper yaw/pitch 동시 적용 (position/rotation decomposed, roll locked), "
-                "MuJoCo G=gripper 열기/닫기\n"
-                "  TeleDex: Button A=success/save, Button B=discard+respawn\n"
-                "  viewer: G=gripper, S=success, F=fail, "
-                "Button B=discard+respawn, Q=quit"
-            )
-        else:
-            if policy_path is None:
-                raise ValueError("policy mode requires --panda-policy PATH")
-            self.policy = self._load_policy(policy_path)
-            state = "ACTIVE" if self.policy_active else "STANDBY"
-            print(f"[Panda policy] loaded {Path(policy_path).resolve()} ({state})")
-            if not self.policy_active:
-                print("[Panda policy] waiting for a language command on /panda/task_prompt")
-            print(
-                "[Panda policy] manual evaluation: S=success/hold, "
-                "F=failure/hold; MuJoCo R is environment randomization"
-            )
+        self.session = teledex.Session(port=int(teledex_port), show_qr=True)
+        # teledex 0.0.7 SIGKILLs whatever process holds its port (Jupyter also
+        # defaults to 8888) before it listens. Never kill; collect_panda.py checks the port.
+        self.session._kill_process_using_port = lambda _port: None
+        self._install_secondary_button_compat(self.session)
+        self.session.start()
+        print(
+            "[Panda collect] TeleDex 연결 대기 중입니다. QR/IP를 iPhone 앱으로 연결하세요.\n"
+            "  phone-only/display-up: app +X=forward, -Y=right, +Z=up; "
+            "XYZ + gripper yaw/pitch 동시 적용 (position/rotation decomposed, roll locked), "
+            "MuJoCo G=gripper 열기/닫기\n"
+            "  TeleDex: Button A=success/save, Button B=discard+respawn\n"
+            "  viewer: G=gripper, S=success, F=fail, "
+            "Button B=discard+respawn, Q=quit"
+        )
 
     @staticmethod
     def _install_secondary_button_compat(session: Any) -> None:
@@ -324,55 +293,6 @@ class PandaLearningRuntime:
 
         session._process_data = process_data_with_secondary
 
-    def start_policy(self, instruction: str) -> None:
-        if self.mode != "policy":
-            raise RuntimeError("language commands are only valid in policy mode")
-        instruction = str(instruction).strip()
-        if not instruction:
-            self.stop_policy("empty prompt")
-            return
-        self.instruction = instruction
-        self._policy_actions.clear()
-        self._policy_inference_count = 0
-        if self.policy is not None and callable(getattr(self.policy, "reset", None)):
-            self.policy.reset()
-        self.target_eef = self._site_transform(self.data)
-        self.target_gripper = self.controller.gripper_opening
-        self.controller.set_eef_target(self.target_eef)
-        self.policy_active = True
-        self._policy_started_at = float(self.data.time)
-        self.next_sample_time = float(self.data.time)
-        print(f"[Panda policy] START prompt={instruction!r}")
-
-    def stop_policy(self, reason: str = "requested") -> None:
-        if self.mode != "policy":
-            return
-        self.policy_active = False
-        self.last_stop_reason = str(reason)
-        self._policy_started_at = None
-        self._policy_actions.clear()
-        self.target_eef = self._site_transform(self.data)
-        self.target_gripper = self.controller.gripper_opening
-        self.controller.set_eef_target(self.target_eef)
-        print(f"[Panda policy] STOP ({reason})")
-
-    def task_result(self) -> dict[str, Any]:
-        metrics = {}
-        for key, value in self._task_insertion_metrics(self.data).items():
-            if hasattr(value, "item"):
-                value = value.item()
-            if isinstance(value, float) and not math.isfinite(value):
-                value = None
-            metrics[key] = value
-        return {
-            "active": bool(self.policy_active),
-            "reason": self.last_stop_reason,
-            "instruction": self.instruction,
-            "inference_count": int(getattr(self, "_policy_inference_count", 0)),
-            "success": bool(metrics.get("geometry_success", 0)),
-            **metrics,
-        }
-
     def _next_episode_index(self) -> int:
         indices = []
         if self.dataset_dir.exists():
@@ -382,23 +302,6 @@ class PandaLearningRuntime:
                 except ValueError:
                     pass
         return max(indices, default=-1) + 1
-
-    @staticmethod
-    def _load_policy(path: Path):
-        path = Path(path).expanduser().resolve()
-        if not path.is_file():
-            raise FileNotFoundError(f"Panda policy adapter not found: {path}")
-        spec = importlib.util.spec_from_file_location("_val861_panda_policy", path)
-        if spec is None or spec.loader is None:
-            raise RuntimeError(f"cannot import Panda policy adapter: {path}")
-        module = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(module)
-        if not hasattr(module, "create_policy"):
-            raise AttributeError(f"{path} must define create_policy()")
-        policy = module.create_policy()
-        if not callable(getattr(policy, "act", None)):
-            raise TypeError("create_policy() result must provide act(observation)")
-        return policy
 
     def _site_transform(self, data: mujoco.MjData) -> np.ndarray:
         return self.controller.site_transform(data)
@@ -583,8 +486,7 @@ class PandaLearningRuntime:
         self._last_secondary_button = secondary_button
 
     def before_step(self, data: mujoco.MjData) -> None:
-        if self.mode == "collect":
-            self._update_phone_target(data)
+        self._update_phone_target(data)
         self.controller.before_step(data)
 
     def toggle_gripper_from_viewer(self) -> None:
@@ -724,108 +626,16 @@ class PandaLearningRuntime:
             1.0,
         )
 
-    def _apply_policy_action(self, action: Any) -> None:
-        if not isinstance(action, dict):
-            action = {"action": action}
-        libero_action = action.get("action", action.get("actions"))
-        if libero_action is not None:
-            libero_action = np.asarray(libero_action, dtype=float)
-            if libero_action.ndim == 2:
-                libero_action = libero_action[0]
-            if libero_action.shape != (7,) or not np.all(np.isfinite(libero_action)):
-                raise ValueError("LIBERO policy action must have shape (7,) or (N,7)")
-            # LIBERO actions/state are in the robot base frame, yawed -90 degrees from world.
-            delta = np.clip(libero_action[:6], -1.0, 1.0) * np.asarray(
-                [OSC_POSITION_SCALE] * 3 + [OSC_ROTATION_SCALE] * 3
-            )
-            world_from_base = self._base_transform(self.data)
-            target_base = np.linalg.inv(world_from_base) @ self._site_transform(self.data)
-            target_base[:3, 3] += delta[:3]
-            target_base[:3, :3] = (
-                Rotation.from_rotvec(delta[3:]).as_matrix()
-                @ target_base[:3, :3]
-            )
-            target = world_from_base @ target_base
-            target = self._clamp_task_target(target)
-            self.controller.set_eef_target(target)
-            self.controller.set_gripper_opening(0.04 if libero_action[6] < 0.0 else 0.0)
-            self.target_eef = target
-            self.target_gripper = self.controller.gripper_opening
-            return
-        if "joint_position" in action:
-            joints = np.asarray(action["joint_position"], dtype=float)
-            if joints.shape != (7,) or not np.all(np.isfinite(joints)):
-                raise ValueError("joint_position must contain 7 finite values")
-            self.controller.set_joint_target(joints)
-        elif "eef_pose" in action:
-            self.target_eef = _matrix_from_pose7(np.asarray(action["eef_pose"], dtype=float))
-            self.controller.set_eef_target(self.target_eef)
-        elif "eef_delta" in action:
-            delta = np.asarray(action["eef_delta"], dtype=float)
-            if delta.shape != (6,) or not np.all(np.isfinite(delta)):
-                raise ValueError("eef_delta must contain xyz + rotation-vector (6 values)")
-            self.controller.set_eef_delta(delta, normalized=False)
-        else:
-            raise KeyError("policy action needs action[7], joint_position, eef_pose, or eef_delta")
-        if "gripper_position" in action:
-            opening = float(np.asarray(action["gripper_position"]).reshape(-1)[0])
-            self.controller.set_gripper_opening(opening)
-        self.target_gripper = self.controller.gripper_opening
-
-    def _enqueue_policy_action(self, result: Any) -> None:
-        payload = result
-        if isinstance(result, dict):
-            payload = result.get("actions", result.get("action"))
-        if payload is None:
-            return
-        array = np.asarray(payload, dtype=float)
-        if array.ndim == 1:
-            array = array[None, :]
-        if array.ndim != 2 or array.shape[1] != 7 or not np.all(np.isfinite(array)):
-            if isinstance(result, dict) and any(
-                key in result for key in ("joint_position", "eef_pose", "eef_delta")
-            ):
-                self._apply_policy_action(result)
-                return
-            raise ValueError("policy action chunk must have shape (7,) or (N,7)")
-        if self._policy_inference_count == 0:
-            print(
-                "[Panda policy] first action received: "
-                f"shape={array.shape}, first={np.round(array[0], 3).tolist()}"
-            )
-        self._policy_inference_count += 1
-        self._policy_actions.extend(array[: self.policy_replan_steps].copy())
-
     def after_step(self, data: mujoco.MjData) -> dict[str, Any] | None:
-        if self.mode == "policy" and self.policy_active:
-            # Do not stop at opening detection while the gripper still holds the pencil.
-            if (self.policy_auto_success and self._task_success(data)
-                    and self._task_insertion_metrics(data)["geometry_success"]):
-                self.stop_policy("task success")
-                return None
-            if (
-                self.policy_task_timeout > 0.0
-                and self._policy_started_at is not None
-                and float(data.time) - self._policy_started_at
-                >= self.policy_task_timeout
-            ):
-                self.stop_policy(f"{self.policy_task_timeout:g}s task timeout")
-                return None
         if float(data.time) + 1e-9 < self.next_sample_time:
             return None
         self.next_sample_time = float(data.time) + self.period
         observation = self._render_observation(data)
-        if self.mode == "collect":
-            connected = self._phone_origin is not None and bool(
-                self.session.connected_clients
-            )
-            if connected and self.writer is not None:
-                self.writer.append(observation, self._current_action())
-        elif self.policy_active:
-            if not self._policy_actions:
-                self._enqueue_policy_action(self.policy.act(observation))
-            if self._policy_actions:
-                self._apply_policy_action(self._policy_actions.popleft())
+        connected = self._phone_origin is not None and bool(
+            self.session.connected_clients
+        )
+        if connected and self.writer is not None:
+            self.writer.append(observation, self._current_action())
         self._show_preview(observation)
         return observation
 
@@ -854,7 +664,7 @@ class PandaLearningRuntime:
             axis=0,
         )
         label = (
-            f"{self.mode.upper()}  episode {self.episode_index}  "
+            f"COLLECT  episode {self.episode_index}  "
             f"frames {0 if self.writer is None else self.writer.count}"
         )
         status = np.full((34, canvas.shape[1], 3), 18, dtype=np.uint8)
@@ -879,16 +689,10 @@ class PandaLearningRuntime:
         if key == "q":
             self.stop_requested = True
             return True
-        if self.mode == "collect" and key == "g":
+        if key == "g":
             self.toggle_gripper_from_viewer()
             return True
-        if self.mode == "policy" and key in {"s", "f"}:
-            if key == "s":
-                self.stop_policy("MANUAL SUCCESS")
-            else:
-                self.stop_policy("MANUAL FAILURE")
-            return True
-        if self.mode != "collect" or key not in {"s", "f"}:
+        if key not in {"s", "f"}:
             return False
         self._finish_episode(key == "s", "keyboard_label")
         self._reset_episode(self.data, respawn_task=True)
@@ -897,9 +701,6 @@ class PandaLearningRuntime:
     def workspace_relocated(self) -> None:
         if self.writer is not None:
             self._discard_episode()
-        if self.mode == "policy" and self.policy_active:
-            self.stop_policy("environment room permutation")
-        self._policy_actions.clear()
         self.target_eef = self.controller.site_transform(self.data)
         self.target_gripper = float(
             abs(self.controller.finger_positions(self.data)[0])
@@ -914,7 +715,7 @@ class PandaLearningRuntime:
         self.next_sample_time = float(self.data.time)
 
     def _start_writer(self) -> None:
-        if self.mode != "collect" or self.writer is not None:
+        if self.writer is not None:
             return
         agentview_id = mujoco.mj_name2id(
             self.model, mujoco.mjtObj.mjOBJ_CAMERA, "panda/agentview"
@@ -1179,50 +980,10 @@ class PandaLearningRuntime:
         self._last_secondary_button = True
         self._wait_for_secondary_button_release = True
         self.next_sample_time = 0.0
-        if self.policy is not None and callable(getattr(self.policy, "reset", None)):
-            self.policy.reset()
-        self._policy_actions.clear()
-
-    def _task_success(self, data: mujoco.MjData) -> bool | None:
-        pencil = next(
-            (i for i in range(self.model.nbody) if "panda_task_random_pencil" in _object_name(self.model, mujoco.mjtObj.mjOBJ_BODY, i)),
-            None,
-        )
-        cup = next(
-            (i for i in range(self.model.nbody) if "school_room7_empty_desk_pencil_cup" in _object_name(self.model, mujoco.mjtObj.mjOBJ_BODY, i)),
-            None,
-        )
-        if pencil is None or cup is None:
-            return None
-        delta = data.xpos[pencil] - data.xpos[cup]
-        holder_rotation = data.xmat[cup].reshape(3, 3)
-        local_delta = holder_rotation.T @ delta
-        tolerance_x = max(
-            0.0, HOLDER_INNER_HALF_X - PENCIL_COLLISION_RADIUS - 0.002
-        )
-        tolerance_y = max(
-            0.0, HOLDER_INNER_HALF_Y - PENCIL_COLLISION_RADIUS - 0.002
-        )
-        return bool(
-            abs(local_delta[0]) <= tolerance_x
-            and abs(local_delta[1]) <= tolerance_y
-            and -0.03 <= local_delta[2] <= 0.25
-        )
 
     def close(self) -> None:
-        if self.mode == "collect" and self.writer is not None:
+        if self.writer is not None:
             self._finish_episode(False, "shutdown_partial")
-        elif self.mode == "policy":
-            metrics = self._task_insertion_metrics(self.data)
-            print(
-                "[Panda policy] final task geometry: "
-                f"success={bool(metrics['geometry_success'])}, "
-                f"inside={bool(metrics['rim_inside_square_opening'])}, "
-                f"tilt={metrics['pencil_tilt_deg']:.1f} deg, "
-                f"tip_depth={metrics['tip_depth_below_rim_m']:.3f} m, "
-                f"rim_distance={metrics['rim_center_distance_m']:.3f} m, "
-                f"gripper_open={bool(metrics['gripper_open'])}"
-            )
         self.renderer.close()
         if self.preview_renderer is not None:
             self.preview_renderer.close()

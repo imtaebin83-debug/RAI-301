@@ -661,12 +661,22 @@ class SimPublisher:
             self._renderer = mj_renderer.OffscreenRenderer(
                 self._model, width=first["width"], height=first["height"]
             )
+        if getattr(self, "_extra_rgb_option", None) is None:
+            import mujoco
+
+            # Clean frames, as in the Panda learning data: no collision geoms
+            # (groups 3-5) and no diagnostic sites (grip-site ball, axes, zones).
+            option = mujoco.MjvOption()
+            option.geomgroup[3:6] = 0
+            option.sitegroup[:] = 0
+            self._extra_rgb_option = option
         for extra in self._extra_rgb_cameras:
             rgb = self._renderer.render_rgb(
                 data,
                 width=extra["width"],
                 height=extra["height"],
                 camera=extra["camera"],
+                scene_option=self._extra_rgb_option,
             )
             self._publish_extra_rgb(extra, rgb, stamp)
 

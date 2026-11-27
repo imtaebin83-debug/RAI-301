@@ -1,7 +1,8 @@
 """Mission 5 sensor and action boundary.
 
-The only dynamic inputs are the two permitted RGB cameras, Panda joint states
-and the published world-from-robot-base TF.  The robot-only MJCF is used for FK;
+The only dynamic inputs are the two permitted RGB cameras and Panda joint
+states. The robot-only MJCF is used for FK; the published competition contract
+fixes the Panda base axes at world yaw -90 degrees, without revealing its pose.
 no task scene, object pose, success diagnostic or simulator state is loaded.
 """
 from __future__ import annotations
@@ -19,6 +20,19 @@ BASE_FRAME = "panda/robot0_base"
 RGB_TOPICS = ("/panda/agentview/image_raw", "/panda/wrist_camera/image_raw")
 POSITION_SCALE_M = 0.05
 ROTATION_SCALE_RAD = 0.5
+PUBLIC_BASE_YAW_DEG = -90.0
+
+
+def public_base_axes() -> np.ndarray:
+    """Rotation-only action axes from README section 5, not a world pose.
+
+    The 11/26 simulator intentionally withholds the Panda base's world
+    translation because it would reveal which room is the classroom. Delta
+    commands need only the documented fixed axis rotation, never translation.
+    """
+    axes = np.eye(4)
+    axes[:3, :3] = Rotation.from_euler('z', PUBLIC_BASE_YAW_DEG, degrees=True).as_matrix()
+    return axes
 
 
 def stamp_seconds(message) -> float:
@@ -156,12 +170,12 @@ class PandaROSIO:
         self._Float64, self._Action = Float64, Float64MultiArray
         self._stamps, self._received = {}, {}
         self.last_joints = None
-        self.world_from_base = None
-        self.base_parent = None
+        # This rotation-only matrix must not be interpreted as a measured pose.
+        self.world_from_base = public_base_axes()
+        self.base_parent = "public_world_axes"
         self._eef_pub = mission.create_publisher(Float64MultiArray, "/panda/eef_delta_command", 10)
         self._joint_pub = mission.create_publisher(JointState, "/panda/joint_command", 10)
         self._grip_pub = mission.create_publisher(Float64, "/panda/gripper_command", 10)
-        mission._tf()
         for topic in RGB_TOPICS:
             mission.latest(topic, Image, timeout=0.)
         mission.latest("/panda/joint_states", JointState, timeout=0.)
@@ -178,20 +192,8 @@ class PandaROSIO:
         return message
 
     def robot_base(self):
-        from rclpy.duration import Duration
-        from rclpy.time import Time
-
-        errors = []
-        for parent in ([self.base_parent] if self.base_parent else ["world", "map"]):
-            try:
-                message = self.mission._tf().lookup_transform(
-                    parent, BASE_FRAME, Time(), timeout=Duration(seconds=.08))
-                self.world_from_base = transform_matrix(message)
-                self.base_parent = parent
-                return self.world_from_base.copy()
-            except Exception as error:
-                errors.append(str(error))
-        raise RuntimeError("Published Panda base TF unavailable: " + "; ".join(errors))
+        """Return public action axes; no TF lookup or task world pose is used."""
+        return self.world_from_base.copy()
 
     def observation(self, timeout=3.):
         deadline = time.monotonic() + timeout

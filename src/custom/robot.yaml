@@ -1,0 +1,39 @@
+# Migrated from team sensor/walking settings; values preserved.
+sensors:
+  g1:
+    camera:
+      pitch_deg: 15.0
+      forward_m: 0.0
+      up_m: 0.0
+    lidar:
+      up_m: 0.0
+  panda:
+    agentview:
+      pos:
+      - 1.28
+      - 0.0
+      - 0.92
+      quat:
+      - 0.6633178
+      - 0.24496836
+      - 0.24496836
+      - 0.6633178
+      fovy: 46.0
+    wrist:
+      pos:
+      - 0.05
+      - 0.0
+      - 0.0
+      quat:
+      - 0.0
+      - 0.707108
+      - 0.707108
+      - 0.0
+      fovy: 75.0
+walking:
+  policy: null
+  max_vel:
+    vx: 0.6
+    vy: 0.4
+    wz: 0.7
+policies: {}

@@ -1,7 +1,7 @@
-"""LiDAR odometry anchored once to the permitted mission start pose.
+"""LiDAR odometry using public initial/respawn pose and permitted sensors.
 
-Only LiDAR, IMU and robot-link TF are read while moving.  Simulator status
-positions are read again only on a *new respawn event*, as README permits.
+Only LiDAR, IMU and robot-link TF are read while moving. The public Empty
+respawn event reanchors at (16, 11, 0 degrees), never a simulator status pose.
 KISS-ICP runs on CPU; a small SciPy frame-to-frame ICP is the fallback.
 """
 from __future__ import annotations
@@ -157,7 +157,7 @@ class Localizer:
         self.backend = "uninitialized"
         self._stamp = None
         self._last_received = time.monotonic()
-        self._last_status_seq = int(start.get("seq", -1))
+        self._last_respawn_count = int(mission.respawn_count)
         self._world_lidar0 = None
         self._pose = (float(start["pos"][0]), float(start["pos"][1]), math.radians(float(start.get("yaw_deg", 0.0))))
         self._anchor = dict(start)
@@ -295,20 +295,24 @@ class Localizer:
         return self._pose
 
     def update(self) -> tuple[float, float, float]:
-        status = self.mission.last_status() or {}
-        seq = int(status.get("seq", -1))
-        if seq > self._last_status_seq:
-            self._last_status_seq = seq
-            if status.get("event") == "respawned" and status.get("pos") is not None:
-                self._anchor = dict(status)
-                self._world_lidar0 = None
-                self._odom = self._new_odometry()
-                self._stamp = None
-                self.quality = 0.0
-                self._last_transform = np.eye(4)
-                self._map_offset = np.eye(4)
-                self._recovery_times = []
-                self._recovery_blocked = False
+        respawns = int(self.mission.respawn_count)
+        if respawns != self._last_respawn_count:
+            self._last_respawn_count = respawns
+            self._anchor = {'pos': [16., 11.], 'yaw_deg': 0.}
+            self._world_lidar0 = None
+            self._odom = self._new_odometry()
+            self._pose = (16., 11., 0.)
+            self.quality = 0.0
+            self._last_transform = np.eye(4)
+            self._last_transform[:2, 3] = [16., 11.]
+            self._map_offset = np.eye(4)
+            self._recovery_times = []
+            self._recovery_blocked = False
+            # Do not initialize the new map from a cached pre-respawn scan.
+            cached = self.mission.latest('/lidar/points', PointCloud2, timeout=0.)
+            self._stamp = None if cached is None else (cached.header.stamp.sec, cached.header.stamp.nanosec)
+            self.last_error = 'public respawn: waiting for a new LiDAR scan'
+            return self._pose
         if self._recovery_blocked:
             self.quality = 0.0
             return self._pose

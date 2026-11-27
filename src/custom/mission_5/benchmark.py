@@ -58,7 +58,7 @@ def git_info(root: Path) -> dict:
 def fingerprints(root: Path, checkpoint: Path) -> dict:
     files = sorted((root / "custom").rglob("*.py"))
     files += [root / name for name in ("main.py", "mission_api.py", "referee.py",
-                                      "custom/sensors.yaml", "custom/walking.yaml",
+                                      "custom/robot.yaml",
                                       "custom/requirements.txt",
                                       "ros2_bridge/tools/val861_scene.py")]
     return {"files": {str(p.relative_to(root)): sha256(p) for p in files

@@ -27,6 +27,10 @@ def load_sensors(path: Optional[str | Path]) -> dict[str, Any]:
     loaded = yaml.safe_load(Path(path).read_text()) or {}
     if not isinstance(loaded, dict):
         raise ValueError(f"{path}: expected a mapping at the top level")
+    if "sensors" in loaded:          # custom/robot.yaml keeps the placement under "sensors:"
+        loaded = loaded["sensors"] or {}
+        if not isinstance(loaded, dict):
+            raise ValueError(f"{path}: sensors: expected a mapping")
     for robot, sensors in loaded.items():
         if robot not in config or not isinstance(sensors, dict):
             raise ValueError(f"{path}: unknown section {robot!r} (g1 | panda)")

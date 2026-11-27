@@ -82,6 +82,9 @@ def check_rooms(boxes: dict[str, Sequence[float]], answer: Any) -> dict[str, Any
             "rows": rows, "given": {k: v for k, v in given.items()}}
 
 
+RESPAWN_PENALTY_S = 30.0      # added to the total time for every counted respawn of the run
+
+
 class Referee:
     def __init__(self, path: Optional[Path], *, run: Optional[dict[str, Any]] = None,
                  log: Callable[[str], None] = print) -> None:
@@ -94,6 +97,7 @@ class Referee:
         self._started_at: Optional[str] = None
         self._step: Optional[tuple[int, int, int]] = None
         self._closed = False
+        self.respawns = 0
         if self.path is not None:
             self.path.parent.mkdir(parents=True, exist_ok=True)
             self._write(complete=False)
@@ -126,14 +130,28 @@ class Referee:
             self.log(f"[referee] mission 4 rooms to identify: {', '.join(rooms)} "
                      "(answer: result.data['rooms'] = {room: [x, y] world})")
 
-    def finish(self, node, result, *, judge: bool = True) -> dict[str, Any]:
+    @staticmethod
+    def _ask_simulator(link, index: int, settle: float = 1.0, timeout: float = 60.0) -> dict[str, Any]:
+        """The simulator's verdict for mission ``index`` (asked through the runner's SimLink)."""
+
+        link.stop()
+        time.sleep(settle)
+        return link.judge(index, timeout)
+
+    def finish(self, node, result, *, judge: bool = True,
+               failed: Optional[str] = None) -> dict[str, Any]:
+        """``failed``: the mission was ended by the rules (respawn limit) -- FAIL, the simulator is not asked."""
+
         seconds = 0.0 if self._t0 is None else time.monotonic() - self._t0
         ended_at = _now()
+        self.respawns = int(getattr(node, "falls", self.respawns))
         verdict: dict[str, Any] = {}
         note = None
-        if judge:
+        if failed:
+            verdict = {"mission": int(result.mission), "success": False, "summary": failed}
+        elif judge:
             try:
-                verdict = node.judge(result.mission) or {}
+                verdict = self._ask_simulator(node, result.mission)
             except Exception as exc:                          # noqa: BLE001 - no verdict, recorded
                 note = f"no verdict from the simulator: {exc}"
         result.judge = verdict
@@ -212,6 +230,10 @@ class Referee:
             "failed": sum(r["success"] is False for r in self.records),
             "not_judged": len(self.records) - len(judged),
             "mission_seconds": round(sum(r["seconds"] for r in self.records), 2),
+            "respawns": self.respawns,
+            "penalty_seconds": round(self.respawns * RESPAWN_PENALTY_S, 2),
+            "total_seconds": round(sum(r["seconds"] for r in self.records)
+                                   + self.respawns * RESPAWN_PENALTY_S, 2),
             "run_seconds": round(time.monotonic() - self._run_t0, 2),
             "by_mission": [f"{r['mission']} {r['verdict']} {r['seconds']:.1f}s" for r in self.records],
         }
@@ -253,6 +275,8 @@ class Referee:
         self.log(f"  {total['passed']}/{total['missions']} passed, missions {total['mission_seconds']:.1f} s, "
                  f"run {total['run_seconds']:.1f} s"
                  + ("" if complete else " (run interrupted)"))
+        self.log(f"  respawns {total['respawns']} x {RESPAWN_PENALTY_S:.0f} s = +{total['penalty_seconds']:.0f} s penalty"
+                 f" -> total time {total['total_seconds']:.1f} s (missions + penalty)")
         if self.path is not None:
             self.log(f"  results file: {self.path}")
         self.log("=" * (len(bar) * 2 + 42))

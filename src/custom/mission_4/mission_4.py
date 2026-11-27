@@ -11,7 +11,8 @@ SRC_ROOT = Path(__file__).resolve().parents[2]
 if str(SRC_ROOT) not in sys.path:
     sys.path.insert(0, str(SRC_ROOT))
 
-from mission_api import Mission, MissionResult, run_standalone  # noqa: E402
+from custom.sensor_mission import Mission
+from mission_api import MissionResult, run_standalone  # noqa: E402
 from custom.navigation import Navigator
 from custom.vlm import assign_rooms, classify_room
 

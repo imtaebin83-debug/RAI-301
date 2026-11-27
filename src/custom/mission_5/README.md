@@ -1,5 +1,7 @@
 # Mission 5 — 연필 집어서 연필꽂이에 넣기
 
+**2026-11-27 v2 호환:** 새 clean RGB와 공개 −90° 행동 회전, `robot.yaml`, 센서 캐시로 이전했다. 새 환경의 M1→2→5 연속 시험에서 M5 PASS32.8초를 확인했다. 아래 20개 배치 성적은 이전 Starter 기준이고 v2에서 20회 반복한 결과는 아니다. 전체 변경과 규칙 준비 항목은 [v2 보고서](../docs/V2_UPDATE_AND_MISSION_STATUS_20261127.md)를 확인한다.
+
 `mission_5.py`의 기본값은 동봉한 **팀 학습 keypose 정책 `keyposes.json`**이다. 2026-11-22 파지 중 팔 고정·관절 피드백과 몸통 검출을 보완해, 같은 랜덤 배치 8개에서 기존 4/8 → 개선 8/8 공식 PASS를 확인했다. 별도 새 배치 12개도 12/12 PASS였다. 자세한 원인·조건·한계는 [파지 안정화 보고서](STABILITY_20261122.md), 초기 학습과 이전 결과는 [REPORT.md](REPORT.md)에 있다. 작은 표본이며 성공을 보장하지 않는다.
 
 ## 바로 실행
@@ -8,7 +10,7 @@
 
 ```bash
 source ~/miniconda3/etc/profile.d/conda.sh
-conda activate haic_rai301
+conda activate haic_rai301_v2
 cd ~/RAI-301/src
 unset M5_CHECKPOINT M5_TRACE_DIR
 bash custom/tools/run_sim.sh --headless --missions 5 --no-wait
@@ -28,14 +30,15 @@ Ubuntu 화면에 GUI를 띄우려면 `--headless`를 뺀다. SSH GUI는 Ubuntu �
 | `keypose_policy.py`, `keyposes.json` | 학습한 물체 상대 목표 자세·그립·시간과 일반 pose servo |
 | `train_keyposes.py` | 성공 시연의 실제 측정 상태에서 keypose 학습 |
 | `collect.py`, `vision_teacher.py` | 개발 전용 시연 수집·센서 기반 교사 |
-| `evaluate.py` | 개발 전용 무작위 초기화·공식 referee 평가 |
+| `evaluate.py` | 본인의 새 시뮬레이터에서 현재 배치 1회 공식 평가 |
+| `benchmark.py` | 공식 샘플러의 seeded 배치를 새 프로세스별로 평가 |
 | `bc/` | 두 RGB 카메라 CNN BC 비교 실험. 현재 기본 정책 아님 |
 
 기본 행동 정책 입력은 **agentview RGB와 Panda 자기 상태**다. wrist RGB는 저장·동기화하지만 현재 keypose 행동에는 사용하지 않는다. 자기 상태는 관절 센서와 공개 로봇 전용 MJCF의 FK로 계산한 base 좌표 EE 위치·rotvec·손가락 관절 2개, 총 8차원이다. 행동은 base 좌표 `delta_xyz/.05m, delta_rotvec/.5rad, grip` 7차원이고 ROS 경계에서 world 좌표로 회전한다.
 
 런타임은 시나리오, 숨겨진 물체 좌표, ground-truth odom, referee 결과를 읽지 않는다. 카메라 공개 보정과 로봇 설명만 사용한다. 초기 센서 인식 후 학습된 객체 상대 자세를 실제 관절 피드백으로 추종한다. 교사 FSM을 기본 정책 대신 호출하는 fallback은 없다. 학습한 수치가 없는 경우 실행을 거부한다. `custom/` 밖의 조교 코드는 수정하지 않는다.
 
-`/panda/retry`와 referee 접근은 개발 수집·평가 프로세스에만 있다. 제출 `Mission5.run()` 및 정책은 초기화나 판정을 요청하지 않는다. `collect.py`·`evaluate.py`를 대회 미션으로 실행하지 않는다.
+v2는 `/panda/retry`를 제공하지 않는다. 팀 수집기의 `--retry`와 평가기의 2회 이상 반복은 오류로 거부한다. 제출 `Mission5.run()` 및 정책은 초기화나 판정을 요청하지 않는다. 외부 평가기만 공식 runner/referee로 종료 후 판정한다. `collect.py`·`evaluate.py`를 대회 미션으로 실행하지 않는다. Panda world 위치 TF를 읽지 않고 공개된 z축 −90° 회전만 사용한다.
 
 ## 재현·재학습
 
@@ -48,8 +51,8 @@ bash custom/tools/run_sim.sh --headless --sim-only
 같은 환경·같은 저장소 `src/`의 터미널 B:
 
 ```bash
-# 새 배치마다 반복. 성공/실패 모두 저장하고 공식 PASS만 학습에 사용한다.
-python -m custom.mission_5.collect --out ~/m5-data/new-batch --mode teacher --retry
+# 새 시뮬레이터의 현재 배치 1회. 종료 후 다음 episode는 sim을 재시작한다.
+python -m custom.mission_5.collect --out ~/m5-data/new-batch --mode teacher
 # Ubuntu 데스크톱에서 수동 수집은 --mode manual. P 완료, Q 중단.
 
 python -m custom.mission_5.bc.prepare \
@@ -59,10 +62,19 @@ python -m custom.mission_5.train_keyposes \
 
 # candidate를 검증한 뒤에만 기본 keyposes.json을 교체한다.
 M5_CHECKPOINT=$HOME/m5-runs/new-model/keyposes.json \
-python -m custom.mission_5.evaluate --episodes 5 --out ~/m5-runs/new-model/eval.json
+python -m custom.mission_5.evaluate --episodes 1 --out ~/m5-runs/new-model/eval.json
 ```
 
-평가 전에 위 시뮬레이터 하나만 실행 중이어야 한다. 평가 명령은 별도 시뮬레이터를 시작하지 않는다. 평가 결과에 있는 물체 판정은 학습 정책에 전달하지 않는다.
+위 수집/단일 평가 전에 본인 시뮬레이터 하나만 실행 중이어야 한다. 이 평가 명령은 별도 시뮬레이터를 시작하지 않는다. 평가 결과에 있는 물체 판정은 학습 정책에 전달하지 않는다.
+
+여러 랜덤 배치 평가 때는 위 시뮬레이터를 종료하고 자체 GPU lock과 fresh-process 실행을 가진 benchmark를 사용한다:
+
+```bash
+python -m custom.mission_5.benchmark --checkpoint ~/m5-runs/new-model/keyposes.json \
+  --seed 301 --cases 5 --out ~/m5-runs/new-model/randomized-new
+```
+
+새 수업용 수집기는 `python tools/collect_panda.py`다. iPhone TeleDex와 같은 LAN/Ubuntu 화면이 필요하다. 공식 HDF5→LeRobot 변환 예제가 추가됐지만, 우리 keypose 학습에는 phase events JSON도 필요하므로 공식 HDF5를 그대로 넣지 않는다. ROS Python3.10 환경과 OpenPI의 별도 uv 학습 환경을 섞지 않는다.
 
 `prepare`는 episode/센서 배치 그룹을 나누고 SHA256·카메라 설정을 고정한다. 동일 배치의 프레임을 train/val/test에 섞지 않는다. 원본 HDF5와 같은 이름의 JSON(events)이 keypose 학습에 둘 다 필요하다. 수동 시연은 phase events가 없으므로 그대로 keypose 학습에 넣을 수 없다. CNN에는 사용 가능하다. 기존 manifest를 덮어쓰지 말고 새 버전을 만들며, 기존 모델 비교에서는 val/test를 고정한다.
 

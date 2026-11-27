@@ -7,6 +7,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import time
@@ -15,19 +16,28 @@ import uuid
 import h5py
 import numpy as np
 import yaml
-from scipy.spatial.transform import Rotation
 from PIL import Image as PILImage
 
-from mission_api import Mission, MissionRunner
-from custom.mission_5.ros_io import PandaROSIO
+def panda_calibration():
+    """Public camera metadata moved into custom/robot.yaml in starter v2."""
+    path=Path(__file__).resolve().parents[1]/'robot.yaml'
+    return path,yaml.safe_load(path.read_text())['sensors']['panda']
 
 
-class CollectorMission(Mission):
-    MISSION=5
+def panda_camera(config):
+    """Build the raw256 camera model from public configuration, not CameraInfo."""
+    fovy=float(config['fovy'])
+    if not math.isfinite(fovy) or not 0<fovy<180:
+        raise ValueError('Panda camera fovy must be finite and between 0 and 180 degrees')
+    from custom.mission_5.perception import CameraModel
+    focal=128./math.tan(math.radians(fovy)/2.)
+    intrinsics=np.array([[focal,0.,127.5],[0.,focal,127.5],[0.,0.,1.]])
+    return CameraModel.from_pose(intrinsics,config['pos'],config['quat'])
 
 
 class Writer:
     def __init__(self,path,fps,placement):
+        calibration,panda=panda_calibration()
         self.path=Path(path)
         self.temporary=self.path.with_name('.'+self.path.stem+'.recording.h5')
         self.file=h5py.File(self.temporary,'w')
@@ -35,9 +45,8 @@ class Writer:
             placement_id=placement,success=-1,state_frame='panda_base',action_frame='panda_base',
             action_position_scale_m=.05,action_rotation_scale_rad=.5,
             policy_inputs='two RGB cameras and robot proprioception only')
-        calibration=Path(__file__).resolve().parents[1]/'sensors.yaml'
         self.file.attrs['camera_calibration_sha256']=hashlib.sha256(calibration.read_bytes()).hexdigest()
-        self.file.attrs['camera_metadata_json']=json.dumps(yaml.safe_load(calibration.read_text())['panda'])
+        self.file.attrs['camera_metadata_json']=json.dumps(panda)
         self.count=0
     def append(self,obs,action):
         row={'time':np.asarray(obs['time'],np.float64),
@@ -70,30 +79,40 @@ def manual_action(key,grip):
     return action,grip
 
 
-def main():
+def parse_args(argv=None):
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--out',type=Path,required=True)
     parser.add_argument('--mode',choices=['teacher','manual','observe'],default='teacher')
     parser.add_argument('--seconds',type=float,default=100)
     parser.add_argument('--fps',type=float,default=10)
-    parser.add_argument('--retry',action='store_true',help='Evaluation-only public Panda home/new placement')
-    args=parser.parse_args()
+    parser.add_argument('--retry',action='store_true',
+        help='Unsupported in starter v2: restart your simulator for a fresh placement')
+    args=parser.parse_args(argv)
+    if args.retry:
+        parser.error('--retry is unavailable: starter v2 removed /panda/retry. '
+                     'Start a fresh simulator for each new collection placement.')
     if not 1<=args.fps<=20 or not 0<args.seconds<=300:parser.error('invalid seconds/fps')
     if args.mode=='manual' and not (os.getenv('DISPLAY') or os.getenv('WAYLAND_DISPLAY')):
         parser.error('Manual collection needs an Ubuntu desktop terminal/display')
+    return args
+
+
+def main(argv=None):
+    args=parse_args(argv)
+    # Parse unsupported reset requests before importing/initializing ROS.
+    from mission_api import MissionRunner
+    from custom.sensor_mission import Mission
+    from custom.mission_5.ros_io import PandaROSIO
+
+    class CollectorMission(Mission):
+        MISSION=5
+
     args.out.mkdir(parents=True,exist_ok=True)
     episode_id=f'{time.time_ns()}'
     file=args.out/f'episode_{episode_id}.h5'
     events=[]; writer=None; interface=None
     with MissionRunner('m5_collection_evaluator') as runner:
         runner.api.wait_for_sim(timeout=40)
-        if args.retry:
-            from std_msgs.msg import Empty
-            publisher=runner.api.create_publisher(Empty,'/panda/retry',10)
-            end=time.monotonic()+5
-            while publisher.get_subscription_count()==0 and time.monotonic()<end:time.sleep(.05)
-            publisher.publish(Empty())
-            time.sleep(2.)
         node=runner.start(CollectorMission)
         node.begin_mission(5,timeout=15)
         interface=PandaROSIO(node)
@@ -110,15 +129,9 @@ def main():
                 return
             teacher=None; sim_clock=[float(initial['time'])]
             if args.mode=='teacher':
-                from custom.mission_5.vision_teacher import CameraModel,VisionTeacher
-                from sensor_msgs.msg import CameraInfo
-                info=node.latest('/panda/agentview/camera_info',CameraInfo,timeout=4)
-                if info is None:raise RuntimeError('Agentview calibration unavailable')
-                config=yaml.safe_load((Path(__file__).resolve().parents[1]/'sensors.yaml').read_text())['panda']['agentview']
-                q=config['quat']; transform=np.eye(4)
-                transform[:3,:3]=Rotation.from_quat([q[1],q[2],q[3],q[0]]).as_matrix()@np.diag([1.,-1.,-1.])
-                transform[:3,3]=config['pos']
-                camera=CameraModel(np.asarray(info.k).reshape(3,3),transform)
+                from custom.mission_5.vision_teacher import VisionTeacher
+                _,panda=panda_calibration()
+                camera=panda_camera(panda['agentview'])
                 teacher=VisionTeacher(camera=camera,clock=lambda:sim_clock[0])
             # Group repeated identical sensor-observed placements together.
             fingerprint=hashlib.sha256(initial['image'].tobytes()).hexdigest()
@@ -168,7 +181,7 @@ def main():
         finally:
             if interface is not None:interface.hold()
         result=node.result(collection=True,mode=args.mode,reason=reason,frames=observations)
-        record=referee.finish(node,result)
+        record=referee.finish(runner.api,result)
         if writer is not None:writer.finish(result.judge or {},reason)
         report={'hdf5':file.name,'reason':reason,'frames':observations,'events':events,
                 'official_record':record,'policy_inputs':['image','wrist_image','state']}

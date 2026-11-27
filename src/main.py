@@ -26,7 +26,7 @@ from mission_api import (  # noqa: E402
     ERROR,
     FAIL,
     MISSION_LABELS,
-    GapFallWatch,
+    FallWatch,
     Mission,
     MissionAborted,
     MissionResult,
@@ -39,7 +39,7 @@ from referee import Referee, default_results_path  # noqa: E402
 CONFIG_FILE = SRC_ROOT / "main_config.yaml"
 CONFIG_DEFAULTS = {
     "missions": {"run": [1, 2, 3, 4, 5, 6], "wait_for_space": True, "step": False,
-                 "gap_falls_allowed": 2},
+                 "falls_allowed": 2},
     "scenario": {"file": "scenarios/default.yaml"},
     "referee": {"goal_radius_m": 0.5, "cone_box_m": 0.5, "cone_box_offset_m": 0.75,
                 "m4_room": "classroom"},
@@ -49,31 +49,47 @@ CONFIG_DEFAULTS = {
     "simulator": {"view": True, "start_pose": [16.0, 11.0, 0.0], "shadow_size": 0,
                   "ball_friction": [0.72, 0.02, 0.01], "extra_args": []},
 }
-SENSORS_FILE = SRC_ROOT / "custom" / "sensors.yaml"
-WALKING_FILE = SRC_ROOT / "custom" / "walking.yaml"
+ROBOT_FILE = SRC_ROOT / "custom" / "robot.yaml"
 
 
-def walking_args() -> list[str]:
-    if not WALKING_FILE.is_file():
+def robot_args() -> list[str]:
+    """Simulator arguments from custom/robot.yaml (sensors, walking); checks the policy files."""
+    if not ROBOT_FILE.is_file():
         return []
     import yaml
 
-    data = yaml.safe_load(WALKING_FILE.read_text()) or {}
+    data = yaml.safe_load(ROBOT_FILE.read_text()) or {}
     if not isinstance(data, dict):
-        raise SystemExit(f"[main] {WALKING_FILE}: expected a mapping")
+        raise SystemExit(f"[main] {ROBOT_FILE}: expected a mapping")
+    unknown = sorted(set(data) - {"sensors", "walking", "policies"})
+    if unknown:
+        raise SystemExit(f"[main] {ROBOT_FILE}: unknown section {unknown[0]!r} "
+                         "(sensors | walking | policies)")
     extra: list[str] = []
-    policy = data.get("policy")
+    if data.get("sensors"):
+        extra += ["--sensors", str(ROBOT_FILE)]
+    walking = data.get("walking") or {}
+    if not isinstance(walking, dict):
+        raise SystemExit(f"[main] {ROBOT_FILE}: walking: expected a mapping")
+    policy = walking.get("policy")
     if policy:
-        path = (WALKING_FILE.parent / str(policy)).resolve()
+        path = (ROBOT_FILE.parent / str(policy)).resolve()
         if not path.is_file():
-            raise SystemExit(f"[main] {WALKING_FILE}: policy {policy!r} not found at {path}")
+            raise SystemExit(f"[main] {ROBOT_FILE}: walking.policy {policy!r} not found at {path}")
         extra += ["--policy", str(path)]
-    caps = data.get("max_vel") or {}
+    caps = walking.get("max_vel") or {}
     if caps:
         try:
             extra += ["--max-vel", *(str(float(caps[k])) for k in ("vx", "vy", "wz"))]
         except (KeyError, TypeError, ValueError):
-            raise SystemExit(f"[main] {WALKING_FILE}: max_vel needs vx, vy, wz (numbers)") from None
+            raise SystemExit(f"[main] {ROBOT_FILE}: walking.max_vel needs vx, vy, wz (numbers)") from None
+    policies = data.get("policies") or {}
+    if not isinstance(policies, dict):
+        raise SystemExit(f"[main] {ROBOT_FILE}: policies: expected  name: path  entries")
+    for name, entry in policies.items():
+        path = (ROBOT_FILE.parent / str(entry)).resolve()
+        if not path.exists():
+            raise SystemExit(f"[main] {ROBOT_FILE}: policies.{name} {entry!r} not found at {path}")
     return extra
 
 
@@ -131,7 +147,7 @@ def parse_args(argv=None) -> argparse.Namespace:
     args.web_port = int(ins["web_port"])
     args.open_browser = bool(ins["open_browser"])
     args.view = bool(sim["view"])
-    args.gap_falls_allowed = int(mis["gap_falls_allowed"])
+    args.falls_allowed = int(mis["falls_allowed"])
     args.start_pose = [float(v) for v in sim["start_pose"]]
     if len(args.start_pose) not in (2, 3):
         ap.error("simulator.start_pose takes [x, y, yaw_deg]")
@@ -158,9 +174,7 @@ def start_simulator(args: argparse.Namespace) -> subprocess.Popen:
         command += ["--scenario", str(args.scenario)]
     if args.llm_web:
         command.append("--hide-targets")
-    if SENSORS_FILE.is_file():
-        command += ["--sensors", str(SENSORS_FILE)]
-    command += walking_args()
+    command += robot_args()
     if args.shadow_size > 0:
         command += ["--shadow-size", str(args.shadow_size)]
     if args.ground_truth:
@@ -347,20 +361,25 @@ def mission_class(index: int):
 
 def run_step(runner: MissionRunner, referee: Referee, index: int, *, params: dict | None = None,
              plan: int | None = None, number: int = 0, of: int = 0,
-             gap_falls_allowed: int = 2) -> dict:
+             falls_allowed: int = 2) -> dict:
     print(f"\n[main] ===== mission {index}: {MISSION_LABELS[index]}"
           + (f" (step {number}/{of}{', ' + str(params) if params else ''})" if of else "")
           + " =====", flush=True)
     referee.begin(index, plan=plan, step=number, of=of, rooms=runner.api.m4_rooms)
     mission = None
+    aborted = None
     try:
+        if runner.api.falls > falls_allowed:
+            raise MissionAborted(f"respawned at the start {runner.api.falls} times in this run "
+                                 f"({falls_allowed} allowed): mission {index} is not run")
         mission = runner.start(mission_class(index))
         mission.params = dict(params or {})
-        with GapFallWatch(mission, gap_falls_allowed):
+        with FallWatch(runner.api, falls_allowed):
             result = check_result(index, mission.run())
     except MissionAborted as exc:
         print(f"[main] {exc}", flush=True)
-        result = MissionResult(index, FAIL, str(exc))
+        aborted = str(exc)
+        result = MissionResult(index, FAIL, aborted)
     except KeyboardInterrupt:
         raise
     except BaseException as exc:                              # noqa: BLE001 - incl. SystemExit
@@ -368,9 +387,10 @@ def run_step(runner: MissionRunner, referee: Referee, index: int, *, params: dic
 
         traceback.print_exc()
         result = MissionResult(index, ERROR, f"{type(exc).__name__}: {exc}")
-    node = mission or runner.api
-    node.stop()
-    record = referee.finish(node, result)
+    if mission is not None:
+        mission.stop()
+    runner.api.stop()
+    record = referee.finish(runner.api, result, failed=aborted)
     if mission is not None:
         runner.finish(mission)
     return record
@@ -402,7 +422,7 @@ def run_instruction(runner: MissionRunner, referee: Referee, args: argparse.Name
     progress(state="running", plan=steps, records=records)
     for number, (index, params) in enumerate(plan_steps, 1):
         records.append(run_step(runner, referee, index, params=params, plan=plan, number=number,
-                                of=len(plan_steps), gap_falls_allowed=args.gap_falls_allowed))
+                                of=len(plan_steps), falls_allowed=args.falls_allowed))
         progress(records=records)
     referee.plan_done(plan, time.monotonic() - clock)
     passed = sum(r["success"] is True for r in records)
@@ -483,7 +503,7 @@ def run_missions(runner: MissionRunner, referee: Referee, args: argparse.Namespa
                 continue
         if not alive():
             return False
-        run_step(runner, referee, index, gap_falls_allowed=args.gap_falls_allowed)
+        run_step(runner, referee, index, falls_allowed=args.falls_allowed)
     return True
 
 
