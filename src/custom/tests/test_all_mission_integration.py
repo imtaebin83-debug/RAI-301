@@ -74,6 +74,16 @@ class IntegrationTests(unittest.TestCase):
         self.assertLessEqual(args.kwargs['timeout'],2.)
         self.assertEqual(args.kwargs['speed'],.28)
 
+    def test_soccer_turn_corrects_small_error_before_accepting_heading(self):
+        for sign in (-1.,1.):
+            node=SimpleNamespace(deadline=10.,nav=Mock(),cmd_vel=Mock(),
+                _pose=Mock(side_effect=[(9.,8.,sign*.1),(9.,8.,sign*.03)]))
+            with patch('custom.mission_6.mission_6.time.monotonic',return_value=0.), \
+                 patch('custom.mission_6.mission_6.time.sleep'):
+                self.assertTrue(Mission6._face(node,0.))
+            node.cmd_vel.assert_called_once_with(0.,0.,-sign*.18)
+            node.nav.stop.assert_called_once()
+
     def test_soccer_guard_rejects_respawn_and_expired_budget(self):
         node=SimpleNamespace(respawn_count=1,_run_respawn_count=0,
                              deadline=time.monotonic()+10,stop=Mock())

@@ -1,0 +1,48 @@
+{
+  "instruction": "First navigate to world coordinate (15.5,18.0), then go to the blue cone, cross the cliff course, identify all rooms and deliver the pencil to the classroom, put the pencil into its holder with the Panda arm, and finally score a soccer goal.",
+  "plan": [
+    [
+      1,
+      {
+        "goal": [
+          15.5,
+          18.0
+        ]
+      }
+    ],
+    [
+      2,
+      {
+        "color": "blue"
+      }
+    ],
+    3,
+    4,
+    5,
+    6
+  ],
+  "seconds": 27.445501677982975,
+  "expected": [
+    [
+      1,
+      {
+        "goal": [
+          15.5,
+          18.0
+        ]
+      }
+    ],
+    [
+      2,
+      {
+        "color": "blue"
+      }
+    ],
+    3,
+    4,
+    5,
+    6
+  ],
+  "matches": true,
+  "required_actual_local_llm": true
+}

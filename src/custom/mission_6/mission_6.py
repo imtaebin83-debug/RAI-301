@@ -45,7 +45,7 @@ PUSH_SPEED = .5             # goal-ward kick: the ball rolls ~4 m, clear of the 
 NUDGE_SPEED = .25           # off-wall push: a full kick rolled the ball into a side wall
 NUDGE_THROUGH = .6
 FINISH_RANGE = 3.0          # ball this close to the goal line: dribble all the way
-BUDGET = 300.
+BUDGET = 420.  # Entry, repeated contacts, and post-goal observation remain bounded.
 TURN_RATE = .25            # rad/s cap for in-place turns (localizer-friendly)
 CREEP_VX = -.05            # backward creep keeps the torso leaned forward (forward creep does not)
 
@@ -118,9 +118,13 @@ class Mission6(Mission):
         try:
             while time.monotonic() < deadline:
                 err = wrap(yaw-self._pose()[2])
-                if abs(err) < .06:
+                if abs(err) < .04:
                     return True
-                self.cmd_vel(0., 0., float(np.clip(1.0*err, -TURN_RATE, TURN_RATE)))
+                # The gait can ignore tiny in-place turns. A minimum command
+                # reaches the camera alignment gate instead of timing out
+                # with a persistent heading error before a blind contact.
+                turn = math.copysign(max(.18, min(TURN_RATE, abs(err))), err)
+                self.cmd_vel(0., 0., turn)
                 time.sleep(.05)
             return False
         finally:
