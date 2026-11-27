@@ -1,0 +1,31 @@
+{
+  "canonical_root": "/home/aril/RAI-301",
+  "python": "/home/aril/miniconda3/envs/haic_rai301_v2/bin/python",
+  "mission_modules": [
+    "/home/aril/RAI-301/src/custom/mission_1/mission_1.py",
+    "/home/aril/RAI-301/src/custom/mission_2/mission_2.py",
+    "/home/aril/RAI-301/src/custom/mission_3/mission_3.py",
+    "/home/aril/RAI-301/src/custom/mission_4/mission_4.py",
+    "/home/aril/RAI-301/src/custom/mission_5/mission_5.py",
+    "/home/aril/RAI-301/src/custom/mission_6/mission_6.py"
+  ],
+  "robot_args": [
+    "--sensors",
+    "/home/aril/RAI-301/src/custom/robot.yaml",
+    "--max-vel",
+    "0.6",
+    "0.4",
+    "0.7"
+  ],
+  "checkpoint": "/home/aril/RAI-301/src/custom/mission_5/keyposes.json",
+  "policy": "task-parameterized-keypose-bc",
+  "installed": {
+    "h5py": "3.15.1",
+    "teledex": "0.0.7",
+    "qrcode": "8.2"
+  },
+  "local_model_configs": {
+    "Qwen2.5-1.5B-Instruct": true,
+    "SmolVLM-500M-Instruct": true
+  }
+}
