@@ -16,6 +16,19 @@ def wrap(a):
     return (a + math.pi) % (2 * math.pi) - math.pi
 
 
+def translation_command(dx, dy, yaw, speed):
+    """Bound the vector before body-axis limits, retaining the goal bearing.
+
+    Clipping a large forward error and a smaller lateral error independently
+    changes their ratio: e.g. a northward goal can command an eastward drift.
+    """
+    c, s = math.cos(yaw), math.sin(yaw)
+    vx, vy = .9 * (c * dx + s * dy), .9 * (-s * dx + c * dy)
+    scale = min(1., speed / max(math.hypot(vx, vy), 1e-12))
+    return (float(np.clip(vx * scale, -.16, speed)),
+            float(np.clip(vy * scale, -.20, .20)))
+
+
 class ContinuousPose:
     def __init__(self,mission):
         self.mission=mission
@@ -198,8 +211,7 @@ class Navigator:
                         vx=vy=0.
                         wz=float(np.clip(1.2*heading,-.5,.5))
                     else:
-                        vx=float(np.clip(.9*(math.cos(yaw)*dx+math.sin(yaw)*dy),-.16,speed))
-                        vy=float(np.clip(.9*(-math.sin(yaw)*dx+math.cos(yaw)*dy),-.20,.20))
+                        vx, vy = translation_command(dx, dy, yaw, speed)
                         wz=float(np.clip(.8*heading,-.35,.35)) if distance>.45 else 0.
                     self.mission.cmd_vel(vx,vy,wz)
                 now=time.monotonic()

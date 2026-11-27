@@ -12,7 +12,7 @@ from std_msgs.msg import String
 
 from custom.inertial import GyroBuffer
 from custom.icp_registration import GuardedKissICP, RegistrationRejected
-from custom.navigation import ContinuousPose, Navigator
+from custom.navigation import ContinuousPose, Navigator, translation_command
 
 
 class GyroTests(unittest.TestCase):
@@ -222,6 +222,23 @@ class PoseHealthTests(unittest.TestCase):
         self.assertEqual(nav.last_failure, 'stalled')
         self.assertLess(clock[0] - 100., 26.)
         self.assertEqual(self.mission.commands[-1], (0., 0., 0.))
+
+
+class TranslationTests(unittest.TestCase):
+    def test_long_goal_preserves_world_bearing_during_small_heading_error(self):
+        for yaw, delta in ((1.7, [0., 7.]), (-3.07, [-6., 0.]), (.15, [4., 0.])):
+            with self.subTest(yaw=yaw):
+                command = translation_command(*delta, yaw, .28)
+                c, s = np.cos(yaw), np.sin(yaw)
+                world = np.array([[c, -s], [s, c]]) @ command
+                expected = .28 * np.asarray(delta) / np.linalg.norm(delta)
+                np.testing.assert_allclose(world, expected, atol=1e-12)
+                self.assertLessEqual(np.linalg.norm(command), .28 + 1e-12)
+
+    def test_final_correction_gain_and_body_limits_are_preserved(self):
+        np.testing.assert_allclose(translation_command(.1, -.1, 0., .38), [.09, -.09])
+        np.testing.assert_allclose(translation_command(-10., 0., 0., .38), [-.16, 0.])
+        np.testing.assert_allclose(translation_command(0., 10., 0., .38), [0., .20])
 
 
 class RouteTests(unittest.TestCase):
