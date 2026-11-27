@@ -1,0 +1,9 @@
+python /home/aril/miniconda3/envs/haic_rai301/bin/python
+cwd /home/aril/rai-worktrees/CSH-m1-20261127-02/src
+HAIC_ROOT /home/aril/rai-worktrees/CSH-m1-20261127-02
+PYTHONPATH /home/aril/rai-worktrees/CSH-m1-20261127-02/src:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages
+CONDA_PREFIX /home/aril/miniconda3/envs/haic_rai301
+ROS_DOMAIN_ID 92
+custom.localization /home/aril/rai-worktrees/CSH-m1-20261127-02/src/custom/localization.py
+custom.navigation /home/aril/rai-worktrees/CSH-m1-20261127-02/src/custom/navigation.py
+custom.planner.planner /home/aril/rai-worktrees/CSH-m1-20261127-02/src/custom/planner/planner.py

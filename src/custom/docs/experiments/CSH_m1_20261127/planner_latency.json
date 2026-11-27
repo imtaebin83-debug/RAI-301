@@ -1,0 +1,58 @@
+[
+  {
+    "mode": "oneshot",
+    "seconds": 20.347314874001313,
+    "plan": [
+      [
+        2,
+        {
+          "color": "blue"
+        }
+      ],
+      6
+    ],
+    "worker_pid": null
+  },
+  {
+    "mode": "persistent-cold",
+    "seconds": 17.952926470024977,
+    "plan": [
+      [
+        2,
+        {
+          "color": "blue"
+        }
+      ],
+      6
+    ],
+    "worker_pid": 422870
+  },
+  {
+    "mode": "persistent-warm",
+    "seconds": 15.235451963962987,
+    "plan": [
+      [
+        2,
+        {
+          "color": "blue"
+        }
+      ],
+      6
+    ],
+    "worker_pid": 422870
+  },
+  {
+    "mode": "persistent-warm",
+    "seconds": 14.811991607013624,
+    "plan": [
+      [
+        2,
+        {
+          "color": "blue"
+        }
+      ],
+      6
+    ],
+    "worker_pid": 422870
+  }
+]

@@ -1,0 +1,11 @@
+Publication is pending authentication, not code preparation.
+
+HTTPS dry run: no GitHub username/credential available (terminal prompts disabled).
+Connected GitHub account: repository push permission is false.
+SSH dry run with GitHub's verified published Ed25519 host key: publickey denied.
+No credentials or private keys were printed, copied, or committed. Shared Git,
+SSH and Conda settings were not changed; commit author was set per command only.
+
+After a repository-write account has been authenticated on this PC, run:
+  bash experiments/CSH/m1/publish.sh
+This pushes only opt/m1-CSH-20261127-02, without force or a main merge.

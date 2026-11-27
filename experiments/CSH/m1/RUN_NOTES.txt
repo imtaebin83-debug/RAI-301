@@ -1,0 +1,26 @@
+Infrastructure events (not simulator attempts)
+
+- An initial default-baseline wrapper invocation returned 75 because another
+  worktree held the shared GPU lock. baseline/default.log is consequently empty.
+  The newly measured baseline consists of seed301, roundtrip and after-m1-green;
+  the old 23.14s default number is explicitly labelled as a prior report.
+- One queued comparison lock timed out before any simulator was launched. It
+  was retried when the device became available; no other process was stopped.
+- run_remaining.sh initially enabled nounset before ROS activation. ROS's stock
+  setup referenced unset AMENT_TRACE_SETUP_FILES. Moving nounset after source
+  fixed this private script; the shared ROS/Conda setup was not edited.
+- Git had no author identity. Commits use a per-command Codex identity; no
+  shared/global Git configuration was changed.
+
+Evaluation interpretation
+
+- Older ICP and pre-vector-control trials are retained, including failed M3/M6.
+- A roundtrip's final referee PASS does not make its heading/checkpoint probe
+  complete. The baseline final heading had stale localization; its probe failed.
+- The latest M6 failure is retained even though the shared IMU scheduling race
+  was fixed. It observed and approached the ball, then lost a stable RGB-D ball
+  estimate. Do not describe this as a scored goal or a verified detector fix.
+- Some successful simulations print an RCLError about an invalid wait-set
+  context during shutdown, after verdicts. This is in the stock MissionRunner
+  spin thread. The read-only mission_api.py was not patched; logs retain it.
+- No fresh Conda installation or all-six-mission continuous run was performed.

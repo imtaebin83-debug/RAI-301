@@ -1,0 +1,38 @@
+[
+  {
+    "case": "mission3",
+    "returncode": 0,
+    "kind": "mission",
+    "total": {
+      "missions": 1,
+      "passed": 1,
+      "failed": 0,
+      "not_judged": 0,
+      "mission_seconds": 245.31,
+      "run_seconds": 254.02,
+      "by_mission": [
+        "3 PASS 245.3s"
+      ],
+      "complete": true,
+      "updated_at": "2026-11-27T10:17:14+09:00"
+    }
+  },
+  {
+    "case": "mission6",
+    "returncode": 0,
+    "kind": "mission",
+    "total": {
+      "missions": 1,
+      "passed": 0,
+      "failed": 1,
+      "not_judged": 0,
+      "mission_seconds": 44.49,
+      "run_seconds": 53.6,
+      "by_mission": [
+        "6 FAIL 44.5s"
+      ],
+      "complete": true,
+      "updated_at": "2026-11-27T10:18:08+09:00"
+    }
+  }
+]

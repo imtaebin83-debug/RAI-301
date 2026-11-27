@@ -1,0 +1,11 @@
+{
+  "HAIC_ROOT": "/home/aril/rai-worktrees/CSH-m1-20261127-02",
+  "HAIC_INITIAL_POSE": null,
+  "HAIC_MAP_CORRECTION": null,
+  "HAIC_ALLOW_RULE_PLANNER": null,
+  "HAIC_REQUIRE_LLM": null,
+  "HAIC_M4_CAPTURE_DIR": null,
+  "ROS_DOMAIN_ID": "92",
+  "CONDA_PREFIX": "/home/aril/miniconda3/envs/haic_rai301",
+  "PYTHONPATH": "/home/aril/rai-worktrees/CSH-m1-20261127-02/src:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages"
+}

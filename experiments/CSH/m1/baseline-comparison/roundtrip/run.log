@@ -1,0 +1,81 @@
+[referee] results file: /home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/baseline-comparison/roundtrip/official.json
+[main] starting the simulator: -m ros2_bridge.run_g1_ros --no-view --spawn 16 11 0 --m4-room classroom --judge-goal-radius 0.5 --judge-cone-box 0.5 --judge-cone-offset 0.75 --ball-friction 0.62 0.02 0.01 --m1-goal-region 14.0 17.0 1.0 20.0 --m1-goal-yaw 90 --ball-region 7.25 11.25 5.5 8.5 --scenario /home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/baseline-comparison/roundtrip/scenario.yaml --sensors /home/aril/rai-worktrees/CSH-m1-20261127-02-baseline/src/custom/sensors.yaml --max-vel 0.6 0.4 0.7
+[main] starting robot_state_publisher (G1 URDF -> /tf)
+[mission] waiting for the simulator on /g1/mission_status ...
+[INFO] [1795739260.292257110] [mujoco_sim]: /clock 100 Hz | joint_states 50 Hz (29 joints) | G1 RGB-D 20 Hz | extra RGB 10 Hz | lidar 10 Hz (OS1-32 32x512, 1 worker(s)) | IMU 100 Hz | odom 0 Hz
+[INFO] [1795739260.292562005] [mujoco_sim]: listening on /cmd_vel; timeout 0.5s; limits vx/vy/wz=(0.6, 0.4, 0.7)
+[INFO] [1795739260.293521397] [mujoco_sim]: G1 rescue: keys 1-6 in viewer or publish std_msgs/Empty to /g1/respawn
+[INFO] [1795739260.294607402] [mujoco_sim]: referee: std_msgs/Int32 /g1/mission_end judges mission N on ground truth; mission 4 room classroom; scenario /home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/baseline-comparison/roundtrip/scenario.yaml
+[INFO] [1795739260.295565882] [mujoco_sim]: Mission API: std_msgs/Int32 /g1/mission (1-6, respawn there), std_msgs/Int32 /g1/mission_begin (1-6, G1 not moved), std_msgs/Empty /g1/randomize; status on /g1/mission_status, /g1/soccer_kick_status, /panda/task_status
+[INFO] [1795739260.295699047] [mujoco_sim]: ground truth: NOT published (no /odom, no odom TF; add --ground-truth to enable); initial pose: manual (RViz 2D Pose Estimate)
+[INFO] [1795739260.313887504] [mujoco_sim]: Panda task (startup): arm home, pencil (20.991, 19.715), holder (21.378, 19.706)
+[INFO] [1795739260.314310005] [mujoco_sim]: Scenario (/home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/baseline-comparison/roundtrip/scenario.yaml): m1 goal (16.00, 11.00), m2 green, cones blue | green | orange, rooms classroom | medical | cafeteria, ball (9.25, 8.15)
+[INFO] [1795739260.314562199] [mujoco_sim]: scene=layout.json robot='g1/' spawn=(16.00, 11.00, floor 0.00); official Unitree 29-DoF ONNX READY; standing until /cmd_vel arrives
+[mission] simulator up (mission point 1: launch point)
+[main] launching custom/bringup.launch.py (your nodes)
+[INFO] [1795739260.381298284] [mujoco_sim]: mission 1 (launch point) selected from ROS begin 1; G1 not moved
+[INFO] [launch]: All log files can be found below /home/aril/.ros/log/2026-11-27-09-27-40-497603-aril-13-422770
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [python-1]: process started with pid [422798]
+[nav] pose=(16.00,11.00,-0.00) target=(16.00,18.50) error=7.50
+[nav] pose=(15.98,11.62,1.58) target=(16.00,18.50) error=6.88
+[nav] pose=(16.35,13.49,1.64) target=(16.00,18.50) error=5.03
+[nav] pose=(16.40,15.46,1.75) target=(16.00,18.50) error=3.06
+[nav] pose=(16.25,17.32,1.81) target=(16.00,18.50) error=1.20
+[WARN] [1795739285.017017067] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[INFO] [1795739285.515287218] [mujoco_sim]: referee: mission 1 FAIL -- 7.59 m > 0.50 m from goal world (16.00, 11.00)
+[nav] pose=(16.01,18.57,0.03) target=(16.00,3.50) error=15.07
+[nav] pose=(16.09,18.47,-1.38) target=(16.00,3.50) error=14.97
+[nav] pose=(15.67,16.99,-1.53) target=(16.00,3.50) error=13.49
+[nav] pose=(15.28,15.49,-1.49) target=(16.00,3.50) error=12.02
+[nav] pose=(15.03,14.06,-1.43) target=(16.00,3.50) error=10.60
+[nav] pose=(14.77,12.50,-1.43) target=(16.00,3.50) error=9.09
+[nav] pose=(14.54,10.79,-1.37) target=(16.00,3.50) error=7.43
+[nav] pose=(14.64,8.86,-1.28) target=(16.00,3.50) error=5.53
+[nav] pose=(14.90,7.16,-1.22) target=(16.00,3.50) error=3.83
+[nav] pose=(15.24,5.57,-1.18) target=(16.00,3.50) error=2.20
+[nav] pose=(15.85,3.86,-1.13) target=(16.00,3.50) error=0.39
+[WARN] [1795739342.701880291] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[INFO] [1795739343.163802739] [mujoco_sim]: referee: mission 1 FAIL -- 7.42 m > 0.50 m from goal world (16.00, 11.00)
+[nav] pose=(16.07,3.49,0.00) target=(16.00,18.50) error=15.01
+[nav] pose=(16.02,3.92,1.63) target=(16.00,18.50) error=14.58
+[nav] pose=(16.35,5.69,1.63) target=(16.00,18.50) error=12.82
+[nav] pose=(16.85,7.62,1.62) target=(16.00,18.50) error=10.91
+[nav] pose=(17.15,9.43,1.73) target=(16.00,18.50) error=9.15
+[nav] pose=(17.16,11.24,1.77) target=(16.00,18.50) error=7.35
+[nav] pose=(17.13,13.12,1.80) target=(16.00,18.50) error=5.49
+[nav] pose=(16.91,15.15,1.89) target=(16.00,18.50) error=3.47
+[nav] pose=(16.53,17.03,1.93) target=(16.00,18.50) error=1.57
+[WARN] [1795739390.698028104] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[INFO] [1795739391.176964282] [mujoco_sim]: referee: mission 1 FAIL -- 7.59 m > 0.50 m from goal world (16.00, 11.00)
+[nav] pose=(16.00,18.62,0.01) target=(16.00,11.00) error=7.62
+[nav] pose=(16.06,18.43,-1.49) target=(16.00,11.00) error=7.43
+[nav] pose=(15.67,16.92,-1.49) target=(16.00,11.00) error=5.93
+[nav] pose=(15.55,15.39,-1.43) target=(16.00,11.00) error=4.41
+[nav] pose=(15.55,13.79,-1.40) target=(16.00,11.00) error=2.82
+[nav] pose=(15.73,12.43,-1.38) target=(16.00,11.00) error=1.46
+[WARN] [1795739426.856267007] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[INFO] [1795739427.327299489] [mujoco_sim]: referee: mission 1 PASS -- 0.12 m < 0.50 m from goal world (16.00, 11.00)
+[WARN] [1795739429.687046370] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[INFO] [1795739430.153241963] [mujoco_sim]: referee: mission 1 PASS -- 0.17 m < 0.50 m from goal world (16.00, 11.00)
+[referee] ===== mission 1 Point-goal navigation: PASS in 168.8 s =====
+[referee]   check     0.17 m < 0.50 m from goal world (16.00, 11.00)  [PASS]
+[referee]   reported  done: 
+[main] stopping the simulator
+[main] stopping the robot_state_publisher
+[main] stopping the custom bringup
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [python-1]: sending signal 'SIGINT' to process[python-1]
+[INFO] [1795739430.283359949] [mujoco_sim]: stopped at sim=151.50s wall=169.97s RTF=0.89
+[python-1] [mission] waiting for the simulator on /g1/mission_status ...
+[python-1] [mission] simulator up (mission point 1: launch point)
+[python-1] [localizer] waiting: waiting for LiDAR
+[python-1] [localizer] kiss-icp, IMU roll/pitch=-0.0/-0.5 deg, pelvis height=0.780m floor support=0.80
+[INFO] [python-1]: process has finished cleanly [pid 422798]
+
+============================== Mission results (referee, ground truth) ==============================
+  step  #  mission                        result     time  check
+  -     1  Point-goal navigation          PASS     168.8s  check: 0.17 m < 0.50 m from goal world (16.00, 11.00)
+  1/1 passed, missions 168.8 s, run 178.7 s
+  results file: /home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/baseline-comparison/roundtrip/official.json
+======================================================================================================

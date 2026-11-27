@@ -1,0 +1,46 @@
+[
+  {
+    "case": "roundtrip",
+    "returncode": 0,
+    "kind": "probe",
+    "total": {
+      "missions": 1,
+      "passed": 1,
+      "failed": 0,
+      "not_judged": 0,
+      "mission_seconds": 168.81,
+      "run_seconds": 178.72,
+      "by_mission": [
+        "1 PASS 168.8s"
+      ],
+      "complete": true,
+      "updated_at": "2026-11-27T09:30:30+09:00"
+    },
+    "probe_succeeded": false,
+    "checkpoint_errors": [
+      0.1422743827960603,
+      0.167263265542676,
+      0.14261135999631955,
+      0.11629703349612998
+    ]
+  },
+  {
+    "case": "after-m1-green",
+    "returncode": 0,
+    "kind": "mission",
+    "total": {
+      "missions": 2,
+      "passed": 2,
+      "failed": 0,
+      "not_judged": 0,
+      "mission_seconds": 75.13,
+      "run_seconds": 84.44,
+      "by_mission": [
+        "1 PASS 13.9s",
+        "2 PASS 61.3s"
+      ],
+      "complete": true,
+      "updated_at": "2026-11-27T09:31:55+09:00"
+    }
+  }
+]

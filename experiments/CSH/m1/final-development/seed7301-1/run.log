@@ -1,0 +1,50 @@
+[referee] results file: /home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/final-development/seed7301-1/official.json
+[main] starting the simulator: -m ros2_bridge.run_g1_ros --no-view --spawn 16 11 0 --m4-room classroom --judge-goal-radius 0.5 --judge-cone-box 0.5 --judge-cone-offset 0.75 --ball-friction 0.62 0.02 0.01 --m1-goal-region 14.0 17.0 1.0 20.0 --m1-goal-yaw 90 --ball-region 7.25 11.25 5.5 8.5 --scenario /home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/final-development/seed7301-1/scenario.yaml --sensors /home/aril/rai-worktrees/CSH-m1-20261127-02/src/custom/sensors.yaml --max-vel 0.6 0.4 0.7
+[main] starting robot_state_publisher (G1 URDF -> /tf)
+[mission] waiting for the simulator on /g1/mission_status ...
+[INFO] [1795740032.829204648] [mujoco_sim]: /clock 100 Hz | joint_states 50 Hz (29 joints) | G1 RGB-D 20 Hz | extra RGB 10 Hz | lidar 10 Hz (OS1-32 32x512, 1 worker(s)) | IMU 100 Hz | odom 0 Hz
+[INFO] [1795740032.829434152] [mujoco_sim]: listening on /cmd_vel; timeout 0.5s; limits vx/vy/wz=(0.6, 0.4, 0.7)
+[INFO] [1795740032.830052012] [mujoco_sim]: G1 rescue: keys 1-6 in viewer or publish std_msgs/Empty to /g1/respawn
+[INFO] [1795740032.830931157] [mujoco_sim]: referee: std_msgs/Int32 /g1/mission_end judges mission N on ground truth; mission 4 room classroom; scenario /home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/final-development/seed7301-1/scenario.yaml
+[INFO] [1795740032.831948584] [mujoco_sim]: Mission API: std_msgs/Int32 /g1/mission (1-6, respawn there), std_msgs/Int32 /g1/mission_begin (1-6, G1 not moved), std_msgs/Empty /g1/randomize; status on /g1/mission_status, /g1/soccer_kick_status, /panda/task_status
+[INFO] [1795740032.832073280] [mujoco_sim]: ground truth: NOT published (no /odom, no odom TF; add --ground-truth to enable); initial pose: manual (RViz 2D Pose Estimate)
+[INFO] [1795740032.847826033] [mujoco_sim]: Panda task (startup): arm home, pencil (20.991, 19.715), holder (21.378, 19.706)
+[INFO] [1795740032.848210150] [mujoco_sim]: Scenario (/home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/final-development/seed7301-1/scenario.yaml): m1 goal (14.75, 19.89), m2 green, cones blue | green | orange, rooms classroom | medical | cafeteria, ball (9.25, 8.15)
+[INFO] [1795740032.848403276] [mujoco_sim]: scene=layout.json robot='g1/' spawn=(16.00, 11.00, floor 0.00); official Unitree 29-DoF ONNX READY; standing until /cmd_vel arrives
+[mission] simulator up (mission point 1: launch point)
+[main] launching custom/bringup.launch.py (your nodes)
+
+[main] ===== mission 1: Point-goal navigation =====
+[INFO] [1795740032.908411158] [mujoco_sim]: mission 1 (launch point) selected from ROS begin 1; G1 not moved
+[INFO] [launch]: All log files can be found below /home/aril/.ros/log/2026-11-27-09-40-32-963536-aril-13-429861
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [python-1]: process started with pid [429864]
+[nav] pose=(16.00,11.00,0.00) target=(14.75,19.89) error=8.98
+[nav] pose=(15.72,11.68,1.69) target=(14.75,19.89) error=8.27
+[nav] pose=(15.91,13.66,1.78) target=(14.75,19.89) error=6.34
+[nav] pose=(15.85,15.66,1.85) target=(14.75,19.89) error=4.37
+[nav] pose=(15.51,17.56,1.90) target=(14.75,19.89) error=2.45
+[nav] pose=(14.93,19.43,1.97) target=(14.75,19.89) error=0.49
+[WARN] [1795740060.914818974] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[INFO] [1795740061.342829693] [mujoco_sim]: referee: mission 1 PASS -- 0.04 m < 0.50 m from goal world (14.75, 19.89)
+[referee] ===== mission 1 Point-goal navigation: PASS in 27.5 s =====
+[referee]   check     0.04 m < 0.50 m from goal world (14.75, 19.89)  [PASS]
+[referee]   reported  done: 
+[main] stopping the simulator
+[main] stopping the robot_state_publisher
+[main] stopping the custom bringup
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [1795740061.446798196] [mujoco_sim]: stopped at sim=28.60s wall=28.60s RTF=1.00
+[INFO] [python-1]: sending signal 'SIGINT' to process[python-1]
+[python-1] [mission] waiting for the simulator on /g1/mission_status ...
+[python-1] [mission] simulator up (mission point 1: launch point)
+[python-1] [localizer] waiting: waiting for LiDAR
+[python-1] [localizer] guarded-kiss-icp, IMU roll/pitch=-0.0/-0.5 deg, pelvis height=0.780m floor support=0.77
+[INFO] [python-1]: process has finished cleanly [pid 429864]
+
+============================== Mission results (referee, ground truth) ==============================
+  step  #  mission                        result     time  check
+  -     1  Point-goal navigation          PASS      27.5s  check: 0.04 m < 0.50 m from goal world (14.75, 19.89)
+  1/1 passed, missions 27.5 s, run 36.0 s
+  results file: /home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/final-development/seed7301-1/official.json
+======================================================================================================

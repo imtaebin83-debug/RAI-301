@@ -1,0 +1,38 @@
+[
+  {
+    "case": "rooms-2",
+    "returncode": 0,
+    "kind": "mission",
+    "total": {
+      "missions": 1,
+      "passed": 1,
+      "failed": 0,
+      "not_judged": 0,
+      "mission_seconds": 201.39,
+      "run_seconds": 211.37,
+      "by_mission": [
+        "4 PASS 201.4s"
+      ],
+      "complete": true,
+      "updated_at": "2026-11-27T09:47:16+09:00"
+    }
+  },
+  {
+    "case": "rooms-3",
+    "returncode": 0,
+    "kind": "mission",
+    "total": {
+      "missions": 1,
+      "passed": 1,
+      "failed": 0,
+      "not_judged": 0,
+      "mission_seconds": 168.53,
+      "run_seconds": 176.97,
+      "by_mission": [
+        "4 PASS 168.5s"
+      ],
+      "complete": true,
+      "updated_at": "2026-11-27T09:50:13+09:00"
+    }
+  }
+]

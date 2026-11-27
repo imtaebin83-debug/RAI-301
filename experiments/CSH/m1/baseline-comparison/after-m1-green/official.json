@@ -1,0 +1,135 @@
+{
+  "run": {
+    "started_at": "2026-11-27T09:30:31+09:00",
+    "case": {
+      "missions": [
+        1,
+        2
+      ],
+      "goal": [
+        14.98,
+        7.99
+      ],
+      "m2_color": "green",
+      "cone_order": [
+        "orange",
+        "blue",
+        "green"
+      ]
+    },
+    "source": "/home/aril/rai-worktrees/CSH-m1-20261127-02-baseline/src",
+    "kind": "stock mission",
+    "plans": [],
+    "ended_at": "2026-11-27T09:31:55+09:00"
+  },
+  "missions": [
+    {
+      "mission": 1,
+      "label": "Point-goal navigation",
+      "verdict": "PASS",
+      "success": true,
+      "seconds": 13.86,
+      "started_at": "2026-11-27T09:30:37+09:00",
+      "ended_at": "2026-11-27T09:30:51+09:00",
+      "checks": [
+        {
+          "name": "check",
+          "ok": true,
+          "summary": "0.16 m < 0.50 m from goal world (14.98, 7.99)"
+        }
+      ],
+      "reported": {
+        "status": "done",
+        "detail": ""
+      },
+      "referee": {
+        "mission": 1,
+        "pelvis": [
+          14.818,
+          7.988,
+          0.778
+        ],
+        "success": true,
+        "summary": "0.16 m < 0.50 m from goal world (14.98, 7.99)",
+        "goal": [
+          14.98,
+          7.99
+        ],
+        "goal_world": [
+          14.98,
+          7.99
+        ],
+        "distance_m": 0.162,
+        "threshold_m": 0.5
+      },
+      "data": {
+        "controller_reached": true,
+        "estimated_pose": [
+          15.009232154150098,
+          8.166002404763859,
+          -1.8082662030454486
+        ]
+      }
+    },
+    {
+      "mission": 2,
+      "label": "Cone colour navigation",
+      "verdict": "PASS",
+      "success": true,
+      "seconds": 61.27,
+      "started_at": "2026-11-27T09:30:52+09:00",
+      "ended_at": "2026-11-27T09:31:53+09:00",
+      "checks": [
+        {
+          "name": "check",
+          "ok": true,
+          "summary": "green cone box: |dx| 0.12 < 0.25, |dy| 0.10 < 0.25 m"
+        }
+      ],
+      "reported": {
+        "status": "done",
+        "detail": ""
+      },
+      "referee": {
+        "mission": 2,
+        "pelvis": [
+          17.119,
+          23.946,
+          0.78
+        ],
+        "success": true,
+        "summary": "green cone box: |dx| 0.12 < 0.25, |dy| 0.10 < 0.25 m",
+        "color": "green",
+        "box_center": [
+          17.0,
+          24.05
+        ],
+        "box_m": 0.5,
+        "dx_m": 0.119,
+        "dy_m": -0.104
+      },
+      "data": {
+        "color": "green",
+        "cone_xy": [
+          17.209062196012425,
+          24.6204734338132
+        ],
+        "reached": true
+      }
+    }
+  ],
+  "total": {
+    "missions": 2,
+    "passed": 2,
+    "failed": 0,
+    "not_judged": 0,
+    "mission_seconds": 75.13,
+    "run_seconds": 84.44,
+    "by_mission": [
+      "1 PASS 13.9s",
+      "2 PASS 61.3s"
+    ],
+    "complete": true,
+    "updated_at": "2026-11-27T09:31:55+09:00"
+  }
+}

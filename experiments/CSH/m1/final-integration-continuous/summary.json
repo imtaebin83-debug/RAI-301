@@ -1,0 +1,21 @@
+[
+  {
+    "case": "after-cone",
+    "returncode": 0,
+    "kind": "mission",
+    "total": {
+      "missions": 2,
+      "passed": 2,
+      "failed": 0,
+      "not_judged": 0,
+      "mission_seconds": 213.0,
+      "run_seconds": 223.02,
+      "by_mission": [
+        "2 PASS 50.2s",
+        "4 PASS 162.8s"
+      ],
+      "complete": true,
+      "updated_at": "2026-11-27T09:53:57+09:00"
+    }
+  }
+]

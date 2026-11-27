@@ -1,0 +1,1047 @@
+[
+  {
+    "evidence": "baseline/seed301_case0.json",
+    "mission": 1,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 17.16,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      15.198,
+      15.888,
+      0.78
+    ],
+    "actual_goal_error_m": 0.141,
+    "rooms_correct": null,
+    "summary": "0.14 m < 0.50 m from goal world (15.30, 15.79)",
+    "normalized_navigation": false,
+    "navigation_sha256": "a218e9553c209ded1f1e27abb3305066e603e9b3eb7f1405ffac4b69fcf197a2"
+  },
+  {
+    "evidence": "baseline/seed301_case0.json",
+    "mission": 2,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 27.04,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      15.539,
+      24.075,
+      0.78
+    ],
+    "actual_goal_error_m": null,
+    "rooms_correct": null,
+    "summary": "green cone box: |dx| 0.04 < 0.25, |dy| 0.02 < 0.25 m",
+    "normalized_navigation": false,
+    "navigation_sha256": "a218e9553c209ded1f1e27abb3305066e603e9b3eb7f1405ffac4b69fcf197a2"
+  },
+  {
+    "evidence": "baseline/seed301_case1.json",
+    "mission": 1,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 21.95,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      14.602,
+      17.665,
+      0.779
+    ],
+    "actual_goal_error_m": 0.142,
+    "rooms_correct": null,
+    "summary": "0.14 m < 0.50 m from goal world (14.74, 17.63)",
+    "normalized_navigation": false,
+    "navigation_sha256": "a218e9553c209ded1f1e27abb3305066e603e9b3eb7f1405ffac4b69fcf197a2"
+  },
+  {
+    "evidence": "baseline/seed301_case1.json",
+    "mission": 2,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 23.05,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      15.532,
+      24.072,
+      0.778
+    ],
+    "actual_goal_error_m": null,
+    "rooms_correct": null,
+    "summary": "orange cone box: |dx| 0.03 < 0.25, |dy| 0.02 < 0.25 m",
+    "normalized_navigation": false,
+    "navigation_sha256": "a218e9553c209ded1f1e27abb3305066e603e9b3eb7f1405ffac4b69fcf197a2"
+  },
+  {
+    "evidence": "baseline-comparison/after-m1-green/official.json",
+    "mission": 1,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 13.86,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      14.818,
+      7.988,
+      0.778
+    ],
+    "actual_goal_error_m": 0.162,
+    "rooms_correct": null,
+    "summary": "0.16 m < 0.50 m from goal world (14.98, 7.99)",
+    "normalized_navigation": false,
+    "navigation_sha256": "a218e9553c209ded1f1e27abb3305066e603e9b3eb7f1405ffac4b69fcf197a2"
+  },
+  {
+    "evidence": "baseline-comparison/after-m1-green/official.json",
+    "mission": 2,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 61.27,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      17.119,
+      23.946,
+      0.78
+    ],
+    "actual_goal_error_m": null,
+    "rooms_correct": null,
+    "summary": "green cone box: |dx| 0.12 < 0.25, |dy| 0.10 < 0.25 m",
+    "normalized_navigation": false,
+    "navigation_sha256": "a218e9553c209ded1f1e27abb3305066e603e9b3eb7f1405ffac4b69fcf197a2"
+  },
+  {
+    "evidence": "baseline-comparison/roundtrip/official.json",
+    "mission": 1,
+    "kind": "navigation probe",
+    "verdict": "PASS",
+    "seconds": 168.81,
+    "error": "Stale localization: bringup localizer has not published a pose",
+    "failed_stage": null,
+    "actual_pelvis": [
+      15.863,
+      10.901,
+      0.78
+    ],
+    "actual_goal_error_m": 0.169,
+    "rooms_correct": null,
+    "summary": "0.17 m < 0.50 m from goal world (16.00, 11.00)",
+    "normalized_navigation": false,
+    "navigation_sha256": "a218e9553c209ded1f1e27abb3305066e603e9b3eb7f1405ffac4b69fcf197a2"
+  },
+  {
+    "evidence": "candidate-v1/official.json",
+    "mission": 1,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 22.41,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      15.534,
+      17.942,
+      0.78
+    ],
+    "actual_goal_error_m": 0.067,
+    "rooms_correct": null,
+    "summary": "0.07 m < 0.50 m from goal world (15.50, 18.00)",
+    "normalized_navigation": null,
+    "navigation_sha256": null
+  },
+  {
+    "evidence": "candidate-v1-comparison/after-m1-green/official.json",
+    "mission": 1,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 15.77,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      15.001,
+      8.055,
+      0.778
+    ],
+    "actual_goal_error_m": 0.068,
+    "rooms_correct": null,
+    "summary": "0.07 m < 0.50 m from goal world (14.98, 7.99)",
+    "normalized_navigation": false,
+    "navigation_sha256": "fdea3d60b45331f9173ffba8fda7fa083b59d22d482bc57c26079582d2b08498"
+  },
+  {
+    "evidence": "candidate-v1-comparison/after-m1-green/official.json",
+    "mission": 2,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 62.94,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      16.934,
+      24.059,
+      0.78
+    ],
+    "actual_goal_error_m": null,
+    "rooms_correct": null,
+    "summary": "green cone box: |dx| 0.07 < 0.25, |dy| 0.01 < 0.25 m",
+    "normalized_navigation": false,
+    "navigation_sha256": "fdea3d60b45331f9173ffba8fda7fa083b59d22d482bc57c26079582d2b08498"
+  },
+  {
+    "evidence": "candidate-v1-comparison/roundtrip/official.json",
+    "mission": 1,
+    "kind": "navigation probe",
+    "verdict": "PASS",
+    "seconds": 165.76,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      16.056,
+      11.026,
+      0.78
+    ],
+    "actual_goal_error_m": 0.062,
+    "rooms_correct": null,
+    "summary": "0.06 m < 0.50 m from goal world (16.00, 11.00)",
+    "normalized_navigation": false,
+    "navigation_sha256": "fdea3d60b45331f9173ffba8fda7fa083b59d22d482bc57c26079582d2b08498"
+  },
+  {
+    "evidence": "final-development/cone-start/official.json",
+    "mission": 1,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 37.11,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      15.973,
+      11.013,
+      0.78
+    ],
+    "actual_goal_error_m": 0.03,
+    "rooms_correct": null,
+    "summary": "0.03 m < 0.50 m from goal world (16.00, 11.00)",
+    "normalized_navigation": false,
+    "navigation_sha256": "e5a23494038a0c06cdc2aad70ba9876a5863eb7682d45574e5ee9df8761f252b"
+  },
+  {
+    "evidence": "final-development/high/official.json",
+    "mission": 1,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 27.37,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      16.92,
+      19.76,
+      0.779
+    ],
+    "actual_goal_error_m": 0.045,
+    "rooms_correct": null,
+    "summary": "0.04 m < 0.50 m from goal world (16.90, 19.80)",
+    "normalized_navigation": false,
+    "navigation_sha256": "e5a23494038a0c06cdc2aad70ba9876a5863eb7682d45574e5ee9df8761f252b"
+  },
+  {
+    "evidence": "final-development/low/official.json",
+    "mission": 1,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 32.57,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      14.098,
+      1.249,
+      0.78
+    ],
+    "actual_goal_error_m": 0.049,
+    "rooms_correct": null,
+    "summary": "0.05 m < 0.50 m from goal world (14.10, 1.20)",
+    "normalized_navigation": false,
+    "navigation_sha256": "e5a23494038a0c06cdc2aad70ba9876a5863eb7682d45574e5ee9df8761f252b"
+  },
+  {
+    "evidence": "final-development/room-start/official.json",
+    "mission": 1,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 30.42,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      14.977,
+      5.037,
+      0.779
+    ],
+    "actual_goal_error_m": 0.044,
+    "rooms_correct": null,
+    "summary": "0.04 m < 0.50 m from goal world (15.00, 5.00)",
+    "normalized_navigation": false,
+    "navigation_sha256": "e5a23494038a0c06cdc2aad70ba9876a5863eb7682d45574e5ee9df8761f252b"
+  },
+  {
+    "evidence": "final-development/seed7301-0/official.json",
+    "mission": 1,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 19.88,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      15.011,
+      5.481,
+      0.779
+    ],
+    "actual_goal_error_m": 0.06,
+    "rooms_correct": null,
+    "summary": "0.06 m < 0.50 m from goal world (15.01, 5.42)",
+    "normalized_navigation": false,
+    "navigation_sha256": "e5a23494038a0c06cdc2aad70ba9876a5863eb7682d45574e5ee9df8761f252b"
+  },
+  {
+    "evidence": "final-development/seed7301-1/official.json",
+    "mission": 1,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 27.48,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      14.763,
+      19.849,
+      0.78
+    ],
+    "actual_goal_error_m": 0.043,
+    "rooms_correct": null,
+    "summary": "0.04 m < 0.50 m from goal world (14.75, 19.89)",
+    "normalized_navigation": false,
+    "navigation_sha256": "e5a23494038a0c06cdc2aad70ba9876a5863eb7682d45574e5ee9df8761f252b"
+  },
+  {
+    "evidence": "final-doors/doors/official.json",
+    "mission": 1,
+    "kind": "navigation probe",
+    "verdict": "PASS",
+    "seconds": 153.61,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      16.066,
+      11.098,
+      0.78
+    ],
+    "actual_goal_error_m": 0.118,
+    "rooms_correct": null,
+    "summary": "0.12 m < 0.50 m from goal world (16.00, 11.00)",
+    "normalized_navigation": false,
+    "navigation_sha256": "e5a23494038a0c06cdc2aad70ba9876a5863eb7682d45574e5ee9df8761f252b"
+  },
+  {
+    "evidence": "final-evaluation/seed9407-0/official.json",
+    "mission": 1,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 15.26,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      14.188,
+      9.533,
+      0.78
+    ],
+    "actual_goal_error_m": 0.053,
+    "rooms_correct": null,
+    "summary": "0.05 m < 0.50 m from goal world (14.14, 9.51)",
+    "normalized_navigation": true,
+    "navigation_sha256": "da3fc31fb3f61a47efcfba8819fb31c29a4a9250489fcaf1c7fc1a7e11293831"
+  },
+  {
+    "evidence": "final-evaluation/seed9407-1/official.json",
+    "mission": 1,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 2.84,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      15.866,
+      10.882,
+      0.78
+    ],
+    "actual_goal_error_m": 0.139,
+    "rooms_correct": null,
+    "summary": "0.14 m < 0.50 m from goal world (15.80, 10.76)",
+    "normalized_navigation": true,
+    "navigation_sha256": "da3fc31fb3f61a47efcfba8819fb31c29a4a9250489fcaf1c7fc1a7e11293831"
+  },
+  {
+    "evidence": "final-integration-continuous/after-cone/official.json",
+    "mission": 2,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 50.16,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      15.495,
+      24.044,
+      0.779
+    ],
+    "actual_goal_error_m": null,
+    "rooms_correct": null,
+    "summary": "green cone box: |dx| 0.00 < 0.25, |dy| 0.01 < 0.25 m",
+    "normalized_navigation": false,
+    "navigation_sha256": "e5a23494038a0c06cdc2aad70ba9876a5863eb7682d45574e5ee9df8761f252b"
+  },
+  {
+    "evidence": "final-integration-continuous/after-cone/official.json",
+    "mission": 4,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 162.84,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      20.0,
+      3.57,
+      0.78
+    ],
+    "actual_goal_error_m": null,
+    "rooms_correct": 3,
+    "summary": "pelvis (20.00, 3.57) in classroom; target classroom x 18.25..23.00, y 0.10..6.90",
+    "normalized_navigation": false,
+    "navigation_sha256": "e5a23494038a0c06cdc2aad70ba9876a5863eb7682d45574e5ee9df8761f252b"
+  },
+  {
+    "evidence": "final-integration-rooms/rooms-2/official.json",
+    "mission": 4,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 201.39,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      19.962,
+      10.491,
+      0.779
+    ],
+    "actual_goal_error_m": null,
+    "rooms_correct": 3,
+    "summary": "pelvis (19.96, 10.49) in classroom; target classroom x 18.25..23.00, y 7.10..13.90",
+    "normalized_navigation": false,
+    "navigation_sha256": "e5a23494038a0c06cdc2aad70ba9876a5863eb7682d45574e5ee9df8761f252b"
+  },
+  {
+    "evidence": "final-integration-rooms/rooms-3/official.json",
+    "mission": 4,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 168.53,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      19.963,
+      3.559,
+      0.78
+    ],
+    "actual_goal_error_m": null,
+    "rooms_correct": 3,
+    "summary": "pelvis (19.96, 3.56) in classroom; target classroom x 18.25..23.00, y 0.10..6.90",
+    "normalized_navigation": false,
+    "navigation_sha256": "e5a23494038a0c06cdc2aad70ba9876a5863eb7682d45574e5ee9df8761f252b"
+  },
+  {
+    "evidence": "final-other-missions/mission3/official.json",
+    "mission": 3,
+    "kind": "stock mission",
+    "verdict": "FAIL",
+    "seconds": 76.35,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      10.606,
+      20.872,
+      -0.011
+    ],
+    "actual_goal_error_m": null,
+    "rooms_correct": null,
+    "summary": "did not cross the course entrance -> exit; pelvis (10.61, 20.87) outside the exit zone x 13.00..14.20, y 10.78..11.97",
+    "normalized_navigation": false,
+    "navigation_sha256": "e5a23494038a0c06cdc2aad70ba9876a5863eb7682d45574e5ee9df8761f252b"
+  },
+  {
+    "evidence": "final-other-missions/mission6/official.json",
+    "mission": 6,
+    "kind": "stock mission",
+    "verdict": "FAIL",
+    "seconds": 54.95,
+    "error": "Push budget exhausted or ball lost; referee decides success",
+    "failed_stage": null,
+    "actual_pelvis": [
+      9.556,
+      6.345,
+      0.78
+    ],
+    "actual_goal_error_m": null,
+    "rooms_correct": null,
+    "summary": "ball (9.25, 8.04) outside the goal (centre x 6.82..11.68, y 0.66..1.96: whole ball past the line, between the posts)",
+    "normalized_navigation": false,
+    "navigation_sha256": "e5a23494038a0c06cdc2aad70ba9876a5863eb7682d45574e5ee9df8761f252b"
+  },
+  {
+    "evidence": "final-seed301/seed301_case0.json",
+    "mission": 1,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 17.41,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      15.322,
+      15.723,
+      0.78
+    ],
+    "actual_goal_error_m": 0.07,
+    "rooms_correct": null,
+    "summary": "0.07 m < 0.50 m from goal world (15.30, 15.79)",
+    "normalized_navigation": false,
+    "navigation_sha256": "e5a23494038a0c06cdc2aad70ba9876a5863eb7682d45574e5ee9df8761f252b"
+  },
+  {
+    "evidence": "final-seed301/seed301_case0.json",
+    "mission": 2,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 29.77,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      15.491,
+      24.064,
+      0.779
+    ],
+    "actual_goal_error_m": null,
+    "rooms_correct": null,
+    "summary": "green cone box: |dx| 0.01 < 0.25, |dy| 0.01 < 0.25 m",
+    "normalized_navigation": false,
+    "navigation_sha256": "e5a23494038a0c06cdc2aad70ba9876a5863eb7682d45574e5ee9df8761f252b"
+  },
+  {
+    "evidence": "final-seed301/seed301_case1.json",
+    "mission": 1,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 21.96,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      14.776,
+      17.571,
+      0.78
+    ],
+    "actual_goal_error_m": 0.069,
+    "rooms_correct": null,
+    "summary": "0.07 m < 0.50 m from goal world (14.74, 17.63)",
+    "normalized_navigation": false,
+    "navigation_sha256": "e5a23494038a0c06cdc2aad70ba9876a5863eb7682d45574e5ee9df8761f252b"
+  },
+  {
+    "evidence": "final-seed301/seed301_case1.json",
+    "mission": 2,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 24.56,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      15.515,
+      24.026,
+      0.779
+    ],
+    "actual_goal_error_m": null,
+    "rooms_correct": null,
+    "summary": "orange cone box: |dx| 0.02 < 0.25, |dy| 0.02 < 0.25 m",
+    "normalized_navigation": false,
+    "navigation_sha256": "e5a23494038a0c06cdc2aad70ba9876a5863eb7682d45574e5ee9df8761f252b"
+  },
+  {
+    "evidence": "final-web/official.json",
+    "mission": 1,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 21.1,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      15.505,
+      17.96,
+      0.78
+    ],
+    "actual_goal_error_m": 0.041,
+    "rooms_correct": null,
+    "summary": "0.04 m < 0.50 m from goal world (15.50, 18.00)",
+    "normalized_navigation": null,
+    "navigation_sha256": null
+  },
+  {
+    "evidence": "final-web/official.json",
+    "mission": 2,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 21.88,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      15.483,
+      24.08,
+      0.779
+    ],
+    "actual_goal_error_m": null,
+    "rooms_correct": null,
+    "summary": "green cone box: |dx| 0.02 < 0.25, |dy| 0.03 < 0.25 m",
+    "normalized_navigation": null,
+    "navigation_sha256": null
+  },
+  {
+    "evidence": "normalized-after-delivery/after-delivery/official.json",
+    "mission": 4,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 169.91,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      19.967,
+      3.586,
+      0.779
+    ],
+    "actual_goal_error_m": null,
+    "rooms_correct": 3,
+    "summary": "pelvis (19.97, 3.59) in classroom; target classroom x 18.25..23.00, y 0.10..6.90",
+    "normalized_navigation": true,
+    "navigation_sha256": "da3fc31fb3f61a47efcfba8819fb31c29a4a9250489fcaf1c7fc1a7e11293831"
+  },
+  {
+    "evidence": "normalized-after-delivery/after-delivery/official.json",
+    "mission": 1,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 27.08,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      15.016,
+      4.978,
+      0.78
+    ],
+    "actual_goal_error_m": 0.027,
+    "rooms_correct": null,
+    "summary": "0.03 m < 0.50 m from goal world (15.00, 5.00)",
+    "normalized_navigation": true,
+    "navigation_sha256": "da3fc31fb3f61a47efcfba8819fb31c29a4a9250489fcaf1c7fc1a7e11293831"
+  },
+  {
+    "evidence": "normalized-integration/after-cone/official.json",
+    "mission": 2,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 48.78,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      15.504,
+      24.04,
+      0.779
+    ],
+    "actual_goal_error_m": null,
+    "rooms_correct": null,
+    "summary": "green cone box: |dx| 0.00 < 0.25, |dy| 0.01 < 0.25 m",
+    "normalized_navigation": true,
+    "navigation_sha256": "da3fc31fb3f61a47efcfba8819fb31c29a4a9250489fcaf1c7fc1a7e11293831"
+  },
+  {
+    "evidence": "normalized-integration/after-cone/official.json",
+    "mission": 4,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 165.83,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      19.961,
+      3.575,
+      0.779
+    ],
+    "actual_goal_error_m": null,
+    "rooms_correct": 3,
+    "summary": "pelvis (19.96, 3.58) in classroom; target classroom x 18.25..23.00, y 0.10..6.90",
+    "normalized_navigation": true,
+    "navigation_sha256": "da3fc31fb3f61a47efcfba8819fb31c29a4a9250489fcaf1c7fc1a7e11293831"
+  },
+  {
+    "evidence": "normalized-navigation/cone-start/official.json",
+    "mission": 1,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 37.33,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      15.978,
+      11.013,
+      0.78
+    ],
+    "actual_goal_error_m": 0.026,
+    "rooms_correct": null,
+    "summary": "0.03 m < 0.50 m from goal world (16.00, 11.00)",
+    "normalized_navigation": true,
+    "navigation_sha256": "da3fc31fb3f61a47efcfba8819fb31c29a4a9250489fcaf1c7fc1a7e11293831"
+  },
+  {
+    "evidence": "normalized-navigation/high/official.json",
+    "mission": 1,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 26.34,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      16.907,
+      19.735,
+      0.779
+    ],
+    "actual_goal_error_m": 0.066,
+    "rooms_correct": null,
+    "summary": "0.07 m < 0.50 m from goal world (16.90, 19.80)",
+    "normalized_navigation": true,
+    "navigation_sha256": "da3fc31fb3f61a47efcfba8819fb31c29a4a9250489fcaf1c7fc1a7e11293831"
+  },
+  {
+    "evidence": "normalized-navigation/low/official.json",
+    "mission": 1,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 32.55,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      14.123,
+      1.254,
+      0.778
+    ],
+    "actual_goal_error_m": 0.058,
+    "rooms_correct": null,
+    "summary": "0.06 m < 0.50 m from goal world (14.10, 1.20)",
+    "normalized_navigation": true,
+    "navigation_sha256": "da3fc31fb3f61a47efcfba8819fb31c29a4a9250489fcaf1c7fc1a7e11293831"
+  },
+  {
+    "evidence": "normalized-navigation/room-start/official.json",
+    "mission": 1,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 30.55,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      15.009,
+      5.085,
+      0.78
+    ],
+    "actual_goal_error_m": 0.086,
+    "rooms_correct": null,
+    "summary": "0.09 m < 0.50 m from goal world (15.00, 5.00)",
+    "normalized_navigation": true,
+    "navigation_sha256": "da3fc31fb3f61a47efcfba8819fb31c29a4a9250489fcaf1c7fc1a7e11293831"
+  },
+  {
+    "evidence": "normalized-navigation/roundtrip/official.json",
+    "mission": 1,
+    "kind": "navigation probe",
+    "verdict": "PASS",
+    "seconds": 160.0,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      16.063,
+      11.026,
+      0.78
+    ],
+    "actual_goal_error_m": 0.068,
+    "rooms_correct": null,
+    "summary": "0.07 m < 0.50 m from goal world (16.00, 11.00)",
+    "normalized_navigation": true,
+    "navigation_sha256": "da3fc31fb3f61a47efcfba8819fb31c29a4a9250489fcaf1c7fc1a7e11293831"
+  },
+  {
+    "evidence": "normalized-other/mission3/official.json",
+    "mission": 3,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 245.31,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      13.667,
+      11.387,
+      0.779
+    ],
+    "actual_goal_error_m": null,
+    "rooms_correct": null,
+    "summary": "crossed entrance -> exit; pelvis (13.67, 11.39) inside the exit zone x 13.00..14.20, y 10.78..11.97",
+    "normalized_navigation": true,
+    "navigation_sha256": "da3fc31fb3f61a47efcfba8819fb31c29a4a9250489fcaf1c7fc1a7e11293831"
+  },
+  {
+    "evidence": "normalized-other/mission6/official.json",
+    "mission": 6,
+    "kind": "stock mission",
+    "verdict": "FAIL",
+    "seconds": 44.49,
+    "error": "Stale localization: IMU samples do not bracket scan timestamps",
+    "failed_stage": null,
+    "actual_pelvis": [
+      9.282,
+      8.742,
+      0.78
+    ],
+    "actual_goal_error_m": null,
+    "rooms_correct": null,
+    "summary": "ball (9.25, 8.15) outside the goal (centre x 6.82..11.68, y 0.66..1.96: whole ball past the line, between the posts)",
+    "normalized_navigation": true,
+    "navigation_sha256": "da3fc31fb3f61a47efcfba8819fb31c29a4a9250489fcaf1c7fc1a7e11293831"
+  },
+  {
+    "evidence": "normalized-seed301/seed301_case0.json",
+    "mission": 1,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 17.1,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      15.307,
+      15.7,
+      0.78
+    ],
+    "actual_goal_error_m": 0.09,
+    "rooms_correct": null,
+    "summary": "0.09 m < 0.50 m from goal world (15.30, 15.79)",
+    "normalized_navigation": true,
+    "navigation_sha256": "da3fc31fb3f61a47efcfba8819fb31c29a4a9250489fcaf1c7fc1a7e11293831"
+  },
+  {
+    "evidence": "normalized-seed301/seed301_case0.json",
+    "mission": 2,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 28.38,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      15.514,
+      24.064,
+      0.78
+    ],
+    "actual_goal_error_m": null,
+    "rooms_correct": null,
+    "summary": "green cone box: |dx| 0.01 < 0.25, |dy| 0.01 < 0.25 m",
+    "normalized_navigation": true,
+    "navigation_sha256": "da3fc31fb3f61a47efcfba8819fb31c29a4a9250489fcaf1c7fc1a7e11293831"
+  },
+  {
+    "evidence": "normalized-seed301/seed301_case1.json",
+    "mission": 1,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 21.83,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      14.766,
+      17.558,
+      0.78
+    ],
+    "actual_goal_error_m": 0.076,
+    "rooms_correct": null,
+    "summary": "0.08 m < 0.50 m from goal world (14.74, 17.63)",
+    "normalized_navigation": true,
+    "navigation_sha256": "da3fc31fb3f61a47efcfba8819fb31c29a4a9250489fcaf1c7fc1a7e11293831"
+  },
+  {
+    "evidence": "normalized-seed301/seed301_case1.json",
+    "mission": 2,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 26.58,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      15.461,
+      23.985,
+      0.78
+    ],
+    "actual_goal_error_m": null,
+    "rooms_correct": null,
+    "summary": "orange cone box: |dx| 0.04 < 0.25, |dy| 0.06 < 0.25 m",
+    "normalized_navigation": true,
+    "navigation_sha256": "da3fc31fb3f61a47efcfba8819fb31c29a4a9250489fcaf1c7fc1a7e11293831"
+  },
+  {
+    "evidence": "postfix-evaluation/seed9509-0/official.json",
+    "mission": 1,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 13.14,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      16.547,
+      14.436,
+      0.779
+    ],
+    "actual_goal_error_m": 0.056,
+    "rooms_correct": null,
+    "summary": "0.06 m < 0.50 m from goal world (16.56, 14.49)",
+    "normalized_navigation": true,
+    "navigation_sha256": "da3fc31fb3f61a47efcfba8819fb31c29a4a9250489fcaf1c7fc1a7e11293831"
+  },
+  {
+    "evidence": "postfix-evaluation/seed9509-1/official.json",
+    "mission": 1,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 14.51,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      14.344,
+      8.582,
+      0.78
+    ],
+    "actual_goal_error_m": 0.035,
+    "rooms_correct": null,
+    "summary": "0.04 m < 0.50 m from goal world (14.33, 8.55)",
+    "normalized_navigation": true,
+    "navigation_sha256": "da3fc31fb3f61a47efcfba8819fb31c29a4a9250489fcaf1c7fc1a7e11293831"
+  },
+  {
+    "evidence": "postfix-other/mission3/official.json",
+    "mission": 3,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 244.03,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      13.637,
+      11.383,
+      0.78
+    ],
+    "actual_goal_error_m": null,
+    "rooms_correct": null,
+    "summary": "crossed entrance -> exit; pelvis (13.64, 11.38) inside the exit zone x 13.00..14.20, y 10.78..11.97",
+    "normalized_navigation": true,
+    "navigation_sha256": "da3fc31fb3f61a47efcfba8819fb31c29a4a9250489fcaf1c7fc1a7e11293831"
+  },
+  {
+    "evidence": "postfix-other/mission6/official.json",
+    "mission": 6,
+    "kind": "stock mission",
+    "verdict": "FAIL",
+    "seconds": 55.85,
+    "error": "Push budget exhausted or ball lost; referee decides success",
+    "failed_stage": null,
+    "actual_pelvis": [
+      9.563,
+      6.393,
+      0.78
+    ],
+    "actual_goal_error_m": null,
+    "rooms_correct": null,
+    "summary": "ball (9.29, 7.96) outside the goal (centre x 6.82..11.68, y 0.66..1.96: whole ball past the line, between the posts)",
+    "normalized_navigation": true,
+    "navigation_sha256": "da3fc31fb3f61a47efcfba8819fb31c29a4a9250489fcaf1c7fc1a7e11293831"
+  },
+  {
+    "evidence": "postfix-seed301/seed301_case0.json",
+    "mission": 1,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 17.02,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      15.31,
+      15.723,
+      0.78
+    ],
+    "actual_goal_error_m": 0.068,
+    "rooms_correct": null,
+    "summary": "0.07 m < 0.50 m from goal world (15.30, 15.79)",
+    "normalized_navigation": true,
+    "navigation_sha256": "da3fc31fb3f61a47efcfba8819fb31c29a4a9250489fcaf1c7fc1a7e11293831"
+  },
+  {
+    "evidence": "postfix-seed301/seed301_case0.json",
+    "mission": 2,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 28.99,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      15.48,
+      24.096,
+      0.78
+    ],
+    "actual_goal_error_m": null,
+    "rooms_correct": null,
+    "summary": "green cone box: |dx| 0.02 < 0.25, |dy| 0.05 < 0.25 m",
+    "normalized_navigation": true,
+    "navigation_sha256": "da3fc31fb3f61a47efcfba8819fb31c29a4a9250489fcaf1c7fc1a7e11293831"
+  },
+  {
+    "evidence": "postfix-seed301/seed301_case1.json",
+    "mission": 1,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 23.37,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      14.77,
+      17.574,
+      0.78
+    ],
+    "actual_goal_error_m": 0.063,
+    "rooms_correct": null,
+    "summary": "0.06 m < 0.50 m from goal world (14.74, 17.63)",
+    "normalized_navigation": true,
+    "navigation_sha256": "da3fc31fb3f61a47efcfba8819fb31c29a4a9250489fcaf1c7fc1a7e11293831"
+  },
+  {
+    "evidence": "postfix-seed301/seed301_case1.json",
+    "mission": 2,
+    "kind": "stock mission",
+    "verdict": "PASS",
+    "seconds": 21.9,
+    "error": null,
+    "failed_stage": null,
+    "actual_pelvis": [
+      15.47,
+      24.049,
+      0.78
+    ],
+    "actual_goal_error_m": null,
+    "rooms_correct": null,
+    "summary": "orange cone box: |dx| 0.03 < 0.25, |dy| 0.00 < 0.25 m",
+    "normalized_navigation": true,
+    "navigation_sha256": "da3fc31fb3f61a47efcfba8819fb31c29a4a9250489fcaf1c7fc1a7e11293831"
+  }
+]

@@ -1,0 +1,7 @@
+# Full sensor traces stay on this machine; compact summaries and official logs
+# are committed. No models or bulk sensor datasets are added to Git.
+**/localization.jsonl
+**/trace.jsonl
+candidate-v1-navigation.patch
+delivery.patch
+delivery.bundle

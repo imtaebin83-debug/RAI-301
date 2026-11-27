@@ -1,0 +1,79 @@
+[referee] results file: /home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/final-integration-rooms/rooms-2/official.json
+[main] starting the simulator: -m ros2_bridge.run_g1_ros --no-view --spawn 16 11 0 --m4-room classroom --judge-goal-radius 0.5 --judge-cone-box 0.5 --judge-cone-offset 0.75 --ball-friction 0.62 0.02 0.01 --m1-goal-region 14.0 17.0 1.0 20.0 --m1-goal-yaw 90 --ball-region 7.25 11.25 5.5 8.5 --scenario /home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/final-integration-rooms/rooms-2/scenario.yaml --sensors /home/aril/rai-worktrees/CSH-m1-20261127-02-integration/src/custom/sensors.yaml --max-vel 0.6 0.4 0.7
+[main] starting robot_state_publisher (G1 URDF -> /tf)
+[mission] waiting for the simulator on /g1/mission_status ...
+[INFO] [1795740232.943279220] [mujoco_sim]: /clock 100 Hz | joint_states 50 Hz (29 joints) | G1 RGB-D 20 Hz | extra RGB 10 Hz | lidar 10 Hz (OS1-32 32x512, 1 worker(s)) | IMU 100 Hz | odom 0 Hz
+[INFO] [1795740232.943515196] [mujoco_sim]: listening on /cmd_vel; timeout 0.5s; limits vx/vy/wz=(0.6, 0.4, 0.7)
+[INFO] [1795740232.944119549] [mujoco_sim]: G1 rescue: keys 1-6 in viewer or publish std_msgs/Empty to /g1/respawn
+[INFO] [1795740232.944888734] [mujoco_sim]: referee: std_msgs/Int32 /g1/mission_end judges mission N on ground truth; mission 4 room classroom; scenario /home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/final-integration-rooms/rooms-2/scenario.yaml
+[INFO] [1795740232.945774239] [mujoco_sim]: Mission API: std_msgs/Int32 /g1/mission (1-6, respawn there), std_msgs/Int32 /g1/mission_begin (1-6, G1 not moved), std_msgs/Empty /g1/randomize; status on /g1/mission_status, /g1/soccer_kick_status, /panda/task_status
+[INFO] [1795740232.945896230] [mujoco_sim]: ground truth: NOT published (no /odom, no odom TF; add --ground-truth to enable); initial pose: manual (RViz 2D Pose Estimate)
+[INFO] [1795740232.961922602] [mujoco_sim]: Panda task (startup): arm home, pencil (20.991, 19.715), holder (21.378, 19.706)
+[INFO] [1795740232.962292452] [mujoco_sim]: Scenario (/home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/final-integration-rooms/rooms-2/scenario.yaml): m1 goal (15.50, 18.00), m2 green, cones blue | green | orange, rooms medical | classroom | cafeteria, ball (9.25, 8.15)
+[INFO] [1795740232.962479826] [mujoco_sim]: scene=layout.json robot='g1/' spawn=(16.00, 11.00, floor 0.00); official Unitree 29-DoF ONNX READY; standing until /cmd_vel arrives
+[mission] simulator up (mission point 1: launch point)
+[main] launching custom/bringup.launch.py (your nodes)
+
+[main] ===== mission 4: Semantic delivery =====
+[referee] mission 4 rooms to identify: cafeteria, classroom, medical (answer: result.data['rooms'] = {room: [x, y] world})
+[INFO] [1795740233.021154123] [mujoco_sim]: mission 4 (three-room hallway view) selected from ROS begin 4; G1 not moved
+[INFO] [launch]: All log files can be found below /home/aril/.ros/log/2026-11-27-09-43-53-079274-aril-13-431162
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [python-1]: process started with pid [431165]
+[nav] pose=(16.00,11.00,-0.00) target=(16.00,17.50) error=6.50
+[nav] pose=(15.82,11.81,1.55) target=(16.00,17.50) error=5.69
+[nav] pose=(16.15,13.63,1.63) target=(16.00,17.50) error=3.87
+[nav] pose=(16.19,15.43,1.69) target=(16.00,17.50) error=2.08
+[nav] pose=(16.05,17.19,1.74) target=(16.00,17.50) error=0.31
+[WARN] [1795740262.507599027] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[nav] pose=(16.09,17.54,0.05) target=(16.00,10.50) error=7.04
+[nav] pose=(16.10,17.24,-1.40) target=(16.00,10.50) error=6.74
+[nav] pose=(15.70,15.71,-1.49) target=(16.00,10.50) error=5.22
+[nav] pose=(15.60,14.17,-1.44) target=(16.00,10.50) error=3.69
+[nav] pose=(15.66,12.67,-1.41) target=(16.00,10.50) error=2.20
+[nav] pose=(15.87,11.08,-1.35) target=(16.00,10.50) error=0.59
+[nav] pose=(16.05,10.48,0.03) target=(16.00,3.59) error=6.89
+[nav] pose=(16.08,10.24,-1.42) target=(16.00,3.59) error=6.65
+[nav] pose=(15.66,8.44,-1.48) target=(16.00,3.59) error=4.86
+[nav] pose=(15.61,6.62,-1.43) target=(16.00,3.59) error=3.05
+[nav] pose=(15.79,4.70,-1.37) target=(16.00,3.59) error=1.13
+[WARN] [1795740321.767636618] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[mission 4] VLM joint assignment ['medical', 'classroom', 'cafeteria']: {'method': 'vlm_likelihood_unique_room_assignment', 'unconstrained_labels': ['medical', 'classroom', 'classroom'], 'score': 7.884800910949707, 'runner_up_margin': 12.430534362792969}
+[nav] pose=(16.06,3.58,-0.01) target=(16.00,10.50) error=6.92
+[nav] pose=(15.98,4.03,1.57) target=(16.00,10.50) error=6.47
+[nav] pose=(16.26,5.90,1.64) target=(16.00,10.50) error=4.61
+[nav] pose=(16.30,7.86,1.70) target=(16.00,10.50) error=2.65
+[nav] pose=(16.13,9.78,1.76) target=(16.00,10.50) error=0.74
+[mission 4] stopped: waiting up to 8s for fresh localization
+[mission 4] fresh localization resumed; retrying remaining leg
+[nav] pose=(16.01,10.63,0.06) target=(20.00,10.50) error=3.99
+[nav] pose=(16.93,10.29,0.10) target=(20.00,10.50) error=3.08
+[nav] pose=(18.02,10.16,0.21) target=(20.00,10.50) error=2.01
+[nav] pose=(19.38,10.31,0.35) target=(20.00,10.50) error=0.65
+[WARN] [1795740434.873084615] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[INFO] [1795740435.365416273] [mujoco_sim]: referee: mission 4 PASS -- pelvis (19.96, 10.49) in classroom; target classroom x 18.25..23.00, y 7.10..13.90
+[referee] ===== mission 4 Semantic delivery: PASS in 201.4 s =====
+[referee]   rooms     truth  : north medical | middle classroom | south cafeteria
+[referee]             answer : north medical | middle classroom | south cafeteria
+[referee]             3/3 rooms right  [PASS]
+[referee]   delivery  pelvis (19.96, 10.49) in classroom; target classroom x 18.25..23.00, y 7.10..13.90  [PASS]
+[referee]   reported  done: 
+[main] stopping the simulator
+[main] stopping the robot_state_publisher
+[main] stopping the custom bringup
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [python-1]: sending signal 'SIGINT' to process[python-1]
+[INFO] [1795740435.508506651] [mujoco_sim]: stopped at sim=178.80s wall=202.55s RTF=0.88
+[python-1] [mission] waiting for the simulator on /g1/mission_status ...
+[python-1] [mission] simulator up (mission point 4: three-room hallway view)
+[python-1] [localizer] waiting: waiting for LiDAR
+[python-1] [localizer] guarded-kiss-icp, IMU roll/pitch=-0.0/-0.5 deg, pelvis height=0.780m floor support=0.77
+[python-1] [localizer] waiting: IMU samples do not bracket scan timestamps
+[INFO] [python-1]: process has finished cleanly [pid 431165]
+
+============================== Mission results (referee, ground truth) ==============================
+  step  #  mission                        result     time  check
+  -     4  Semantic delivery              PASS     201.4s  rooms: 3/3 rooms right; delivery: pelvis (19.96, 10.49) in classroom; target classroom x 18.25..23.00, y 7.10..13.90
+  1/1 passed, missions 201.4 s, run 211.4 s
+  results file: /home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/final-integration-rooms/rooms-2/official.json
+======================================================================================================

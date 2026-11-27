@@ -1,0 +1,1 @@
+{"case": "after-delivery", "returncode": 0, "kind": "mission", "total": {"missions": 2, "passed": 2, "failed": 0, "not_judged": 0, "mission_seconds": 196.99, "run_seconds": 206.99, "by_mission": ["4 PASS 169.9s", "1 PASS 27.1s"], "complete": true, "updated_at": "2026-11-27T10:07:19+09:00"}}

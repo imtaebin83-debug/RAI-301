@@ -1,0 +1,97 @@
+[
+  {
+    "file": "custom/models/Qwen2.5-1.5B-Instruct/config.json",
+    "bytes": 660,
+    "sha256": "98d2ff8cc47488d08a2b0b3acf4eb99ef210779b42bd48605f6b8e36acdbf670"
+  },
+  {
+    "file": "custom/models/Qwen2.5-1.5B-Instruct/generation_config.json",
+    "bytes": 242,
+    "sha256": "e558847a8b4402616f1273797b015104dc266fe4b520056fca88823ba8f8ebe6"
+  },
+  {
+    "file": "custom/models/Qwen2.5-1.5B-Instruct/merges.txt",
+    "bytes": 1671839,
+    "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+  },
+  {
+    "file": "custom/models/Qwen2.5-1.5B-Instruct/model.safetensors",
+    "bytes": 3087467144,
+    "sha256": "dd924a11b4c220f385b51ffa522daea7c9f3d850e31b162bb5661df483c6d3ee"
+  },
+  {
+    "file": "custom/models/Qwen2.5-1.5B-Instruct/tokenizer.json",
+    "bytes": 7031645,
+    "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539"
+  },
+  {
+    "file": "custom/models/Qwen2.5-1.5B-Instruct/tokenizer_config.json",
+    "bytes": 7305,
+    "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583"
+  },
+  {
+    "file": "custom/models/Qwen2.5-1.5B-Instruct/vocab.json",
+    "bytes": 2776833,
+    "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+  },
+  {
+    "file": "custom/models/SmolVLM-500M-Instruct/added_tokens.json",
+    "bytes": 4739,
+    "sha256": "74135b8664b56088c0006f1c8e848d79a8eba003411f72ebf1dc2ee96227be3a"
+  },
+  {
+    "file": "custom/models/SmolVLM-500M-Instruct/chat_template.json",
+    "bytes": 516,
+    "sha256": "12462caec000542ca1bb73cd0ba25aaf320d90335fc46731fa6a8355ea34bd26"
+  },
+  {
+    "file": "custom/models/SmolVLM-500M-Instruct/config.json",
+    "bytes": 7339,
+    "sha256": "daacbbca6af3c34e50466c72aed2df4553a08084f6a0551d4ae420a241cb66c6"
+  },
+  {
+    "file": "custom/models/SmolVLM-500M-Instruct/generation_config.json",
+    "bytes": 136,
+    "sha256": "067a2a54e5f87162ecac6e0e911cc4665fc8f7f3324794ecbac0f76badb56636"
+  },
+  {
+    "file": "custom/models/SmolVLM-500M-Instruct/merges.txt",
+    "bytes": 466391,
+    "sha256": "0b54e8aa4e53d5383e2e4bc635a56b43f9647f7b13832d5d9ecd8f82dac4f510"
+  },
+  {
+    "file": "custom/models/SmolVLM-500M-Instruct/model.safetensors",
+    "bytes": 1015025832,
+    "sha256": "d05b567eeaf534e83d375551f068ed57b5f52d37c657197f644af5ef9db091a2"
+  },
+  {
+    "file": "custom/models/SmolVLM-500M-Instruct/preprocessor_config.json",
+    "bytes": 486,
+    "sha256": "6cb6e36d6fcb88ca1502c4a26750715dc3e7dedddc9a8f17b27d8d167d1457e7"
+  },
+  {
+    "file": "custom/models/SmolVLM-500M-Instruct/processor_config.json",
+    "bytes": 68,
+    "sha256": "e7bff42da73ae9eec9042ef20e066e11f1ee20f025358ff79131e3c0fb549b46"
+  },
+  {
+    "file": "custom/models/SmolVLM-500M-Instruct/special_tokens_map.json",
+    "bytes": 1069,
+    "sha256": "aa0ff906077086dfa9734a7f97f68c825877a48f9468807be65504495cdeef09"
+  },
+  {
+    "file": "custom/models/SmolVLM-500M-Instruct/tokenizer.json",
+    "bytes": 3548256,
+    "sha256": "5ece781dc8d2b2f3e2f289ca0ae50b17cfc27dd27bfe7971bb8241e0b964331a"
+  },
+  {
+    "file": "custom/models/SmolVLM-500M-Instruct/tokenizer_config.json",
+    "bytes": 28336,
+    "sha256": "8a68fb58021bc3df79d70f3d5fa79d2e709083872be1f6965cc9bcd12f3ba66a"
+  },
+  {
+    "file": "custom/models/SmolVLM-500M-Instruct/vocab.json",
+    "bytes": 800662,
+    "sha256": "82b84012e3add4d01d12ba14442026e49b8cbbaead1f79ecf3d919784f82dc79"
+  }
+]

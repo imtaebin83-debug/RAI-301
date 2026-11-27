@@ -1,0 +1,73 @@
+[referee] results file: /home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/candidate-v1-comparison/after-m1-green/official.json
+[main] starting the simulator: -m ros2_bridge.run_g1_ros --no-view --spawn 16 11 0 --m4-room classroom --judge-goal-radius 0.5 --judge-cone-box 0.5 --judge-cone-offset 0.75 --ball-friction 0.62 0.02 0.01 --m1-goal-region 14.0 17.0 1.0 20.0 --m1-goal-yaw 90 --ball-region 7.25 11.25 5.5 8.5 --scenario /home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/candidate-v1-comparison/after-m1-green/scenario.yaml --sensors /home/aril/rai-worktrees/CSH-m1-20261127-02/src/custom/sensors.yaml --max-vel 0.6 0.4 0.7
+[main] starting robot_state_publisher (G1 URDF -> /tf)
+[mission] waiting for the simulator on /g1/mission_status ...
+[INFO] [1795739136.643274808] [mujoco_sim]: /clock 100 Hz | joint_states 50 Hz (29 joints) | G1 RGB-D 20 Hz | extra RGB 10 Hz | lidar 10 Hz (OS1-32 32x512, 1 worker(s)) | IMU 100 Hz | odom 0 Hz
+[INFO] [1795739136.643649400] [mujoco_sim]: listening on /cmd_vel; timeout 0.5s; limits vx/vy/wz=(0.6, 0.4, 0.7)
+[INFO] [1795739136.644772998] [mujoco_sim]: G1 rescue: keys 1-6 in viewer or publish std_msgs/Empty to /g1/respawn
+[INFO] [1795739136.646259435] [mujoco_sim]: referee: std_msgs/Int32 /g1/mission_end judges mission N on ground truth; mission 4 room classroom; scenario /home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/candidate-v1-comparison/after-m1-green/scenario.yaml
+[INFO] [1795739136.647833301] [mujoco_sim]: Mission API: std_msgs/Int32 /g1/mission (1-6, respawn there), std_msgs/Int32 /g1/mission_begin (1-6, G1 not moved), std_msgs/Empty /g1/randomize; status on /g1/mission_status, /g1/soccer_kick_status, /panda/task_status
+[INFO] [1795739136.648082481] [mujoco_sim]: ground truth: NOT published (no /odom, no odom TF; add --ground-truth to enable); initial pose: manual (RViz 2D Pose Estimate)
+[INFO] [1795739136.673160273] [mujoco_sim]: Panda task (startup): arm home, pencil (20.991, 19.715), holder (21.378, 19.706)
+[INFO] [1795739136.673747295] [mujoco_sim]: Scenario (/home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/candidate-v1-comparison/after-m1-green/scenario.yaml): m1 goal (14.98, 7.99), m2 green, cones orange | blue | green, rooms classroom | medical | cafeteria, ball (9.25, 8.15)
+[INFO] [1795739136.674060319] [mujoco_sim]: scene=layout.json robot='g1/' spawn=(16.00, 11.00, floor 0.00); official Unitree 29-DoF ONNX READY; standing until /cmd_vel arrives
+[mission] simulator up (mission point 1: launch point)
+[main] launching custom/bringup.launch.py (your nodes)
+
+[main] ===== mission 1: Point-goal navigation =====
+[INFO] [1795739136.758468661] [mujoco_sim]: mission 1 (launch point) selected from ROS begin 1; G1 not moved
+[INFO] [launch]: All log files can be found below /home/aril/.ros/log/2026-11-27-09-25-36-847431-aril-13-421433
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [python-1]: process started with pid [421436]
+[nav] pose=(16.00,11.00,0.00) target=(14.98,7.99) error=3.18
+[nav] pose=(16.05,10.96,-1.49) target=(14.98,7.99) error=3.16
+[nav] pose=(15.32,9.44,-1.80) target=(14.98,7.99) error=1.49
+[WARN] [1795739152.967465632] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[INFO] [1795739153.511839001] [mujoco_sim]: referee: mission 1 PASS -- 0.07 m < 0.50 m from goal world (14.98, 7.99)
+[referee] ===== mission 1 Point-goal navigation: PASS in 15.8 s =====
+[referee]   check     0.07 m < 0.50 m from goal world (14.98, 7.99)  [PASS]
+[referee]   reported  done: 
+
+[main] ===== mission 2: Cone colour navigation =====
+[INFO] [1795739153.623296232] [mujoco_sim]: mission 2 (cone-room door) selected from ROS begin 2; G1 not moved
+[mission 2] target cone: green
+[nav] pose=(15.00,8.04,-1.76) target=(15.50,20.30) error=12.27
+[nav] pose=(14.90,8.01,2.82) target=(15.50,20.30) error=12.31
+[nav] pose=(15.03,8.82,1.61) target=(15.50,20.30) error=11.49
+[nav] pose=(15.66,10.62,1.62) target=(15.50,20.30) error=9.68
+[nav] pose=(16.22,12.53,1.69) target=(15.50,20.30) error=7.80
+[nav] pose=(16.49,14.26,1.76) target=(15.50,20.30) error=6.12
+[nav] pose=(16.50,15.99,1.82) target=(15.50,20.30) error=4.43
+[nav] pose=(16.22,17.86,1.88) target=(15.50,20.30) error=2.55
+[nav] pose=(15.76,19.56,1.92) target=(15.50,20.30) error=0.78
+[nav] pose=(15.66,21.09,1.72) target=(15.50,22.00) error=0.92
+[WARN] [1795739205.056739203] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[vision] cone: 0 stable frames; observed floor_z=1.34
+[WARN] [1795739209.442898168] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[mission 2] sensor cone estimate: (16.93, 24.69)
+[nav] pose=(15.57,22.29,1.22) target=(16.93,24.02) error=2.20
+[nav] pose=(16.91,24.01,1.13) target=(16.93,24.02) error=0.02
+[WARN] [1795739216.987764411] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[INFO] [1795739217.472845672] [mujoco_sim]: referee: mission 2 PASS -- green cone box: |dx| 0.07 < 0.25, |dy| 0.01 < 0.25 m
+[referee] ===== mission 2 Cone colour navigation: PASS in 62.9 s =====
+[referee]   check     green cone box: |dx| 0.07 < 0.25, |dy| 0.01 < 0.25 m  [PASS]
+[referee]   reported  done: 
+[main] stopping the simulator
+[main] stopping the robot_state_publisher
+[main] stopping the custom bringup
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [python-1]: sending signal 'SIGINT' to process[python-1]
+[INFO] [1795739217.599682915] [mujoco_sim]: stopped at sim=76.80s wall=80.93s RTF=0.95
+[python-1] [mission] waiting for the simulator on /g1/mission_status ...
+[python-1] [mission] simulator up (mission point 1: launch point)
+[python-1] [localizer] waiting: waiting for LiDAR
+[python-1] [localizer] guarded-kiss-icp, IMU roll/pitch=-0.0/-0.5 deg, pelvis height=0.780m floor support=0.79
+[INFO] [python-1]: process has finished cleanly [pid 421436]
+
+============================== Mission results (referee, ground truth) ==============================
+  step  #  mission                        result     time  check
+  -     1  Point-goal navigation          PASS      15.8s  check: 0.07 m < 0.50 m from goal world (14.98, 7.99)
+  -     2  Cone colour navigation         PASS      62.9s  check: green cone box: |dx| 0.07 < 0.25, |dy| 0.01 < 0.25 m
+  2/2 passed, missions 78.7 s, run 90.2 s
+  results file: /home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/candidate-v1-comparison/after-m1-green/official.json
+======================================================================================================

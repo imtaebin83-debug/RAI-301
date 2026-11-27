@@ -1,0 +1,20 @@
+test_irregular_scan_endpoints_and_axis_transform (test_inertial_registration.GyroTests) ... ok
+test_malformed_and_reordered_imu_not_accepted (test_inertial_registration.GyroTests) ... ok
+test_missing_endpoint_never_extrapolates (test_inertial_registration.GyroTests) ... ok
+test_sample_gap_is_not_integrated (test_inertial_registration.GyroTests) ... ok
+test_duplicate_measurement_does_not_renew_freshness (test_inertial_registration.PoseHealthTests) ... ok
+test_invalid_pose_does_not_overwrite_trusted_transform (test_inertial_registration.PoseHealthTests) ... ok
+test_localizer_failure_propagates_even_with_recent_pose (test_inertial_registration.PoseHealthTests) ... ok
+test_old_publisher_without_health_topic_remains_compatible (test_inertial_registration.PoseHealthTests) ... ok
+test_sensor_clock_detects_transport_lag (test_inertial_registration.PoseHealthTests) ... ok
+test_stalled_robot_gets_bounded_reobservations_then_stops (test_inertial_registration.PoseHealthTests) ... ok
+test_bad_scan_does_not_destroy_following_good_scan (test_inertial_registration.RegistrationTests) ... ok
+test_gyro_disagreement_cannot_pollute_map (test_inertial_registration.RegistrationTests) ... ok
+test_pelvis_validation_precedes_map_commit (test_inertial_registration.RegistrationTests) ... ok
+test_real_icp_with_irregular_scan_period (test_inertial_registration.RegistrationTests) ... ok
+test_rejected_jump_does_not_modify_trusted_map (test_inertial_registration.RegistrationTests) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.194s
+
+OK

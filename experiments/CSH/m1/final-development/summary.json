@@ -1,0 +1,110 @@
+[
+  {
+    "case": "low",
+    "returncode": 0,
+    "kind": "mission",
+    "total": {
+      "missions": 1,
+      "passed": 1,
+      "failed": 0,
+      "not_judged": 0,
+      "mission_seconds": 32.57,
+      "run_seconds": 41.28,
+      "by_mission": [
+        "1 PASS 32.6s"
+      ],
+      "complete": true,
+      "updated_at": "2026-11-27T09:37:55+09:00"
+    }
+  },
+  {
+    "case": "high",
+    "returncode": 0,
+    "kind": "mission",
+    "total": {
+      "missions": 1,
+      "passed": 1,
+      "failed": 0,
+      "not_judged": 0,
+      "mission_seconds": 27.37,
+      "run_seconds": 35.76,
+      "by_mission": [
+        "1 PASS 27.4s"
+      ],
+      "complete": true,
+      "updated_at": "2026-11-27T09:38:31+09:00"
+    }
+  },
+  {
+    "case": "room-start",
+    "returncode": 0,
+    "kind": "mission",
+    "total": {
+      "missions": 1,
+      "passed": 1,
+      "failed": 0,
+      "not_judged": 0,
+      "mission_seconds": 30.42,
+      "run_seconds": 38.69,
+      "by_mission": [
+        "1 PASS 30.4s"
+      ],
+      "complete": true,
+      "updated_at": "2026-11-27T09:39:10+09:00"
+    }
+  },
+  {
+    "case": "cone-start",
+    "returncode": 0,
+    "kind": "mission",
+    "total": {
+      "missions": 1,
+      "passed": 1,
+      "failed": 0,
+      "not_judged": 0,
+      "mission_seconds": 37.11,
+      "run_seconds": 45.95,
+      "by_mission": [
+        "1 PASS 37.1s"
+      ],
+      "complete": true,
+      "updated_at": "2026-11-27T09:39:57+09:00"
+    }
+  },
+  {
+    "case": "seed7301-0",
+    "returncode": 0,
+    "kind": "mission",
+    "total": {
+      "missions": 1,
+      "passed": 1,
+      "failed": 0,
+      "not_judged": 0,
+      "mission_seconds": 19.88,
+      "run_seconds": 28.05,
+      "by_mission": [
+        "1 PASS 19.9s"
+      ],
+      "complete": true,
+      "updated_at": "2026-11-27T09:40:25+09:00"
+    }
+  },
+  {
+    "case": "seed7301-1",
+    "returncode": 0,
+    "kind": "mission",
+    "total": {
+      "missions": 1,
+      "passed": 1,
+      "failed": 0,
+      "not_judged": 0,
+      "mission_seconds": 27.48,
+      "run_seconds": 36.03,
+      "by_mission": [
+        "1 PASS 27.5s"
+      ],
+      "complete": true,
+      "updated_at": "2026-11-27T09:41:02+09:00"
+    }
+  }
+]

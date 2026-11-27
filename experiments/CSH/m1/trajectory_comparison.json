@@ -1,0 +1,14 @@
+[
+  {
+    "case": "candidate-v1-comparison/roundtrip",
+    "max_estimated_cross_track_m": 1.6892361115543295,
+    "max_official_checkpoint_error_m": 0.09066973034039506,
+    "max_checkpoint_estimate_error_m": 0.012315193892653462
+  },
+  {
+    "case": "normalized-navigation/roundtrip",
+    "max_estimated_cross_track_m": 0.23623729455080067,
+    "max_official_checkpoint_error_m": 0.061660360037871974,
+    "max_checkpoint_estimate_error_m": 0.010210885049110562
+  }
+]

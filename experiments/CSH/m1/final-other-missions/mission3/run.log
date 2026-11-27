@@ -1,0 +1,68 @@
+[referee] results file: /home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/final-other-missions/mission3/official.json
+[main] starting the simulator: -m ros2_bridge.run_g1_ros --no-view --spawn 16 11 0 --m4-room classroom --judge-goal-radius 0.5 --judge-cone-box 0.5 --judge-cone-offset 0.75 --ball-friction 0.62 0.02 0.01 --m1-goal-region 14.0 17.0 1.0 20.0 --m1-goal-yaw 90 --ball-region 7.25 11.25 5.5 8.5 --scenario /home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/final-other-missions/mission3/scenario.yaml --sensors /home/aril/rai-worktrees/CSH-m1-20261127-02/src/custom/sensors.yaml --max-vel 0.6 0.4 0.7
+[main] starting robot_state_publisher (G1 URDF -> /tf)
+[mission] waiting for the simulator on /g1/mission_status ...
+[INFO] [1795740844.382722303] [mujoco_sim]: /clock 100 Hz | joint_states 50 Hz (29 joints) | G1 RGB-D 20 Hz | extra RGB 10 Hz | lidar 10 Hz (OS1-32 32x512, 1 worker(s)) | IMU 100 Hz | odom 0 Hz
+[INFO] [1795740844.383040312] [mujoco_sim]: listening on /cmd_vel; timeout 0.5s; limits vx/vy/wz=(0.6, 0.4, 0.7)
+[INFO] [1795740844.383824039] [mujoco_sim]: G1 rescue: keys 1-6 in viewer or publish std_msgs/Empty to /g1/respawn
+[INFO] [1795740844.384806520] [mujoco_sim]: referee: std_msgs/Int32 /g1/mission_end judges mission N on ground truth; mission 4 room classroom; scenario /home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/final-other-missions/mission3/scenario.yaml
+[INFO] [1795740844.385953872] [mujoco_sim]: Mission API: std_msgs/Int32 /g1/mission (1-6, respawn there), std_msgs/Int32 /g1/mission_begin (1-6, G1 not moved), std_msgs/Empty /g1/randomize; status on /g1/mission_status, /g1/soccer_kick_status, /panda/task_status
+[INFO] [1795740844.386126968] [mujoco_sim]: ground truth: NOT published (no /odom, no odom TF; add --ground-truth to enable); initial pose: manual (RViz 2D Pose Estimate)
+[INFO] [1795740844.407513036] [mujoco_sim]: Panda task (startup): arm home, pencil (20.991, 19.715), holder (21.378, 19.706)
+[INFO] [1795740844.408034118] [mujoco_sim]: Scenario (/home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/final-other-missions/mission3/scenario.yaml): m1 goal (15.50, 18.00), m2 green, cones blue | green | orange, rooms classroom | medical | cafeteria, ball (9.25, 8.15)
+[INFO] [1795740844.408301141] [mujoco_sim]: scene=layout.json robot='g1/' spawn=(16.00, 11.00, floor 0.00); official Unitree 29-DoF ONNX READY; standing until /cmd_vel arrives
+[mission] simulator up (mission point 1: launch point)
+[main] launching custom/bringup.launch.py (your nodes)
+
+[main] ===== mission 3: Cliff crossing =====
+[INFO] [1795740844.488113903] [mujoco_sim]: mission 3 (cliff-course entrance) selected from ROS begin 3; G1 not moved
+[INFO] [launch]: All log files can be found below /home/aril/.ros/log/2026-11-27-09-54-04-565849-aril-13-432797
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [python-1]: process started with pid [432801]
+[nav] pose=(16.00,11.00,0.00) target=(14.00,20.12) error=9.34
+[nav] pose=(15.76,11.50,1.76) target=(14.00,20.12) error=8.81
+[nav] pose=(15.88,13.06,1.87) target=(14.00,20.12) error=7.31
+[nav] pose=(16.07,14.68,1.97) target=(14.00,20.12) error=5.82
+[nav] pose=(15.99,16.14,2.08) target=(14.00,20.12) error=4.45
+[nav] pose=(15.61,17.60,2.17) target=(14.00,20.12) error=2.99
+[nav] pose=(14.94,18.91,2.26) target=(14.00,20.12) error=1.54
+[nav] pose=(14.06,20.05,2.35) target=(14.00,20.12) error=0.09
+[nav] pose=(13.09,20.07,3.11) target=(12.40,20.12) error=0.70
+[nav] pose=(11.86,20.33,-3.07) target=(6.08,20.12) error=5.79
+[nav] pose=(10.22,20.78,2.76) target=(6.08,20.12) error=4.20
+[nav] pose=(10.60,20.47,2.00) target=(6.08,20.12) error=4.53
+[nav] stalled; sensor reobservation 1/2
+[nav] pose=(10.64,20.53,1.73) target=(6.08,20.12) error=4.58
+[nav] stalled; sensor reobservation 2/2
+[nav] pose=(10.67,20.56,1.80) target=(6.08,20.12) error=4.62
+[nav] pose=(10.72,20.53,2.03) target=(6.08,20.12) error=4.66
+[nav] stalled after two sensor reobservations
+[WARN] [1795740921.269475356] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[INFO] [1795740921.761880861] [mujoco_sim]: referee: mission 3 FAIL -- did not cross the course entrance -> exit; pelvis (10.61, 20.87) outside the exit zone x 13.00..14.20, y 10.78..11.97
+[referee] ===== mission 3 Cliff crossing: FAIL in 76.3 s =====
+[referee]   check     did not cross the course entrance -> exit; pelvis (10.61, 20.87) outside the exit zone x 13.00..14.20, y 10.78..11.97  [FAIL]
+[referee]   reported  done: 
+[main] stopping the simulator
+[main] stopping the robot_state_publisher
+[main] stopping the custom bringup
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [1795740921.866315885] [mujoco_sim]: stopped at sim=77.44s wall=77.46s RTF=1.00
+[INFO] [python-1]: sending signal 'SIGINT' to process[python-1]
+[python-1] [mission] waiting for the simulator on /g1/mission_status ...
+[python-1] [mission] simulator up (mission point 3: cliff-course entrance)
+[python-1] [localizer] waiting: waiting for LiDAR
+[python-1] [localizer] guarded-kiss-icp, IMU roll/pitch=-0.0/-0.5 deg, pelvis height=0.780m floor support=0.82
+[python-1] [localizer] waiting: IMU samples do not bracket scan timestamps
+[python-1] [localizer] waiting: ICP motion jump: 0.156m/34.5deg dt=0.200s
+[python-1] [localizer] waiting: ICP motion jump: 0.050m/28.8deg dt=0.200s
+[python-1] [localizer] waiting: ICP motion jump: 0.083m/23.5deg dt=0.200s
+[python-1] [localizer] waiting: ICP motion jump: 0.067m/17.7deg dt=0.200s
+[python-1] [localizer] waiting: ICP motion jump: 0.058m/18.2deg dt=0.200s
+[INFO] [python-1]: process has finished cleanly [pid 432801]
+
+============================== Mission results (referee, ground truth) ==============================
+  step  #  mission                        result     time  check
+  -     3  Cliff crossing                 FAIL      76.3s  check: did not cross the course entrance -> exit; pelvis (10.61, 20.87) outside the exit zone x 13.00..14.20, y 10.78..11.97
+  0/1 passed, missions 76.3 s, run 84.7 s
+  results file: /home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/final-other-missions/mission3/official.json
+======================================================================================================

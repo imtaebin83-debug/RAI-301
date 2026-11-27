@@ -1,0 +1,98 @@
+[main] starting the simulator: -m ros2_bridge.run_g1_ros --no-view --spawn 16 11 0 --m4-room classroom --judge-goal-radius 0.5 --judge-cone-box 0.5 --judge-cone-offset 0.75 --ball-friction 0.62 0.02 0.01 --m1-goal-region 14.0 17.0 1.0 20.0 --m1-goal-yaw 90 --ball-region 7.25 11.25 5.5 8.5 --scenario /home/aril/rai-worktrees/CSH-m1-20261127-02/src/scenarios/default.yaml --hide-targets --sensors /home/aril/rai-worktrees/CSH-m1-20261127-02/src/custom/sensors.yaml --max-vel 0.6 0.4 0.7
+[main] starting robot_state_publisher (G1 URDF -> /tf)
+[mission] waiting for the simulator on /g1/mission_status ...
+[INFO] [1795740993.993859493] [mujoco_sim]: /clock 100 Hz | joint_states 50 Hz (29 joints) | G1 RGB-D 20 Hz | extra RGB 10 Hz | lidar 10 Hz (OS1-32 32x512, 1 worker(s)) | IMU 100 Hz | odom 0 Hz
+[INFO] [1795740993.994085459] [mujoco_sim]: listening on /cmd_vel; timeout 0.5s; limits vx/vy/wz=(0.6, 0.4, 0.7)
+[INFO] [1795740993.994671954] [mujoco_sim]: G1 rescue: keys 1-6 in viewer or publish std_msgs/Empty to /g1/respawn
+[INFO] [1795740993.995401048] [mujoco_sim]: referee: std_msgs/Int32 /g1/mission_end judges mission N on ground truth; mission 4 room classroom; scenario /home/aril/rai-worktrees/CSH-m1-20261127-02/src/scenarios/default.yaml
+[INFO] [1795740993.996232285] [mujoco_sim]: Mission API: std_msgs/Int32 /g1/mission (1-6, respawn there), std_msgs/Int32 /g1/mission_begin (1-6, G1 not moved), std_msgs/Empty /g1/randomize; status on /g1/mission_status, /g1/soccer_kick_status, /panda/task_status
+[INFO] [1795740993.996351960] [mujoco_sim]: ground truth: NOT published (no /odom, no odom TF; add --ground-truth to enable); initial pose: manual (RViz 2D Pose Estimate)
+[INFO] [1795740994.011928729] [mujoco_sim]: Panda task (startup): arm home, pencil (20.991, 19.715), holder (21.378, 19.706)
+[INFO] [1795740994.012308404] [mujoco_sim]: Scenario (/home/aril/rai-worktrees/CSH-m1-20261127-02/src/scenarios/default.yaml): m1 goal (15.50, 18.00), m2 green, cones blue | green | orange, rooms classroom | medical | cafeteria, ball (9.25, 8.15)
+[INFO] [1795740994.012494575] [mujoco_sim]: scene=layout.json robot='g1/' spawn=(16.00, 11.00, floor 0.00); official Unitree 29-DoF ONNX READY; standing until /cmd_vel arrives
+[mission] simulator up (mission point 1: launch point)
+[main] launching custom/bringup.launch.py (your nodes)
+[referee] results file: /home/aril/rai-worktrees/CSH-m1-20261127-02/src/results/run_20261127-095634.json
+[main] starting the instruction page on http://localhost:18501
+[main] type the instruction on http://localhost:18501; Ctrl-C here stops everything
+[INFO] [launch]: All log files can be found below /home/aril/.ros/log/2026-11-27-09-56-34-229764-aril-13-433724
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [python-1]: process started with pid [433729]
+
+[main] instruction from the page: 'Walk to (15.5, 18.0), then go to the green cone.'
+[planner] local Qwen CPU language-model inference
+[planner] removed trailing quoting after complete LLM JSON
+[main] plan for 'Walk to (15.5, 18.0), then go to the green cone.':
+[main]   1. mission 1  (Point-goal navigation)  {'goal': [15.5, 18.0]}
+[main]   2. mission 2  (Cone colour navigation)  {'color': 'green'}
+
+[main] ===== mission 1: Point-goal navigation (step 1/2, {'goal': [15.5, 18.0]}) =====
+[INFO] [1795741014.460399534] [mujoco_sim]: mission 1 (launch point) selected from ROS begin 1; G1 not moved
+[nav] pose=(16.01,11.00,-0.00) target=(15.50,18.00) error=7.02
+[nav] pose=(15.94,11.73,1.64) target=(15.50,18.00) error=6.29
+[nav] pose=(15.79,13.68,1.67) target=(15.50,18.00) error=4.33
+[nav] pose=(15.67,15.68,1.68) target=(15.50,18.00) error=2.33
+[nav] pose=(15.52,17.67,1.67) target=(15.50,18.00) error=0.33
+[WARN] [1795741035.951143788] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[INFO] [1795741036.432817367] [mujoco_sim]: referee: mission 1 PASS -- 0.04 m < 0.50 m from goal world (15.50, 18.00)
+[referee] ===== mission 1 (step 1/2) Point-goal navigation: PASS in 21.1 s =====
+[referee]   check     0.04 m < 0.50 m from goal world (15.50, 18.00)  [PASS]
+[referee]   reported  done: 
+
+[main] ===== mission 2: Cone colour navigation (step 2/2, {'color': 'green'}) =====
+[INFO] [1795741036.522564258] [mujoco_sim]: mission 2 (cone-room door) selected from ROS begin 2; G1 not moved
+[mission 2] target cone: green
+[nav] pose=(15.51,17.96,1.71) target=(15.50,20.30) error=2.34
+[nav] pose=(15.52,19.60,1.61) target=(15.50,20.30) error=0.70
+[nav] pose=(15.49,21.27,1.59) target=(15.50,22.00) error=0.73
+[WARN] [1795741051.460756063] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[mission 2] sensor cone estimate: (15.50, 24.77)
+[nav] pose=(15.53,22.21,1.64) target=(15.50,24.10) error=1.89
+[nav] pose=(15.50,23.98,1.61) target=(15.50,24.10) error=0.12
+[WARN] [1795741058.869009363] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[INFO] [1795741059.356897953] [mujoco_sim]: referee: mission 2 PASS -- green cone box: |dx| 0.02 < 0.25, |dy| 0.03 < 0.25 m
+[referee] ===== mission 2 (step 2/2) Cone colour navigation: PASS in 21.9 s =====
+[referee]   check     green cone box: |dx| 0.02 < 0.25, |dy| 0.03 < 0.25 m  [PASS]
+[referee]   reported  done: 
+[referee] instruction -> last verdict: 64.7 s (planning + missions + judging)
+
+[main] interrupted
+[main] stopping the simulator
+[main] stopping the robot_state_publisher
+[main] stopping the instruction page
+[main] stopping the custom/bringup.launch.py
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [python-1]: sending signal 'SIGINT' to process[python-1]
+[python-1] Exception in thread mission-spin:
+[python-1] Traceback (most recent call last):
+[python-1]   File "/home/aril/miniconda3/envs/haic_rai301/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+[python-1]     self.run()
+[python-1]   File "/home/aril/miniconda3/envs/haic_rai301/lib/python3.10/threading.py", line 953, in run
+[python-1]     self._target(*self._args, **self._kwargs)
+[python-1]   File "/home/aril/rai-worktrees/CSH-m1-20261127-02/src/mission_api.py", line 327, in _spin
+[python-1]     self.executor.spin_once(timeout_sec=0.1)
+[python-1]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 867, in spin_once
+[python-1]     self._spin_once_impl(timeout_sec)
+[python-1]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 848, in _spin_once_impl
+[python-1]     handler, entity, node = self.wait_for_ready_callbacks(
+[python-1]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 784, in wait_for_ready_callbacks
+[python-1]     return next(self._cb_iter)
+[python-1]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 657, in _wait_for_ready_callbacks
+[python-1]     wait_set = _rclpy.WaitSet(
+[python-1] rclpy._rclpy_pybind11.RCLError: failed to initialize wait set: the given context is not valid, either rcl_init() was not called or rcl_shutdown() was called., at ./src/rcl/wait.c:130
+[INFO] [1795741059.689469142] [mujoco_sim]: stopped at sim=65.65s wall=65.68s RTF=1.00
+[python-1] [mission] waiting for the simulator on /g1/mission_status ...
+[python-1] [mission] simulator up (mission point 1: launch point)
+[python-1] [localizer] waiting: waiting for LiDAR
+[python-1] [localizer] guarded-kiss-icp, IMU roll/pitch=-0.0/-0.5 deg, pelvis height=0.780m floor support=0.80
+[python-1] [localizer] waiting: IMU samples do not bracket scan timestamps
+[INFO] [python-1]: process has finished cleanly [pid 433729]
+
+============================== Mission results (referee, ground truth) ==============================
+  step  #  mission                        result     time  check
+  1/2   1  Point-goal navigation          PASS      21.1s  check: 0.04 m < 0.50 m from goal world (15.50, 18.00)
+  2/2   2  Cone colour navigation         PASS      21.9s  check: green cone box: |dx| 0.02 < 0.25, |dy| 0.03 < 0.25 m
+  instruction -> last verdict: 64.7 s
+  2/2 passed, missions 43.0 s, run 66.4 s (run interrupted)
+  results file: /home/aril/rai-worktrees/CSH-m1-20261127-02/src/results/run_20261127-095634.json
+======================================================================================================

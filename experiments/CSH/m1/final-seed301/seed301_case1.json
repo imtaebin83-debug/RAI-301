@@ -1,0 +1,240 @@
+{
+  "case": 1,
+  "seed": 301,
+  "returncode": 0,
+  "evaluation_scenario": {
+    "m1_goal": [
+      14.74,
+      17.63,
+      90.0
+    ],
+    "m2_color": "orange",
+    "cone_order": [
+      "green",
+      "orange",
+      "blue"
+    ],
+    "room_order": [
+      "classroom",
+      "cafeteria",
+      "medical"
+    ],
+    "ball_xy": [
+      7.52,
+      7.43
+    ],
+    "panda_task": {
+      "pencil_xy": [
+        20.9911,
+        19.715
+      ],
+      "pencil_yaw_deg": 3.52,
+      "cup_xy": [
+        21.3778,
+        19.7061
+      ],
+      "cup_yaw_deg": 13.25
+    }
+  },
+  "code_sha256": {
+    "custom/bringup.launch.py": "439468d3cdfe278e08908df2c1729dbdcdd97eaadc0f9be459f8c89697dbc4d2",
+    "custom/public_map.py": "cbb6a31993c75d378e7b805d52311583e032122f34f361e8de234cb90b604695",
+    "custom/navigation.py": "e5a23494038a0c06cdc2aad70ba9876a5863eb7682d45574e5ee9df8761f252b",
+    "custom/localizer_node.py": "844a42c85ba7c62809cce8c4b7c156bfb64fd32887020fc06eeafc7ee814289b",
+    "custom/localization.py": "a4aadd43832e015d9f2ce694aa86d0d4dca0c97f98a3b2d0331549915a14426e",
+    "custom/vlm.py": "6c59b7e8bb779e3b9ccace53ee0b89f2b17170557c02d63e9f2df4f3a4a233ef",
+    "custom/vision.py": "c81086a280acc35ea734d3ee948cd2cad66f765503436323fa04bd03b623fa63",
+    "custom/icp_registration.py": "fb98fed15f4a3f032dacea92413349a6ba661824555b9f49c4748ccbb573af50",
+    "custom/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "custom/inertial.py": "d7e1acfefb56fab9b7bb2a8612aedb9368aaf00d4543cd5c0dd6e7717d8c0679",
+    "custom/tools/download_models.py": "f065d3de598843c8ab06b227f558eb88b23bf1623b05da07ede1d3dfba807c5f",
+    "custom/tests/test_vision.py": "5ae70c4a11a40bcf9ba1eaf4d4b14d2e27fa5f32aac6088702b195c58fb12c3b",
+    "custom/tests/test_inertial_registration.py": "ea51ee0437c2c3271d84e68abfa2c6e90307f352d84215e72ba0e4b8d848974e",
+    "custom/tests/test_planner_worker.py": "6099234964a7e4500c28f2dc3bfaa5c57ddb3c2bd268f56ee0ded160d360cb18",
+    "custom/tests/test_planner.py": "2b613ba6f466cb0889764222c65f10fe2fcc956e12116862c25268507fea98f2",
+    "custom/tests/test_room_assignment.py": "650a4875d6b87c9c877ae9464687c74a81cf92ea83283f47de0c63e1fab91225",
+    "custom/mission_6/mission_6.py": "b59093d8c530aae16980db163eec10f2b14407699ab4a57e60e1564613116336",
+    "custom/mission_6/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "custom/testing/web_smoke.py": "fbe4642146d145314a9624f4a348d8c49a5f67910567cae1020e5633111385a5",
+    "custom/testing/m1_regression.py": "56d9bcdeefd9d27ae3f7429475163c667cfd5364c1defa7c83ffcac8612e6feb",
+    "custom/testing/capture.py": "be26d09fd23618c1e230891c95ac717455531bc363a00175606bcc78e134ee07",
+    "custom/testing/randomized_suite.py": "b1a106da8784b4a491bdb3a3664964e4b156e286d247153d4bb71fe4a376c7b7",
+    "custom/planner/planner.py": "a5d44dfed7a393d00914e88472a27b26e1d1ea3617a419caeb0221b8e675ce93",
+    "custom/planner/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "custom/planner/local_model.py": "58b5dfd26f5f77ebc0d4e0837013d5997486310449a87cd432f2c1a3b097511e",
+    "custom/planner/worker.py": "671c54e5639401cf00fb6607b12cffd5030a53acacbf3305ad41427b73999d19",
+    "custom/mission_1/mission_1.py": "ed7a568cbca78b2430125b326bba76f96f9aead474da109e3f138c9bca7b09d5",
+    "custom/mission_1/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "custom/mission_3/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "custom/mission_3/mission_3.py": "bd3fb3282a039b7c5a801873fb39e707d0cec5acd897413e5a98fc40f00892d4",
+    "custom/mission_4/mission_4.py": "1cec5844ba50239a19c18cf023e8436f62194eb0223133f9bc90fd2a9a96a301",
+    "custom/mission_4/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "custom/mission_2/mission_2.py": "96825919f078a28f735eb8ba2096afd426a36447266e253c817602d0a52680f4",
+    "custom/mission_2/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "custom/mission_5/evaluate.py": "56808e2263c639fb72569130c84d16105095743c4f1afdd278117ddfb922673b",
+    "custom/mission_5/policy.py": "49ee223a7eecc001226842f8d91597a709f1f1f005dd1f9976fceb63b7416e0e",
+    "custom/mission_5/perception.py": "ecfbcff353630d7f861f25ec44c7aed62d47aa3233f3bf373547edd43e93f5b9",
+    "custom/mission_5/train_keyposes.py": "dc91fc9cc220753c69fbf59729d381e6f0f372b24f6860fceff639956621bcc6",
+    "custom/mission_5/collect.py": "724713c70c9d453dc97cb8fe1febded5497ace943657abf7b6a5443395c38ef5",
+    "custom/mission_5/ros_io.py": "a30aba84ec521699c9ce76b5e94e114e270465e94951408b629a97ae88f41408",
+    "custom/mission_5/mission_5.py": "f4b610434c1e3001b79b9bf5a84217f8bef6ab3db0c54490e5bced0a8b5d71bf",
+    "custom/mission_5/policy_adapter.py": "0843344db550660c8b35322a17c9ee78242a1c02588d813e80092174138c41b6",
+    "custom/mission_5/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "custom/mission_5/vision_teacher.py": "49d7a2d34264e3a7bde9c969fafb46b1b5594b2f7afa5ccd2693acf97deb2862",
+    "custom/mission_5/benchmark.py": "74c75fcc83a84f11d0d82a6df264250b8916b3e705a84c9703676c5917854b87",
+    "custom/mission_5/keypose_policy.py": "86bfdf918bcb2547f04e7402ee97d4a240c94e9d6c69f225495b09ae2050c16d",
+    "custom/mission_5/tests/test_perception.py": "31354907b46387dd722bb11fb1b6d40fba6763d1cf8220c4d3ae4f2df4b6527f",
+    "custom/mission_5/tests/test_teacher.py": "08bce20b8ea3c180fafae08569819130f0ac95aa282661fecbecd75c8802a611",
+    "custom/mission_5/tests/test_learning.py": "15ff3a59db429f5ec98eef42d7a196f72eedaef6a3a1cbcb390bee524cf74e90",
+    "custom/mission_5/tests/test_grasp.py": "0a0b5426c9fd0452e2acfc24a79c93ac98c283c429dfcb53d2dc5203eab15f62",
+    "custom/mission_5/tests/test_keyposes.py": "bd742428a98b50509ddc76e6868f5af8e467d1a5d0db7c46da094735e4198347",
+    "custom/mission_5/tests/test_ros_io.py": "de56f65f6bf96acf30fc47fc873deada230d65774fbe09caf67b33285fdc6f6b",
+    "custom/mission_5/bc/export.py": "fd4141d9bfe33ce99a882126da0f78aca59f71167f57ce35d59de66faaf1f01c",
+    "custom/mission_5/bc/merge.py": "7add681774a5ac88af7e0563a4d6eb5eb472680602b4a6dd0d5a269f512661b0",
+    "custom/mission_5/bc/policy.py": "0b6b20d78af5a8bc35edca442b4402e821feddfefe3868c748cb0b1fe66a88e8",
+    "custom/mission_5/bc/prepare.py": "fa688c782496492bcac4859463d15b842b37cf7fa3874e2f048a8aeaeeeec1f8",
+    "custom/mission_5/bc/__init__.py": "47c2e5f788aab12c14747b5e52437b037c3020a7df23fcd0a74b3846005e473a",
+    "custom/mission_5/bc/train.py": "868fc8b8e2b10766ec1a0ed5f855d5d268da8e00bec333aa4007429b1f6243fe",
+    "custom/mission_5/bc/model.py": "e2236de08c9ac5eef1d91d46ba52281300cb1ebd3d0391cb2cdc1267cdcd640f",
+    "custom/mission_5/bc/frames.py": "a9daf859f8512fe5687ff32f35f1157d092b70319d1196db912e137cc321b2fe",
+    "custom/mission_5/bc/data.py": "fcf7c821b6bcb620ccf4ba1455f2d9d942c99d5ed168d0191c2470639f1c2192",
+    "custom/mission_5/docs/validation/stability_20261122/analysis/reproduce_case0comparison.py": "dd80d7e0fff57c2cbfc3a98f40ff29b2c6e057463dc48bcebe660a96798cd682",
+    "custom/mission_5/docs/validation/stability_20261122/analysis/analyze_benchmarks.py": "9dde5ba39f283bb7c53f60a34e21e97b3b86bd4973927c90084bd48f6387ca73",
+    "custom/mission_5/docs/validation/stability_20261122/analysis/perception_replay.py": "9392482606ab6f583b1c27f33912869967489c7d3984222a3955a2823b036498",
+    "custom/mission_5/docs/validation/stability_20261122/analysis/perception_replay_sources/h18_branch_aligned.py": "ecfbcff353630d7f861f25ec44c7aed62d47aa3233f3bf373547edd43e93f5b9",
+    "custom/mission_5/docs/validation/stability_20261122/analysis/perception_replay_sources/h20.py": "16d2e6668d29dbff3a56d09a9d831f078c8017fabe1c6a9727892a70fba928ca"
+  },
+  "official_result": {
+    "run": {
+      "started_at": "2026-11-27T09:36:24+09:00",
+      "package": "CSH-m1-20261127-02",
+      "mode": "auto",
+      "config": "/tmp/rai-eval-3t336i6n/config.yaml",
+      "scenario": "/tmp/rai-eval-3t336i6n/scenario.yaml",
+      "referee": {
+        "goal_radius_m": 0.5,
+        "cone_box_m": 0.5,
+        "cone_box_offset_m": 0.75,
+        "m4_room": "classroom",
+        "m1_goal": [
+          14.74,
+          17.63,
+          90.0
+        ],
+        "m2_color": "orange"
+      },
+      "plans": [],
+      "ended_at": "2026-11-27T09:37:13+09:00"
+    },
+    "missions": [
+      {
+        "mission": 1,
+        "label": "Point-goal navigation",
+        "verdict": "PASS",
+        "success": true,
+        "seconds": 21.96,
+        "started_at": "2026-11-27T09:36:24+09:00",
+        "ended_at": "2026-11-27T09:36:46+09:00",
+        "checks": [
+          {
+            "name": "check",
+            "ok": true,
+            "summary": "0.07 m < 0.50 m from goal world (14.74, 17.63)"
+          }
+        ],
+        "reported": {
+          "status": "done",
+          "detail": ""
+        },
+        "referee": {
+          "mission": 1,
+          "pelvis": [
+            14.776,
+            17.571,
+            0.78
+          ],
+          "success": true,
+          "summary": "0.07 m < 0.50 m from goal world (14.74, 17.63)",
+          "goal": [
+            14.74,
+            17.63
+          ],
+          "goal_world": [
+            14.74,
+            17.63
+          ],
+          "distance_m": 0.069,
+          "threshold_m": 0.5
+        },
+        "data": {
+          "controller_reached": true,
+          "estimated_pose": [
+            14.769058842359568,
+            17.578748021334647,
+            1.9714442275799742
+          ]
+        }
+      },
+      {
+        "mission": 2,
+        "label": "Cone colour navigation",
+        "verdict": "PASS",
+        "success": true,
+        "seconds": 24.56,
+        "started_at": "2026-11-27T09:36:47+09:00",
+        "ended_at": "2026-11-27T09:37:11+09:00",
+        "checks": [
+          {
+            "name": "check",
+            "ok": true,
+            "summary": "orange cone box: |dx| 0.02 < 0.25, |dy| 0.02 < 0.25 m"
+          }
+        ],
+        "reported": {
+          "status": "done",
+          "detail": ""
+        },
+        "referee": {
+          "mission": 2,
+          "pelvis": [
+            15.515,
+            24.026,
+            0.779
+          ],
+          "success": true,
+          "summary": "orange cone box: |dx| 0.02 < 0.25, |dy| 0.02 < 0.25 m",
+          "color": "orange",
+          "box_center": [
+            15.5,
+            24.05
+          ],
+          "box_m": 0.5,
+          "dx_m": 0.015,
+          "dy_m": -0.024
+        },
+        "data": {
+          "color": "orange",
+          "cone_xy": [
+            15.510202279244174,
+            24.71584940874036
+          ],
+          "reached": true
+        }
+      }
+    ],
+    "total": {
+      "missions": 2,
+      "passed": 2,
+      "failed": 0,
+      "not_judged": 0,
+      "mission_seconds": 46.52,
+      "run_seconds": 49.54,
+      "by_mission": [
+        "1 PASS 22.0s",
+        "2 PASS 24.6s"
+      ],
+      "complete": true,
+      "updated_at": "2026-11-27T09:37:13+09:00"
+    }
+  }
+}

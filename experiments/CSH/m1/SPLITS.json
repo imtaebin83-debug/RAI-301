@@ -1,0 +1,50 @@
+{
+  "basis": "7542e7efbbaf1f55c47d92a8acbc12070df37538",
+  "regression": {
+    "seed": 301,
+    "cases": 2,
+    "missions": [
+      1,
+      2
+    ]
+  },
+  "development": {
+    "seed": 7301,
+    "cases": [
+      "default",
+      "low",
+      "high",
+      "room-start",
+      "cone-start",
+      "roundtrip",
+      "doors",
+      "survey",
+      "after-m1-green"
+    ]
+  },
+  "evaluation": {
+    "seed": 9407,
+    "cases": 2,
+    "policy": "first opened after final navigation source was frozen; disclose any tuning and reserve a new seed if used",
+    "stage": "before IMU endpoint scheduling correction"
+  },
+  "integration": {
+    "mission_2": "2284468",
+    "mission_4": "36d6ee5",
+    "cases": [
+      "rooms-2",
+      "rooms-3",
+      "after-cone",
+      "after-delivery"
+    ],
+    "policy": "temporary isolated source overlay only; no Mission 2/4 body edits in submitted branch"
+  },
+  "control_freeze_commit": "a932e37",
+  "diagnostics_commit": "8156dd5",
+  "final_evaluation": {
+    "seed": 9509,
+    "cases": 2,
+    "policy": "reserved after observed IMU endpoint race, before opening these goals; no further controller tuning"
+  },
+  "final_observation_freeze_commit": "092315b"
+}

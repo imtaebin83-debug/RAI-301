@@ -1,0 +1,44 @@
+CSH / Mission 1 common navigation, 2026-11-27 (Asia/Seoul)
+
+No new shared environment, sensor, walking-policy or dependency change is required.
+HAIC_MAP_CORRECTION remains OFF. No changes to mission 2/3/4/5/6 bodies or vision.py
+are submitted by this branch.
+
+Shared files to review on integration:
+  custom/localization.py, custom/localizer_node.py, custom/navigation.py
+New helpers: custom/inertial.py, custom/icp_registration.py
+Planner helpers: custom/planner/local_model.py, planner.py, worker.py
+
+Navigator pose/goto/route_to/face/camera_to_world/stop signatures are preserved.
+Walking velocity now scales the complete body vector before axis limits, fixing
+the old independent clipping that could command 0.18m/s north for a westward
+cliff-strip target. The supplied walking policy and velocity caps are unchanged.
+estimated_pose and map->pelvis TF now carry the accepted LiDAR scan timestamp,
+in the same simulated time domain as robot TF. The additive String topic
+/custom/localization_status (version=1) provides valid/terminal/reason/quality,
+accepted measurement_stamp, rejected_scans, recovery_count, and ICP metrics.
+Navigator stops immediately on invalid health and waits at most 0.8s for fresh
+sensor recovery in goto/face. Direct pose() still fails closed on stale data.
+Older publishers without the optional status topic retain the receipt watchdog.
+
+KISS map updates occur only after motion, IMU agreement, correspondence support,
+residual and pelvis-transform checks. A rejected scan retains the last trusted
+map and pose. No waypoint snapping, truth read, command dead reckoning or relaxed
+jump limit is introduced. Translation always needs a successful scan alignment.
+
+Mission 2/4 owners: rerun your evaluator's after-m1-green and rooms-2/rooms-3,
+then after-cone, with these shared files. Their evaluators use run_sim.sh's lock;
+do not wrap those evaluators in another flock. Our testing/m1_regression.py does
+not acquire a lock and must have one outer flock, like randomized_suite.py.
+
+Mission 3/6 owners: minimal current-main reproductions from your src are
+  flock -n /tmp/rai-gpu-simulator.lock python custom/testing/m1_regression.py \
+    --case mission3 --case mission6 --output ../experiments/CSH/m1/owner-regression
+Use a new output directory each time. Source hashes, scenario/spawn, official
+results and logs are recorded by the evaluator; no pose resets occur between
+missions in a multi-mission case. Probe cases are labelled separately from
+Mission1.run() trials and their final referee PASS is not a claim that all
+probe checkpoints or heading checks succeeded.
+
+The full evidence and remaining integration limits are in
+custom/docs/experiments/CSH_m1_20261127.md.

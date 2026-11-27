@@ -1,0 +1,243 @@
+[
+  {
+    "split": "dev",
+    "instruction": "Go to the blue cone, then score a goal.",
+    "expected": [
+      [
+        2,
+        {
+          "color": "blue"
+        }
+      ],
+      6
+    ],
+    "raw": "{\"steps\":[{\"mission\":2,\"params\":{\"color\":\"blue\"}},{\"mission\":6,\"params\":{}}]}\"",
+    "plan": [
+      [
+        2,
+        {
+          "color": "blue"
+        }
+      ],
+      6
+    ],
+    "correct": true,
+    "seconds": 17.957504857040476
+  },
+  {
+    "split": "dev",
+    "instruction": "좌표 (14.2, 7.7)로 이동한 다음 주황색 콘을 찾아가.",
+    "expected": [
+      [
+        1,
+        {
+          "goal": [
+            14.2,
+            7.7
+          ]
+        }
+      ],
+      [
+        2,
+        {
+          "color": "orange"
+        }
+      ]
+    ],
+    "raw": "{\"steps\":[{\"mission\":1,\"params\":{\"goal\":[14.2,7.7]}},{\"mission\":2,\"params\":{\"color\":\"orange\"}}]}\"",
+    "plan": [
+      [
+        1,
+        {
+          "goal": [
+            14.2,
+            7.7
+          ]
+        }
+      ],
+      [
+        2,
+        {
+          "color": "orange"
+        }
+      ]
+    ],
+    "correct": true,
+    "seconds": 17.302572804968804
+  },
+  {
+    "split": "dev",
+    "instruction": "초록색 콘으로 간 다음 절벽을 건너고 교실에 연필을 배달해.",
+    "expected": [
+      [
+        2,
+        {
+          "color": "green"
+        }
+      ],
+      3,
+      4
+    ],
+    "raw": "{\"steps\":[{\"mission\":2,\"params\":{\"color\":\"green\"}},{\"mission\":3,\"params\":{}},{\"mission\":4,\"params\":{}}]}\"",
+    "plan": [
+      [
+        2,
+        {
+          "color": "green"
+        }
+      ],
+      3,
+      4
+    ],
+    "correct": true,
+    "seconds": 16.948011337954085
+  },
+  {
+    "split": "eval",
+    "instruction": "파란색 콘을 찾고 나서 (16.6, 2.3)으로 이동해.",
+    "expected": [
+      [
+        2,
+        {
+          "color": "blue"
+        }
+      ],
+      [
+        1,
+        {
+          "goal": [
+            16.6,
+            2.3
+          ]
+        }
+      ]
+    ],
+    "raw": "{\"steps\":[{\"mission\":2,\"params\":{\"color\":\"blue\"}},{\"mission\":1,\"params\":{\"goal\":[16.6,2.3]}}]}\"",
+    "plan": [
+      [
+        2,
+        {
+          "color": "blue"
+        }
+      ],
+      [
+        1,
+        {
+          "goal": [
+            16.6,
+            2.3
+          ]
+        }
+      ]
+    ],
+    "correct": true,
+    "seconds": 17.424368173000403
+  },
+  {
+    "split": "eval",
+    "instruction": "먼저 연필을 연필꽂이에 꽂고, 축구 득점을 해 줘.",
+    "expected": [
+      5,
+      6
+    ],
+    "raw": "{\"steps\":[{\"mission\":5,\"params\":{}},{\"mission\":6,\"params\":{}}]}\"",
+    "plan": [
+      5,
+      6
+    ],
+    "correct": true,
+    "seconds": 12.110046049987432
+  },
+  {
+    "split": "eval",
+    "instruction": "Cross the gap course, deliver the pencil to the classroom, then find the orange cone.",
+    "expected": [
+      3,
+      4,
+      [
+        2,
+        {
+          "color": "orange"
+        }
+      ]
+    ],
+    "raw": "{\"steps\":[{\"mission\":3,\"params\":{}},{\"mission\":4,\"params\":{}},{\"mission\":2,\"params\":{\"color\":\"orange\"}}]}\"",
+    "plan": [
+      3,
+      4,
+      [
+        2,
+        {
+          "color": "orange"
+        }
+      ]
+    ],
+    "correct": true,
+    "seconds": 15.638248253031634
+  },
+  {
+    "split": "eval",
+    "instruction": "Walk to (14.05, 19.7), then to (16.8, 1.1).",
+    "expected": [
+      [
+        1,
+        {
+          "goal": [
+            14.05,
+            19.7
+          ]
+        }
+      ],
+      [
+        1,
+        {
+          "goal": [
+            16.8,
+            1.1
+          ]
+        }
+      ]
+    ],
+    "raw": "{\"steps\":[{\"mission\":1,\"params\":{\"goal\":[14.05,19.7]}},{\"mission\":1,\"params\":{\"goal\":[16.8,1.1]}}]}\"",
+    "plan": [
+      [
+        1,
+        {
+          "goal": [
+            14.05,
+            19.7
+          ]
+        }
+      ],
+      [
+        1,
+        {
+          "goal": [
+            16.8,
+            1.1
+          ]
+        }
+      ]
+    ],
+    "correct": true,
+    "seconds": 19.98292365402449
+  },
+  {
+    "split": "eval",
+    "instruction": "콘을 찾아가.",
+    "expected": null,
+    "raw": "{\"steps\":[{\"mission\":2,\"params\":{}}]}",
+    "error": "mission 2 accepts only color",
+    "correct": true,
+    "seconds": 12.149356770969462
+  },
+  {
+    "split": "eval",
+    "instruction": "Make coffee.",
+    "expected": null,
+    "raw": "{\"steps\":[]}",
+    "error": "no executable missions found",
+    "correct": true,
+    "seconds": 9.915250921971165
+  }
+]

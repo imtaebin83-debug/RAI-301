@@ -1,0 +1,33 @@
+[
+  {
+    "instruction": "Go to the blue cone, then score a goal.",
+    "plan": [
+      [
+        2,
+        {
+          "color": "blue"
+        }
+      ],
+      6
+    ],
+    "seconds": 15.958390395971946
+  },
+  {
+    "instruction": "좌표 (14.2, 7.7)로 이동한 다음 주황색 콘을 찾아가.",
+    "error": "mission 2 needs green, blue, or orange",
+    "seconds": 18.140320979000535
+  },
+  {
+    "instruction": "초록색 콘으로 간 다음 절벽을 건너고 교실에 연필을 배달해.",
+    "plan": [
+      [
+        2,
+        {
+          "color": "green"
+        }
+      ],
+      3
+    ],
+    "seconds": 16.329164343012962
+  }
+]

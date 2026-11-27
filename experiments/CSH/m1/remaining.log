@@ -1,0 +1,62 @@
+{"case": "rooms-2", "returncode": 0, "kind": "mission", "total": {"missions": 1, "passed": 1, "failed": 0, "not_judged": 0, "mission_seconds": 201.39, "run_seconds": 211.37, "by_mission": ["4 PASS 201.4s"], "complete": true, "updated_at": "2026-11-27T09:47:16+09:00"}}
+{"case": "rooms-3", "returncode": 0, "kind": "mission", "total": {"missions": 1, "passed": 1, "failed": 0, "not_judged": 0, "mission_seconds": 168.53, "run_seconds": 176.97, "by_mission": ["4 PASS 168.5s"], "complete": true, "updated_at": "2026-11-27T09:50:13+09:00"}}
+{"case": "after-cone", "returncode": 0, "kind": "mission", "total": {"missions": 2, "passed": 2, "failed": 0, "not_judged": 0, "mission_seconds": 213.0, "run_seconds": 223.02, "by_mission": ["2 PASS 50.2s", "4 PASS 162.8s"], "complete": true, "updated_at": "2026-11-27T09:53:57+09:00"}}
+{"case": "mission3", "returncode": 0, "kind": "mission", "total": {"missions": 1, "passed": 0, "failed": 1, "not_judged": 0, "mission_seconds": 76.35, "run_seconds": 84.7, "by_mission": ["3 FAIL 76.3s"], "complete": true, "updated_at": "2026-11-27T09:55:22+09:00"}}
+{"case": "mission6", "returncode": 0, "kind": "mission", "total": {"missions": 1, "passed": 0, "failed": 1, "not_judged": 0, "mission_seconds": 54.95, "run_seconds": 64.27, "by_mission": ["6 FAIL 55.0s"], "complete": true, "updated_at": "2026-11-27T09:56:27+09:00"}}
+{
+  "id": "582dc70b-dc00-445b-8028-a070031a58b4",
+  "instruction": "Walk to (15.5, 18.0), then go to the green cone.",
+  "plan": [
+    "mission 1 {'goal': [15.5, 18.0]}",
+    "mission 2 {'color': 'green'}"
+  ],
+  "records": [
+    {
+      "step": 1,
+      "mission": 1,
+      "label": "Point-goal navigation",
+      "verdict": "PASS",
+      "seconds": 21.1,
+      "checks": [
+        {
+          "name": "check",
+          "ok": true,
+          "summary": "0.04 m < 0.50 m from goal world (15.50, 18.00)"
+        }
+      ],
+      "rooms": null,
+      "reported": {
+        "status": "done",
+        "detail": ""
+      }
+    },
+    {
+      "step": 2,
+      "mission": 2,
+      "label": "Cone colour navigation",
+      "verdict": "PASS",
+      "seconds": 21.88,
+      "checks": [
+        {
+          "name": "check",
+          "ok": true,
+          "summary": "green cone box: |dx| 0.02 < 0.25, |dy| 0.03 < 0.25 m"
+        }
+      ],
+      "rooms": null,
+      "reported": {
+        "status": "done",
+        "detail": ""
+      }
+    }
+  ],
+  "results_file": "/home/aril/rai-worktrees/CSH-m1-20261127-02/src/results/run_20261127-095634.json",
+  "state": "done",
+  "total": {
+    "passed": 2,
+    "missions": 2,
+    "seconds": 64.7
+  }
+}
+{"case": "seed9407-0", "returncode": 0, "kind": "mission", "total": {"missions": 1, "passed": 1, "failed": 0, "not_judged": 0, "mission_seconds": 15.26, "run_seconds": 25.03, "by_mission": ["1 PASS 15.3s"], "complete": true, "updated_at": "2026-11-27T09:58:06+09:00"}}
+{"case": "seed9407-1", "returncode": 0, "kind": "mission", "total": {"missions": 1, "passed": 1, "failed": 0, "not_judged": 0, "mission_seconds": 2.84, "run_seconds": 11.5, "by_mission": ["1 PASS 2.8s"], "complete": true, "updated_at": "2026-11-27T09:58:18+09:00"}}

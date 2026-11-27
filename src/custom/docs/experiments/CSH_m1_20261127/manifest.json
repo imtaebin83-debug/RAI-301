@@ -1,0 +1,207 @@
+[
+  {
+    "source": "baseline/seed301_case0.json",
+    "file": "official/baseline__seed301_case0.json",
+    "sha256": "1b9a2f92ccb59fee4d495d9768d60ff5fc47e1465a63279d1be5a2e76a04a7f3"
+  },
+  {
+    "source": "baseline/seed301_case1.json",
+    "file": "official/baseline__seed301_case1.json",
+    "sha256": "a3bc807e4edecbd06387d04bd28aa7ea7abbd34dd2bf425af0b9d25332a8c79e"
+  },
+  {
+    "source": "baseline-comparison/after-m1-green/official.json",
+    "file": "official/baseline-comparison__after-m1-green__official.json",
+    "sha256": "75a1dad550f4023401d0eb4b580d864c7ef61562c3c128da66bfb67ac1d61c9c"
+  },
+  {
+    "source": "baseline-comparison/roundtrip/official.json",
+    "file": "official/baseline-comparison__roundtrip__official.json",
+    "sha256": "37b641e8b6e8e37585c4f958e47ef4a7dfa3b61f776f4a58f2cab284a2c09f05"
+  },
+  {
+    "source": "candidate-v1/official.json",
+    "file": "official/candidate-v1__official.json",
+    "sha256": "c7c8fbc194fde7b05b7ce12a845914a0085e85360d6b80663b02100c0b43523b"
+  },
+  {
+    "source": "candidate-v1-comparison/after-m1-green/official.json",
+    "file": "official/candidate-v1-comparison__after-m1-green__official.json",
+    "sha256": "6bd8d15f80753244dc3f92979e90353485f92cb14b4411c9ac73169c38724a4f"
+  },
+  {
+    "source": "candidate-v1-comparison/roundtrip/official.json",
+    "file": "official/candidate-v1-comparison__roundtrip__official.json",
+    "sha256": "a684193113f62f69645a33096e7db17e2f949fb52eba116d0bec3d10e807e74d"
+  },
+  {
+    "source": "final-development/cone-start/official.json",
+    "file": "official/final-development__cone-start__official.json",
+    "sha256": "dd4ba1aefd11a3eff7e02e37af2c908cbde6fbc83db84a46c2a8d97439ff2c07"
+  },
+  {
+    "source": "final-development/high/official.json",
+    "file": "official/final-development__high__official.json",
+    "sha256": "67b726f6e1099c5a47d8da0b93c6bdfb0358ad96294a7b9aa67630443fb09257"
+  },
+  {
+    "source": "final-development/low/official.json",
+    "file": "official/final-development__low__official.json",
+    "sha256": "43f9e35b430d46feabebb7ec06e25186b770c0501904ce7b58e392911ef29421"
+  },
+  {
+    "source": "final-development/room-start/official.json",
+    "file": "official/final-development__room-start__official.json",
+    "sha256": "f677356bb79c71f149e2fd2deae994bd44c795c92be8d144fcb6951ed0f46602"
+  },
+  {
+    "source": "final-development/seed7301-0/official.json",
+    "file": "official/final-development__seed7301-0__official.json",
+    "sha256": "d246bb6790087102b3bc0ad7a19a8774b8a4a0d0f24bb34fda5ebb4a932aa630"
+  },
+  {
+    "source": "final-development/seed7301-1/official.json",
+    "file": "official/final-development__seed7301-1__official.json",
+    "sha256": "97a25ff2d7de093fcea79b42c383e10582fe1c6fc82af403b5031ec066781f16"
+  },
+  {
+    "source": "final-doors/doors/official.json",
+    "file": "official/final-doors__doors__official.json",
+    "sha256": "4c505da36d96df64f787579743b7cb6f6aee1e2b91812ded74e1acf304546ddd"
+  },
+  {
+    "source": "final-evaluation/seed9407-0/official.json",
+    "file": "official/final-evaluation__seed9407-0__official.json",
+    "sha256": "fc9e749e16040c1cb9f8e5ab132f2d2b2f5044990ec0098c85a771f8e12c2bc2"
+  },
+  {
+    "source": "final-evaluation/seed9407-1/official.json",
+    "file": "official/final-evaluation__seed9407-1__official.json",
+    "sha256": "370397d032000ebd0c98df3573a3b6d204941356a95f22db6ef8e0a35220e9f5"
+  },
+  {
+    "source": "final-integration-continuous/after-cone/official.json",
+    "file": "official/final-integration-continuous__after-cone__official.json",
+    "sha256": "fec31d2af2c5744ca8641cb41d2ab8ec50045f60983df180a8bf6e803984561c"
+  },
+  {
+    "source": "final-integration-rooms/rooms-2/official.json",
+    "file": "official/final-integration-rooms__rooms-2__official.json",
+    "sha256": "1c4367577df5e8598dd60361b4b136a9415cda4ec08ffddaefb0d116fbdb5c23"
+  },
+  {
+    "source": "final-integration-rooms/rooms-3/official.json",
+    "file": "official/final-integration-rooms__rooms-3__official.json",
+    "sha256": "4dc2d26cebed8d71f73d59566e99a5ca28583642969df5046f343666ee1e2493"
+  },
+  {
+    "source": "final-other-missions/mission3/official.json",
+    "file": "official/final-other-missions__mission3__official.json",
+    "sha256": "54b6a7043224ac227e4cd0344feb28da3a7442babab168eaab4308c1cc8767ed"
+  },
+  {
+    "source": "final-other-missions/mission6/official.json",
+    "file": "official/final-other-missions__mission6__official.json",
+    "sha256": "00de2b293887f135b1298edebacd09e764299508dfce90d306bae37589923f77"
+  },
+  {
+    "source": "final-seed301/seed301_case0.json",
+    "file": "official/final-seed301__seed301_case0.json",
+    "sha256": "6b560144b73b19a950a24c0dc86a051f4293676d6189cea972a75b563bf541ec"
+  },
+  {
+    "source": "final-seed301/seed301_case1.json",
+    "file": "official/final-seed301__seed301_case1.json",
+    "sha256": "58c1bb6b4b8baa2ee92abf503ad0b40119ff5bb8fd557a7f5428de98f31b3be3"
+  },
+  {
+    "source": "final-web/official.json",
+    "file": "official/final-web__official.json",
+    "sha256": "095835da647cdaf635afc35fa26f42b77c73b9fd1b40cd201a3b4f90339ab8b2"
+  },
+  {
+    "source": "normalized-after-delivery/after-delivery/official.json",
+    "file": "official/normalized-after-delivery__after-delivery__official.json",
+    "sha256": "86a1887e80997133713db9ab4f1948e979e09b80608e1683fa34e2f90d2bc1b8"
+  },
+  {
+    "source": "normalized-integration/after-cone/official.json",
+    "file": "official/normalized-integration__after-cone__official.json",
+    "sha256": "f75f6628e3d094af10af00c08eea809b264a1b8244d7813b4355fd51228f296e"
+  },
+  {
+    "source": "normalized-navigation/cone-start/official.json",
+    "file": "official/normalized-navigation__cone-start__official.json",
+    "sha256": "6634be7d243feed848788502791712c8bab4a76845582f59bfd7f140f9fbbca1"
+  },
+  {
+    "source": "normalized-navigation/high/official.json",
+    "file": "official/normalized-navigation__high__official.json",
+    "sha256": "ee13fb3931053620fb715337064a37c897a604fee66885f66c63d8c701a93004"
+  },
+  {
+    "source": "normalized-navigation/low/official.json",
+    "file": "official/normalized-navigation__low__official.json",
+    "sha256": "a2f18fa700d352fe1fdd146368f8ace6e9904997e74269a73add75ce1dd045fe"
+  },
+  {
+    "source": "normalized-navigation/room-start/official.json",
+    "file": "official/normalized-navigation__room-start__official.json",
+    "sha256": "cf29561c75ac132f0674af528aa6e4a0bff917462f8a201de50c27faac866f9f"
+  },
+  {
+    "source": "normalized-navigation/roundtrip/official.json",
+    "file": "official/normalized-navigation__roundtrip__official.json",
+    "sha256": "2a10e784530f0d3348e759262641e230c4095d585cf1842e8b1a9c97577c5a2c"
+  },
+  {
+    "source": "normalized-other/mission3/official.json",
+    "file": "official/normalized-other__mission3__official.json",
+    "sha256": "bf6254cd21b80fc107d0f8ac247b5a4fbcacf238d84f7d1740feebd0eabc34d8"
+  },
+  {
+    "source": "normalized-other/mission6/official.json",
+    "file": "official/normalized-other__mission6__official.json",
+    "sha256": "3d78b592b5796178fb57a6663de8089fbf63d05fe91419878c97705024e93e8a"
+  },
+  {
+    "source": "normalized-seed301/seed301_case0.json",
+    "file": "official/normalized-seed301__seed301_case0.json",
+    "sha256": "2d2e013d6e0c596ace51d0f1d2dc71727d9aadcf789ca439064fa7e2df0bbc8a"
+  },
+  {
+    "source": "normalized-seed301/seed301_case1.json",
+    "file": "official/normalized-seed301__seed301_case1.json",
+    "sha256": "e487f3493161a7e31e21e61722a6cdcc96affe39b6e72182886ec11a667b8523"
+  },
+  {
+    "source": "postfix-evaluation/seed9509-0/official.json",
+    "file": "official/postfix-evaluation__seed9509-0__official.json",
+    "sha256": "f69bd534f83c97e3ab3093ab08db46fd1020b80a44e8a228e513ffaccd1614c8"
+  },
+  {
+    "source": "postfix-evaluation/seed9509-1/official.json",
+    "file": "official/postfix-evaluation__seed9509-1__official.json",
+    "sha256": "0b9a5c97c8d9038b0424aaee8527c701e11c2ee7478bfc09de78084f74ce238f"
+  },
+  {
+    "source": "postfix-other/mission3/official.json",
+    "file": "official/postfix-other__mission3__official.json",
+    "sha256": "19a66d3e6b32642658d1d6847016763f57be3fd3a703cfba2dfcc949dec07f59"
+  },
+  {
+    "source": "postfix-other/mission6/official.json",
+    "file": "official/postfix-other__mission6__official.json",
+    "sha256": "76f14be4ef65345ea1d347b9148a4d7a75a9816714e433268cdc4cd480ca925f"
+  },
+  {
+    "source": "postfix-seed301/seed301_case0.json",
+    "file": "official/postfix-seed301__seed301_case0.json",
+    "sha256": "d94a324fdde6c3c036bd279eb51b87945c613c0f12afa721756eee29138c3252"
+  },
+  {
+    "source": "postfix-seed301/seed301_case1.json",
+    "file": "official/postfix-seed301__seed301_case1.json",
+    "sha256": "b26a02a29fcb9b1884ac09af193a6ae141ad62c8be67664ee101c08ec6f149a6"
+  }
+]

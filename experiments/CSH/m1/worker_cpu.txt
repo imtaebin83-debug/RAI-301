@@ -1,0 +1,11 @@
+test_error_response_cannot_become_a_plan (test_planner_worker.WorkerTests) ... ok
+test_inference_timeout_terminates_owned_child (test_planner_worker.WorkerTests) ... ok
+test_malformed_reply_is_rejected (test_planner_worker.WorkerTests) ... ok
+test_one_process_serves_two_independent_requests (test_planner_worker.WorkerTests) ... ok
+test_partial_reply_has_same_deadline (test_planner_worker.WorkerTests) ... ok
+test_unexpected_eof_reports_failure_and_closes (test_planner_worker.WorkerTests) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.266s
+
+OK

@@ -1,0 +1,81 @@
+{
+  "run": {
+    "started_at": "2026-11-27T10:28:24+09:00",
+    "case": {
+      "missions": [
+        1
+      ],
+      "goal": [
+        16.56,
+        14.49
+      ]
+    },
+    "source": "/home/aril/rai-worktrees/CSH-m1-20261127-02/src",
+    "kind": "stock mission",
+    "plans": [],
+    "ended_at": "2026-11-27T10:28:46+09:00"
+  },
+  "missions": [
+    {
+      "mission": 1,
+      "label": "Point-goal navigation",
+      "verdict": "PASS",
+      "success": true,
+      "seconds": 13.14,
+      "started_at": "2026-11-27T10:28:31+09:00",
+      "ended_at": "2026-11-27T10:28:44+09:00",
+      "checks": [
+        {
+          "name": "check",
+          "ok": true,
+          "summary": "0.06 m < 0.50 m from goal world (16.56, 14.49)"
+        }
+      ],
+      "reported": {
+        "status": "done",
+        "detail": ""
+      },
+      "referee": {
+        "mission": 1,
+        "pelvis": [
+          16.547,
+          14.436,
+          0.779
+        ],
+        "success": true,
+        "summary": "0.06 m < 0.50 m from goal world (16.56, 14.49)",
+        "goal": [
+          16.56,
+          14.49
+        ],
+        "goal_world": [
+          16.56,
+          14.49
+        ],
+        "distance_m": 0.056,
+        "threshold_m": 0.5
+      },
+      "data": {
+        "controller_reached": true,
+        "estimated_pose": [
+          16.551349732376487,
+          14.434977555054173,
+          1.44521045364738
+        ]
+      }
+    }
+  ],
+  "total": {
+    "missions": 1,
+    "passed": 1,
+    "failed": 0,
+    "not_judged": 0,
+    "mission_seconds": 13.14,
+    "run_seconds": 21.64,
+    "by_mission": [
+      "1 PASS 13.1s"
+    ],
+    "complete": true,
+    "updated_at": "2026-11-27T10:28:46+09:00"
+  }
+}

@@ -1,0 +1,2 @@
+{"case": 0, "returncode": 0, "total": {"missions": 2, "passed": 2, "failed": 0, "not_judged": 0, "mission_seconds": 44.2, "run_seconds": 47.25, "by_mission": ["1 PASS 17.2s", "2 PASS 27.0s"], "complete": true, "updated_at": "2026-11-27T09:18:20+09:00"}}
+{"case": 1, "returncode": 0, "total": {"missions": 2, "passed": 2, "failed": 0, "not_judged": 0, "mission_seconds": 45.0, "run_seconds": 47.84, "by_mission": ["1 PASS 21.9s", "2 PASS 23.1s"], "complete": true, "updated_at": "2026-11-27T09:19:15+09:00"}}

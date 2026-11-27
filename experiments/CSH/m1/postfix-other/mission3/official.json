@@ -1,0 +1,71 @@
+{
+  "run": {
+    "started_at": "2026-11-27T10:21:15+09:00",
+    "case": {
+      "missions": [
+        3
+      ]
+    },
+    "source": "/home/aril/rai-worktrees/CSH-m1-20261127-02/src",
+    "kind": "stock mission",
+    "plans": [],
+    "ended_at": "2026-11-27T10:25:27+09:00"
+  },
+  "missions": [
+    {
+      "mission": 3,
+      "label": "Cliff crossing",
+      "verdict": "PASS",
+      "success": true,
+      "seconds": 244.03,
+      "started_at": "2026-11-27T10:21:21+09:00",
+      "ended_at": "2026-11-27T10:25:26+09:00",
+      "checks": [
+        {
+          "name": "check",
+          "ok": true,
+          "summary": "crossed entrance -> exit; pelvis (13.64, 11.38) inside the exit zone x 13.00..14.20, y 10.78..11.97"
+        }
+      ],
+      "reported": {
+        "status": "done",
+        "detail": ""
+      },
+      "referee": {
+        "mission": 3,
+        "pelvis": [
+          13.637,
+          11.383,
+          0.78
+        ],
+        "success": true,
+        "summary": "crossed entrance -> exit; pelvis (13.64, 11.38) inside the exit zone x 13.00..14.20, y 10.78..11.97",
+        "crossed": true,
+        "in_exit_zone": true,
+        "exit_zone": [
+          13.0,
+          14.2,
+          10.775,
+          11.975
+        ]
+      },
+      "data": {
+        "controller_reached": true,
+        "gap_falls": 0
+      }
+    }
+  ],
+  "total": {
+    "missions": 1,
+    "passed": 1,
+    "failed": 0,
+    "not_judged": 0,
+    "mission_seconds": 244.03,
+    "run_seconds": 252.71,
+    "by_mission": [
+      "3 PASS 244.0s"
+    ],
+    "complete": true,
+    "updated_at": "2026-11-27T10:25:27+09:00"
+  }
+}
