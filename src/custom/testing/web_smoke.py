@@ -1,5 +1,6 @@
 """Exercise stock --llm-web through its request-file protocol, without UI clicks."""
 import json
+import argparse
 import os
 from pathlib import Path
 import signal
@@ -13,7 +14,10 @@ import yaml
 
 def main():
     root=Path(__file__).resolve().parents[2]
-    out=root/'custom/docs/validation'
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--output',type=Path,help='write evidence here instead of tracked baseline fixtures')
+    args=parser.parse_args()
+    out=args.output.resolve() if args.output else root/'custom/docs/validation'
     out.mkdir(parents=True,exist_ok=True)
     config=yaml.safe_load((root/'main_config.yaml').read_text())
     config['simulator']['view']=False

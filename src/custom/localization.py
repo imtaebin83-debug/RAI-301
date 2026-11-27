@@ -1,4 +1,4 @@
-"""LiDAR odometry anchored once to the permitted mission start pose.
+"""LiDAR odometry anchored once to the public simulator startup pose.
 
 Only LiDAR, IMU and robot-link TF are read while moving.  Simulator status
 positions are read again only on a *new respawn event*, as README permits.
@@ -14,6 +14,8 @@ import numpy as np
 from scipy.spatial import cKDTree
 from scipy.spatial.transform import Rotation
 from sensor_msgs.msg import Imu, PointCloud2
+from custom.inertial import GyroBuffer, stamp_seconds
+from custom.icp_registration import GuardedKissICP, RegistrationRejected
 
 
 def cloud_xyz(message) -> np.ndarray:
@@ -161,10 +163,21 @@ class Localizer:
         self._world_lidar0 = None
         self._pose = (float(start["pos"][0]), float(start["pos"][1]), math.radians(float(start.get("yaw_deg", 0.0))))
         self._anchor = dict(start)
+        self._gyro = GyroBuffer()
+        self._gyro_rotation = None
+        self._attempt_stamp = None
+        self.rejected_scans = 0
+        self.metrics = {}
         self._odom = self._new_odometry()
         mission._tf()
         mission.latest("/lidar/points", PointCloud2, timeout=0.0)
         mission.latest("/imu", Imu, timeout=0.0)
+        if isinstance(self._odom, GuardedKissICP):
+            from rclpy.qos import QoSProfile, ReliabilityPolicy
+            self._gyro_sub = mission.create_subscription(
+                Imu, "/lidar/imu", self._on_gyro,
+                QoSProfile(depth=400, reliability=ReliabilityPolicy.BEST_EFFORT),
+                callback_group=mission._api_group)
         self._last_transform = np.eye(4)
         self._map_offset = np.eye(4)
         self._recovery_times = []
@@ -183,10 +196,17 @@ class Localizer:
     def T_world_pelvis(self) -> np.ndarray:
         return self._last_transform.copy()
 
+    @property
+    def measurement_stamp(self):
+        return self._stamp
+
+    def _on_gyro(self, message):
+        w = message.angular_velocity
+        self._gyro.add(stamp_seconds(message.header.stamp), [w.x, w.y, w.z], message.header.frame_id)
+
     def _new_odometry(self):
         try:
             from kiss_icp.config import KISSConfig
-            from kiss_icp.kiss_icp import KissICP
             config = KISSConfig()
             config.data.max_range = 24.0
             config.data.min_range = 0.65
@@ -194,18 +214,47 @@ class Localizer:
             config.mapping.voxel_size = 0.15
             config.adaptive_threshold.initial_threshold = 0.5
             config.registration.max_num_threads = 2
-            self.backend = "kiss-icp"
-            return KissICP(config)
+            config.registration.max_num_iterations = 40
+            self.backend = "guarded-kiss-icp"
+            return GuardedKissICP(config)
         except (ImportError, AttributeError) as error:
             self.backend = "scipy-icp"
             self.mission.log(f"[localizer] KISS-ICP unavailable, using CPU SciPy ICP: {error}")
             return _ScipyICP()
 
-    def _pelvis_lidar(self):
+    def _pelvis_lidar(self, stamp):
         from rclpy.time import Time
         from rclpy.duration import Duration
         return transform_matrix(self.mission._tf().lookup_transform(
-            "pelvis", "lidar_link", Time(), timeout=Duration(seconds=0.05)))
+            "pelvis", "lidar_link", Time.from_msg(stamp), timeout=Duration(seconds=0.05)))
+
+    def _scan_rotation(self, stamp):
+        if self._stamp is None:
+            return None
+        if self._gyro_rotation is None:
+            from rclpy.time import Time
+            from rclpy.duration import Duration
+            if not self._gyro.frame:
+                raise RegistrationRejected("waiting for LiDAR IMU")
+            self._gyro_rotation = transform_matrix(self.mission._tf().lookup_transform(
+                "lidar_link", self._gyro.frame, Time(), timeout=Duration(seconds=0.03)))[:3, :3]
+        begin = self._stamp[0] + self._stamp[1] * 1e-9
+        try:
+            return self._gyro.rotation(begin, stamp_seconds(stamp), self._gyro_rotation)
+        except ValueError as error:
+            raise RegistrationRejected(str(error)) from error
+
+    def _validate_motion(self, pose, stamp):
+        if not np.isfinite(pose).all():
+            raise RegistrationRejected("nonfinite pelvis transform")
+        if self._stamp is None:
+            return
+        dt = stamp[0] - self._stamp[0] + (stamp[1] - self._stamp[1]) * 1e-9
+        yaw = math.atan2(pose[1, 0], pose[0, 0])
+        translation = float(np.linalg.norm(pose[:2, 3] - self._last_transform[:2, 3]))
+        turn = abs((yaw - self._pose[2] + math.pi) % (2 * math.pi) - math.pi)
+        if translation > max(.40, 1.6 * dt) or turn > max(.30, 1.5 * dt):
+            raise RegistrationRejected(f"pelvis motion jump: {translation:.3f}m/{math.degrees(turn):.1f}deg dt={dt:.3f}s")
 
     def _initialize(self, pelvis_lidar, points):
         # At rest, accelerometers measure +g in body coordinates. Average unique
@@ -304,6 +353,8 @@ class Localizer:
                 self._world_lidar0 = None
                 self._odom = self._new_odometry()
                 self._stamp = None
+                self._attempt_stamp = None
+                self._gyro_rotation = None
                 self.quality = 0.0
                 self._last_transform = np.eye(4)
                 self._map_offset = np.eye(4)
@@ -316,18 +367,38 @@ class Localizer:
         if message is None:
             return self._pose
         stamp = (message.header.stamp.sec, message.header.stamp.nanosec)
-        if stamp == self._stamp:
+        if stamp == self._stamp or stamp == self._attempt_stamp:
+            return self._pose
+        if self._stamp is not None and stamp < self._stamp:
+            self.quality = 0.0
+            self.last_error = "out-of-order LiDAR timestamp; waiting for newer scan"
             return self._pose
         try:
-            pelvis_lidar = self._pelvis_lidar()
+            if message.header.frame_id.lstrip("/") != "lidar_link":
+                raise RuntimeError("unexpected LiDAR frame: " + message.header.frame_id)
+            pelvis_lidar = self._pelvis_lidar(message.header.stamp)
             points = cloud_xyz(message)
             if len(points) < 100:
                 self.quality = 0.0
                 self.last_error = "insufficient LiDAR points"
                 return self._pose
+            if (isinstance(self._odom, GuardedKissICP) and self._stamp is None
+                    and not self._gyro.covers(stamp_seconds(message.header.stamp))):
+                raise RegistrationRejected("waiting for IMU coverage of initial scan")
             if self._world_lidar0 is None:
                 self._initialize(pelvis_lidar, points)
-            self._odom.register_frame(points, np.empty(0, dtype=np.float64))
+            if isinstance(self._odom, GuardedKissICP):
+                dt = (stamp[0] - self._stamp[0] + (stamp[1] - self._stamp[1]) * 1e-9
+                      if self._stamp is not None else 0.1)
+                rotation = self._scan_rotation(message.header.stamp)
+                def validate_pose(candidate):
+                    self._validate_motion(self._map_offset @ self._world_lidar0 @ candidate
+                                          @ np.linalg.inv(pelvis_lidar), stamp)
+                self._odom.register_frame(points, np.empty(0, dtype=np.float64), dt=dt,
+                                          rotation=rotation, validator=validate_pose)
+                self.metrics = dict(self._odom.metrics)
+            else:
+                self._odom.register_frame(points, np.empty(0, dtype=np.float64))
             raw_world_lidar = self._world_lidar0 @ self._odom.last_pose
             corrected_world_lidar = self._map_offset @ raw_world_lidar
             pose = corrected_world_lidar @ np.linalg.inv(pelvis_lidar)
@@ -343,6 +414,9 @@ class Localizer:
                 turn=abs((yaw-self._pose[2]+math.pi)%(2*math.pi)-math.pi)
                 if (not np.isfinite(pose).all() or translation>max(.40,1.6*dt)
                         or turn>max(.30,1.5*dt)):
+                    if isinstance(self._odom, GuardedKissICP):
+                        self._recovery_blocked = True
+                        raise RegistrationRejected("post-correction pelvis motion jump")
                     return self._recover_registration(
                         points, pelvis_lidar, stamp,
                         f"rejected translation={translation:.3f}m turn={math.degrees(turn):.1f}deg dt={dt:.3f}s")
@@ -351,7 +425,21 @@ class Localizer:
             self.quality = float(getattr(self._odom, "quality", 1.0))
             self._last_received = time.monotonic()
             self._stamp = stamp
+            self._attempt_stamp = stamp
             self.last_error = ""
+        except RegistrationRejected as error:
+            self.rejected_scans += 1
+            self._attempt_stamp = stamp
+            self.last_error = str(error)
+            self.quality = 0.0
+            if self._stamp is not None:
+                elapsed = stamp[0] - self._stamp[0] + (stamp[1] - self._stamp[1]) * 1e-9
+                if elapsed > 1.0:
+                    self._recovery_blocked = True
+                    self.last_error += '; registration gap exceeded 1s; stopped until respawn/restart'
+            # Retain the map and the last measurement. Navigator stops while
+            # fresh scans retry registration against this same trusted map.
+            self.metrics = dict(self._odom.metrics)
         except Exception as error:
             self.last_error = f"{type(error).__name__}: {error}"
             self.quality = 0.0

@@ -20,12 +20,13 @@ def main():
     ap.add_argument('--seed',type=int,default=301)
     ap.add_argument('--cases',type=int,default=2)
     ap.add_argument('--missions',nargs='+',type=int,default=[1,2])
+    ap.add_argument('--output',type=Path,help='write evidence here instead of tracked baseline fixtures')
     args=ap.parse_args()
     if 5 in args.missions:
         ap.error('Mission 5 is owned by another active task')
     root=Path(__file__).resolve().parents[2]
     rng=random.Random(args.seed)
-    output=root/'custom'/'docs'/'validation'
+    output=args.output.resolve() if args.output else root/'custom'/'docs'/'validation'
     output.mkdir(parents=True,exist_ok=True)
     summary=[]
     for case in range(args.cases):
