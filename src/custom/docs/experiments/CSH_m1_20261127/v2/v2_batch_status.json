@@ -1,0 +1,16 @@
+{
+  "baseline_outer_exit": 0,
+  "owner_integration_outer_exit": 0,
+  "validation_outer_exit": 143,
+  "validation_outer_signal_cause": "not established; collected after final case completed",
+  "final_case_summary": "v2-other/summary.json",
+  "final_case_worker_returncodes": [
+    0,
+    0
+  ],
+  "final_case_official_complete": [
+    true,
+    true
+  ],
+  "interpretation": "use original per-case verdicts; outer-session status is separately disclosed"
+}

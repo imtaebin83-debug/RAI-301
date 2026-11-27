@@ -1,0 +1,98 @@
+[
+  {
+    "instruction": "먼저 (14.7, 6.2)로 간 다음 파란색 콘으로 이동하고, 마지막으로 축구 득점해.",
+    "expected": [
+      [
+        1,
+        {
+          "goal": [
+            14.7,
+            6.2
+          ]
+        }
+      ],
+      [
+        2,
+        {
+          "color": "blue"
+        }
+      ],
+      6
+    ],
+    "raw_completion": "{\"steps\":[{\"mission\":1,\"params\":{\"goal\":[14.7,6.2]}},{\"mission\":2,\"params\":{\"color\":\"blue\"}},{\"mission\":6,\"params\":{}}]}\"",
+    "seconds": 22.991424616018776,
+    "worker_pid": 451677,
+    "kind": "actual local Qwen CPU, no answer cache",
+    "actual": [
+      [
+        1,
+        {
+          "goal": [
+            14.7,
+            6.2
+          ]
+        }
+      ],
+      [
+        2,
+        {
+          "color": "blue"
+        }
+      ],
+      6
+    ],
+    "passed": true
+  },
+  {
+    "instruction": "Go to the orange cone, then navigate to (16.2, 13.4).",
+    "expected": [
+      [
+        2,
+        {
+          "color": "orange"
+        }
+      ],
+      [
+        1,
+        {
+          "goal": [
+            16.2,
+            13.4
+          ]
+        }
+      ]
+    ],
+    "raw_completion": "{\"steps\":[{\"mission\":2,\"params\":{\"color\":\"orange\"}},{\"mission\":1,\"params\":{\"goal\":[16.2,13.4]}}]}\"",
+    "seconds": 18.02567426796304,
+    "worker_pid": 451677,
+    "kind": "actual local Qwen CPU, no answer cache",
+    "actual": [
+      [
+        2,
+        {
+          "color": "orange"
+        }
+      ],
+      [
+        1,
+        {
+          "goal": [
+            16.2,
+            13.4
+          ]
+        }
+      ]
+    ],
+    "passed": true
+  },
+  {
+    "instruction": "Find a cone, then cross the gap.",
+    "expected": null,
+    "raw_completion": "{\"steps\":[{\"mission\":2,\"params\":{}},{\"mission\":3,\"params\":{}}]}\"",
+    "seconds": 12.562385265016928,
+    "worker_pid": 451677,
+    "kind": "actual local Qwen CPU, no answer cache",
+    "error": "mission 2 accepts only color",
+    "passed": true
+  }
+]

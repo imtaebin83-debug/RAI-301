@@ -1,0 +1,121 @@
+test_delayed_endpoint_can_retry_same_interval (test_inertial_registration.GyroTests) ... ok
+test_irregular_scan_endpoints_and_axis_transform (test_inertial_registration.GyroTests) ... ok
+test_malformed_and_reordered_imu_not_accepted (test_inertial_registration.GyroTests) ... ok
+test_missing_endpoint_never_extrapolates (test_inertial_registration.GyroTests) ... ok
+test_sample_gap_is_not_integrated (test_inertial_registration.GyroTests) ... ok
+test_begin_mission_exception_also_stops (test_inertial_registration.Mission1InputTests) ... ok
+test_invalid_direct_params_do_not_fall_back_to_practice_goal (test_inertial_registration.Mission1InputTests) ... ok
+test_public_target_limits_and_api_are_preserved (test_inertial_registration.Mission1InputTests) ... ok
+test_pending_scan_preserves_age_and_retries_after_endpoint_arrives (test_inertial_registration.PendingScanTests) ... ok
+test_permanent_pending_never_refreshes_old_measurement (test_inertial_registration.PendingScanTests) ... ok
+test_duplicate_measurement_does_not_renew_freshness (test_inertial_registration.PoseHealthTests) ... ok
+test_invalid_pose_does_not_overwrite_trusted_transform (test_inertial_registration.PoseHealthTests) ... ok
+test_localizer_failure_propagates_even_with_recent_pose (test_inertial_registration.PoseHealthTests) ... ok
+test_old_publisher_without_health_topic_remains_compatible (test_inertial_registration.PoseHealthTests) ... ok
+test_sensor_clock_detects_transport_lag (test_inertial_registration.PoseHealthTests) ... ok
+test_sensor_clock_rejects_future_estimate (test_inertial_registration.PoseHealthTests) ... ok
+test_stalled_robot_gets_bounded_reobservations_then_stops (test_inertial_registration.PoseHealthTests) ... ok
+test_bad_scan_does_not_destroy_following_good_scan (test_inertial_registration.RegistrationTests) ... ok
+test_gyro_disagreement_cannot_pollute_map (test_inertial_registration.RegistrationTests) ... ok
+test_large_sensor_gap_cannot_be_hidden_by_prediction (test_inertial_registration.RegistrationTests) ... ok
+test_pelvis_validation_precedes_map_commit (test_inertial_registration.RegistrationTests) ... ok
+test_real_icp_with_irregular_scan_period (test_inertial_registration.RegistrationTests) ... ok
+test_rejected_jump_does_not_modify_trusted_map (test_inertial_registration.RegistrationTests) ... ok
+test_cone_room_departure_is_measured_not_teleported (test_inertial_registration.RouteTests) ... ok
+test_replan_occurs_only_once_and_uses_updated_measurement (test_inertial_registration.RouteTests) ... ok
+test_room_departure_uses_door_before_corridor_target (test_inertial_registration.RouteTests) ... ok
+test_same_room_does_not_force_unnecessary_exit (test_inertial_registration.RouteTests) ... ok
+test_two_different_rooms_use_both_doors (test_inertial_registration.RouteTests) ... ok
+test_final_correction_gain_and_body_limits_are_preserved (test_inertial_registration.TranslationTests) ... ok
+test_long_goal_preserves_world_bearing_during_small_heading_error (test_inertial_registration.TranslationTests) ... ok
+test_external_or_missing_endpoint_is_rejected_before_network (test_planner.ApiContractTests) ... ok
+test_malformed_llm_json_never_silently_falls_back (test_planner.ApiContractTests) ... ok
+test_network_error_never_silently_falls_back (test_planner.ApiContractTests) ... ok
+test_private_team_addresses_and_no_redirects (test_planner.ApiContractTests) ... ok
+test_strict_configured_llm_path_and_fenced_json (test_planner.ApiContractTests) ... ok
+test_bracketed_numbers_are_not_coordinate (test_planner.FallbackTests) ... [planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+ok
+test_development_fallback_is_visible (test_planner.FallbackTests) ... ok
+test_duplicate_numeric_steps_not_silently_dropped (test_planner.FallbackTests) ... [planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+ok
+test_english_order_and_color (test_planner.FallbackTests) ... [planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+ok
+test_explicit_numeric_sequence (test_planner.FallbackTests) ... [planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+ok
+test_goal_coordinates_are_not_soccer (test_planner.FallbackTests) ... [planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+ok
+test_missing_color_rejected (test_planner.FallbackTests) ... [planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+ok
+test_mixed_explicit_arguments (test_planner.FallbackTests) ... [planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+ok
+test_mixed_language_order (test_planner.FallbackTests) ... [planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+ok
+test_negative_coordinates_remain_coordinates (test_planner.FallbackTests) ... [planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+ok
+test_number_does_not_supply_goal (test_planner.FallbackTests) ... [planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+ok
+test_strict_gate_refuses_missing_llm (test_planner.FallbackTests) ... [planner] local Qwen CPU language-model inference
+ok
+test_strict_gate_refuses_partial_llm_configuration (test_planner.FallbackTests) ... [planner] local Qwen CPU language-model inference
+[planner] local Qwen CPU language-model inference
+ok
+test_unknown_or_empty_instruction_rejected (test_planner.FallbackTests) ... [planner] DEVELOPMENT FALLBACK: explicitly enabled rules
+ok
+test_configured_api_precedes_opted_in_rules (test_planner.LocalLlmContractTests) ... ok
+test_local_failure_never_becomes_rule_plan (test_planner.LocalLlmContractTests) ... [planner] local Qwen CPU language-model inference
+ok
+test_local_invalid_json_rejected (test_planner.LocalLlmContractTests) ... [planner] local Qwen CPU language-model inference
+ok
+test_local_timeout_propagates (test_planner.LocalLlmContractTests) ... [planner] local Qwen CPU language-model inference
+ok
+test_oneshot_path_invokes_actual_llm_helper_contract (test_planner.LocalLlmContractTests) ... [planner] local Qwen CPU language-model inference
+ok
+test_strict_gate_accepts_successful_local_llm (test_planner.LocalLlmContractTests) ... [planner] local Qwen CPU language-model inference
+ok
+test_actual_model_trailing_quote_preserves_all_steps (test_planner.ValidationTests) ... [planner] removed trailing quoting after complete LLM JSON
+ok
+test_duplicate_json_keys_cannot_silently_drop_a_mission (test_planner.ValidationTests) ... ok
+test_extra_root_field_cannot_hide_another_mission (test_planner.ValidationTests) ... ok
+test_extra_step_field_cannot_hide_another_mission (test_planner.ValidationTests) ... ok
+test_invalid_cone_colors (test_planner.ValidationTests) ... ok
+test_multiple_json_plans_not_silently_merged_or_dropped (test_planner.ValidationTests) ... ok
+test_nested_duplicate_json_keys_rejected (test_planner.ValidationTests) ... ok
+test_rejects_hidden_or_unknown_parameters (test_planner.ValidationTests) ... ok
+test_rejects_invalid_goal_values (test_planner.ValidationTests) ... ok
+test_rejects_invalid_shapes (test_planner.ValidationTests) ... ok
+test_repeated_steps_from_llm_preserved (test_planner.ValidationTests) ... ok
+test_trailing_mission_prose_rejected (test_planner.ValidationTests) ... ok
+test_default_uses_persistent_actual_llm_with_deadline (test_planner_worker.PersistentPlanTests) ... [planner] local Qwen CPU language-model inference
+ok
+test_invalid_persistent_output_never_uses_rules (test_planner_worker.PersistentPlanTests) ... [planner] local Qwen CPU language-model inference
+ok
+test_error_response_cannot_become_a_plan (test_planner_worker.WorkerTests) ... ok
+test_inference_timeout_terminates_owned_child (test_planner_worker.WorkerTests) ... ok
+test_malformed_reply_is_rejected (test_planner_worker.WorkerTests) ... ok
+test_one_process_serves_two_independent_requests (test_planner_worker.WorkerTests) ... ok
+test_partial_reply_has_same_deadline (test_planner_worker.WorkerTests) ... ok
+test_unexpected_eof_reports_failure_and_closes (test_planner_worker.WorkerTests) ... ok
+test_duplicate_labels_use_actual_scores_for_joint_assignment (test_room_assignment.RoomAssignmentTests) ... ok
+test_duplicate_labels_without_scores_rejected (test_room_assignment.RoomAssignmentTests) ... ok
+test_identical_scores_cannot_fabricate_assignment (test_room_assignment.RoomAssignmentTests) ... ok
+test_no_fixed_spatial_room_order (test_room_assignment.RoomAssignmentTests) ... ok
+test_nonfinite_scores_rejected (test_room_assignment.RoomAssignmentTests) ... ok
+test_public_empty_counter_resets_to_documented_start_and_skips_cached_scan (test_v2_localizer_respawn.RespawnTests) ... ok
+test_forbidden_topics_never_create_subscriptions (test_v2_sensor_api.PublicSensorApiTests) ... ok
+test_missing_sensor_wait_is_bounded_and_timeout_is_validated (test_v2_sensor_api.PublicSensorApiTests) ... ok
+test_nonblocking_cache_is_shared_and_type_checked (test_v2_sensor_api.PublicSensorApiTests) ... ok
+test_official_inheritance_and_mission_zero_node (test_v2_sensor_api.PublicSensorApiTests) ... ok
+test_respawns_use_only_public_empty_notifications (test_v2_sensor_api.PublicSensorApiTests) ... ok
+test_team_derived_topics_and_latched_tf_are_supported (test_v2_sensor_api.PublicSensorApiTests) ... ok
+test_wait_wakes_on_sensor_arrival (test_v2_sensor_api.PublicSensorApiTests) ... ok
+test_bgr_rows_with_padding_are_rgb (test_vision.ImageDecodingTests) ... ok
+test_big_endian_float_depth_preserves_padding_and_nan (test_vision.ImageDecodingTests) ... ok
+test_uint16_depth_is_converted_from_mm_to_m (test_vision.ImageDecodingTests) ... ok
+test_ball_silhouette_cannot_admit_nan_depth_neighbours (test_vision.InvalidDepthRegressionTests) ... ok
+test_detection_rejects_nonfinite_fields_and_nonpositive_range (test_vision.InvalidDepthRegressionTests) ... ok
+test_invalid_candidate_is_not_an_observation (test_vision.InvalidDepthRegressionTests) ... ok
+
+----------------------------------------------------------------------
+Ran 94 tests in 0.421s
+
+OK

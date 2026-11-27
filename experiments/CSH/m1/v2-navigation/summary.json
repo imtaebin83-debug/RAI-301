@@ -1,0 +1,114 @@
+[
+  {
+    "case": "low",
+    "returncode": 0,
+    "kind": "mission",
+    "total": {
+      "missions": 1,
+      "passed": 1,
+      "failed": 0,
+      "not_judged": 0,
+      "mission_seconds": 33.12,
+      "respawns": 0,
+      "penalty_seconds": 0.0,
+      "total_seconds": 33.12,
+      "run_seconds": 42.43,
+      "by_mission": [
+        "1 PASS 33.1s"
+      ],
+      "complete": true,
+      "updated_at": "2026-11-27T10:49:54+09:00"
+    }
+  },
+  {
+    "case": "high",
+    "returncode": 0,
+    "kind": "mission",
+    "total": {
+      "missions": 1,
+      "passed": 1,
+      "failed": 0,
+      "not_judged": 0,
+      "mission_seconds": 28.13,
+      "respawns": 0,
+      "penalty_seconds": 0.0,
+      "total_seconds": 28.13,
+      "run_seconds": 38.69,
+      "by_mission": [
+        "1 PASS 28.1s"
+      ],
+      "complete": true,
+      "updated_at": "2026-11-27T10:50:33+09:00"
+    }
+  },
+  {
+    "case": "room-start",
+    "returncode": 0,
+    "kind": "mission",
+    "total": {
+      "missions": 1,
+      "passed": 1,
+      "failed": 0,
+      "not_judged": 0,
+      "mission_seconds": 32.17,
+      "respawns": 0,
+      "penalty_seconds": 0.0,
+      "total_seconds": 32.17,
+      "run_seconds": 41.84,
+      "by_mission": [
+        "1 PASS 32.2s"
+      ],
+      "complete": true,
+      "updated_at": "2026-11-27T10:51:15+09:00"
+    }
+  },
+  {
+    "case": "cone-start",
+    "returncode": 0,
+    "kind": "mission",
+    "total": {
+      "missions": 1,
+      "passed": 1,
+      "failed": 0,
+      "not_judged": 0,
+      "mission_seconds": 37.94,
+      "respawns": 0,
+      "penalty_seconds": 0.0,
+      "total_seconds": 37.94,
+      "run_seconds": 46.99,
+      "by_mission": [
+        "1 PASS 37.9s"
+      ],
+      "complete": true,
+      "updated_at": "2026-11-27T10:52:03+09:00"
+    }
+  },
+  {
+    "case": "roundtrip",
+    "returncode": 0,
+    "kind": "probe",
+    "total": {
+      "missions": 1,
+      "passed": 1,
+      "failed": 0,
+      "not_judged": 0,
+      "mission_seconds": 160.06,
+      "respawns": 0,
+      "penalty_seconds": 0.0,
+      "total_seconds": 160.06,
+      "run_seconds": 168.82,
+      "by_mission": [
+        "1 PASS 160.1s"
+      ],
+      "complete": true,
+      "updated_at": "2026-11-27T10:54:52+09:00"
+    },
+    "probe_succeeded": true,
+    "checkpoint_errors": [
+      0.05314132102234659,
+      0.05115662224971491,
+      0.019723082923316346,
+      0.039812058474788296
+    ]
+  }
+]

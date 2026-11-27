@@ -1,0 +1,87 @@
+[
+  {
+    "source": "v2-baseline-roundtrip/roundtrip/official.json",
+    "file": "official/v2-baseline-roundtrip/roundtrip/official.json",
+    "sha256": "e494b128a0d7dec84df60911e7fb96f2fa38cc1e0d63c70c6f77627ae421c877"
+  },
+  {
+    "source": "v2-baseline-seed301/seed301_case0.json",
+    "file": "official/v2-baseline-seed301/seed301_case0.json",
+    "sha256": "08295d27dc19a7d9224afee29d08671a6241c6c993856ada6af3a888803ad05a"
+  },
+  {
+    "source": "v2-baseline-seed301/seed301_case1.json",
+    "file": "official/v2-baseline-seed301/seed301_case1.json",
+    "sha256": "a90cc20487bdb2cec4256e6e9fb7d4e9d5eef14e495ea8676d7c347d15f12a5c"
+  },
+  {
+    "source": "v2-default/official.json",
+    "file": "official/v2-default/official.json",
+    "sha256": "5c1a490633f651ee686b4517d96a4f65773cf08e4716b4d6345a020ee5c92165"
+  },
+  {
+    "source": "v2-evaluation/seed9607-0/official.json",
+    "file": "official/v2-evaluation/seed9607-0/official.json",
+    "sha256": "910f22a91c13c92ccc2852411215728285fae70cf1c9befe8b5d276ee4be4299"
+  },
+  {
+    "source": "v2-evaluation/seed9607-1/official.json",
+    "file": "official/v2-evaluation/seed9607-1/official.json",
+    "sha256": "4b724c15412bce9a70bd16c04a3a24b25ef3fc70c80562a51c2188842d4f9860"
+  },
+  {
+    "source": "v2-integration/cone-delivery-return/official.json",
+    "file": "official/v2-integration/cone-delivery-return/official.json",
+    "sha256": "baa45c38b1550a9f79a46aa914db565909b870644019385dcff80a25f5b2f8fe"
+  },
+  {
+    "source": "v2-navigation/cone-start/official.json",
+    "file": "official/v2-navigation/cone-start/official.json",
+    "sha256": "abd995ed45108d26fe178c7a4520ff4be8649910b90fd847e170ad5dd91cabe3"
+  },
+  {
+    "source": "v2-navigation/high/official.json",
+    "file": "official/v2-navigation/high/official.json",
+    "sha256": "061bdf4d95bbd1f60c2d8e7a1ba737fc687fb5111bba03ee3aaf903d6b78bc16"
+  },
+  {
+    "source": "v2-navigation/low/official.json",
+    "file": "official/v2-navigation/low/official.json",
+    "sha256": "6733a68934e1e6fe9514d9518629082cff1ec3644e428438d45c7e2db47396d5"
+  },
+  {
+    "source": "v2-navigation/room-start/official.json",
+    "file": "official/v2-navigation/room-start/official.json",
+    "sha256": "874a1b20af9e62f4eacdca0006517bc73d911c84b36813a24c139a1b21f8d76c"
+  },
+  {
+    "source": "v2-navigation/roundtrip/official.json",
+    "file": "official/v2-navigation/roundtrip/official.json",
+    "sha256": "defb4bf362f79063e48774af31694e32ebc37f5cf4c3b72a98731c9d35a05516"
+  },
+  {
+    "source": "v2-other/mission3/official.json",
+    "file": "official/v2-other/mission3/official.json",
+    "sha256": "bcbf7b05be653b504fa95432f8272c2dfdfe36d710d1701c3b7177caa5f975ea"
+  },
+  {
+    "source": "v2-other/mission6/official.json",
+    "file": "official/v2-other/mission6/official.json",
+    "sha256": "531a695c91087210566207b7a414db9765eb3c317a845ea7d80ccff1cb16fef4"
+  },
+  {
+    "source": "v2-seed301/seed301_case0.json",
+    "file": "official/v2-seed301/seed301_case0.json",
+    "sha256": "271393cd0d2150fdf2da0df9438ec60095258dc2d3554e5c140a5aa87cba354d"
+  },
+  {
+    "source": "v2-seed301/seed301_case1.json",
+    "file": "official/v2-seed301/seed301_case1.json",
+    "sha256": "6fca26e672b0f83a7223db7a542ea4f0a77177e195a4572e7bf207176adea125"
+  },
+  {
+    "source": "v2-web/official.json",
+    "file": "official/v2-web/official.json",
+    "sha256": "ac7a5726867df729cc9284b85a8dd3daae9508a75af9ecc32ceabc6c5a58b24c"
+  }
+]

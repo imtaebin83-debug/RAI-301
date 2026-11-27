@@ -72,3 +72,18 @@ M2 owner optional API prerequisite (not a change to our submitted vision.py):
   sequence. A separate CPU-only fixture using the exact owner vision.py passes
   all 44 tests in v2 (v2_owner_tests_complete_overlay.log). Keep this dependency
   with the owner's integration; no shared vision function was changed here.
+
+Final v2 impact evidence (runtime a3c56be, official basis 56f307d):
+- M3 PASS245.86s, zero respawns, rejected scans and reanchors; official crossed
+  and in_exit_zone true. Last estimate vs stopped referee pelvis: 0.010m.
+- M2 -> M4 -> M1 owner overlay: 3/3 PASS, 50.15/190.36/37.73s. M4 rooms3/3,
+  actual classroom(19.97,10.49), then M1 actual goal error0.02m. One ICP proposal
+  was rejected and health recovered0.248s later from scans, without reanchoring.
+- M6 FAIL57.19s; ball(9.273,7.928) outside the goal. Controller observed ball
+  (9.39,8.16), approached behind it, then lacked stable visual updates.
+  observations=0 is the post-approach update count, not proof of no first
+  detection. There were zero in-motion invalid-localization records, rejected
+  scans or reanchors; final estimate vs stopped referee pelvis was0.005m.
+  These sparse stopped comparisons do not prove continuous pose accuracy or
+  identify the detector's object without image evidence. Preserve the exact
+  logs/JSON in v2-other/mission6 and let the vision/M6 owner investigate.

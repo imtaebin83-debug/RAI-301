@@ -5,3 +5,5 @@
 candidate-v1-navigation.patch
 delivery.patch
 delivery.bundle
+delivery_push.log
+delivery_manifest.json

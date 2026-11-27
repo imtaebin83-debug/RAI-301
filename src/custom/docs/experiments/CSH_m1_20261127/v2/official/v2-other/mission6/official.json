@@ -1,0 +1,78 @@
+{
+  "run": {
+    "started_at": "2026-11-27T11:01:15+09:00",
+    "case": {
+      "missions": [
+        6
+      ]
+    },
+    "source": "/home/aril/rai-worktrees/CSH-m1-20261127-02/src",
+    "kind": "stock mission",
+    "plans": [],
+    "ended_at": "2026-11-27T11:02:22+09:00"
+  },
+  "missions": [
+    {
+      "mission": 6,
+      "label": "Soccer goal scoring",
+      "verdict": "FAIL",
+      "success": false,
+      "seconds": 57.19,
+      "started_at": "2026-11-27T11:01:23+09:00",
+      "ended_at": "2026-11-27T11:02:20+09:00",
+      "checks": [
+        {
+          "name": "check",
+          "ok": false,
+          "summary": "ball (9.27, 7.93) outside the goal (centre x 6.82..11.68, y 0.66..1.96: whole ball past the line, between the posts)"
+        }
+      ],
+      "reported": {
+        "status": "done",
+        "detail": ""
+      },
+      "referee": {
+        "mission": 6,
+        "pelvis": [
+          9.553,
+          6.396,
+          0.78
+        ],
+        "success": false,
+        "summary": "ball (9.27, 7.93) outside the goal (centre x 6.82..11.68, y 0.66..1.96: whole ball past the line, between the posts)",
+        "ball": [
+          9.273,
+          7.928,
+          0.11
+        ],
+        "goal_box": [
+          6.82,
+          11.68,
+          0.66,
+          1.96,
+          1.93
+        ]
+      },
+      "data": {
+        "observations": 0,
+        "error": "Push budget exhausted or ball lost; referee decides success"
+      }
+    }
+  ],
+  "total": {
+    "missions": 1,
+    "passed": 0,
+    "failed": 1,
+    "not_judged": 0,
+    "mission_seconds": 57.19,
+    "respawns": 0,
+    "penalty_seconds": 0.0,
+    "total_seconds": 57.19,
+    "run_seconds": 67.0,
+    "by_mission": [
+      "6 FAIL 57.2s"
+    ],
+    "complete": true,
+    "updated_at": "2026-11-27T11:02:22+09:00"
+  }
+}

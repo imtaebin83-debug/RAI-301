@@ -1,0 +1,37 @@
+test_mission_2 (unittest.loader._FailedTest) ... ERROR
+test_mission_4 (unittest.loader._FailedTest) ... ERROR
+
+======================================================================
+ERROR: test_mission_2 (unittest.loader._FailedTest)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_mission_2
+Traceback (most recent call last):
+  File "/home/aril/miniconda3/envs/haic_rai301_v2/lib/python3.10/unittest/loader.py", line 154, in loadTestsFromName
+    module = __import__(module_name)
+  File "/tmp/csh-v2-owner-cpu-01b5wixi/custom/mission_2/test_mission_2.py", line 9, in <module>
+    from custom.mission_2.mission_2 import Mission2
+  File "/tmp/csh-v2-owner-cpu-01b5wixi/custom/mission_2/mission_2.py", line 14, in <module>
+    from custom.sensor_mission import Mission
+  File "/tmp/csh-v2-owner-cpu-01b5wixi/custom/sensor_mission.py", line 13, in <module>
+    from mission_api import Mission as OfficialMission
+  File "/tmp/csh-v2-owner-cpu-01b5wixi/mission_api.py", line 13, in <module>
+    from rclpy.node import Node  # noqa: E402
+ModuleNotFoundError: No module named 'rclpy'
+
+
+======================================================================
+ERROR: test_mission_4 (unittest.loader._FailedTest)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_mission_4
+Traceback (most recent call last):
+  File "/home/aril/miniconda3/envs/haic_rai301_v2/lib/python3.10/unittest/loader.py", line 154, in loadTestsFromName
+    module = __import__(module_name)
+  File "/tmp/csh-v2-owner-cpu-01b5wixi/custom/mission_4/test_mission_4.py", line 8, in <module>
+    from sensor_msgs.msg import Image
+ModuleNotFoundError: No module named 'sensor_msgs'
+
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+FAILED (errors=2)

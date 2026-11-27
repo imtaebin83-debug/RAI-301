@@ -1,0 +1,10 @@
+m1_goal: [15.5, 18.0, 90.0]        # mission 1 goal: world x, y, yaw_deg
+m2_color: green             # mission 2 target cone: green | blue | orange
+cone_order: [blue, green, orange]   # cone colours left -> right (x 14.0, 15.5, 17.0)
+room_order: [classroom, medical, cafeteria]   # rooms north -> south (y 17.5, 10.5, 3.5)
+ball_xy: [9.25, 8.15]
+panda_task:                    # mission 5: pencil and holder on the desk (world frame)
+  pencil_xy: [20.9911, 19.715]
+  pencil_yaw_deg: 3.52
+  cup_xy: [21.3778, 19.7061]
+  cup_yaw_deg: 13.25

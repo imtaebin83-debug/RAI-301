@@ -1,0 +1,44 @@
+[
+  {
+    "case": "seed9607-0",
+    "returncode": 0,
+    "kind": "mission",
+    "total": {
+      "missions": 1,
+      "passed": 1,
+      "failed": 0,
+      "not_judged": 0,
+      "mission_seconds": 15.73,
+      "respawns": 0,
+      "penalty_seconds": 0.0,
+      "total_seconds": 15.73,
+      "run_seconds": 24.89,
+      "by_mission": [
+        "1 PASS 15.7s"
+      ],
+      "complete": true,
+      "updated_at": "2026-11-27T10:55:17+09:00"
+    }
+  },
+  {
+    "case": "seed9607-1",
+    "returncode": 0,
+    "kind": "mission",
+    "total": {
+      "missions": 1,
+      "passed": 1,
+      "failed": 0,
+      "not_judged": 0,
+      "mission_seconds": 10.27,
+      "respawns": 0,
+      "penalty_seconds": 0.0,
+      "total_seconds": 10.27,
+      "run_seconds": 19.02,
+      "by_mission": [
+        "1 PASS 10.3s"
+      ],
+      "complete": true,
+      "updated_at": "2026-11-27T10:55:37+09:00"
+    }
+  }
+]

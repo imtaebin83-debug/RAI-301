@@ -1,0 +1,13 @@
+{
+  "basis": "56f307d84934d3efc0076fa58a963ad9eb2204b2",
+  "official_managed_paths_changed": [],
+  "other_owners_and_shared_settings_changed": [],
+  "runtime_forbidden_literal_hits": {},
+  "map_correction_default": "OFF (HAIC_MAP_CORRECTION=0)",
+  "models_with_symlinks": [],
+  "navigation_sha256": "da3fc31fb3f61a47efcfba8819fb31c29a4a9250489fcaf1c7fc1a7e11293831",
+  "localization_sha256": "d2e2503172e9e484f4f08a14bdfa9cd6e9e980f85ee81f84dd647245abb32e3d",
+  "localizer_node_sha256": "f540e53ee36fb7f37707567009b4a16a067a6f421f5cb5b7ad714b748f77ed7b",
+  "policy_requirement": "provided G1 policy unchanged; team-training requirement remains an integration dependency",
+  "limits": "literal audit supplements source review and tests; it is not a proof about arbitrary Python behavior"
+}

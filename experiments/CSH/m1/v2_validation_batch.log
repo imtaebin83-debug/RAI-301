@@ -1,0 +1,66 @@
+{"case": 0, "returncode": 0, "total": {"missions": 2, "passed": 2, "failed": 0, "not_judged": 0, "mission_seconds": 45.28, "respawns": 0, "penalty_seconds": 0.0, "total_seconds": 45.28, "run_seconds": 48.94, "by_mission": ["1 PASS 17.1s", "2 PASS 28.2s"], "complete": true, "updated_at": "2026-11-27T10:40:21+09:00"}}
+{"case": 1, "returncode": 0, "total": {"missions": 2, "passed": 2, "failed": 0, "not_judged": 0, "mission_seconds": 48.76, "respawns": 0, "penalty_seconds": 0.0, "total_seconds": 48.76, "run_seconds": 52.4, "by_mission": ["1 PASS 22.2s", "2 PASS 26.6s"], "complete": true, "updated_at": "2026-11-27T10:41:21+09:00"}}
+{"case": "low", "returncode": 0, "kind": "mission", "total": {"missions": 1, "passed": 1, "failed": 0, "not_judged": 0, "mission_seconds": 33.12, "respawns": 0, "penalty_seconds": 0.0, "total_seconds": 33.12, "run_seconds": 42.43, "by_mission": ["1 PASS 33.1s"], "complete": true, "updated_at": "2026-11-27T10:49:54+09:00"}}
+{"case": "high", "returncode": 0, "kind": "mission", "total": {"missions": 1, "passed": 1, "failed": 0, "not_judged": 0, "mission_seconds": 28.13, "respawns": 0, "penalty_seconds": 0.0, "total_seconds": 28.13, "run_seconds": 38.69, "by_mission": ["1 PASS 28.1s"], "complete": true, "updated_at": "2026-11-27T10:50:33+09:00"}}
+{"case": "room-start", "returncode": 0, "kind": "mission", "total": {"missions": 1, "passed": 1, "failed": 0, "not_judged": 0, "mission_seconds": 32.17, "respawns": 0, "penalty_seconds": 0.0, "total_seconds": 32.17, "run_seconds": 41.84, "by_mission": ["1 PASS 32.2s"], "complete": true, "updated_at": "2026-11-27T10:51:15+09:00"}}
+{"case": "cone-start", "returncode": 0, "kind": "mission", "total": {"missions": 1, "passed": 1, "failed": 0, "not_judged": 0, "mission_seconds": 37.94, "respawns": 0, "penalty_seconds": 0.0, "total_seconds": 37.94, "run_seconds": 46.99, "by_mission": ["1 PASS 37.9s"], "complete": true, "updated_at": "2026-11-27T10:52:03+09:00"}}
+{"case": "roundtrip", "returncode": 0, "kind": "probe", "total": {"missions": 1, "passed": 1, "failed": 0, "not_judged": 0, "mission_seconds": 160.06, "respawns": 0, "penalty_seconds": 0.0, "total_seconds": 160.06, "run_seconds": 168.82, "by_mission": ["1 PASS 160.1s"], "complete": true, "updated_at": "2026-11-27T10:54:52+09:00"}, "probe_succeeded": true, "checkpoint_errors": [0.05314132102234659, 0.05115662224971491, 0.019723082923316346, 0.039812058474788296]}
+{"case": "seed9607-0", "returncode": 0, "kind": "mission", "total": {"missions": 1, "passed": 1, "failed": 0, "not_judged": 0, "mission_seconds": 15.73, "respawns": 0, "penalty_seconds": 0.0, "total_seconds": 15.73, "run_seconds": 24.89, "by_mission": ["1 PASS 15.7s"], "complete": true, "updated_at": "2026-11-27T10:55:17+09:00"}}
+{"case": "seed9607-1", "returncode": 0, "kind": "mission", "total": {"missions": 1, "passed": 1, "failed": 0, "not_judged": 0, "mission_seconds": 10.27, "respawns": 0, "penalty_seconds": 0.0, "total_seconds": 10.27, "run_seconds": 19.02, "by_mission": ["1 PASS 10.3s"], "complete": true, "updated_at": "2026-11-27T10:55:37+09:00"}}
+{
+  "id": "44197c4f-80b7-4fe5-828e-21ac711acea3",
+  "instruction": "Walk to (15.5, 18.0), then go to the green cone.",
+  "plan": [
+    "mission 1 {'goal': [15.5, 18.0]}",
+    "mission 2 {'color': 'green'}"
+  ],
+  "records": [
+    {
+      "step": 1,
+      "mission": 1,
+      "label": "Point-goal navigation",
+      "verdict": "PASS",
+      "seconds": 22.98,
+      "checks": [
+        {
+          "name": "check",
+          "ok": true,
+          "summary": "0.08 m < 0.50 m from goal world (15.50, 18.00)"
+        }
+      ],
+      "rooms": null,
+      "reported": {
+        "status": "done",
+        "detail": ""
+      }
+    },
+    {
+      "step": 2,
+      "mission": 2,
+      "label": "Cone colour navigation",
+      "verdict": "PASS",
+      "seconds": 23.57,
+      "checks": [
+        {
+          "name": "check",
+          "ok": true,
+          "summary": "green cone box: |dx| 0.03 < 0.25, |dy| 0.03 < 0.25 m"
+        }
+      ],
+      "rooms": null,
+      "reported": {
+        "status": "done",
+        "detail": ""
+      }
+    }
+  ],
+  "results_file": "/home/aril/rai-worktrees/CSH-m1-20261127-02/src/results/run_20261127-105544.json",
+  "state": "done",
+  "total": {
+    "passed": 2,
+    "missions": 2,
+    "seconds": 72.0
+  }
+}
+{"case": "mission3", "returncode": 0, "kind": "mission", "total": {"missions": 1, "passed": 1, "failed": 0, "not_judged": 0, "mission_seconds": 245.86, "respawns": 0, "penalty_seconds": 0.0, "total_seconds": 245.86, "run_seconds": 255.72, "by_mission": ["3 PASS 245.9s"], "complete": true, "updated_at": "2026-11-27T11:01:15+09:00"}}
+{"case": "mission6", "returncode": 0, "kind": "mission", "total": {"missions": 1, "passed": 0, "failed": 1, "not_judged": 0, "mission_seconds": 57.19, "respawns": 0, "penalty_seconds": 0.0, "total_seconds": 57.19, "run_seconds": 67.0, "by_mission": ["6 FAIL 57.2s"], "complete": true, "updated_at": "2026-11-27T11:02:22+09:00"}}

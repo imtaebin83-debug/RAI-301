@@ -1,0 +1,9 @@
+{
+  "returncode": 1,
+  "kind": "CPU unit suites only; no simulator",
+  "base_source": "/home/aril/rai-worktrees/CSH-m1-20261127-02-v2-integration/src",
+  "vision_from": "2284468:src/custom/vision.py",
+  "vision_sha256": "66294acd184d388b308ee618084470bd86a5b521ef896a06000a88d1b81b855d",
+  "difference_from_live_simulation_fixture": "owner optional RGBD.cone(color, data=None) argument; simulation used unchanged main vision.py",
+  "submission_vision_changes": "none"
+}

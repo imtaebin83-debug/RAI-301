@@ -1,0 +1,30 @@
+[
+  {
+    "case": "roundtrip",
+    "returncode": 0,
+    "kind": "probe",
+    "total": {
+      "missions": 1,
+      "passed": 1,
+      "failed": 0,
+      "not_judged": 0,
+      "mission_seconds": 166.82,
+      "respawns": 0,
+      "penalty_seconds": 0.0,
+      "total_seconds": 166.82,
+      "run_seconds": 175.92,
+      "by_mission": [
+        "1 PASS 166.8s"
+      ],
+      "complete": true,
+      "updated_at": "2026-11-27T10:49:11+09:00"
+    },
+    "probe_succeeded": true,
+    "checkpoint_errors": [
+      0.1393125981381439,
+      0.17687566254292875,
+      0.12025389806571671,
+      0.08514693182963211
+    ]
+  }
+]

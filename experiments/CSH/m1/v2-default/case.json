@@ -1,0 +1,16 @@
+{
+  "case": "stock default Mission1",
+  "command": [
+    "bash",
+    "custom/tools/run_sim.sh",
+    "--headless",
+    "--missions",
+    "1",
+    "--no-wait"
+  ],
+  "config_evidence": "equivalent contents of the display-only temporary config produced by the unchanged wrapper",
+  "runtime_freeze": "a3c56be",
+  "basis": "56f307d",
+  "environment": "haic_rai301_v2",
+  "gpu_lock": "wrapper only"
+}

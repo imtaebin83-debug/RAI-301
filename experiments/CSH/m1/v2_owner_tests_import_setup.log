@@ -1,0 +1,27 @@
+test_mission_2 (unittest.loader._FailedTest) ... ERROR
+test_mission_4 (unittest.loader._FailedTest) ... ERROR
+
+======================================================================
+ERROR: test_mission_2 (unittest.loader._FailedTest)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_mission_2
+Traceback (most recent call last):
+  File "/home/aril/miniconda3/envs/haic_rai301_v2/lib/python3.10/unittest/loader.py", line 154, in loadTestsFromName
+    module = __import__(module_name)
+ModuleNotFoundError: No module named 'custom.mission_2.test_mission_2'
+
+
+======================================================================
+ERROR: test_mission_4 (unittest.loader._FailedTest)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_mission_4
+Traceback (most recent call last):
+  File "/home/aril/miniconda3/envs/haic_rai301_v2/lib/python3.10/unittest/loader.py", line 154, in loadTestsFromName
+    module = __import__(module_name)
+ModuleNotFoundError: No module named 'custom.mission_4.test_mission_4'
+
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+FAILED (errors=2)

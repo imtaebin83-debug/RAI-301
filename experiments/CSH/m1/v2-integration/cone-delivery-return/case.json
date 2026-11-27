@@ -1,0 +1,16 @@
+{
+  "missions": [
+    2,
+    4,
+    1
+  ],
+  "goal": [
+    15.0,
+    5.0
+  ],
+  "room_order": [
+    "medical",
+    "classroom",
+    "cafeteria"
+  ]
+}

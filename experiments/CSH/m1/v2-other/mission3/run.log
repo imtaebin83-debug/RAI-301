@@ -1,0 +1,93 @@
+[referee] results file: /home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/v2-other/mission3/official.json
+[main] starting the simulator: -m ros2_bridge.run_g1_ros --no-view --spawn 16 11 0 --m4-room classroom --judge-goal-radius 0.5 --judge-cone-box 0.5 --judge-cone-offset 0.75 --ball-friction 0.62 0.02 0.01 --m1-goal-region 14.0 17.0 1.0 20.0 --m1-goal-yaw 90 --ball-region 7.25 11.25 5.5 8.5 --scenario /home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/v2-other/mission3/scenario.yaml --sensors /home/aril/rai-worktrees/CSH-m1-20261127-02/src/custom/robot.yaml --max-vel 0.6 0.4 0.7
+[main] starting robot_state_publisher (G1 URDF -> /tf)
+[mission] waiting for the simulator on /g1/mission_status ...
+[INFO] [1795744627.197339683] [mujoco_sim]: /clock 100 Hz | joint_states 50 Hz (29 joints) | G1 RGB-D 20 Hz | extra RGB 10 Hz | lidar 10 Hz (OS1-32 32x512, 1 worker(s)) | IMU 100 Hz | odom 0 Hz
+[INFO] [1795744627.197625499] [mujoco_sim]: listening on /cmd_vel; timeout 0.5s; limits vx/vy/wz=(0.6, 0.4, 0.7)
+[INFO] [1795744627.198544371] [mujoco_sim]: G1 rescue: keys 1-6 in viewer or publish std_msgs/Empty to /g1/respawn
+[INFO] [1795744627.199114330] [mujoco_sim]: G1 joint control: sensor_msgs/JointState on /g1/joint_command suspends the walking policy; it resumes 0.2 s (sim) after the last command; gains on /g1/joint_gains
+[INFO] [1795744627.199854908] [mujoco_sim]: referee: std_msgs/Int32 /g1/mission_end judges mission N on ground truth; mission 4 room classroom; scenario /home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/v2-other/mission3/scenario.yaml
+[INFO] [1795744627.200658093] [mujoco_sim]: Mission API: std_msgs/Int32 /g1/mission_begin (1-6, G1 not moved), std_msgs/Empty /g1/randomize; status on /g1/mission_status
+[INFO] [1795744627.200784330] [mujoco_sim]: ground truth: NOT published (no /odom, no odom TF; add --ground-truth to enable); initial pose: manual (RViz 2D Pose Estimate)
+[INFO] [1795744627.202972101] [mujoco_sim]: Panda task (startup): arm home, pencil (20.991, 19.715), holder (21.378, 19.706)
+[INFO] [1795744627.203370678] [mujoco_sim]: Scenario (/home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/v2-other/mission3/scenario.yaml): m1 goal (15.50, 18.00), m2 green, cones blue | green | orange, rooms classroom | medical | cafeteria, ball (9.25, 8.15)
+[INFO] [1795744627.203585671] [mujoco_sim]: scene=layout.json robot='g1/' spawn=(16.00, 11.00, floor 0.00); official Unitree 29-DoF ONNX READY; standing until /cmd_vel arrives
+[mission] simulator up (mission point 1: launch point)
+[main] launching custom/bringup.launch.py (your nodes)
+
+[main] ===== mission 3: Cliff crossing =====
+[INFO] [1795744627.267796376] [mujoco_sim]: mission 3 (cliff-course entrance) selected from ROS begin 3; G1 not moved
+[INFO] [launch]: All log files can be found below /home/aril/.ros/log/2026-11-27-10-57-07-374117-aril-13-460649
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [python-1]: process started with pid [460660]
+[python-1] [localizer] waiting: ExtrapolationException: Lookup would require extrapolation at time 0.700000, but only time 0.780000 is in the buffer, when looking up transform from frame [lidar_link] to frame [pelvis]
+[python-1] [localizer] guarded-kiss-icp, IMU roll/pitch=-0.0/-0.5 deg, pelvis height=0.780m floor support=0.80
+[nav] pose=(16.00,11.00,0.00) target=(14.00,20.12) error=9.34
+[nav] pose=(15.89,11.52,1.77) target=(14.00,20.12) error=8.81
+[nav] pose=(15.54,12.93,1.84) target=(14.00,20.12) error=7.36
+[nav] pose=(15.22,14.38,1.84) target=(14.00,20.12) error=5.87
+[nav] pose=(14.89,15.80,1.82) target=(14.00,20.12) error=4.41
+[nav] pose=(14.58,17.26,1.83) target=(14.00,20.12) error=2.93
+[nav] pose=(14.29,18.63,1.82) target=(14.00,20.12) error=1.53
+[nav] pose=(14.00,20.07,1.83) target=(14.00,20.12) error=0.06
+[nav] pose=(13.36,20.10,-3.11) target=(12.40,20.12) error=0.96
+[nav] pose=(12.25,20.09,-3.09) target=(6.08,20.12) error=6.17
+[nav] pose=(10.79,20.06,-3.10) target=(6.08,20.12) error=4.72
+[nav] pose=(9.30,20.07,-3.10) target=(6.08,20.12) error=3.23
+[nav] pose=(7.85,20.07,-3.13) target=(6.08,20.12) error=1.77
+[nav] pose=(6.39,20.10,-3.13) target=(6.08,20.12) error=0.32
+[nav] pose=(6.12,19.91,-1.62) target=(6.08,18.90) error=1.01
+[nav] pose=(6.13,18.94,-1.07) target=(12.43,18.90) error=6.30
+[nav] pose=(7.12,18.93,0.04) target=(12.43,18.90) error=5.31
+[nav] pose=(8.64,18.95,0.05) target=(12.43,18.90) error=3.79
+[nav] pose=(10.07,18.94,0.04) target=(12.43,18.90) error=2.36
+[nav] pose=(11.55,18.95,0.02) target=(12.43,18.90) error=0.88
+[nav] pose=(12.37,18.89,-0.42) target=(12.43,17.20) error=1.69
+[nav] pose=(12.43,18.29,-1.52) target=(12.43,17.20) error=1.09
+[nav] pose=(12.40,17.22,-1.50) target=(6.08,17.20) error=6.33
+[nav] pose=(11.96,17.17,-3.10) target=(6.08,17.20) error=5.89
+[nav] pose=(10.35,17.15,-3.10) target=(6.08,17.20) error=4.28
+[nav] pose=(8.81,17.14,-3.12) target=(6.08,17.20) error=2.73
+[nav] pose=(7.29,17.16,-3.12) target=(6.08,17.20) error=1.21
+[nav] pose=(5.99,17.18,-3.08) target=(6.08,15.40) error=1.78
+[nav] pose=(6.11,16.45,-1.49) target=(6.08,15.40) error=1.05
+[nav] pose=(6.05,15.42,-1.10) target=(12.43,15.40) error=6.37
+[nav] pose=(7.13,15.43,0.05) target=(12.43,15.40) error=5.29
+[nav] pose=(8.56,15.45,0.03) target=(12.43,15.40) error=3.87
+[nav] pose=(10.02,15.46,0.03) target=(12.43,15.40) error=2.41
+[nav] pose=(11.48,15.44,0.02) target=(12.43,15.40) error=0.95
+[nav] pose=(12.40,15.38,-0.48) target=(12.43,13.40) error=1.98
+[nav] pose=(12.40,14.75,-1.50) target=(12.43,13.40) error=1.35
+[nav] pose=(12.40,13.43,-1.67) target=(6.08,13.40) error=6.32
+[nav] pose=(11.83,13.36,-3.08) target=(6.08,13.40) error=5.76
+[nav] pose=(10.34,13.35,-3.11) target=(6.08,13.40) error=4.27
+[nav] pose=(8.91,13.33,-3.12) target=(6.08,13.40) error=2.83
+[nav] pose=(7.42,13.35,-3.11) target=(6.08,13.40) error=1.35
+[nav] pose=(6.07,13.40,-3.08) target=(6.08,11.38) error=2.02
+[nav] pose=(6.12,12.81,-1.53) target=(6.08,11.38) error=1.44
+[nav] pose=(6.04,11.39,-1.53) target=(13.65,11.38) error=7.61
+[nav] pose=(6.66,11.38,0.02) target=(13.65,11.38) error=6.99
+[nav] pose=(8.20,11.42,0.03) target=(13.65,11.38) error=5.45
+[nav] pose=(9.66,11.44,0.05) target=(13.65,11.38) error=3.99
+[nav] pose=(11.15,11.44,0.02) target=(13.65,11.38) error=2.50
+[nav] pose=(12.61,11.44,0.02) target=(13.65,11.38) error=1.04
+[WARN] [1795744873.595863202] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[INFO] [1795744874.074374178] [mujoco_sim]: referee: mission 3 PASS -- crossed entrance -> exit; pelvis (13.63, 11.36) inside the exit zone x 13.00..14.20, y 10.78..11.97
+[referee] ===== mission 3 Cliff crossing: PASS in 245.9 s =====
+[referee]   check     crossed entrance -> exit; pelvis (13.63, 11.36) inside the exit zone x 13.00..14.20, y 10.78..11.97  [PASS]
+[referee]   reported  done: 
+[main] stopping the simulator
+[main] stopping the robot_state_publisher
+[main] stopping the custom bringup
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [python-1]: sending signal 'SIGINT' to process[python-1]
+[INFO] [1795744874.489652648] [mujoco_sim]: stopped at sim=247.25s wall=247.29s RTF=1.00
+[INFO] [python-1]: process has finished cleanly [pid 460660]
+
+============================== Mission results (referee, ground truth) ==============================
+  step  #  mission                        result     time  check
+  -     3  Cliff crossing                 PASS     245.9s  check: crossed entrance -> exit; pelvis (13.63, 11.36) inside the exit zone x 13.00..14.20, y 10.78..11.97
+  1/1 passed, missions 245.9 s, run 255.7 s
+  respawns 0 x 30 s = +0 s penalty -> total time 245.9 s (missions + penalty)
+  results file: /home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/v2-other/mission3/official.json
+======================================================================================================

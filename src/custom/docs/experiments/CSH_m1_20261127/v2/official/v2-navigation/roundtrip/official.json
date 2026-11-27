@@ -1,0 +1,235 @@
+{
+  "run": {
+    "started_at": "2026-11-27T10:52:03+09:00",
+    "case": {
+      "probe": [
+        [
+          16.0,
+          18.5
+        ],
+        [
+          16.0,
+          3.5
+        ],
+        [
+          16.0,
+          18.5
+        ],
+        [
+          16.0,
+          11.0
+        ]
+      ],
+      "goal": [
+        16.0,
+        11.0
+      ]
+    },
+    "source": "/home/aril/rai-worktrees/CSH-m1-20261127-02/src",
+    "kind": "navigation probe",
+    "plans": [],
+    "ended_at": "2026-11-27T10:54:52+09:00"
+  },
+  "missions": [
+    {
+      "mission": 1,
+      "label": "Point-goal navigation",
+      "verdict": "PASS",
+      "success": true,
+      "seconds": 160.06,
+      "started_at": "2026-11-27T10:52:09+09:00",
+      "ended_at": "2026-11-27T10:54:50+09:00",
+      "checks": [
+        {
+          "name": "check",
+          "ok": true,
+          "summary": "0.07 m < 0.50 m from goal world (16.00, 11.00)"
+        }
+      ],
+      "reported": {
+        "status": "done",
+        "detail": ""
+      },
+      "referee": {
+        "mission": 1,
+        "pelvis": [
+          16.054,
+          10.948,
+          0.78
+        ],
+        "success": true,
+        "summary": "0.07 m < 0.50 m from goal world (16.00, 11.00)",
+        "goal": [
+          16.0,
+          11.0
+        ],
+        "goal_world": [
+          16.0,
+          11.0
+        ],
+        "distance_m": 0.075,
+        "threshold_m": 0.5
+      },
+      "data": {
+        "checkpoints": [
+          {
+            "target": [
+              16.0,
+              18.5
+            ],
+            "reached": true,
+            "seconds": 21.9339967140113,
+            "estimated": [
+              15.995620105673135,
+              18.4385353364693,
+              1.6220808125008366
+            ],
+            "official_checkpoint": {
+              "mission": 1,
+              "pelvis": [
+                15.982,
+                18.45,
+                0.78
+              ],
+              "success": false,
+              "summary": "7.45 m > 0.50 m from goal world (16.00, 11.00)",
+              "goal": [
+                16.0,
+                11.0
+              ],
+              "goal_world": [
+                16.0,
+                11.0
+              ],
+              "distance_m": 7.45,
+              "threshold_m": 0.5
+            },
+            "actual_goal_error": 0.05314132102234659,
+            "estimate_error": 0.017802971336816725
+          },
+          {
+            "target": [
+              16.0,
+              3.5
+            ],
+            "reached": true,
+            "seconds": 49.359578004979994,
+            "estimated": [
+              15.997454627982837,
+              3.5568741491045595,
+              -1.5122986192922343
+            ],
+            "official_checkpoint": {
+              "mission": 1,
+              "pelvis": [
+                16.004,
+                3.551,
+                0.779
+              ],
+              "success": false,
+              "summary": "7.45 m > 0.50 m from goal world (16.00, 11.00)",
+              "goal": [
+                16.0,
+                11.0
+              ],
+              "goal_world": [
+                16.0,
+                11.0
+              ],
+              "distance_m": 7.449,
+              "threshold_m": 0.5
+            },
+            "actual_goal_error": 0.05115662224971491,
+            "estimate_error": 0.008794744029571122
+          },
+          {
+            "target": [
+              16.0,
+              18.5
+            ],
+            "reached": true,
+            "seconds": 41.994171815982554,
+            "estimated": [
+              15.988162581391073,
+              18.49765510508135,
+              1.6325346577742164
+            ],
+            "official_checkpoint": {
+              "mission": 1,
+              "pelvis": [
+                15.983,
+                18.49,
+                0.779
+              ],
+              "success": false,
+              "summary": "7.49 m > 0.50 m from goal world (16.00, 11.00)",
+              "goal": [
+                16.0,
+                11.0
+              ],
+              "goal_world": [
+                16.0,
+                11.0
+              ],
+              "distance_m": 7.49,
+              "threshold_m": 0.5
+            },
+            "actual_goal_error": 0.019723082923316346,
+            "estimate_error": 0.009233248638804202
+          },
+          {
+            "target": [
+              16.0,
+              11.0
+            ],
+            "reached": true,
+            "seconds": 28.234357330016792,
+            "estimated": [
+              16.007983713478207,
+              11.044853472921218,
+              -1.535610795624336
+            ],
+            "official_checkpoint": {
+              "mission": 1,
+              "pelvis": [
+                16.008,
+                11.039,
+                0.78
+              ],
+              "success": true,
+              "summary": "0.04 m < 0.50 m from goal world (16.00, 11.00)",
+              "goal": [
+                16.0,
+                11.0
+              ],
+              "goal_world": [
+                16.0,
+                11.0
+              ],
+              "distance_m": 0.04,
+              "threshold_m": 0.5
+            },
+            "actual_goal_error": 0.039812058474788296,
+            "estimate_error": 0.005853495578731832
+          }
+        ]
+      }
+    }
+  ],
+  "total": {
+    "missions": 1,
+    "passed": 1,
+    "failed": 0,
+    "not_judged": 0,
+    "mission_seconds": 160.06,
+    "respawns": 0,
+    "penalty_seconds": 0.0,
+    "total_seconds": 160.06,
+    "run_seconds": 168.82,
+    "by_mission": [
+      "1 PASS 160.1s"
+    ],
+    "complete": true,
+    "updated_at": "2026-11-27T10:54:52+09:00"
+  }
+}

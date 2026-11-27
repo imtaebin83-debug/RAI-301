@@ -1,0 +1,25 @@
+[
+  {
+    "case": "cone-delivery-return",
+    "returncode": 0,
+    "kind": "mission",
+    "total": {
+      "missions": 3,
+      "passed": 3,
+      "failed": 0,
+      "not_judged": 0,
+      "mission_seconds": 278.24,
+      "respawns": 0,
+      "penalty_seconds": 0.0,
+      "total_seconds": 278.24,
+      "run_seconds": 293.01,
+      "by_mission": [
+        "2 PASS 50.1s",
+        "4 PASS 190.4s",
+        "1 PASS 37.7s"
+      ],
+      "complete": true,
+      "updated_at": "2026-11-27T10:46:14+09:00"
+    }
+  }
+]

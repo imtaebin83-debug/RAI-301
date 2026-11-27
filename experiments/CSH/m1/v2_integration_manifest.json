@@ -1,0 +1,43 @@
+{
+  "base_and_common": "2cae201",
+  "fixture": "/home/aril/rai-worktrees/CSH-m1-20261127-02-v2-integration",
+  "kind": "evaluation-only overlay, not submitted Mission 2/4 body changes",
+  "models": "read-only weights from candidate src/custom/models",
+  "files": [
+    {
+      "revision": "2284468",
+      "path": "src/custom/mission_2/mission_2.py",
+      "original_sha256": "6c584005d58c69227543deec273dc56db59157db844b47cd56f11038b4ff9dfd",
+      "evaluation_sha256": "63b7821de058a86f281bf5aa8d735ec280d8ca8a7dd98702da5ace1cccb64f8e",
+      "adaptation": "public SensorMission import only"
+    },
+    {
+      "revision": "2284468",
+      "path": "src/custom/mission_2/perception.py",
+      "original_sha256": "0559ac44375688a67f57cf25f778e7ec99d4563167223b10041bebc05b73049b",
+      "evaluation_sha256": "0559ac44375688a67f57cf25f778e7ec99d4563167223b10041bebc05b73049b",
+      "adaptation": null
+    },
+    {
+      "revision": "36d6ee5",
+      "path": "src/custom/mission_4/mission_4.py",
+      "original_sha256": "42325bcffc6fceba49d5ba9b5b0c0824619e0005fa05598548a7791cf837bc73",
+      "evaluation_sha256": "67ed07d6b83fa29f0f4b7bc2ede5dae83658de4f01b799a83cdf3117a62bdeb1",
+      "adaptation": "public SensorMission import only"
+    },
+    {
+      "revision": "36d6ee5",
+      "path": "src/custom/mission_4/room_scoring.py",
+      "original_sha256": "fa3df5ec75b5e4e0a6feac3186622ef75f4457a9bf0386c158166864188fbba6",
+      "evaluation_sha256": "fa3df5ec75b5e4e0a6feac3186622ef75f4457a9bf0386c158166864188fbba6",
+      "adaptation": null
+    },
+    {
+      "revision": "36d6ee5",
+      "path": "src/custom/vlm.py",
+      "original_sha256": "d2458a7daafa17cf336c030d445db43b43296eef80e5345cbe8a2543a391cac9",
+      "evaluation_sha256": "d2458a7daafa17cf336c030d445db43b43296eef80e5345cbe8a2543a391cac9",
+      "adaptation": null
+    }
+  ]
+}

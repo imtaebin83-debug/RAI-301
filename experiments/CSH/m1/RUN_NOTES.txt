@@ -38,3 +38,11 @@ Starter v2 port:
 - The live v2 M2/M4 fixture retains origin/main vision.py. Its exact source
   hashes were captured before simulation. The optional owner API was used
   only in the CPU fixture; it is not a submitted shared-vision change.
+- The outer v2_validation.sh exec session reported exit 143 when collected
+  after its final case. All per-case workers recorded returncode=0; both final
+  M3/M6 official files are complete=true and contain the finished verdicts.
+  The outer-session signal cause is not established. It is not hidden as a
+  mission success or substituted for the original per-case results.
+- Plot rendering initially used a newer Matplotlib legend location option.
+  It was adjusted to the installed version and visually inspected without
+  upgrading the environment.

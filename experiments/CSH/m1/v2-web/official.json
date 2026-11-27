@@ -1,0 +1,152 @@
+{
+  "run": {
+    "started_at": "2026-11-27T10:55:44+09:00",
+    "package": "CSH-m1-20261127-02",
+    "mode": "instruction (web page)",
+    "config": "/tmp/rai-web-eval-y7i2e7zw/config.yaml",
+    "scenario": "/home/aril/rai-worktrees/CSH-m1-20261127-02/src/scenarios/default.yaml",
+    "referee": {
+      "goal_radius_m": 0.5,
+      "cone_box_m": 0.5,
+      "cone_box_offset_m": 0.75,
+      "m4_room": "classroom",
+      "m1_goal": null,
+      "m2_color": null
+    },
+    "plans": [
+      {
+        "instruction": "Walk to (15.5, 18.0), then go to the green cone.",
+        "steps": [
+          "mission 1 {'goal': [15.5, 18.0]}",
+          "mission 2 {'color': 'green'}"
+        ],
+        "missions": [
+          1,
+          2
+        ],
+        "planned_at": "2026-11-27T10:56:08+09:00",
+        "seconds": 72.03
+      }
+    ],
+    "ended_at": "2026-11-27T10:56:58+09:00"
+  },
+  "missions": [
+    {
+      "mission": 1,
+      "label": "Point-goal navigation",
+      "verdict": "PASS",
+      "success": true,
+      "seconds": 22.98,
+      "started_at": "2026-11-27T10:56:08+09:00",
+      "ended_at": "2026-11-27T10:56:31+09:00",
+      "checks": [
+        {
+          "name": "check",
+          "ok": true,
+          "summary": "0.08 m < 0.50 m from goal world (15.50, 18.00)"
+        }
+      ],
+      "reported": {
+        "status": "done",
+        "detail": ""
+      },
+      "referee": {
+        "mission": 1,
+        "pelvis": [
+          15.511,
+          17.924,
+          0.78
+        ],
+        "success": true,
+        "summary": "0.08 m < 0.50 m from goal world (15.50, 18.00)",
+        "goal": [
+          15.5,
+          18.0
+        ],
+        "goal_world": [
+          15.5,
+          18.0
+        ],
+        "distance_m": 0.077,
+        "threshold_m": 0.5
+      },
+      "data": {
+        "controller_reached": true,
+        "estimated_pose": [
+          15.496428799145235,
+          17.927857832094187,
+          1.6946207233014718
+        ]
+      },
+      "plan": 0,
+      "step": 1,
+      "of": 2
+    },
+    {
+      "mission": 2,
+      "label": "Cone colour navigation",
+      "verdict": "PASS",
+      "success": true,
+      "seconds": 23.57,
+      "started_at": "2026-11-27T10:56:32+09:00",
+      "ended_at": "2026-11-27T10:56:56+09:00",
+      "checks": [
+        {
+          "name": "check",
+          "ok": true,
+          "summary": "green cone box: |dx| 0.03 < 0.25, |dy| 0.03 < 0.25 m"
+        }
+      ],
+      "reported": {
+        "status": "done",
+        "detail": ""
+      },
+      "referee": {
+        "mission": 2,
+        "pelvis": [
+          15.532,
+          24.079,
+          0.779
+        ],
+        "success": true,
+        "summary": "green cone box: |dx| 0.03 < 0.25, |dy| 0.03 < 0.25 m",
+        "color": "green",
+        "box_center": [
+          15.5,
+          24.05
+        ],
+        "box_m": 0.5,
+        "dx_m": 0.032,
+        "dy_m": 0.029
+      },
+      "data": {
+        "color": "green",
+        "cone_xy": [
+          15.497129607032331,
+          24.69891774448378
+        ],
+        "reached": true
+      },
+      "plan": 0,
+      "step": 2,
+      "of": 2
+    }
+  ],
+  "total": {
+    "missions": 2,
+    "passed": 2,
+    "failed": 0,
+    "not_judged": 0,
+    "mission_seconds": 46.55,
+    "respawns": 0,
+    "penalty_seconds": 0.0,
+    "total_seconds": 46.55,
+    "run_seconds": 73.88,
+    "by_mission": [
+      "1 PASS 23.0s",
+      "2 PASS 23.6s"
+    ],
+    "complete": false,
+    "updated_at": "2026-11-27T10:56:58+09:00"
+  }
+}

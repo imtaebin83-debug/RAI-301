@@ -9,3 +9,7 @@ SSH and Conda settings were not changed; commit author was set per command only.
 After a repository-write account has been authenticated on this PC, run:
   bash experiments/CSH/m1/publish.sh
 This pushes only opt/m1-CSH-20261127-02, without force or a main merge.
+
+Final explicit-branch push output is retained locally as delivery_push.log;
+delivery_manifest.json identifies the final commit and patch/bundle hashes.
+These generated delivery artifacts are ignored to avoid recursive commits.

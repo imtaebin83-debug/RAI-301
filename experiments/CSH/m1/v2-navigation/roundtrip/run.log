@@ -1,0 +1,76 @@
+[referee] results file: /home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/v2-navigation/roundtrip/official.json
+[main] starting the simulator: -m ros2_bridge.run_g1_ros --no-view --spawn 16 11 0 --m4-room classroom --judge-goal-radius 0.5 --judge-cone-box 0.5 --judge-cone-offset 0.75 --ball-friction 0.62 0.02 0.01 --m1-goal-region 14.0 17.0 1.0 20.0 --m1-goal-yaw 90 --ball-region 7.25 11.25 5.5 8.5 --scenario /home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/v2-navigation/roundtrip/scenario.yaml --sensors /home/aril/rai-worktrees/CSH-m1-20261127-02/src/custom/robot.yaml --max-vel 0.6 0.4 0.7
+[main] starting robot_state_publisher (G1 URDF -> /tf)
+[mission] waiting for the simulator on /g1/mission_status ...
+[INFO] [1795744329.940790477] [mujoco_sim]: /clock 100 Hz | joint_states 50 Hz (29 joints) | G1 RGB-D 20 Hz | extra RGB 10 Hz | lidar 10 Hz (OS1-32 32x512, 1 worker(s)) | IMU 100 Hz | odom 0 Hz
+[INFO] [1795744329.941036218] [mujoco_sim]: listening on /cmd_vel; timeout 0.5s; limits vx/vy/wz=(0.6, 0.4, 0.7)
+[INFO] [1795744329.941608760] [mujoco_sim]: G1 rescue: keys 1-6 in viewer or publish std_msgs/Empty to /g1/respawn
+[INFO] [1795744329.942004361] [mujoco_sim]: G1 joint control: sensor_msgs/JointState on /g1/joint_command suspends the walking policy; it resumes 0.2 s (sim) after the last command; gains on /g1/joint_gains
+[INFO] [1795744329.942580460] [mujoco_sim]: referee: std_msgs/Int32 /g1/mission_end judges mission N on ground truth; mission 4 room classroom; scenario /home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/v2-navigation/roundtrip/scenario.yaml
+[INFO] [1795744329.943285621] [mujoco_sim]: Mission API: std_msgs/Int32 /g1/mission_begin (1-6, G1 not moved), std_msgs/Empty /g1/randomize; status on /g1/mission_status
+[INFO] [1795744329.943403502] [mujoco_sim]: ground truth: NOT published (no /odom, no odom TF; add --ground-truth to enable); initial pose: manual (RViz 2D Pose Estimate)
+[INFO] [1795744329.945336742] [mujoco_sim]: Panda task (startup): arm home, pencil (20.991, 19.715), holder (21.378, 19.706)
+[INFO] [1795744329.945699271] [mujoco_sim]: Scenario (/home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/v2-navigation/roundtrip/scenario.yaml): m1 goal (16.00, 11.00), m2 green, cones blue | green | orange, rooms classroom | medical | cafeteria, ball (9.25, 8.15)
+[INFO] [1795744329.945898835] [mujoco_sim]: scene=layout.json robot='g1/' spawn=(16.00, 11.00, floor 0.00); official Unitree 29-DoF ONNX READY; standing until /cmd_vel arrives
+[mission] simulator up (mission point 1: launch point)
+[main] launching custom/bringup.launch.py (your nodes)
+[INFO] [1795744330.007642318] [mujoco_sim]: mission 1 (launch point) selected from ROS begin 1; G1 not moved
+[INFO] [launch]: All log files can be found below /home/aril/.ros/log/2026-11-27-10-52-10-163808-aril-13-454378
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [python-1]: process started with pid [454379]
+[python-1] [localizer] waiting: ExtrapolationException: Lookup would require extrapolation into the past.  Requested time 0.600000 but the earliest data is at time 0.720000, when looking up transform from frame [lidar_link] to frame [pelvis]
+[python-1] [localizer] guarded-kiss-icp, IMU roll/pitch=-0.0/-0.5 deg, pelvis height=0.780m floor support=0.80
+[nav] pose=(16.00,11.00,0.00) target=(16.00,18.50) error=7.50
+[nav] pose=(16.00,11.81,1.57) target=(16.00,18.50) error=6.69
+[nav] pose=(15.98,13.81,1.61) target=(16.00,18.50) error=4.69
+[nav] pose=(16.00,15.73,1.61) target=(16.00,18.50) error=2.77
+[nav] pose=(16.00,17.74,1.60) target=(16.00,18.50) error=0.76
+[INFO] [1795744353.300108144] [mujoco_sim]: referee: mission 1 FAIL -- 7.45 m > 0.50 m from goal world (16.00, 11.00)
+[nav] pose=(16.05,18.57,0.06) target=(16.00,3.50) error=15.07
+[nav] pose=(16.14,18.29,-1.40) target=(16.00,3.50) error=14.79
+[nav] pose=(16.09,16.77,-1.54) target=(16.00,3.50) error=13.27
+[nav] pose=(16.08,15.28,-1.55) target=(16.00,3.50) error=11.78
+[nav] pose=(16.07,13.75,-1.54) target=(16.00,3.50) error=10.25
+[nav] pose=(16.06,12.15,-1.54) target=(16.00,3.50) error=8.65
+[nav] pose=(16.04,10.49,-1.53) target=(16.00,3.50) error=6.99
+[nav] pose=(16.01,8.77,-1.54) target=(16.00,3.50) error=5.27
+[nav] pose=(16.01,6.97,-1.53) target=(16.00,3.50) error=3.47
+[nav] pose=(16.00,5.09,-1.53) target=(16.00,3.50) error=1.59
+[INFO] [1795744407.606960588] [mujoco_sim]: referee: mission 1 FAIL -- 7.45 m > 0.50 m from goal world (16.00, 11.00)
+[nav] pose=(16.07,3.49,-0.03) target=(16.00,18.50) error=15.01
+[nav] pose=(16.13,4.09,1.57) target=(16.00,18.50) error=14.41
+[nav] pose=(16.10,5.93,1.62) target=(16.00,18.50) error=12.57
+[nav] pose=(16.09,7.82,1.62) target=(16.00,18.50) error=10.68
+[nav] pose=(16.07,9.81,1.61) target=(16.00,18.50) error=8.69
+[nav] pose=(16.07,11.81,1.62) target=(16.00,18.50) error=6.69
+[nav] pose=(16.06,13.77,1.61) target=(16.00,18.50) error=4.73
+[nav] pose=(16.03,15.77,1.62) target=(16.00,18.50) error=2.73
+[nav] pose=(16.02,17.78,1.62) target=(16.00,18.50) error=0.73
+[INFO] [1795744452.979147533] [mujoco_sim]: referee: mission 1 FAIL -- 7.49 m > 0.50 m from goal world (16.00, 11.00)
+[nav] pose=(16.06,18.57,0.06) target=(16.00,11.00) error=7.57
+[nav] pose=(16.16,18.28,-1.42) target=(16.00,11.00) error=7.28
+[nav] pose=(16.10,16.79,-1.55) target=(16.00,11.00) error=5.80
+[nav] pose=(16.08,15.27,-1.55) target=(16.00,11.00) error=4.27
+[nav] pose=(16.04,13.70,-1.56) target=(16.00,11.00) error=2.70
+[nav] pose=(16.01,12.05,-1.56) target=(16.00,11.00) error=1.05
+[INFO] [1795744485.980340647] [mujoco_sim]: referee: mission 1 PASS -- 0.04 m < 0.50 m from goal world (16.00, 11.00)
+[WARN] [1795744490.538592971] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[INFO] [1795744491.036797359] [mujoco_sim]: referee: mission 1 PASS -- 0.07 m < 0.50 m from goal world (16.00, 11.00)
+[referee] ===== mission 1 Point-goal navigation: PASS in 160.1 s =====
+[referee]   check     0.07 m < 0.50 m from goal world (16.00, 11.00)  [PASS]
+[referee]   reported  done: 
+[main] stopping the simulator
+[main] stopping the robot_state_publisher
+[main] stopping the custom bringup
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [python-1]: sending signal 'SIGINT' to process[python-1]
+[INFO] [1795744491.449550979] [mujoco_sim]: stopped at sim=148.25s wall=161.50s RTF=0.92
+[INFO] [python-1]: process has finished cleanly [pid 454379]
+
+============================== Mission results (referee, ground truth) ==============================
+  step  #  mission                        result     time  check
+  -     1  Point-goal navigation          PASS     160.1s  check: 0.07 m < 0.50 m from goal world (16.00, 11.00)
+  1/1 passed, missions 160.1 s, run 168.8 s
+  respawns 0 x 30 s = +0 s penalty -> total time 160.1 s (missions + penalty)
+  results file: /home/aril/rai-worktrees/CSH-m1-20261127-02/experiments/CSH/m1/v2-navigation/roundtrip/official.json
+======================================================================================================

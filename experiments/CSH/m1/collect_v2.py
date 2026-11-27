@@ -4,6 +4,7 @@ import hashlib
 import json
 from pathlib import Path
 import shutil
+import numpy as np
 
 root = Path(__file__).resolve().parent
 repo = root.parents[2]
@@ -65,6 +66,13 @@ for directory in sorted(root.glob('v2-*')):
             'reanchors': max((e['recovery_count'] for e in entries), default=0),
             'invalid_reasons': dict(collections.Counter(e['reason'] for e in entries if not e['valid'])),
             'pending_input_records': sum(e['metrics'].get('state') == 'waiting_imu' for e in entries)}
+        for key in ('dt', 'seconds', 'support', 'rmse', 'gyro_error', 'update_seconds'):
+            values = [e.get('update_seconds') if key == 'update_seconds' else e['metrics'].get(key)
+                      for e in valid]
+            values = [v for v in values if v is not None and np.isfinite(v)]
+            if values:
+                record[key] = dict(zip(('min', 'p50', 'p95', 'max'),
+                    map(float, np.quantile(values, [0., .5, .95, 1.]))))
         if path.parent.name == 'roundtrip' and valid:
             record['max_estimated_cross_track_m'] = max(abs(e['transform'][0][3]-16.) for e in valid)
         traces.append(record)
@@ -76,7 +84,9 @@ for name, data in [('v2_results.json', rows), ('v2_probes.json', probes),
         shutil.copy2(out / name, root / name)
 for name in ('SPLITS_v2.json', 'v2_imports.json', 'v2_dependencies.json', 'v2_common_tests.log',
              'v2_pip_check.txt', 'v2_integration_manifest.json', 'v2_planner_probe.json',
-             'v2_scope_audit.json'):
+             'v2_scope_audit.json', 'v2_baseline_tests.log',
+             'v2_owner_tests_complete_overlay.json', 'v2_owner_tests_complete_overlay.log',
+             'v2_batch_status.json'):
     path = root / name
     if path.exists():
         shutil.copy2(path, out / name)

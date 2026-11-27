@@ -1,0 +1,518 @@
+[
+  {
+    "case": "v2-default",
+    "accepted_measurements": 177,
+    "rejected_scans": 0,
+    "reanchors": 0,
+    "invalid_reasons": {
+      "ExtrapolationException: Lookup would require extrapolation into the past.  Requested time 1.000000 but the earliest data is at time 1.140000, when looking up transform from frame [lidar_link] to frame [pelvis]": 1,
+      "ExtrapolationException: Lookup would require extrapolation into the past.  Requested time 1.100000 but the earliest data is at time 1.140000, when looking up transform from frame [lidar_link] to frame [pelvis]": 1
+    },
+    "pending_input_records": 0,
+    "dt": {
+      "min": 0.09799999999999998,
+      "p50": 0.1,
+      "p95": 0.2,
+      "max": 0.5
+    },
+    "seconds": {
+      "min": 0.0031920570181682706,
+      "p50": 0.09785343997646123,
+      "p95": 0.12740760523593048,
+      "max": 0.1591684190207161
+    },
+    "support": {
+      "min": 0.9359892569382274,
+      "p50": 0.9994082840236687,
+      "p95": 1.0,
+      "max": 1.0
+    },
+    "rmse": {
+      "min": 0.0,
+      "p50": 0.026139160835399577,
+      "p95": 0.03995564302879603,
+      "max": 0.08272992113545193
+    },
+    "gyro_error": {
+      "min": 0.00021190583714876562,
+      "p50": 0.0025729084907920472,
+      "p95": 0.006082413468036304,
+      "max": 0.012248625870907
+    },
+    "update_seconds": {
+      "min": 0.011786868970375508,
+      "p50": 0.10241744900122285,
+      "p95": 0.1363871735986322,
+      "max": 0.49833121098345146
+    }
+  },
+  {
+    "case": "v2-evaluation/seed9607-0",
+    "accepted_measurements": 145,
+    "rejected_scans": 0,
+    "reanchors": 0,
+    "invalid_reasons": {
+      "ExtrapolationException: Lookup would require extrapolation into the past.  Requested time 0.600000 but the earliest data is at time 0.720000, when looking up transform from frame [lidar_link] to frame [pelvis]": 1,
+      "ExtrapolationException: Lookup would require extrapolation into the past.  Requested time 0.700000 but the earliest data is at time 0.720000, when looking up transform from frame [lidar_link] to frame [pelvis]": 1
+    },
+    "pending_input_records": 0,
+    "dt": {
+      "min": 0.09799999999999998,
+      "p50": 0.1,
+      "p95": 0.2,
+      "max": 0.5
+    },
+    "seconds": {
+      "min": 0.004754620022140443,
+      "p50": 0.07472385599976406,
+      "p95": 0.10649067041231315,
+      "max": 0.1307815699838102
+    },
+    "support": {
+      "min": 0.9355186543023507,
+      "p50": 0.9992706053975201,
+      "p95": 1.0,
+      "max": 1.0
+    },
+    "rmse": {
+      "min": 0.0,
+      "p50": 0.02603825601050379,
+      "p95": 0.044633711618697926,
+      "max": 0.08635552118360885
+    },
+    "gyro_error": {
+      "min": 0.00012169951254349633,
+      "p50": 0.0030947271929888877,
+      "p95": 0.007853688124616311,
+      "max": 0.011075033065552181
+    },
+    "update_seconds": {
+      "min": 0.02148567099357024,
+      "p50": 0.07918494497425854,
+      "p95": 0.11371926041319966,
+      "max": 0.4644721510121599
+    }
+  },
+  {
+    "case": "v2-evaluation/seed9607-1",
+    "accepted_measurements": 83,
+    "rejected_scans": 0,
+    "reanchors": 0,
+    "invalid_reasons": {
+      "ExtrapolationException: Lookup would require extrapolation at time 0.600000, but only time 0.660000 is in the buffer, when looking up transform from frame [lidar_link] to frame [pelvis]": 1,
+      "ExtrapolationException: Lookup would require extrapolation into the past.  Requested time 0.600000 but the earliest data is at time 0.660000, when looking up transform from frame [lidar_link] to frame [pelvis]": 1
+    },
+    "pending_input_records": 0,
+    "dt": {
+      "min": 0.09999999999999998,
+      "p50": 0.1,
+      "p95": 0.2,
+      "max": 0.5
+    },
+    "seconds": {
+      "min": 0.004118487995583564,
+      "p50": 0.0912490320042707,
+      "p95": 0.13591981080826368,
+      "max": 0.1433227050001733
+    },
+    "support": {
+      "min": 0.9138341632387963,
+      "p50": 0.9990537023894015,
+      "p95": 1.0,
+      "max": 1.0
+    },
+    "rmse": {
+      "min": 0.0,
+      "p50": 0.02830132387973213,
+      "p95": 0.054527670777788584,
+      "max": 0.08852558715857756
+    },
+    "gyro_error": {
+      "min": 0.00018042792486699065,
+      "p50": 0.002349737330748116,
+      "p95": 0.006485719134993095,
+      "max": 0.010674794381752029
+    },
+    "update_seconds": {
+      "min": 0.019658570003230125,
+      "p50": 0.09896153397858143,
+      "p95": 0.14448359000962224,
+      "max": 0.4521996940020472
+    }
+  },
+  {
+    "case": "v2-integration/cone-delivery-return",
+    "accepted_measurements": 1612,
+    "rejected_scans": 1,
+    "reanchors": 0,
+    "invalid_reasons": {
+      "ExtrapolationException: Lookup would require extrapolation at time 0.900000, but only time 1.020000 is in the buffer, when looking up transform from frame [lidar_link] to frame [pelvis]": 1,
+      "ExtrapolationException: Lookup would require extrapolation into the past.  Requested time 1.000000 but the earliest data is at time 1.020000, when looking up transform from frame [lidar_link] to frame [pelvis]": 1,
+      "ICP motion jump: 0.134m/18.7deg dt=0.200s": 1
+    },
+    "pending_input_records": 0,
+    "dt": {
+      "min": 0.09999999999999998,
+      "p50": 0.19999999999999996,
+      "p95": 0.30000000000000004,
+      "max": 0.6000000000000001
+    },
+    "seconds": {
+      "min": 0.0047406109515577555,
+      "p50": 0.12783818400930613,
+      "p95": 0.24967982317029958,
+      "max": 0.3249346819939092
+    },
+    "support": {
+      "min": 0.9359318996415771,
+      "p50": 1.0,
+      "p95": 1.0,
+      "max": 1.0
+    },
+    "rmse": {
+      "min": 0.0,
+      "p50": 0.019317774396367872,
+      "p95": 0.027537186193644283,
+      "max": 0.0816183163087492
+    },
+    "gyro_error": {
+      "min": 2.1978576559748708e-08,
+      "p50": 0.0010464441600452666,
+      "p95": 0.004725171742218546,
+      "max": 0.017932076272377768
+    },
+    "update_seconds": {
+      "min": 0.02512400405248627,
+      "p50": 0.13606125800288282,
+      "p95": 0.2574061753810383,
+      "max": 0.5887859639478847
+    }
+  },
+  {
+    "case": "v2-navigation/cone-start",
+    "accepted_measurements": 260,
+    "rejected_scans": 0,
+    "reanchors": 0,
+    "invalid_reasons": {
+      "ExtrapolationException: Lookup would require extrapolation into the past.  Requested time 0.500000 but the earliest data is at time 0.600000, when looking up transform from frame [lidar_link] to frame [pelvis]": 1
+    },
+    "pending_input_records": 0,
+    "dt": {
+      "min": 0.09999999999999998,
+      "p50": 0.1,
+      "p95": 0.2,
+      "max": 0.5
+    },
+    "seconds": {
+      "min": 0.0029104200075380504,
+      "p50": 0.11106624300009571,
+      "p95": 0.2126203220686874,
+      "max": 0.3047869889996946
+    },
+    "support": {
+      "min": 0.8987252124645893,
+      "p50": 0.9974233927124232,
+      "p95": 1.0,
+      "max": 1.0
+    },
+    "rmse": {
+      "min": 0.0,
+      "p50": 0.03266315362522941,
+      "p95": 0.04908956636353842,
+      "max": 0.06551382215895586
+    },
+    "gyro_error": {
+      "min": 0.0005200019922694582,
+      "p50": 0.005286312508035752,
+      "p95": 0.023628701286416226,
+      "max": 0.02982732994906914
+    },
+    "update_seconds": {
+      "min": 0.01406557997688651,
+      "p50": 0.11639998498139903,
+      "p95": 0.22983549411001145,
+      "max": 0.41985433700028807
+    }
+  },
+  {
+    "case": "v2-navigation/high",
+    "accepted_measurements": 217,
+    "rejected_scans": 0,
+    "reanchors": 0,
+    "invalid_reasons": {
+      "ExtrapolationException: Lookup would require extrapolation at time 0.700000, but only time 0.780000 is in the buffer, when looking up transform from frame [lidar_link] to frame [pelvis]": 1
+    },
+    "pending_input_records": 0,
+    "dt": {
+      "min": 0.09799999999999998,
+      "p50": 0.1,
+      "p95": 0.2,
+      "max": 0.3999999999999999
+    },
+    "seconds": {
+      "min": 0.003602223005145788,
+      "p50": 0.09998063201783225,
+      "p95": 0.1265653741545975,
+      "max": 0.1496617160155438
+    },
+    "support": {
+      "min": 0.9246590171032691,
+      "p50": 0.9992503748125937,
+      "p95": 1.0,
+      "max": 1.0
+    },
+    "rmse": {
+      "min": 0.0,
+      "p50": 0.025905259362962153,
+      "p95": 0.03810134591179063,
+      "max": 0.0876016582206518
+    },
+    "gyro_error": {
+      "min": 0.00021052820594275127,
+      "p50": 0.0019591258104442576,
+      "p95": 0.007371596129042235,
+      "max": 0.00992130057741101
+    },
+    "update_seconds": {
+      "min": 0.019410767999943346,
+      "p50": 0.10610482399351895,
+      "p95": 0.13608061855193224,
+      "max": 0.4294039129745215
+    }
+  },
+  {
+    "case": "v2-navigation/low",
+    "accepted_measurements": 260,
+    "rejected_scans": 0,
+    "reanchors": 0,
+    "invalid_reasons": {
+      "ExtrapolationException: Lookup would require extrapolation into the past.  Requested time 0.600000 but the earliest data is at time 0.720000, when looking up transform from frame [lidar_link] to frame [pelvis]": 1,
+      "ExtrapolationException: Lookup would require extrapolation into the past.  Requested time 0.700000 but the earliest data is at time 0.720000, when looking up transform from frame [lidar_link] to frame [pelvis]": 1
+    },
+    "pending_input_records": 0,
+    "dt": {
+      "min": 0.09999999999999998,
+      "p50": 0.1,
+      "p95": 0.2,
+      "max": 0.5
+    },
+    "seconds": {
+      "min": 0.003939654037822038,
+      "p50": 0.09582015650812536,
+      "p95": 0.1316980886971578,
+      "max": 0.15409165900200605
+    },
+    "support": {
+      "min": 0.9355186543023507,
+      "p50": 0.9995964139802327,
+      "p95": 1.0,
+      "max": 1.0
+    },
+    "rmse": {
+      "min": 0.0,
+      "p50": 0.023583063857861936,
+      "p95": 0.03463750545095227,
+      "max": 0.08635552118360885
+    },
+    "gyro_error": {
+      "min": 0.000350711573760027,
+      "p50": 0.0025769524446155757,
+      "p95": 0.0069916932232649285,
+      "max": 0.00987339654782311
+    },
+    "update_seconds": {
+      "min": 0.013343685015570372,
+      "p50": 0.09996067848987877,
+      "p95": 0.1383235942950705,
+      "max": 0.4612639619736001
+    }
+  },
+  {
+    "case": "v2-navigation/room-start",
+    "accepted_measurements": 236,
+    "rejected_scans": 0,
+    "reanchors": 0,
+    "invalid_reasons": {
+      "ExtrapolationException: Lookup would require extrapolation at time 0.800000, but only time 0.900000 is in the buffer, when looking up transform from frame [lidar_link] to frame [pelvis]": 1,
+      "ExtrapolationException: Lookup would require extrapolation into the past.  Requested time 0.800000 but the earliest data is at time 0.900000, when looking up transform from frame [lidar_link] to frame [pelvis]": 1
+    },
+    "pending_input_records": 0,
+    "dt": {
+      "min": 0.09999999999999998,
+      "p50": 0.1,
+      "p95": 0.2,
+      "max": 0.6
+    },
+    "seconds": {
+      "min": 0.0027282480150461197,
+      "p50": 0.101809323503403,
+      "p95": 0.1494089662883198,
+      "max": 0.17999683896778151
+    },
+    "support": {
+      "min": 0.9285714285714286,
+      "p50": 0.9984606628117251,
+      "p95": 1.0,
+      "max": 1.0
+    },
+    "rmse": {
+      "min": 0.0,
+      "p50": 0.02848617331546545,
+      "p95": 0.0386823506944335,
+      "max": 0.06515321117846848
+    },
+    "gyro_error": {
+      "min": 0.00037267499840410167,
+      "p50": 0.004186126231163298,
+      "p95": 0.009405696544853284,
+      "max": 0.024057037353837674
+    },
+    "update_seconds": {
+      "min": 0.013686616031918675,
+      "p50": 0.10699590548756532,
+      "p95": 0.15671280250535347,
+      "max": 0.5979423029930331
+    }
+  },
+  {
+    "case": "v2-navigation/roundtrip",
+    "accepted_measurements": 960,
+    "rejected_scans": 0,
+    "reanchors": 0,
+    "invalid_reasons": {
+      "ExtrapolationException: Lookup would require extrapolation into the past.  Requested time 0.600000 but the earliest data is at time 0.720000, when looking up transform from frame [lidar_link] to frame [pelvis]": 1,
+      "ExtrapolationException: Lookup would require extrapolation into the past.  Requested time 0.700000 but the earliest data is at time 0.720000, when looking up transform from frame [lidar_link] to frame [pelvis]": 1
+    },
+    "pending_input_records": 0,
+    "dt": {
+      "min": 0.09999999999999998,
+      "p50": 0.19999999999999996,
+      "p95": 0.2,
+      "max": 0.5
+    },
+    "seconds": {
+      "min": 0.004151084984187037,
+      "p50": 0.1336397384875454,
+      "p95": 0.19376798326557035,
+      "max": 0.26049722300376743
+    },
+    "support": {
+      "min": 0.9355186543023507,
+      "p50": 1.0,
+      "p95": 1.0,
+      "max": 1.0
+    },
+    "rmse": {
+      "min": 0.0,
+      "p50": 0.019268643734833318,
+      "p95": 0.029189133149263382,
+      "max": 0.08635552118360884
+    },
+    "gyro_error": {
+      "min": 0.00014071243534710069,
+      "p50": 0.0016010569972395334,
+      "p95": 0.005496160937716232,
+      "max": 0.011075033065552178
+    },
+    "update_seconds": {
+      "min": 0.021308961033355445,
+      "p50": 0.13911600649589673,
+      "p95": 0.2007959129347,
+      "max": 0.46556822903221473
+    },
+    "max_estimated_cross_track_m": 0.17335902577910645
+  },
+  {
+    "case": "v2-other/mission3",
+    "accepted_measurements": 1350,
+    "rejected_scans": 0,
+    "reanchors": 0,
+    "invalid_reasons": {
+      "ExtrapolationException: Lookup would require extrapolation at time 0.700000, but only time 0.780000 is in the buffer, when looking up transform from frame [lidar_link] to frame [pelvis]": 1
+    },
+    "pending_input_records": 0,
+    "dt": {
+      "min": 0.09999999999999998,
+      "p50": 0.2,
+      "p95": 0.30000000000000004,
+      "max": 0.3999999999999999
+    },
+    "seconds": {
+      "min": 0.0038137080264277756,
+      "p50": 0.14920029148925096,
+      "p95": 0.2153675431443844,
+      "max": 0.2947312669712119
+    },
+    "support": {
+      "min": 0.9246590171032691,
+      "p50": 1.0,
+      "p95": 1.0,
+      "max": 1.0
+    },
+    "rmse": {
+      "min": 0.0,
+      "p50": 0.0219667475138994,
+      "p95": 0.02861664555714787,
+      "max": 0.0876016582206518
+    },
+    "gyro_error": {
+      "min": 9.828724978848257e-05,
+      "p50": 0.0013909771570164448,
+      "p95": 0.005141565742743118,
+      "max": 0.010246144198494535
+    },
+    "update_seconds": {
+      "min": 0.021528462995775044,
+      "p50": 0.15513984850258566,
+      "p95": 0.22179630843456832,
+      "max": 0.4534023320302367
+    }
+  },
+  {
+    "case": "v2-other/mission6",
+    "accepted_measurements": 315,
+    "rejected_scans": 0,
+    "reanchors": 0,
+    "invalid_reasons": {
+      "ExtrapolationException: Lookup would require extrapolation at time 1.300000, but only time 1.440000 is in the buffer, when looking up transform from frame [lidar_link] to frame [pelvis]": 1,
+      "ExtrapolationException: Lookup would require extrapolation into the past.  Requested time 1.400000 but the earliest data is at time 1.440000, when looking up transform from frame [lidar_link] to frame [pelvis]": 1
+    },
+    "pending_input_records": 0,
+    "dt": {
+      "min": 0.09799999999999998,
+      "p50": 0.2,
+      "p95": 0.2,
+      "max": 0.602
+    },
+    "seconds": {
+      "min": 0.004153327958192676,
+      "p50": 0.14456959697417915,
+      "p95": 0.21737753280904148,
+      "max": 0.25916247500572354
+    },
+    "support": {
+      "min": 0.9410974244120941,
+      "p50": 1.0,
+      "p95": 1.0,
+      "max": 1.0
+    },
+    "rmse": {
+      "min": 0.0,
+      "p50": 0.022747224636449598,
+      "p95": 0.03633914565534159,
+      "max": 0.08211184690900339
+    },
+    "gyro_error": {
+      "min": 0.0001813936487824412,
+      "p50": 0.0016203451432225146,
+      "p95": 0.007292536221030986,
+      "max": 0.011049541280598084
+    },
+    "update_seconds": {
+      "min": 0.01800602301955223,
+      "p50": 0.15269184001954272,
+      "p95": 0.22868631338933484,
+      "max": 0.5971173869911581
+    }
+  }
+]

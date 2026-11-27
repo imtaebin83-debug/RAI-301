@@ -29,7 +29,8 @@ for offset, directory, label, color in (
 axes[0].set_title('Actual stopped position to requested goal')
 axes[1].set_title('Sensor estimate to actual stopped position')
 handles, labels = axes[0].get_legend_handles_labels()
-fig.legend(handles, labels, loc='outside lower center', ncol=2, frameon=False, fontsize=8)
+fig.legend(handles, labels, loc='lower center', bbox_to_anchor=(.5, -.06),
+           ncol=2, frameon=False, fontsize=8)
 fig.suptitle('Starter v2: one 45 m round trip each; four stopped checkpoints', fontsize=11)
-fig.savefig(output / 'checkpoint_errors.png', dpi=170)
+fig.savefig(output / 'checkpoint_errors.png', dpi=170, bbox_inches='tight')
 (output / 'checkpoint_errors.json').write_text(json.dumps(measurements, indent=2)+'\n')

@@ -1,0 +1,510 @@
+{
+  "run": {
+    "started_at": "2026-11-27T10:41:21+09:00",
+    "case": {
+      "missions": [
+        2,
+        4,
+        1
+      ],
+      "goal": [
+        15.0,
+        5.0
+      ],
+      "room_order": [
+        "medical",
+        "classroom",
+        "cafeteria"
+      ]
+    },
+    "source": "/home/aril/rai-worktrees/CSH-m1-20261127-02-v2-integration/src",
+    "kind": "stock mission",
+    "plans": [],
+    "ended_at": "2026-11-27T10:46:14+09:00"
+  },
+  "missions": [
+    {
+      "mission": 2,
+      "label": "Cone colour navigation",
+      "verdict": "PASS",
+      "success": true,
+      "seconds": 50.15,
+      "started_at": "2026-11-27T10:41:31+09:00",
+      "ended_at": "2026-11-27T10:42:21+09:00",
+      "checks": [
+        {
+          "name": "check",
+          "ok": true,
+          "summary": "green cone box: |dx| 0.01 < 0.25, |dy| 0.01 < 0.25 m"
+        }
+      ],
+      "reported": {
+        "status": "done",
+        "detail": ""
+      },
+      "referee": {
+        "mission": 2,
+        "pelvis": [
+          15.491,
+          24.06,
+          0.779
+        ],
+        "success": true,
+        "summary": "green cone box: |dx| 0.01 < 0.25, |dy| 0.01 < 0.25 m",
+        "color": "green",
+        "box_center": [
+          15.5,
+          24.05
+        ],
+        "box_m": 0.5,
+        "dx_m": -0.009,
+        "dy_m": 0.01
+      },
+      "data": {
+        "color": "green",
+        "reached": true,
+        "cone_xy": [
+          15.496789430799819,
+          24.743808404486966
+        ],
+        "measurements": [
+          {
+            "surface_xy": [
+              15.496789430799819,
+              24.743808404486966
+            ],
+            "target_xy": [
+              15.496789430799819,
+              24.073808404486964
+            ],
+            "error_m": 1.820379628109143
+          }
+        ],
+        "surface_correction_m": 0.08,
+        "final_leg_m": 1.820379628109143,
+        "final_pose_error_m": 0.01425483220391179,
+        "final_stop": {
+          "estimated_pose": [
+            15.486361900946438,
+            24.064088998007218,
+            1.775105732706162
+          ],
+          "target_xy": [
+            15.496789430799819,
+            24.073808404486964
+          ],
+          "error_m": 0.01425483220391179,
+          "settle_seconds": 0.5
+        },
+        "final_verification": "settled_sensor_pose_against_fresh_cone_target"
+      }
+    },
+    {
+      "mission": 4,
+      "label": "Semantic delivery",
+      "verdict": "PASS",
+      "success": true,
+      "seconds": 190.36,
+      "started_at": "2026-11-27T10:42:23+09:00",
+      "ended_at": "2026-11-27T10:45:33+09:00",
+      "checks": [
+        {
+          "name": "rooms",
+          "ok": true,
+          "summary": "3/3 rooms right"
+        },
+        {
+          "name": "delivery",
+          "ok": true,
+          "summary": "pelvis (19.97, 10.49) in classroom; target classroom x 18.25..23.00, y 7.10..13.90"
+        }
+      ],
+      "reported": {
+        "status": "done",
+        "detail": ""
+      },
+      "referee": {
+        "mission": 4,
+        "pelvis": [
+          19.968,
+          10.49,
+          0.779
+        ],
+        "success": true,
+        "summary": "pelvis (19.97, 10.49) in classroom; target classroom x 18.25..23.00, y 7.10..13.90",
+        "room": "classroom",
+        "room_box": [
+          18.25,
+          23.0,
+          7.1,
+          13.9
+        ],
+        "pelvis_room": "classroom",
+        "rooms": {
+          "medical": [
+            18.25,
+            23.0,
+            14.1,
+            20.9
+          ],
+          "classroom": [
+            18.25,
+            23.0,
+            7.1,
+            13.9
+          ],
+          "cafeteria": [
+            18.25,
+            23.0,
+            0.1,
+            6.9
+          ]
+        }
+      },
+      "data": {
+        "rooms": [
+          "medical",
+          "classroom",
+          "cafeteria"
+        ],
+        "vlm_observations": [
+          {
+            "label": "medical",
+            "scores": {
+              "classroom": -10.44327163696289,
+              "medical": 5.038764953613281,
+              "cafeteria": -12.94009780883789
+            },
+            "score_kind": "mean_view_answer_sequence_log_likelihood",
+            "views": [
+              {
+                "label": "medical",
+                "text": "medical",
+                "text_kind": "highest_calibrated_description_likelihood",
+                "scores": {
+                  "classroom": -10.44327163696289,
+                  "medical": 5.038764953613281,
+                  "cafeteria": -12.94009780883789
+                },
+                "score_kind": "neutral_calibrated_description_log_likelihood",
+                "model": "/home/aril/rai-worktrees/CSH-m1-20261127-02/src/custom/models/SmolVLM-500M-Instruct",
+                "backend": "local-cpu",
+                "raw_scores": {
+                  "classroom": -63.42160606384277,
+                  "medical": -31.66588592529297,
+                  "cafeteria": -56.20115089416504
+                },
+                "neutral_scores": {
+                  "classroom": -52.97833442687988,
+                  "medical": -36.70465087890625,
+                  "cafeteria": -43.26105308532715
+                },
+                "calibration": {
+                  "rgb": [
+                    127,
+                    127,
+                    127
+                  ],
+                  "size": [
+                    640,
+                    480
+                  ]
+                },
+                "prompt": "Describe the visible furniture and objects in the room through the doorway.",
+                "candidate_descriptions": {
+                  "classroom": "The room contains student desks, chairs and a teaching board.",
+                  "medical": "The room contains a hospital bed and medical equipment.",
+                  "cafeteria": "The room contains dining tables, chairs and food equipment."
+                },
+                "load_seconds": 0.49153480399399996,
+                "inference_seconds": 30.497877801011782,
+                "attention_implementation": "sdpa"
+              }
+            ]
+          },
+          {
+            "label": "classroom",
+            "scores": {
+              "classroom": 7.144769668579102,
+              "medical": -4.677272796630859,
+              "cafeteria": -8.201021194458008
+            },
+            "score_kind": "mean_view_answer_sequence_log_likelihood",
+            "views": [
+              {
+                "label": "classroom",
+                "text": "classroom",
+                "text_kind": "highest_calibrated_description_likelihood",
+                "scores": {
+                  "classroom": 7.144769668579102,
+                  "medical": -4.677272796630859,
+                  "cafeteria": -8.201021194458008
+                },
+                "score_kind": "neutral_calibrated_description_log_likelihood",
+                "model": "/home/aril/rai-worktrees/CSH-m1-20261127-02/src/custom/models/SmolVLM-500M-Instruct",
+                "backend": "local-cpu",
+                "raw_scores": {
+                  "classroom": -45.83356475830078,
+                  "medical": -41.38192367553711,
+                  "cafeteria": -51.462074279785156
+                },
+                "neutral_scores": {
+                  "classroom": -52.97833442687988,
+                  "medical": -36.70465087890625,
+                  "cafeteria": -43.26105308532715
+                },
+                "calibration": {
+                  "rgb": [
+                    127,
+                    127,
+                    127
+                  ],
+                  "size": [
+                    640,
+                    480
+                  ]
+                },
+                "prompt": "Describe the visible furniture and objects in the room through the doorway.",
+                "candidate_descriptions": {
+                  "classroom": "The room contains student desks, chairs and a teaching board.",
+                  "medical": "The room contains a hospital bed and medical equipment.",
+                  "cafeteria": "The room contains dining tables, chairs and food equipment."
+                },
+                "load_seconds": 0.0,
+                "inference_seconds": 15.322100962977856,
+                "attention_implementation": "sdpa"
+              }
+            ]
+          },
+          {
+            "label": "classroom",
+            "scores": {
+              "classroom": -2.219668388366699,
+              "medical": -3.3032636642456055,
+              "cafeteria": -5.1982221603393555
+            },
+            "score_kind": "mean_view_answer_sequence_log_likelihood",
+            "views": [
+              {
+                "label": "classroom",
+                "text": "classroom",
+                "text_kind": "highest_calibrated_description_likelihood",
+                "scores": {
+                  "classroom": -2.219668388366699,
+                  "medical": -3.3032636642456055,
+                  "cafeteria": -5.1982221603393555
+                },
+                "score_kind": "neutral_calibrated_description_log_likelihood",
+                "model": "/home/aril/rai-worktrees/CSH-m1-20261127-02/src/custom/models/SmolVLM-500M-Instruct",
+                "backend": "local-cpu",
+                "raw_scores": {
+                  "classroom": -55.19800281524658,
+                  "medical": -40.007914543151855,
+                  "cafeteria": -48.459275245666504
+                },
+                "neutral_scores": {
+                  "classroom": -52.97833442687988,
+                  "medical": -36.70465087890625,
+                  "cafeteria": -43.26105308532715
+                },
+                "calibration": {
+                  "rgb": [
+                    127,
+                    127,
+                    127
+                  ],
+                  "size": [
+                    640,
+                    480
+                  ]
+                },
+                "prompt": "Describe the visible furniture and objects in the room through the doorway.",
+                "candidate_descriptions": {
+                  "classroom": "The room contains student desks, chairs and a teaching board.",
+                  "medical": "The room contains a hospital bed and medical equipment.",
+                  "cafeteria": "The room contains dining tables, chairs and food equipment."
+                },
+                "load_seconds": 0.0,
+                "inference_seconds": 15.060244892025366,
+                "attention_implementation": "sdpa"
+              }
+            ]
+          }
+        ],
+        "pose_recoveries": [],
+        "vlm_retries": [],
+        "room_assignment": {
+          "method": "vlm_likelihood_unique_room_assignment",
+          "unconstrained_labels": [
+            "medical",
+            "classroom",
+            "classroom"
+          ],
+          "score": 6.985312461853027,
+          "runner_up_margin": 12.367237091064453
+        },
+        "views": [
+          {
+            "door_y": 17.5,
+            "stamp": [
+              79,
+              702000000
+            ],
+            "estimated_pose": [
+              16.05700209004843,
+              17.50763109863518,
+              0.005146094190709551
+            ],
+            "elapsed_seconds": 33.32874221401289
+          },
+          {
+            "door_y": 10.5,
+            "stamp": [
+              106,
+              102000000
+            ],
+            "estimated_pose": [
+              16.061111661824018,
+              10.43137652550278,
+              0.11798857659624029
+            ],
+            "elapsed_seconds": 62.61775675602257
+          },
+          {
+            "door_y": 3.59,
+            "stamp": [
+              133,
+              402000000
+            ],
+            "estimated_pose": [
+              16.062155147102274,
+              3.489026366183877,
+              0.026040706816301593
+            ],
+            "elapsed_seconds": 85.5339891689946
+          }
+        ],
+        "elapsed_seconds": 190.344664157019
+      },
+      "rooms": {
+        "ok": true,
+        "correct": 3,
+        "total": 3,
+        "truth": "north medical | middle classroom | south cafeteria",
+        "answer": "north medical | middle classroom | south cafeteria",
+        "rows": [
+          {
+            "room": "medical",
+            "slot": "north",
+            "answer_xy": [
+              20.625,
+              17.5
+            ],
+            "answer_in": "medical",
+            "ok": true
+          },
+          {
+            "room": "classroom",
+            "slot": "middle",
+            "answer_xy": [
+              20.625,
+              10.5
+            ],
+            "answer_in": "classroom",
+            "ok": true
+          },
+          {
+            "room": "cafeteria",
+            "slot": "south",
+            "answer_xy": [
+              20.625,
+              3.5
+            ],
+            "answer_in": "cafeteria",
+            "ok": true
+          }
+        ],
+        "given": {
+          "medical": [
+            20.625,
+            17.5
+          ],
+          "classroom": [
+            20.625,
+            10.5
+          ],
+          "cafeteria": [
+            20.625,
+            3.5
+          ]
+        }
+      }
+    },
+    {
+      "mission": 1,
+      "label": "Point-goal navigation",
+      "verdict": "PASS",
+      "success": true,
+      "seconds": 37.73,
+      "started_at": "2026-11-27T10:45:34+09:00",
+      "ended_at": "2026-11-27T10:46:12+09:00",
+      "checks": [
+        {
+          "name": "check",
+          "ok": true,
+          "summary": "0.02 m < 0.50 m from goal world (15.00, 5.00)"
+        }
+      ],
+      "reported": {
+        "status": "done",
+        "detail": ""
+      },
+      "referee": {
+        "mission": 1,
+        "pelvis": [
+          15.022,
+          4.998,
+          0.779
+        ],
+        "success": true,
+        "summary": "0.02 m < 0.50 m from goal world (15.00, 5.00)",
+        "goal": [
+          15.0,
+          5.0
+        ],
+        "goal_world": [
+          15.0,
+          5.0
+        ],
+        "distance_m": 0.023,
+        "threshold_m": 0.5
+      },
+      "data": {
+        "controller_reached": true,
+        "estimated_pose": [
+          15.013650666787674,
+          4.997553562358799,
+          -1.715790181106951
+        ]
+      }
+    }
+  ],
+  "total": {
+    "missions": 3,
+    "passed": 3,
+    "failed": 0,
+    "not_judged": 0,
+    "mission_seconds": 278.24,
+    "respawns": 0,
+    "penalty_seconds": 0.0,
+    "total_seconds": 278.24,
+    "run_seconds": 293.01,
+    "by_mission": [
+      "2 PASS 50.1s",
+      "4 PASS 190.4s",
+      "1 PASS 37.7s"
+    ],
+    "complete": true,
+    "updated_at": "2026-11-27T10:46:14+09:00"
+  }
+}

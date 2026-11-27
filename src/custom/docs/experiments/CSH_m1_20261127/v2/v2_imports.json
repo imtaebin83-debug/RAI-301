@@ -1,0 +1,13 @@
+{
+  "python": "/home/aril/miniconda3/envs/haic_rai301_v2/bin/python",
+  "cwd": "/home/aril/rai-worktrees/CSH-m1-20261127-02/src",
+  "HAIC_ROOT": "/home/aril/rai-worktrees/CSH-m1-20261127-02",
+  "PYTHONPATH": "/home/aril/rai-worktrees/CSH-m1-20261127-02/src:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages",
+  "modules": {
+    "custom.localization": "/home/aril/rai-worktrees/CSH-m1-20261127-02/src/custom/localization.py",
+    "custom.localizer_node": "/home/aril/rai-worktrees/CSH-m1-20261127-02/src/custom/localizer_node.py",
+    "custom.mission_1.mission_1": "/home/aril/rai-worktrees/CSH-m1-20261127-02/src/custom/mission_1/mission_1.py",
+    "main": "/home/aril/rai-worktrees/CSH-m1-20261127-02/src/main.py",
+    "mission_api": "/home/aril/rai-worktrees/CSH-m1-20261127-02/src/mission_api.py"
+  }
+}

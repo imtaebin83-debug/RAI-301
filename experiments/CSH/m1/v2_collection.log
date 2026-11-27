@@ -1,0 +1,26 @@
+v2-baseline-roundtrip/roundtrip/official.json 1 PASS 166.82 None
+v2-baseline-seed301/seed301_case0.json 1 PASS 17.28 None
+v2-baseline-seed301/seed301_case0.json 2 PASS 27.96 None
+v2-baseline-seed301/seed301_case1.json 1 PASS 21.95 None
+v2-baseline-seed301/seed301_case1.json 2 PASS 23.38 None
+v2-default/official.json 1 PASS 22.59 None
+v2-evaluation/seed9607-0/official.json 1 PASS 15.73 None
+v2-evaluation/seed9607-1/official.json 1 PASS 10.27 None
+v2-integration/cone-delivery-return/official.json 2 PASS 50.15 None
+v2-integration/cone-delivery-return/official.json 4 PASS 190.36 None
+v2-integration/cone-delivery-return/official.json 1 PASS 37.73 None
+v2-navigation/cone-start/official.json 1 PASS 37.94 None
+v2-navigation/high/official.json 1 PASS 28.13 None
+v2-navigation/low/official.json 1 PASS 33.12 None
+v2-navigation/room-start/official.json 1 PASS 32.17 None
+v2-navigation/roundtrip/official.json 1 PASS 160.06 None
+v2-other/mission3/official.json 3 PASS 245.86 None
+v2-other/mission6/official.json 6 FAIL 57.19 Push budget exhausted or ball lost; referee decides success
+v2-seed301/seed301_case0.json 1 PASS 17.11 None
+v2-seed301/seed301_case0.json 2 PASS 28.17 None
+v2-seed301/seed301_case1.json 1 PASS 22.19 None
+v2-seed301/seed301_case1.json 2 PASS 26.57 None
+v2-web/official.json 1 PASS 22.98 None
+v2-web/official.json 2 PASS 23.57 None
+probe: v2-baseline-roundtrip/roundtrip True None
+probe: v2-navigation/roundtrip True None
