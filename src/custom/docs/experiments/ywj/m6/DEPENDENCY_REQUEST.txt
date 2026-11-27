@@ -1,0 +1,51 @@
+Mission 6 (ywj) -> shared localization / integration owner
+Date: 2026-11-24   Base: main 7542e7e   Branch: opt/m6-ywj-20261124
+
+Nothing in this request was changed by mission 6. Shared localization.py,
+localizer_node.py, navigation.py, bringup, sensors.yaml and walking.yaml are
+untouched.
+
+1. Localizer accuracy inside the soccer room (largest blocker for mission 6)
+   Evaluation-only runs with `main.py --ground-truth` compared
+   /custom/estimated_pose against the debug /odom (an external monitor;
+   mission code never reads /odom). Mission 6 only, default scenario:
+
+   run    pos err median / p90 / max (m)   x bias median   |yaw err| while standing still
+   diag2  0.21 / 0.28 / 0.98                +0.19           median 0.1 deg
+   diag5  0.23 / 0.32 / 0.86                +0.22           median 0.6 deg
+   diag7  0.29 / 0.32 / 0.63                +0.24           median 0.5 deg
+   diag4  0.66 / 1.61 / 1.65                +0.56           median 10.8 deg
+   diag8  0.89 / 1.20 / 1.30                +0.60           median 16.8 deg
+   diag6  1.87 / 1.93 / 2.20                -0.22           median 29.8 deg
+   diag3  0.41 / 1.17 / 3.25                +0.11           median 39.5 deg
+
+   - A constant +0.2..0.3 m x bias is present from the start pose (16,11).
+   - Runs with large errors coincide with "[localizer] sensor reanchor":
+     the rejected jump is dropped, but the robot's actual motion during the
+     rejected interval is lost and the yaw error then persists (10-40 deg).
+   - 12 of 20 mission-6 runs logged at least one reanchor, typically during
+     in-place turns or right after the body contacted the ball.
+   - /custom/estimated_pose publishing gaps of 0.4-1.2 s were measured by a
+     read-only subscriber; ContinuousPose.stale (1.2 s) then raises
+     "Stale localization" in Navigator.goto/face. Mission 6 now tolerates up
+     to 4 s locally (mission_6.py `_pose`), but other missions still abort.
+
+   Requested: absolute re-localization against the public map after a
+   reanchor (or at least yaw correction from the room walls), and a pose
+   publishing rate that keeps gaps below the 1.2 s stale threshold.
+   Reproduction: see ../../ywj_m6_20261124.md, "Reproduce".
+
+2. Head camera near-field visibility (sensors.yaml / walking policy)
+   With camera pitch 15 deg the lowest image row reaches the floor ~1.6-2.0 m
+   ahead of the pelvis while the G1 is stepping, but 3-4.9 m ahead about 1 s
+   after it stops (the torso straightens). A floor ball closer than ~2 m is
+   never visible; a standing robot loses it out to ~4 m. Mission 6 works
+   around this by creeping backwards (-0.05 m/s) while observing.
+   A larger camera pitch would help mission 6 but changes missions 2/4;
+   please decide at integration level. No change requested unilaterally.
+
+3. Colour/depth timing
+   RGB and depth frames accepted by RGBD.frame() can be up to 0.25 s apart;
+   while the head bobs, the ball appeared ~35 px apart in colour vs depth.
+   Mission 6 takes geometry from depth only. If cone() (mission 2) shows
+   unexplained misses, the same cause may apply.

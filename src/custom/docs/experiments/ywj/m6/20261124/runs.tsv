@@ -1,0 +1,23 @@
+run	code	result	seconds	referee_ball_xy	localizer_reanchors	ground_truth_debug
+baseline1	main 7542e7e	FAIL	51.3s	(9.14, 8.04)	0	no
+baseline2	main 7542e7e	FAIL	55.9s	(8.23, 5.14)	1	no
+v1	ywj WIP	FAIL	131.8s	(9.25, 8.15)	1	no
+v2	ywj WIP	FAIL	305.8s	(9.25, 8.15)	1	no
+v3	ywj WIP	FAIL	139.4s	(9.16, 5.96)	0	no
+v4	ywj WIP	FAIL	304.0s	(9.25, 8.15)	0	no
+v5	ywj WIP	FAIL	55.5s	(9.25, 8.15)	0	no
+v6	ywj WIP	FAIL	316.6s	(9.25, 8.15)	2	no
+v7	ywj WIP	FAIL	305.4s	(9.25, 8.15)	0	no
+v8	ywj WIP	FAIL	304.0s	(9.25, 8.15)	1	no
+v9	ywj WIP	FAIL	303.9s	(8.73, 5.55)	1	no
+v10	ywj WIP	FAIL	307.8s	(9.25, 8.15)	0	no
+v11	ywj WIP	FAIL	304.1s	(9.17, 7.84)	2	no
+v12	ywj WIP	FAIL	300.3s	(9.25, 8.15)	1	no
+diag1	ywj WIP	FAIL	307.3s	(8.46, 7.55)	0	yes
+diag2	ywj WIP	FAIL	303.2s	(6.25, 4.77)	0	yes
+diag3	ywj WIP	FAIL	304.1s	(5.67, 6.55)	1	yes
+diag4	ywj WIP	FAIL	301.4s	(9.90, 7.39)	1	yes
+diag5	ywj WIP	FAIL	307.5s	(8.80, 7.92)	0	yes
+diag6	ywj WIP	FAIL	305.1s	(6.28, 6.39)	1	yes
+diag7	ywj WIP	FAIL	308.0s	(9.05, 7.92)	1	yes
+diag8	ywj WIP	FAIL	308.1s	(7.92, 7.72)	1	yes

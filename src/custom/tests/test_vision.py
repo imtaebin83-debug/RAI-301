@@ -46,30 +46,28 @@ class ImageDecodingTests(unittest.TestCase):
 
 class InvalidDepthRegressionTests(unittest.TestCase):
     def test_ball_silhouette_cannot_admit_nan_depth_neighbours(self):
-        # A measured white elevated patch borders invalid depth, as at a
-        # rendered ball silhouette. This checks numerical validity only.
-        valid = np.zeros((20,20),dtype=bool)
-        valid[5:13,5:13] = True
-        rgb = np.zeros((20,20,3),dtype=np.uint8)
-        rgb[valid] = 255
-        depth = np.full((20,20),np.nan,dtype=np.float32)
-        depth[valid] = 2.
-        world = np.full((20,20,3),np.nan)
-        world[valid] = [9.25,8.15,.11]
-        height = np.full((20,20),np.nan)
-        height[valid] = .11
-        # The previous even-kernel opening really does select unsupported
-        # boundary pixels; retaining measured-pixel support prevents that.
-        shifted = cv2.morphologyEx(valid.astype(np.uint8),cv2.MORPH_OPEN,
-                                   np.ones((2,2),np.uint8)).astype(bool)
-        self.assertTrue((shifted & ~valid).any())
+        # A rendered ball silhouette borders invalid depth. RGBD.ball() must
+        # return a finite sphere-centre estimate from measured pixels only.
+        from custom.tests.test_ball import render, FX
+        rgb, depth, world, height, valid = render(
+            (12.0, 9.1, 1.2), math.atan2(8.15-9.1, 9.25-12.0), spheres=[((9.25, 8.15, .11), .11)])
+        ball_px = (height > .02) & valid
+        border = ball_px & ~np.roll(ball_px, 1, axis=1)
+        valid = valid & ~border
+        depth[border] = np.nan
+        world[border] = np.nan
+        height[border] = np.nan
         detector = RGBD.__new__(RGBD)
-        detector.frame = lambda: (rgb,depth,world,height,valid)
+        detector._stamp = (1, 0)
+        detector.frame = lambda: (rgb, depth, world, height, valid)
+        info = SimpleNamespace(k=[FX, 0., 160., 0., FX, 120., 0., 0., 1.])
+        detector.mission = SimpleNamespace(latest=lambda *a, **k: info, log=lambda text: None)
+        detector.nav = SimpleNamespace(localizer=SimpleNamespace(T_world_pelvis=np.eye(4)))
         result = detector.ball()
         self.assertIsNotNone(result)
         self.assertTrue(result.valid())
         self.assertTrue(np.isfinite([result.x,result.y,result.distance]).all())
-        np.testing.assert_allclose([result.x,result.y],[9.25,8.15])
+        np.testing.assert_allclose([result.x,result.y],[9.25,8.15],atol=.03)
 
     def test_invalid_candidate_is_not_an_observation(self):
         detector = RGBD.__new__(RGBD)

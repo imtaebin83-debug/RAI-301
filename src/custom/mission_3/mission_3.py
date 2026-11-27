@@ -46,16 +46,21 @@ class Mission3(Mission):
         super().__init__()
 
     def run(self) -> MissionResult:
-        self.begin_mission(3)
+        deadline = time.monotonic() + 600
         try:
+            self.begin_mission(3, timeout=15.)
             nav = Navigator(self, None)
-            deadline = time.monotonic() + 600
             falls = self.gap_falls
             completed = 0
             last_target = None
             failure_reason = ""
 
-            route = (self.ENTRY, *self.COURSE)
+            # Other missions may end in the cone or classroom: first traverse
+            # public doors instead of drawing a straight line through a wall.
+            if not nav.route_to(*self.ENTRY, tolerance=.12,
+                                timeout=min(140., deadline-time.monotonic())):
+                raise RuntimeError('Could not reach cliff entry through public doors')
+            route = self.COURSE
             for last_target in route:
                 if self.gap_falls != falls:
                     failure_reason = "public respawn observed"
@@ -67,9 +72,9 @@ class Mission3(Mission):
                 if not nav.goto(
                     last_target[0],
                     last_target[1],
-                    tolerance=0.18,
+                    tolerance=0.12,
                     timeout=min(85.0, remaining),
-                    speed=0.22,
+                    speed=0.28,
                 ):
                     failure_reason = f"waypoint not reached ({last_target[0]:.2f}, {last_target[1]:.2f})"
                     break
