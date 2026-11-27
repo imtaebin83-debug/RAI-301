@@ -2,7 +2,7 @@
 import json
 import unittest
 from types import SimpleNamespace
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 import numpy as np
 from scipy.spatial.transform import Rotation
@@ -10,8 +10,9 @@ from geometry_msgs.msg import PoseStamped
 from rosgraph_msgs.msg import Clock
 from std_msgs.msg import String
 
-from custom.inertial import GyroBuffer
+from custom.inertial import GyroBuffer, ImuPending
 from custom.icp_registration import GuardedKissICP, RegistrationRejected
+from custom.localization import Localizer
 from custom.navigation import ContinuousPose, Navigator, translation_command
 
 
@@ -41,6 +42,16 @@ class GyroTests(unittest.TestCase):
         gyro.add(.2, [0., 0., 1.], 'imu')
         with self.assertRaisesRegex(ValueError, 'gap'):
             gyro.rotation(0., .2, np.eye(3))
+
+    def test_delayed_endpoint_can_retry_same_interval(self):
+        gyro = GyroBuffer()
+        gyro.add(1., [0., 0., 1.], 'imu')
+        gyro.add(1.01, [0., 0., 1.], 'imu')
+        with self.assertRaises(ImuPending):
+            gyro.rotation(1., 1.02, np.eye(3))
+        gyro.add(1.02, [0., 0., 1.], 'imu')
+        np.testing.assert_allclose(Rotation.from_matrix(
+            gyro.rotation(1., 1.02, np.eye(3))).as_rotvec(), [0., 0., .02], atol=1e-12)
 
     def test_malformed_and_reordered_imu_not_accepted(self):
         gyro = GyroBuffer()
@@ -224,6 +235,53 @@ class PoseHealthTests(unittest.TestCase):
         self.assertEqual(nav.last_failure, 'stalled')
         self.assertLess(clock[0] - 100., 26.)
         self.assertEqual(self.mission.commands[-1], (0., 0., 0.))
+
+
+class PendingScanTests(unittest.TestCase):
+    def localizer(self):
+        loc = object.__new__(Localizer)
+        cloud = SimpleNamespace(header=SimpleNamespace(frame_id='lidar_link',
+            stamp=SimpleNamespace(sec=10, nanosec=100000000)))
+        loc.mission = SimpleNamespace(last_status=lambda: {'seq': -1}, latest=lambda *a, **k: cloud)
+        loc._last_status_seq, loc._recovery_blocked = -1, False
+        loc._stamp = loc._attempt_stamp = (10, 0)
+        loc._last_received, loc.quality = 100., .99
+        loc._pose = (16., 11., 0.)
+        world = np.eye(4)
+        world[:2, 3] = [16., 11.]
+        loc._last_transform = loc._world_lidar0 = world
+        loc._map_offset, loc.map_matcher = np.eye(4), None
+        loc._odom = Mock(spec=GuardedKissICP)
+        loc._odom.last_pose, loc._odom.quality, loc._odom.metrics = np.eye(4), .98, {}
+        loc.metrics, loc.rejected_scans = {}, 0
+        loc._pelvis_lidar = lambda stamp: np.eye(4)
+        return loc
+
+    def test_pending_scan_preserves_age_and_retries_after_endpoint_arrives(self):
+        loc = self.localizer()
+        loc._scan_rotation = Mock(side_effect=[ImuPending('waiting endpoint'), np.eye(3)])
+        with patch('custom.localization.cloud_xyz', return_value=np.ones((120, 3))), \
+                patch('custom.localization.time.monotonic', return_value=100.2):
+            loc.update()
+            self.assertFalse(loc.stale)
+            self.assertEqual(loc.measurement_stamp, (10, 0))
+            self.assertEqual(loc._last_received, 100.)
+            loc._odom.register_frame.assert_not_called()
+            loc.update()
+        self.assertEqual(loc.measurement_stamp, (10, 100000000))
+        self.assertEqual(loc.rejected_scans, 0)
+        loc._odom.register_frame.assert_called_once()
+
+    def test_permanent_pending_never_refreshes_old_measurement(self):
+        loc = self.localizer()
+        loc._scan_rotation = Mock(side_effect=ImuPending('waiting endpoint'))
+        with patch('custom.localization.cloud_xyz', return_value=np.ones((120, 3))), \
+                patch('custom.localization.time.monotonic', return_value=101.1):
+            loc.update()
+            self.assertTrue(loc.stale)
+        self.assertEqual(loc.measurement_stamp, (10, 0))
+        self.assertEqual(loc._last_received, 100.)
+        loc._odom.register_frame.assert_not_called()
 
 
 class TranslationTests(unittest.TestCase):

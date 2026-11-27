@@ -12,6 +12,10 @@ def stamp_seconds(stamp) -> float:
     return float(stamp.sec) + float(stamp.nanosec) * 1e-9
 
 
+class ImuPending(ValueError):
+    """The scan's ending IMU sample has not arrived yet; retry this scan."""
+
+
 class GyroBuffer:
     """Bounded history in one IMU frame, integrated over the *scan* interval.
 
@@ -52,8 +56,10 @@ class GyroBuffer:
             raise ValueError("non-increasing gyroscope integration interval")
         with self._lock:
             samples = list(self._samples)
-        if len(samples) < 2 or samples[0][0] > begin or samples[-1][0] < end:
-            raise ValueError("IMU samples do not bracket scan timestamps")
+        if len(samples) < 2 or samples[-1][0] < end:
+            raise ImuPending("waiting for IMU to cover the current scan timestamp")
+        if samples[0][0] > begin:
+            raise ValueError("IMU history does not cover the last accepted scan")
         times = np.asarray([s[0] for s in samples])
         lo = max(0, int(np.searchsorted(times, begin, side="right")) - 1)
         hi = int(np.searchsorted(times, end, side="left"))

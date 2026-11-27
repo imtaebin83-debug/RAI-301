@@ -14,7 +14,7 @@ import numpy as np
 from scipy.spatial import cKDTree
 from scipy.spatial.transform import Rotation
 from sensor_msgs.msg import Imu, PointCloud2
-from custom.inertial import GyroBuffer, stamp_seconds
+from custom.inertial import GyroBuffer, ImuPending, stamp_seconds
 from custom.icp_registration import GuardedKissICP, RegistrationRejected
 
 
@@ -241,6 +241,8 @@ class Localizer:
         begin = self._stamp[0] + self._stamp[1] * 1e-9
         try:
             return self._gyro.rotation(begin, stamp_seconds(stamp), self._gyro_rotation)
+        except ImuPending:
+            raise
         except ValueError as error:
             raise RegistrationRejected(str(error)) from error
 
@@ -427,6 +429,14 @@ class Localizer:
             self._stamp = stamp
             self._attempt_stamp = stamp
             self.last_error = ""
+        except ImuPending as error:
+            # No registration has failed. Retain the last accepted quality,
+            # timestamp and receipt time, and retry this same scan as soon as
+            # its endpoint IMU arrives. Both existing age watchdogs still run;
+            # no stale pose is re-stamped or published as a new measurement.
+            self.last_error = str(error)
+            self.metrics = {'state': 'waiting_imu', 'pending_stamp': stamp,
+                            'last_registration': dict(self._odom.metrics)}
         except RegistrationRejected as error:
             self.rejected_scans += 1
             self._attempt_stamp = stamp
