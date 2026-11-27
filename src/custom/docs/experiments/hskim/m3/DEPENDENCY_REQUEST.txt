@@ -1,0 +1,25 @@
+Mission 3 dependency request — 2026-11-27
+
+To: owner of shared localization.py / navigation.py
+
+Reproduction
+------------
+Base revision: 56f307d
+M3 branch: opt/m3-hskim-20261127
+Worktree: /home/aril/rai-worktrees/hskim-m3-20261127
+Command:
+  cd /home/aril/rai-worktrees/hskim-m3-20261127/src
+  bash custom/tools/run_sim.sh --headless --missions 3 --no-wait
+
+Using only the public estimated pose and the public course centerline, the G1 reaches the cliff course and crosses the first row. In run_20261127-111137.json it reached the third row at estimated/public route position around (11.0, 17.7), then the localizer reported two sensor reanchors and stopped publishing. The referee failed the mission at 142.3 s. Related attempts ended at pelvis (13.85, 19.63) and (10.19, 20.21); none involved a fall or respawn.
+
+Repeated localizer messages:
+  sensor reanchor #1: rejected translation=0.917m turn=2.0deg dt=0.300s
+  sensor reanchor #2: rejected translation=0.073m turn=19.2deg dt=0.100s
+  LiDAR recovery limit reached (2 per 30s); stopped until respawn/restart
+
+Request
+-------
+Please investigate a mission-safe, bounded reacquisition mechanism for this feature-poor / cliff-edge course using permitted LiDAR, IMU, robot TF, public initial pose, and public floor observations. Keep the current rule that the controller stops when localization is not trustworthy. Do not use /odom, referee state, or simulator ground truth.
+
+M3 will add RGB-D floor-continuity checks; it should not duplicate the shared localization/navigation stack. Please advise what public quality/recovery API M3 may rely on and whether the repeated two-reanchor hard stop can be recovered without a respawn.
