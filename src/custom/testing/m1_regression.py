@@ -37,6 +37,8 @@ CASES = {
     'rooms-2': {'missions': [4], 'room_order': ['medical', 'classroom', 'cafeteria']},
     'rooms-3': {'missions': [4], 'room_order': ['medical', 'cafeteria', 'classroom']},
     'after-cone': {'missions': [2, 4], 'room_order': ['medical', 'cafeteria', 'classroom']},
+    'after-delivery': {'missions': [4, 1], 'goal': [15., 5.],
+                       'room_order': ['medical', 'cafeteria', 'classroom']},
     'mission6': {'missions': [6]},
 }
 
