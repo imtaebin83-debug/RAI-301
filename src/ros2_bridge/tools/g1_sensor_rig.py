@@ -139,7 +139,7 @@ _HEADER = """<!--
   + Intel RealSense D435i cameras at the head mount's camera slot
   + an Ouster {lidar} beam-origin site on top of the head
   Sensor additions are cameras and sites only: no sensor geoms/bodies/mass.
-  sensor placement: {placement} (custom/sensors.yaml; regenerated when it changes)
+  sensor placement: {placement} (custom/robot.yaml sensors; regenerated when it changes)
   Regenerate with: python -m ros2_bridge.tools.g1_sensor_rig
 -->
 """

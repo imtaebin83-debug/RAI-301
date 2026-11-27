@@ -1,1 +1,0 @@
-{"id": "1794296756145577812", "instruction": "go to the blue cone", "plan": [], "records": [], "results_file": "/home/aril/haic_student/src/results/run_20261110-161733.json", "state": "error", "error": "NotImplementedError: custom/planner/planner.py: plan() is not implemented yet"}

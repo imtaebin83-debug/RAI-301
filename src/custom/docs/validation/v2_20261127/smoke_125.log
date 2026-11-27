@@ -1,0 +1,88 @@
+[main] starting the simulator: -m ros2_bridge.run_g1_ros --no-view --spawn 16 11 0 --m4-room classroom --judge-goal-radius 0.5 --judge-cone-box 0.5 --judge-cone-offset 0.75 --ball-friction 0.62 0.02 0.01 --m1-goal-region 14.0 17.0 1.0 20.0 --m1-goal-yaw 90 --ball-region 7.25 11.25 5.5 8.5 --scenario /home/aril/RAI-301-v2/src/scenarios/default.yaml --sensors /home/aril/RAI-301-v2/src/custom/robot.yaml --max-vel 0.6 0.4 0.7
+[main] starting robot_state_publisher (G1 URDF -> /tf)
+[mission] waiting for the simulator on /g1/mission_status ...
+[INFO] [1795739525.761613225] [mujoco_sim]: /clock 100 Hz | joint_states 50 Hz (29 joints) | G1 RGB-D 20 Hz | extra RGB 10 Hz | lidar 10 Hz (OS1-32 32x512, 1 worker(s)) | IMU 100 Hz | odom 0 Hz
+[INFO] [1795739525.761851168] [mujoco_sim]: listening on /cmd_vel; timeout 0.5s; limits vx/vy/wz=(0.6, 0.4, 0.7)
+[INFO] [1795739525.762407509] [mujoco_sim]: G1 rescue: keys 1-6 in viewer or publish std_msgs/Empty to /g1/respawn
+[INFO] [1795739525.762795198] [mujoco_sim]: G1 joint control: sensor_msgs/JointState on /g1/joint_command suspends the walking policy; it resumes 0.2 s (sim) after the last command; gains on /g1/joint_gains
+[INFO] [1795739525.763313646] [mujoco_sim]: referee: std_msgs/Int32 /g1/mission_end judges mission N on ground truth; mission 4 room classroom; scenario /home/aril/RAI-301-v2/src/scenarios/default.yaml
+[INFO] [1795739525.763987531] [mujoco_sim]: Mission API: std_msgs/Int32 /g1/mission_begin (1-6, G1 not moved), std_msgs/Empty /g1/randomize; status on /g1/mission_status
+[INFO] [1795739525.764103091] [mujoco_sim]: ground truth: NOT published (no /odom, no odom TF; add --ground-truth to enable); initial pose: manual (RViz 2D Pose Estimate)
+[INFO] [1795739525.767318080] [mujoco_sim]: Panda task (startup): arm home, pencil (20.991, 19.715), holder (21.378, 19.706)
+[INFO] [1795739525.767675100] [mujoco_sim]: Scenario (/home/aril/RAI-301-v2/src/scenarios/default.yaml): m1 goal (15.50, 18.00), m2 green, cones blue | green | orange, rooms classroom | medical | cafeteria, ball (9.25, 8.15)
+[INFO] [1795739525.767868268] [mujoco_sim]: scene=layout.json robot='g1/' spawn=(16.00, 11.00, floor 0.00); official Unitree 29-DoF ONNX READY; standing until /cmd_vel arrives
+[mission] simulator up (mission point 1: launch point)
+[main] launching custom/bringup.launch.py (your nodes)
+[referee] results file: /home/aril/RAI-301-v2/src/results/run_20261127-093205.json
+
+[main] ===== mission 1: Point-goal navigation =====
+[INFO] [1795739525.923149856] [mujoco_sim]: mission 1 (launch point) selected from ROS begin 1; G1 not moved
+[INFO] [launch]: All log files can be found below /home/aril/.ros/log/2026-11-27-09-32-05-981870-aril-13-425159
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [python-1]: process started with pid [425176]
+[python-1] [localizer] kiss-icp, IMU roll/pitch=-0.0/-0.5 deg, pelvis height=0.780m floor support=0.78
+[nav] pose=(16.00,11.00,0.00) target=(15.50,18.00) error=7.02
+[nav] pose=(15.92,11.57,1.70) target=(15.50,18.00) error=6.44
+[nav] pose=(16.14,13.43,1.73) target=(15.50,18.00) error=4.61
+[nav] pose=(16.11,15.12,1.81) target=(15.50,18.00) error=2.94
+[nav] pose=(15.78,16.92,1.91) target=(15.50,18.00) error=1.11
+[WARN] [1795739550.118111025] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[INFO] [1795739550.561642613] [mujoco_sim]: referee: mission 1 PASS -- 0.09 m < 0.50 m from goal world (15.50, 18.00)
+[referee] ===== mission 1 Point-goal navigation: PASS in 23.8 s =====
+[referee]   check     0.09 m < 0.50 m from goal world (15.50, 18.00)  [PASS]
+[referee]   reported  done:
+
+[main] ===== mission 2: Cone colour navigation =====
+[INFO] [1795739550.949622257] [mujoco_sim]: mission 2 (cone-room door) selected from ROS begin 2; G1 not moved
+[mission 2] target cone: green
+[nav] pose=(15.52,17.99,1.92) target=(15.50,20.30) error=2.31
+[nav] pose=(15.54,19.68,1.71) target=(15.50,20.30) error=0.62
+[nav] pose=(15.58,21.61,1.73) target=(15.50,22.00) error=0.40
+[WARN] [1795739565.210522196] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[mission 2] sensor cone estimate: (15.63, 24.68)
+[nav] pose=(15.45,22.27,1.61) target=(15.63,24.01) error=1.74
+[nav] pose=(15.62,23.90,1.68) target=(15.63,24.01) error=0.11
+[WARN] [1795739573.323701143] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[INFO] [1795739573.820601233] [mujoco_sim]: referee: mission 2 PASS -- green cone box: |dx| 0.09 < 0.25, |dy| 0.01 < 0.25 m
+[referee] ===== mission 2 Cone colour navigation: PASS in 21.9 s =====
+[referee]   check     green cone box: |dx| 0.09 < 0.25, |dy| 0.01 < 0.25 m  [PASS]
+[referee]   reported  done:
+
+[main] ===== mission 5: Pencil pick-and-place (Panda) =====
+[INFO] [1795739574.131627323] [mujoco_sim]: mission 5 (Panda desk east side) selected from ROS begin 5; G1 not moved
+[mission 5] trained policy: 20 commands, sim=1.9s
+[mission 5] trained policy: 40 commands, sim=3.9s
+[mission 5] trained policy: 60 commands, sim=5.9s
+[mission 5] trained policy: 80 commands, sim=7.9s
+[mission 5] trained policy: 100 commands, sim=9.9s
+[mission 5] trained policy: 120 commands, sim=11.9s
+[mission 5] trained policy: 140 commands, sim=13.9s
+[mission 5] trained policy: 160 commands, sim=15.9s
+[mission 5] trained policy: 180 commands, sim=17.9s
+[mission 5] trained policy: 200 commands, sim=19.9s
+[mission 5] trained policy: 220 commands, sim=21.9s
+[mission 5] trained policy: 240 commands, sim=23.9s
+[mission 5] trained policy: 260 commands, sim=25.9s
+[mission 5] trained policy: 280 commands, sim=27.9s
+[WARN] [1795739607.429003280] [mujoco_sim]: cmd_vel timed out; commanding a stop
+[INFO] [1795739607.950288996] [mujoco_sim]: referee: mission 5 PASS -- pencil tip 0.143 > 0.02 m below the rim, inside the opening, released
+[referee] ===== mission 5 Pencil pick-and-place (Panda): PASS in 32.8 s =====
+[referee]   check     pencil tip 0.143 > 0.02 m below the rim, inside the opening, released  [PASS]
+[referee]   reported  done:
+[main] stopping the simulator
+[main] stopping the robot_state_publisher
+[main] stopping the custom/bringup.launch.py
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [python-1]: sending signal 'SIGINT' to process[python-1]
+[INFO] [1795739608.368500426] [mujoco_sim]: stopped at sim=80.00s wall=82.60s RTF=0.97
+[INFO] [python-1]: process has finished cleanly [pid 425176]
+
+============================== Mission results (referee, ground truth) ==============================
+  step  #  mission                        result     time  check
+  -     1  Point-goal navigation          PASS      23.8s  check: 0.09 m < 0.50 m from goal world (15.50, 18.00)
+  -     2  Cone colour navigation         PASS      21.9s  check: green cone box: |dx| 0.09 < 0.25, |dy| 0.01 < 0.25 m
+  -     5  Pencil pick-and-place (Panda)  PASS      32.8s  check: pencil tip 0.143 > 0.02 m below the rim, inside the opening, released
+  3/3 passed, missions 78.5 s, run 83.3 s
+  respawns 0 x 30 s = +0 s penalty -> total time 78.5 s (missions + penalty)
+  results file: /home/aril/RAI-301-v2/src/results/run_20261127-093205.json
+======================================================================================================

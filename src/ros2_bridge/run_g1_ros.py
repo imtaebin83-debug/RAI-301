@@ -25,13 +25,6 @@ ENV_ROOT = SRC_ROOT / "environment"
 DEFAULT_SCENE = ENV_ROOT / "test_zone" / "world" / "layout.json"
 DEFAULT_POLICY = ENV_ROOT / "robots" / "control" / "g1" / "walking" / "g1_29dof_velocity.onnx"
 DEFAULT_ASSETS = ENV_ROOT / "models" / "assets" / "molmo"
-DEFAULT_GAP_POLICY = (
-    Path(__file__).resolve().parents[1] / "environment" / "robots" / "control" / "g1"
-    / "custom" / "gap" / "gap_heading_model_99999.onnx"
-)
-DEFAULT_SOCCER_REGISTRY = (
-    ENV_ROOT / "robots" / "control" / "g1" / "custom" / "soccer" / "soccer_policies.json"
-)
 DEFAULT_PANDA_DATASET = SRC_ROOT.parent / "datasets" / "val861_panda_base_v4"
 
 G1_RESPAWN_XY = (16.0, 11.0)
@@ -43,8 +36,12 @@ G1_MISSION_SPAWNS = {
     6: ("soccer-room door", (13.75, 9.10), 180.0),
 }
 
-PIT_FALL_Z = -0.3
-GAP_FALL_SOURCE = "fell into a gap"
+FALL_SOURCE = "fell over"
+START_LABEL = "G1 start (16, 11)"
+# Fallen = pelvis below FALL_ROOT_Z or tilted past FALL_TILT_DEG for FALL_HOLD_S of sim time.
+FALL_ROOT_Z = 0.30
+FALL_TILT_DEG = 60.0
+FALL_HOLD_S = 5.0
 
 from ros2_bridge.tools.scenario import (  # noqa: E402
     DEFAULT_BALL_REGION,
@@ -142,17 +139,6 @@ def set_panda_table_camera(camera, panda_xy: Sequence[float] = (21.18, 20.05)) -
     camera.lookat[:] = (float(panda_xy[0]), float(panda_xy[1]) - 0.43, 0.76)
     camera.distance = 2.25
     camera.azimuth = 180.0
-    camera.elevation = -55.0
-
-
-def set_soccer_field_camera(camera) -> None:
-    import mujoco
-
-    camera.type = mujoco.mjtCamera.mjCAMERA_FREE
-    camera.trackbodyid = -1
-    camera.lookat[:] = (9.25, 5.25, 0.55)
-    camera.distance = 14.0
-    camera.azimuth = 0.0
     camera.elevation = -55.0
 
 
@@ -314,14 +300,6 @@ class SoccerMissionReset:
         data.xfrc_applied[self.ball_body] = 0.0
         data.xfrc_applied[self.goal_body] = 0.0
         self.ball_start = self.ball_qpos.copy()
-        mujoco.mj_forward(self.model, data)
-
-    def place(self, data, x: float, y: float) -> None:
-        import mujoco
-
-        self.reset(data)
-        data.qpos[self.ball_qadr:self.ball_qadr + 2] = (float(x), float(y))
-        self.ball_start = data.qpos[self.ball_qadr:self.ball_qadr + 7].copy()
         mujoco.mj_forward(self.model, data)
 
     def metrics(self, data) -> dict[str, float]:
@@ -640,7 +618,7 @@ def _json_default(value):
 
 
 class MissionStatusPublisher:
-    def __init__(self, node, mission_topic: str, kick_topic: str, panda_topic: str) -> None:
+    def __init__(self, node, mission_topic: str) -> None:
         from rclpy.qos import DurabilityPolicy, QoSProfile, ReliabilityPolicy
         from std_msgs.msg import String
 
@@ -651,17 +629,8 @@ class MissionStatusPublisher:
             durability=DurabilityPolicy.TRANSIENT_LOCAL,
         )
         self._mission = node.create_publisher(String, mission_topic, qos)
-        self._kick = node.create_publisher(String, kick_topic, qos)
-        self._panda = node.create_publisher(String, panda_topic, qos)
-        self._kicking = False
-        self._panda_active = False
         self._seq = 0
         self.common: dict = {}
-        self._settle_after: float | None = None
-
-    SETTLE_MIN_S = 3.0
-    SETTLE_MAX_S = 15.0
-    SETTLE_SPEED_MPS = 0.05
 
     def _send(self, publisher, payload: dict) -> None:
         self._seq += 1
@@ -676,70 +645,11 @@ class MissionStatusPublisher:
                 yaw: float | None = None, extra: dict | None = None) -> None:
         self._send(self._mission, {
             "event": event, "mission": int(index), "label": label,
-            "pos": [float(v) for v in pos], "source": source, "sim_time": float(sim_time),
+            **({} if pos is None else {"pos": [float(v) for v in pos]}),
+            "source": source, "sim_time": float(sim_time),
             **({} if yaw is None else {"yaw_deg": math.degrees(float(yaw))}),
             **(extra or {}),
         })
-
-    def kick_started(self, policy: str, pos, yaw_deg: float | None, sim_time: float,
-                     teleported: bool = True) -> None:
-        self._kicking = True
-        self._last_teleported = bool(teleported)
-        self._send(self._kick, {
-            "event": "started", "policy": policy,
-            **({} if pos is None else {"pos": [float(v) for v in pos],
-                                       "yaw_deg": float(yaw_deg)}),
-            "teleported": bool(teleported),
-            "sim_time": float(sim_time),
-        })
-
-    def panda_started(self, prompt: str, sim_time: float) -> None:
-        self._panda_active = True
-        self._send(self._panda, {"event": "started", "prompt": prompt, "sim_time": float(sim_time)})
-
-    def poll(self, sim_time: float, soccer_switch, soccer_mission, data, panda_runtime) -> None:
-        if soccer_switch is not None:
-            kicking = bool(getattr(soccer_switch, "kicking", False))
-            if self._kicking and not kicking:
-                payload = {
-                    "event": "finished",
-                    "policy": soccer_switch.last_kick,
-                    "teleported": bool(getattr(self, "_last_teleported", True)),
-                    "sim_time": float(sim_time),
-                    "metrics": soccer_switch.metrics(),
-                }
-                if soccer_mission is not None:
-                    payload["ball"] = soccer_mission.metrics(data)
-                self._send(self._kick, payload)
-                self._settle_after = float(sim_time) + self.SETTLE_MIN_S
-            self._kicking = kicking
-            if (
-                self._settle_after is not None
-                and not kicking
-                and sim_time >= self._settle_after
-                and soccer_mission is not None
-            ):
-                ball = soccer_mission.metrics(data)
-                overdue = sim_time >= self._settle_after - self.SETTLE_MIN_S + self.SETTLE_MAX_S
-                if ball["speed_mps"] <= self.SETTLE_SPEED_MPS or overdue:
-                    self._send(self._kick, {
-                        "event": "settled",
-                        "policy": soccer_switch.last_kick,
-                        "teleported": bool(getattr(self, "_last_teleported", True)),
-                        "sim_time": float(sim_time),
-                        "ball": ball,
-                    })
-                    self._settle_after = None
-        if panda_runtime is not None:
-            active = bool(panda_runtime.policy_active)
-            if self._panda_active and not active:
-                self._send(self._panda, {
-                    "event": "stopped",
-                    "sim_time": float(sim_time),
-                    "prompt": panda_runtime.instruction,
-                    "result": panda_runtime.task_result(),
-                })
-            self._panda_active = active
 
 
 def _load_combined_builder():
@@ -795,64 +705,6 @@ def _arguments(argv: Optional[Sequence[str]]) -> argparse.Namespace:
     ap.add_argument("--assets-dir", type=Path,
                     default=Path(os.environ.get("MLSPACES_ASSETS_DIR", DEFAULT_ASSETS)))
     ap.add_argument("--policy", type=Path, default=DEFAULT_POLICY)
-    ap.add_argument(
-        "--g1-mimic-policy",
-        type=Path,
-        default=None,
-        help="unitree_rl_mjlab G1 tracking ONNX (154 observations, 29 actions)",
-    )
-    ap.add_argument(
-        "--g1-mimic-motion",
-        type=Path,
-        default=None,
-        help="50 Hz G1 motion NPZ paired with --g1-mimic-policy",
-    )
-    ap.add_argument(
-        "--g1-mimic-loop",
-        action=argparse.BooleanOptionalAction,
-        default=False,
-        help="loop the mimic reference instead of holding after one playback",
-    )
-    ap.add_argument(
-        "--g1-mimic-autostart",
-        action=argparse.BooleanOptionalAction,
-        default=True,
-        help="start mimic motion immediately (disable to start on nonzero cmd_vel)",
-    )
-    ap.add_argument(
-        "--g1-mimic-then-walk",
-        action=argparse.BooleanOptionalAction,
-        default=True,
-        help="after a finite mimic motion, switch to the normal 29-DoF velocity policy",
-    )
-    ap.add_argument(
-        "--soccer-policies",
-        type=Path,
-        default=DEFAULT_SOCCER_REGISTRY,
-        help="registry of calibrated soccer-kick tracking policies used by the "
-             "kick trigger (key 7 / ROS topic); ignored when the file is missing",
-    )
-    ap.add_argument("--soccer-policy", default=None,
-                    help="registry entry used by the kick trigger (default: registry 'default')")
-    ap.add_argument("--soccer", action=argparse.BooleanOptionalAction, default=True,
-                    help="enable the soccer-kick trigger while the velocity policy runs")
-    ap.add_argument("--soccer-kick-topic", default="/g1/soccer_kick",
-                    help="std_msgs/Empty topic that triggers the selected soccer kick "
-                         "(ball reset, G1 teleported to the calibrated run-up pose)")
-    ap.add_argument("--soccer-kick-here-topic", default="/g1/soccer_kick_here",
-                    help="std_msgs/Empty topic: kick from where G1 stands now -- no "
-                         "teleport, no ball reset (mission 6 after walking up to the ball)")
-    ap.add_argument("--soccer-policy-topic", default="/g1/soccer_policy",
-                    help="std_msgs/String: select the kick policy by registry name (key 8 cycles)")
-    ap.add_argument("--soccer-kick-pose-topic", default="/g1/soccer_kick_pose",
-                    help='std_msgs/String "X Y YAW_DEG": ball reset, G1 teleported to that '
-                         "pose, kick (calibration/tolerance experiments)")
-    ap.add_argument("--soccer-kick-at", type=float, default=0.0,
-                    help="sim time (s) at which one kick is triggered automatically; "
-                         "0 = off (headless verification)")
-    ap.add_argument("--soccer-kick-spawn", type=float, nargs=3, default=None,
-                    metavar=("X", "Y", "YAW_DEG"),
-                    help="override the registry run-up pose of --soccer-policy")
     ap.add_argument("--regenerate-sensors", action="store_true")
     ap.add_argument(
         "--shadow-size",
@@ -865,9 +717,10 @@ def _arguments(argv: Optional[Sequence[str]]) -> argparse.Namespace:
     )
     ap.add_argument("--duration", type=float, default=0.0, help="0 = until viewer closes/Ctrl-C")
     ap.add_argument(
-        "--gap-fall-respawn", action=argparse.BooleanOptionalAction, default=True,
-        help="respawn G1 at world (16, 11), yaw 0 when it falls into a cliff-course gap "
-             "(mission status: event respawned, source 'fell into a gap')",
+        "--fall-respawn", action=argparse.BooleanOptionalAction, default=True,
+        help="respawn G1 at world (16, 11), yaw 0 when it has fallen over or into a gap "
+             f"(pelvis below {FALL_ROOT_Z} m or tilted past {FALL_TILT_DEG:g} deg for "
+             f"{FALL_HOLD_S:g} s; mission status: event respawned, source 'fell over')",
     )
     ap.add_argument(
         "--scenario", type=Path, default=None, metavar="FILE",
@@ -883,12 +736,11 @@ def _arguments(argv: Optional[Sequence[str]]) -> argparse.Namespace:
     )
     ap.add_argument(
         "--scenario-out", type=Path, default=None, metavar="FILE",
-        help="write the current scenario to this YAML at start and after every randomization "
-             "(tools/make_scenario.py)",
+        help="write the current scenario to this YAML at start and after every randomization",
     )
     ap.add_argument(
         "--sensors", type=Path, default=None, metavar="FILE",
-        help="custom/sensors.yaml: G1 camera tilt/offset, lidar model/height, Panda cameras",
+        help="custom/robot.yaml sensors: G1 camera tilt/offset, lidar model/height, Panda cameras",
     )
     ap.add_argument(
         "--m1-goal-region", type=float, nargs=4, metavar=("X0", "X1", "Y0", "Y1"),
@@ -953,11 +805,10 @@ def _arguments(argv: Optional[Sequence[str]]) -> argparse.Namespace:
                     help="show the exact Panda pencil/cup spawn sectors")
     ap.add_argument(
         "--panda-mode",
-        choices=("ros", "collect", "policy", "standby"),
+        choices=("ros", "collect"),
         default="ros",
-        help="Panda controller: ROS, TeleDex, immediate policy, or prompt-triggered standby",
+        help="Panda controller: ROS command topics, or TeleDex demonstration recording",
     )
-    ap.add_argument("--panda-task-topic", default="/panda/task_prompt")
     ap.add_argument("--dataset-dir", type=Path, default=DEFAULT_PANDA_DATASET)
     ap.add_argument(
         "--task-instruction",
@@ -965,21 +816,7 @@ def _arguments(argv: Optional[Sequence[str]]) -> argparse.Namespace:
     )
     ap.add_argument("--teledex-port", type=int, default=8888)
     ap.add_argument("--panda-rate", type=float, default=10.0,
-                    help="Panda observation/action rate (default: LIBERO 10 Hz)")
-    ap.add_argument("--panda-replan-steps", type=int, default=5,
-                    help="actions executed from each policy chunk before replanning (default: 5)")
-    ap.add_argument(
-        "--panda-task-timeout",
-        type=float,
-        default=0.0,
-        help="optional simulated-time limit in seconds; 0 disables (default: unlimited)",
-    )
-    ap.add_argument(
-        "--panda-auto-success",
-        action=argparse.BooleanOptionalAction,
-        default=False,
-        help="enable geometric automatic success detection (default: disabled; use S/F manually)",
-    )
+                    help="Panda recording rate in --panda-mode collect (default: LIBERO 10 Hz)")
     ap.add_argument("--panda-position-scale", type=float, default=1.6)
     ap.add_argument(
         "--panda-yaw-scale",
@@ -993,8 +830,6 @@ def _arguments(argv: Optional[Sequence[str]]) -> argparse.Namespace:
         default=1.0,
         help="TeleDex phone top-edge tilt gain; use -1 to invert, 0 to disable (default: 1)",
     )
-    ap.add_argument("--panda-policy", type=Path,
-                    help="Python policy adapter used when --panda-mode policy")
     ap.add_argument(
         "--panda-preview",
         action=argparse.BooleanOptionalAction,
@@ -1035,8 +870,7 @@ def _arguments(argv: Optional[Sequence[str]]) -> argparse.Namespace:
         "--mola",
         action="store_true",
         help="run under custom/g1_navigation: disable ground-truth /odom and its "
-             "odom -> pelvis TF (MOLA and the frame splitter own that chain) and "
-             "anchor the Panda's static TF on map, whose origin is the world's",
+             "odom -> pelvis TF (MOLA and the frame splitter own that chain)",
     )
     ap.add_argument(
         "--ground-truth",
@@ -1058,25 +892,6 @@ def _arguments(argv: Optional[Sequence[str]]) -> argparse.Namespace:
                     help="std_msgs/Empty: send the --auto-initial-pose seed now; answered "
                          "with mission_status event 'initial_pose'")
     ap.add_argument(
-        "--gap-policy", type=Path, default=DEFAULT_GAP_POLICY,
-        help="G1 gap-traversal ONNX (mission 3 jump mode); missing file = feature off",
-    )
-    ap.add_argument(
-        "--gap-policy-topic", default="/g1/gap_policy",
-        help='std_msgs/String "start HEADING_DEG [GAPS] [then=DEG after=M]" | "heading ..." | "stop": '
-             "run the gap-traversal policy in that world heading (with GAPS: it hands back to "
-             "walking by itself once that many gaps are crossed; then/after: turn to heading "
-             "THEN after M metres of running) / hand back to walking; "
-             "answered with mission_status event gap_policy, and again when a run ends by "
-             "itself (state done / fell)",
-    )
-    ap.add_argument(
-        "--soccer-ball-topic",
-        default="/g1/soccer_ball_place",
-        help='std_msgs/String "X Y": put the soccer ball there at rest (mission 6 '
-             "mission_options.m6_ball_xy); answered with mission_status event ball_placed",
-    )
-    ap.add_argument(
         "--g1-mission-begin-topic",
         default="/g1/mission_begin",
         help="std_msgs/Int32: make mission N the active one (its resets, e.g. the soccer "
@@ -1089,28 +904,25 @@ def _arguments(argv: Optional[Sequence[str]]) -> argparse.Namespace:
         help="std_msgs/Empty topic that restores G1 to the active mission spawn",
     )
     ap.add_argument(
-        "--g1-mission-topic",
-        default="/g1/mission",
-        help="std_msgs/Int32 topic: select mission checkpoint 1-6 and respawn there "
-             "(the ROS equivalent of viewer keys 1-6)",
+        "--respawned-topic", default="/g1/respawned",
+        help="std_msgs/Empty: published once every time G1 is respawned at the start point "
+             "(16, 11), yaw 0 (fall, gap, key B)",
     )
     ap.add_argument(
         "--g1-randomize-topic",
         default="/g1/randomize",
         help="std_msgs/Empty topic: shuffle room order and cone colours (viewer key R)",
     )
-    ap.add_argument(
-        "--panda-retry-topic",
-        default="/panda/retry",
-        help="std_msgs/Empty topic: mission 5 retry -- Panda home, new pencil/holder "
-             "positions, policy restarted with the last prompt (viewer key P)",
-    )
     ap.add_argument("--mission-status-topic", default="/g1/mission_status",
                     help="latched std_msgs/String JSON: last G1 respawn")
-    ap.add_argument("--soccer-kick-status-topic", default="/g1/soccer_kick_status",
-                    help="latched std_msgs/String JSON: kick started/finished")
-    ap.add_argument("--panda-task-status-topic", default="/panda/task_status",
-                    help="latched std_msgs/String JSON: Panda task started/stopped + geometry")
+    ap.add_argument("--joint-command-topic", default="/g1/joint_command",
+                    help="sensor_msgs/JointState (name + position, rad): G1 joint targets; "
+                         "while they arrive the walking policy is suspended")
+    ap.add_argument("--joint-gains-topic", default="/g1/joint_gains",
+                    help="sensor_msgs/JointState (name, position = kp, velocity = kd): PD gains "
+                         "used while --joint-command-topic drives G1")
+    ap.add_argument("--joint-command-timeout", type=float, default=0.2,
+                    help="sim seconds without a joint command before the walking policy resumes")
     ap.add_argument("--cmd-timeout", "--cmd-vel-timeout", dest="cmd_timeout",
                     type=float, default=0.5,
                     help="wall seconds without a Twist before the command is zeroed")
@@ -1202,18 +1014,12 @@ def _arguments(argv: Optional[Sequence[str]]) -> argparse.Namespace:
         ap.error("--lidar-threads must be non-negative")
     if args.pos is not None and len(args.pos) not in (2, 3):
         ap.error("--pos requires x y or x y z")
-    if (args.g1_mimic_policy is None) != (args.g1_mimic_motion is None):
-        ap.error("--g1-mimic-policy and --g1-mimic-motion must be used together")
-    if args.g1_mimic_policy is not None and not args.walk:
-        ap.error("--g1-mimic-policy requires --walk")
     if min(args.max_vx, args.max_vy, args.max_wz) <= 0:
         ap.error("velocity limits must be positive")
     if args.unitree_odom and min(args.unitree_odom_hz, args.unitree_odom_lf_hz) <= 0:
         ap.error("Unitree odometry rates must be positive")
     if args.panda_mode != "ros" and not args.panda:
-        ap.error("--panda-mode collect/policy requires --panda")
-    if args.panda_mode in {"policy", "standby"} and args.panda_policy is None:
-        ap.error("--panda-mode policy/standby requires --panda-policy PATH")
+        ap.error("--panda-mode collect requires --panda")
     if args.panda_rate <= 0:
         ap.error("--panda-rate must be positive")
     if not all(
@@ -1221,10 +1027,6 @@ def _arguments(argv: Optional[Sequence[str]]) -> argparse.Namespace:
         for value in (args.panda_yaw_scale, args.panda_pitch_scale)
     ):
         ap.error("Panda yaw/pitch parameters must be finite")
-    if args.panda_replan_steps <= 0:
-        ap.error("--panda-replan-steps must be positive")
-    if args.panda_task_timeout < 0:
-        ap.error("--panda-task-timeout must be non-negative")
     if args.panda_camera_hz < 0:
         ap.error("--panda-camera-hz must be non-negative")
     if args.camera_hz is None:
@@ -1239,12 +1041,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     args.scene = args.scene.expanduser().resolve()
     args.assets_dir = args.assets_dir.expanduser().resolve()
     args.policy = args.policy.expanduser().resolve()
-    if args.g1_mimic_policy is not None:
-        args.g1_mimic_policy = args.g1_mimic_policy.expanduser().resolve()
-        args.g1_mimic_motion = args.g1_mimic_motion.expanduser().resolve()
     args.dataset_dir = args.dataset_dir.expanduser().resolve()
-    if args.panda_policy is not None:
-        args.panda_policy = args.panda_policy.expanduser().resolve()
     os.environ["MLSPACES_ASSETS_DIR"] = str(args.assets_dir)
     os.environ["ROS_LOCALHOST_ONLY"] = os.environ.get("HAIC_LOCALHOST_ONLY", "1")
 
@@ -1256,16 +1053,11 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     args.lidar = "OS1-32"
     ensure_sensor_robot(args.assets_dir, args.regenerate_sensors, sensors)
     scenario = Scenario.load(args.scenario) if args.scenario else Scenario()
-    if args.walk and args.g1_mimic_policy is None and not args.policy.exists():
+    if args.walk and not args.policy.exists():
         raise FileNotFoundError(
             f"walking policy not found: {args.policy}\n"
             f"Run: bash {SRC_ROOT / 'setup' / 'setup.sh'}"
         )
-    if args.g1_mimic_policy is not None:
-        if not args.g1_mimic_policy.exists():
-            raise FileNotFoundError(f"G1 mimic policy not found: {args.g1_mimic_policy}")
-        if not args.g1_mimic_motion.exists():
-            raise FileNotFoundError(f"G1 mimic motion not found: {args.g1_mimic_motion}")
 
     import rclpy
 
@@ -1357,44 +1149,11 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     )
 
     walker = None
-    soccer_switch = None
+    joint_command_switch = None
     # Recover only before the first movement command; later falls count as failures.
     g1_motion_command_seen = {"value": False}
-    mimic_mode = args.g1_mimic_policy is not None
     if args.walk:
-        if mimic_mode:
-            if args.g1_mimic_then_walk:
-                from ros2_bridge.tools.g1_mimic_then_walk import (
-                    G1MimicThenWalkPolicy29DoF,
-                )
-
-                walker = G1MimicThenWalkPolicy29DoF(
-                    sim.model,
-                    sim.data,
-                    args.g1_mimic_policy,
-                    args.g1_mimic_motion,
-                    args.policy,
-                    prefix=spawn.prefix,
-                    loop=args.g1_mimic_loop,
-                    autostart=args.g1_mimic_autostart,
-                )
-            else:
-                from ros2_bridge.tools.g1_mimic_policy_29dof import G1MimicPolicy29DoF
-
-                walker = G1MimicPolicy29DoF(
-                    sim.model,
-                    sim.data,
-                    args.g1_mimic_policy,
-                    args.g1_mimic_motion,
-                    prefix=spawn.prefix,
-                    loop=args.g1_mimic_loop,
-                    autostart=args.g1_mimic_autostart,
-                )
-            policy_label = (
-                f"Unitree G1 29-DoF mimic ({walker.frame_count} frames at 50 Hz)"
-                + (" -> velocity policy" if args.g1_mimic_then_walk else "")
-            )
-        elif args.policy.suffix.lower() == ".onnx":
+        if args.policy.suffix.lower() == ".onnx":
             from ros2_bridge.tools.g1_walk_policy_29dof import G1WalkPolicy29DoF
 
             policy_class = G1WalkPolicy29DoF
@@ -1405,46 +1164,25 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             policy_class = G1WalkPolicy
             policy_label = "legacy Unitree 12-DoF TorchScript"
 
-        if not mimic_mode:
-            soccer_registry = args.soccer_policies
-            if (
-                args.soccer
-                and getattr(policy_class, "__name__", "") == "G1WalkPolicy29DoF"
-                and soccer_registry is not None
-                and soccer_registry.expanduser().exists()
-            ):
-                from ros2_bridge.tools.g1_soccer_kick_switch import (
-                    G1SoccerKickSwitch29DoF,
-                )
+        if getattr(policy_class, "__name__", "") == "G1WalkPolicy29DoF":
+            from ros2_bridge.tools.g1_joint_command import G1JointCommandSwitch29DoF
 
-                soccer_switch = G1SoccerKickSwitch29DoF(
-                    sim.model, sim.data, args.policy, soccer_registry,
-                    prefix=spawn.prefix, policy_name=args.soccer_policy,
-                    spawn_override=args.soccer_kick_spawn,
-                    gap_policy_path=args.gap_policy,
-                )
-                walker = soccer_switch
-                if soccer_switch.selected is None:
-                    policy_label += "; soccer registry has no calibrated policy yet"
-                else:
-                    policy_label += (
-                        f"; soccer kick '{soccer_switch.selected}' on key 7 "
-                        f"(ready: {', '.join(soccer_switch.ready_names)})"
-                    )
-            else:
-                walker = policy_class(
-                    sim.model, sim.data, args.policy, prefix=spawn.prefix,
-                    cmd=(0.0, 0.0, 0.0),
-                )
+            walker = G1JointCommandSwitch29DoF(
+                sim.model, sim.data, args.policy, prefix=spawn.prefix,
+                timeout=args.joint_command_timeout,
+            )
+            joint_command_switch = walker
+        else:
+            walker = policy_class(
+                sim.model, sim.data, args.policy, prefix=spawn.prefix,
+                cmd=(0.0, 0.0, 0.0),
+            )
         walker.reset(pos=spawn.pos, yaw=yaw)
         velocity_policy = getattr(walker, "walk", walker)
         if hasattr(velocity_policy, "stationary_idle"):
             velocity_policy.stationary_idle = bool(args.idle_hold)
             velocity_policy.command_deadband = float(args.idle_threshold)
         walker.install()
-        g1_motion_command_seen["value"] = bool(
-            mimic_mode and args.g1_mimic_autostart
-        )
 
         def command_g1(vx: float, vy: float, wz: float) -> None:
             if np.linalg.norm((vx, vy, wz)) > 1e-3:
@@ -1452,16 +1190,9 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             walker.set_command(vx, vy, wz)
 
         command_callback = command_g1
-        if mimic_mode:
-            state_text = (
-                f"{policy_label} READY; "
-                + ("motion started" if args.g1_mimic_autostart else
-                   f"waiting for nonzero {args.cmd_vel_topic}")
-            )
-        else:
-            state_text = (
-                f"{policy_label} READY; standing until {args.cmd_vel_topic} arrives"
-            )
+        state_text = (
+            f"{policy_label} READY; standing until {args.cmd_vel_topic} arrives"
+        )
     else:
         held = hold_pose(sim.model, sim.data, spawn.prefix)
         command_callback = None
@@ -1536,10 +1267,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         )
     active_spawn = {"index": 1}
     respawn_requests: deque[tuple[int | None, str]] = deque(maxlen=8)
-    soccer_kick_requests: deque = deque(maxlen=4)
     scenario_randomize_requests: deque[str] = deque(maxlen=2)
-    task_respawn_requests: deque[str] = deque(maxlen=2)
-    auto_kick_done = {"value": False}
 
     def respawn_g1(mission_index: int | None = None, pose=None) -> tuple[int, str, np.ndarray]:
         rescue = mission_index is None and pose is None
@@ -1549,7 +1277,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             raise ValueError(f"unknown G1 mission spawn: {mission_index}")
         label, target_pos, target_yaw = mission_spawns[mission_index]
         if rescue:
-            label = "G1 start (16, 11)"
+            label = START_LABEL
             target_pos = np.asarray((*G1_RESPAWN_XY, respawn_pos[2]), dtype=float)
             target_yaw = 0.0
         if pose is not None:
@@ -1560,9 +1288,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         if walker is not None:
             walker.set_command(0.0, 0.0, 0.0)
             walker.reset(pos=target_pos, yaw=target_yaw)
-            g1_motion_command_seen["value"] = bool(
-                mimic_mode and args.g1_mimic_autostart
-            )
+            g1_motion_command_seen["value"] = False
         else:
             sim.data.qpos[g1_qpos_indices] = initial_g1_qpos
             free_joint_ids = [
@@ -1609,14 +1335,27 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         respawn_g1()
         return failed_pose
 
-    def check_pit_fall() -> float | None:
-        if walker is None or not args.gap_fall_respawn or respawn_requests:
+    fall_since: dict[str, float | None] = {"value": None}
+
+    def check_fall() -> tuple[float, float] | None:
+        if walker is None or not args.fall_respawn or respawn_requests:
             return None
         root_z = float(sim.data.qpos[walker.root_qadr + 2])
-        if not np.isfinite(root_z) or root_z >= PIT_FALL_Z:
+        up_z = float(sim.data.xmat[g1_root_body_id].reshape(3, 3)[2, 2])
+        down = (not np.isfinite(root_z) or not np.isfinite(up_z) or root_z < FALL_ROOT_Z
+                or up_z < math.cos(math.radians(FALL_TILT_DEG)))
+        now = float(sim.data.time)
+        if not down:
+            fall_since["value"] = None
             return None
-        respawn_requests.append((None, GAP_FALL_SOURCE))
-        return root_z
+        if fall_since["value"] is None or now < fall_since["value"]:
+            fall_since["value"] = now
+            return None
+        if now - fall_since["value"] < FALL_HOLD_S:
+            return None
+        fall_since["value"] = None
+        respawn_requests.append((None, FALL_SOURCE))
+        return root_z, up_z
 
     panda_runtime = None
     if args.panda_mode != "ros":
@@ -1626,7 +1365,6 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             sim.model,
             sim.data,
             task,
-            mode="policy" if args.panda_mode == "standby" else args.panda_mode,
             dataset_dir=args.dataset_dir,
             instruction=args.task_instruction,
             rate_hz=args.panda_rate,
@@ -1635,12 +1373,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             yaw_scale=args.panda_yaw_scale,
             pitch_scale=args.panda_pitch_scale,
             preview=args.panda_preview,
-            policy_path=args.panda_policy,
             controller=panda_controller,
-            policy_replan_steps=args.panda_replan_steps,
-            start_active=args.panda_mode != "standby",
-            policy_task_timeout=args.panda_task_timeout,
-            policy_auto_success=args.panda_auto_success,
         )
 
     soccer_mission = None
@@ -1684,8 +1417,6 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
 
         # Raising KeyboardInterrupt inside mj_step callbacks causes a MuJoCo error.
         previous_sigint = signal.signal(signal.SIGINT, request_stop)
-        # GT odom shares the world origin; MOLA odom starts at G1 and map is world.
-        panda_tf_parent = "odom" if args.odom_hz > 0 and args.odom_tf else "map"
         with SimPublisher(
             sim.model,
             prefix=spawn.prefix,
@@ -1741,24 +1472,43 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                 f"G1 rescue: keys 1-6 in viewer or publish std_msgs/Empty to "
                 f"{args.g1_respawn_topic}"
             )
+            joint_command_subscription = None
+            if joint_command_switch is not None:
+                from sensor_msgs.msg import JointState as _JointCommand
+
+                def receive_joint_command(message) -> None:
+                    try:
+                        joint_command_switch.command(message.name, message.position)
+                    except ValueError as error:
+                        pub.node.get_logger().warning(
+                            f"ignored {args.joint_command_topic}: {error}",
+                            throttle_duration_sec=2.0)
+                        return
+                    g1_motion_command_seen["value"] = True
+
+                def receive_joint_gains(message) -> None:
+                    try:
+                        joint_command_switch.set_gains(message.name, message.position, message.velocity)
+                    except ValueError as error:
+                        pub.node.get_logger().warning(f"ignored {args.joint_gains_topic}: {error}")
+
+                joint_command_subscription = [
+                    pub.node.create_subscription(
+                        _JointCommand, args.joint_command_topic, receive_joint_command, 10),
+                    pub.node.create_subscription(
+                        _JointCommand, args.joint_gains_topic, receive_joint_gains, 10),
+                ]
+                pub.node.get_logger().info(
+                    f"G1 joint control: sensor_msgs/JointState on {args.joint_command_topic} "
+                    f"suspends the walking policy; it resumes {args.joint_command_timeout:g} s "
+                    f"(sim) after the last command; gains on {args.joint_gains_topic}"
+                )
             from std_msgs.msg import Int32
 
-            status = MissionStatusPublisher(
-                pub.node,
-                args.mission_status_topic,
-                args.soccer_kick_status_topic,
-                args.panda_task_status_topic,
-            )
+            status = MissionStatusPublisher(pub.node, args.mission_status_topic)
 
             status.common = mission_judge.public
 
-            def publish_m5_point() -> None:
-                _label, point5, point5_yaw = mission_spawns[5]
-                status.common["m5_point"] = [
-                    float(point5[0]), float(point5[1]), math.degrees(float(point5_yaw))
-                ]
-
-            publish_m5_point()
             judge_requests: deque[int] = deque(maxlen=8)
             mission_end_subscription = pub.node.create_subscription(
                 Int32, args.g1_mission_end_topic,
@@ -1809,19 +1559,6 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                     pub.node.get_logger().info(
                         f"referee: mission {index} {outcome} -- {verdict['summary']}")
 
-            def receive_g1_mission(message: Int32) -> None:
-                index = int(message.data)
-                if index in mission_spawns:
-                    respawn_requests.append((index, f"ROS mission {index}"))
-                else:
-                    pub.node.get_logger().warning(
-                        f"ignored mission index {index}; valid: {sorted(mission_spawns)}"
-                    )
-
-            g1_mission_subscription = pub.node.create_subscription(
-                Int32, args.g1_mission_topic, receive_g1_mission, 10
-            )
-
             mission_begin_requests: deque[tuple[int, str]] = deque(maxlen=4)
 
             def receive_mission_begin(message: Int32) -> None:
@@ -1837,105 +1574,8 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                 Int32, args.g1_mission_begin_topic, receive_mission_begin, 10
             )
 
-            ball_place_requests: deque[tuple[float, float]] = deque(maxlen=2)
-
-            def receive_ball_place(message) -> None:
-                try:
-                    x, y = (float(v) for v in message.data.replace(",", " ").split())
-                except ValueError:
-                    pub.node.get_logger().warning(
-                        f"ignored {args.soccer_ball_topic} message {message.data!r}; expected \"X Y\""
-                    )
-                    return
-                ball_place_requests.append((x, y))
-
-            from std_msgs.msg import String as _BallString
-
-            ball_place_subscription = pub.node.create_subscription(
-                _BallString, args.soccer_ball_topic, receive_ball_place, 10
-            )
-
-            gap_requests: deque[tuple[str, float | None, int | None, float | None, float | None]] = deque(maxlen=4)
-
-            def receive_gap_policy(message) -> None:
-                words = message.data.replace(",", " ").split()
-                try:
-                    verb = words[0].lower()
-                    heading = math.radians(float(words[1])) if verb in ("start", "heading") else None
-                    extra = dict(w.split("=", 1) for w in words[2:] if "=" in w)
-                    plain = [w for w in words[2:] if "=" not in w]
-                    gaps = int(plain[0]) if verb in ("start", "heading") and plain else None
-                    then = math.radians(float(extra["then"])) if "then" in extra else None
-                    after_m = float(extra.get("after", 0.0)) if then is not None else None
-                    if verb not in ("start", "heading", "stop"):
-                        raise ValueError(verb)
-                except (IndexError, ValueError):
-                    pub.node.get_logger().warning(
-                        f"ignored {args.gap_policy_topic} {message.data!r}; "
-                        'expected "start DEG" | "heading DEG" | "stop"')
-                    return
-                gap_requests.append((verb, heading, gaps, then, after_m))
-
-            gap_policy_subscription = pub.node.create_subscription(
-                _BallString, args.gap_policy_topic, receive_gap_policy, 10
-            )
-
-            def report_gap(state: str, verb: str, heading_deg) -> None:
-                switch = soccer_switch
-                index = active_spawn["index"]
-                label, point, point_yaw = mission_spawns[index]
-                crossed = switch.gap.gaps_crossed if switch is not None and switch.gap is not None else None
-                status.mission("gap_policy", index, label, point, f"ROS gap {verb}", float(sim.data.time),
-                               yaw=point_yaw, extra={"gap": {"state": state, "command": verb,
-                                                             "heading_deg": heading_deg,
-                                                             "gaps_crossed": crossed}})
-                pub.node.get_logger().info(
-                    f"gap-traversal policy {verb}: {state}"
-                    + (f", heading {heading_deg:+.0f} deg" if heading_deg is not None else "")
-                    + (f", {crossed} gap(s) crossed" if crossed is not None else ""))
-
-            def process_gap_requests() -> None:
-                switch = soccer_switch
-                if switch is not None and getattr(switch, "gap_result", None):
-                    result, switch.gap_result = switch.gap_result, None
-                    report_gap(result, "auto", None)
-                while gap_requests:
-                    verb, heading, gaps, then, after_m = gap_requests.popleft()
-                    switch = soccer_switch
-                    if switch is None or getattr(switch, "gap", None) is None:
-                        pub.node.get_logger().warning(
-                            f"gap policy {verb} ignored: no gap-traversal policy (--gap-policy)")
-                        state, extra_heading = "unavailable", None
-                    else:
-                        try:
-                            if verb == "stop":
-                                switch.stop_gap()
-                            else:
-                                switch.start_gap(heading, gaps, then, after_m)
-                            state = "running" if switch.gap_active else "stopped"
-                        except RuntimeError as error:
-                            pub.node.get_logger().error(f"gap policy {verb} failed: {error}")
-                            state = "error"
-                        extra_heading = math.degrees(switch.gap.heading) if state == "running" else None
-                    report_gap(state, verb, extra_heading)
-
-            def process_ball_place_requests() -> None:
-                while ball_place_requests:
-                    x, y = ball_place_requests.popleft()
-                    if soccer_mission is None:
-                        pub.node.get_logger().warning("ball placement ignored: no soccer scene")
-                        continue
-                    soccer_mission.place(sim.data, x, y)
-                    index = active_spawn["index"]
-                    label, point, point_yaw = mission_spawns[index]
-                    status.mission("ball_placed", index, label, point, "ROS ball", float(sim.data.time),
-                                   yaw=point_yaw, extra={"ball_xy": [x, y]})
-                    pub.node.get_logger().info(f"soccer ball placed at ({x:.2f}, {y:.2f})")
-
             def process_mission_begin_requests() -> None:
                 process_judge_requests()
-                process_ball_place_requests()
-                process_gap_requests()
                 while mission_begin_requests:
                     index, source = mission_begin_requests.popleft()
                     active_spawn["index"] = index
@@ -1943,8 +1583,9 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                     if index == 6 and soccer_mission is not None:
                         soccer_mission.reset(sim.data)
                     label, point, point_yaw = mission_spawns[index]
-                    status.mission("selected", index, label, point, source, float(sim.data.time),
-                                   yaw=point_yaw, extra=soccer_status_extra())
+                    # No coordinates: mission 5's point follows the classroom and
+                    # would tell which room that is (mission 4's answer).
+                    status.mission("selected", index, label, None, source, float(sim.data.time))
                     pub.node.get_logger().info(
                         f"mission {index} ({label}) selected from {source}; G1 not moved"
                         + ("; soccer ball restored" if index == 6 and soccer_mission is not None else "")
@@ -1957,6 +1598,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                 pub.node.create_publisher(PoseWithCovarianceStamped, args.initial_pose_topic, 10)
                 if args.auto_initial_pose else None
             )
+            respawned_pub = pub.node.create_publisher(Empty, args.respawned_topic, 10)
             localize_requests: deque[str] = deque(maxlen=4)
             # AMCL ignores seeds before activation; retry until explicitly localized.
             amcl_watch = {"subscribers": 0, "checked": 0.0, "due": []}
@@ -2030,16 +1672,10 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             randomize_subscription = pub.node.create_subscription(
                 Empty, args.g1_randomize_topic, receive_randomize, 10
             )
-            panda_retry_subscription = pub.node.create_subscription(
-                Empty, args.panda_retry_topic,
-                lambda _message: task_respawn_requests.append("ROS"), 10,
-            )
             pub.node.get_logger().info(
-                f"Mission API: std_msgs/Int32 {args.g1_mission_topic} (1-6, respawn there), "
-                f"std_msgs/Int32 {args.g1_mission_begin_topic} (1-6, G1 not moved), "
+                f"Mission API: std_msgs/Int32 {args.g1_mission_begin_topic} (1-6, G1 not moved), "
                 f"std_msgs/Empty {args.g1_randomize_topic}; status on "
-                f"{args.mission_status_topic}, {args.soccer_kick_status_topic}, "
-                f"{args.panda_task_status_topic}"
+                f"{args.mission_status_topic}"
             )
             pub.node.get_logger().info(
                 "ground truth: "
@@ -2051,96 +1687,8 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                    f"respawns and on {args.localize_topic}" if initial_pose_pub is not None
                    else "manual (RViz 2D Pose Estimate)")
             )
-            soccer_kick_subscription = None
-            if soccer_switch is not None:
-
-                def receive_soccer_kick(_message: Empty) -> None:
-                    soccer_kick_requests.append("ROS")
-
-                def receive_soccer_kick_here(_message: Empty) -> None:
-                    soccer_kick_requests.append(("ROS here", "here"))
-
-                def receive_soccer_kick_pose(message) -> None:
-                    try:
-                        x, y, yaw_deg = (float(v) for v in message.data.replace(",", " ").split())
-                    except ValueError:
-                        pub.node.get_logger().warning(
-                            f"ignored {args.soccer_kick_pose_topic} message {message.data!r}; "
-                            'expected "X Y YAW_DEG"'
-                        )
-                        return
-                    soccer_kick_requests.append(("ROS pose", ((x, y), math.radians(yaw_deg))))
-
-                from std_msgs.msg import String as _KickPoseString
-
-                def receive_soccer_policy(message) -> None:
-                    name = message.data.strip()
-                    if name in soccer_switch.ready_names:
-                        soccer_kick_requests.append(("ROS select", ("select", name)))
-                    else:
-                        pub.node.get_logger().warning(
-                            f"ignored soccer policy {name!r}; ready: {soccer_switch.ready_names}"
-                        )
-
-                soccer_kick_subscription = [
-                    pub.node.create_subscription(
-                        _KickPoseString, args.soccer_policy_topic, receive_soccer_policy, 10
-                    ),
-                    pub.node.create_subscription(
-                        Empty, args.soccer_kick_topic, receive_soccer_kick, 10
-                    ),
-                    pub.node.create_subscription(
-                        Empty, args.soccer_kick_here_topic, receive_soccer_kick_here, 10
-                    ),
-                    pub.node.create_subscription(
-                        _KickPoseString, args.soccer_kick_pose_topic, receive_soccer_kick_pose, 10
-                    ),
-                ]
-                auto_text = (
-                    f"; automatic kick at sim {args.soccer_kick_at:.1f}s"
-                    if args.soccer_kick_at > 0 else ""
-                )
-                pub.node.get_logger().info(
-                    "G1 soccer kick: key 7 in viewer (8 cycles the policy) or publish "
-                    f"std_msgs/Empty to {args.soccer_kick_topic}{auto_text}; "
-                    f"{args.soccer_kick_here_topic} kicks from the current pose (no teleport)"
-                )
-            panda_task_subscription = None
-            panda_last_prompt = {"prompt": None}
-            if args.panda_mode == "standby" and panda_runtime is not None:
-                from std_msgs.msg import String
-
-                def receive_panda_prompt(message: String) -> None:
-                    prompt = message.data.strip()
-                    if prompt:
-                        panda_last_prompt["prompt"] = prompt
-                        panda_runtime.start_policy(prompt)
-                        status.panda_started(prompt, float(sim.data.time))
-                        pub.node.get_logger().info(
-                            f"Panda accepted task prompt: {prompt}"
-                        )
-                    else:
-                        panda_runtime.stop_policy("empty ROS prompt")
-                        pub.node.get_logger().info("Panda task stopped")
-
-                panda_task_subscription = pub.node.create_subscription(
-                    String, args.panda_task_topic, receive_panda_prompt, 10
-                )
-                pub.node.get_logger().info(
-                    f"Panda policy STANDBY; publish std_msgs/String to {args.panda_task_topic}"
-                )
-            if panda_prefix:
-                half = math.radians(args.panda_yaw_deg) / 2.0
-                panda_position = (
-                    room_permutation.panda_position
-                    if room_permutation is not None
-                    else np.asarray((args.panda_x, args.panda_y, args.panda_z))
-                )
-                pub.publish_static_transform(
-                    panda_tf_parent, "panda/robot0_base",
-                    panda_position,
-                    (math.cos(half), 0.0, 0.0, math.sin(half)),
-                )
+            # The Panda base's world pose is NOT published: the desk moves with the
+            # classroom, so it would tell which room that is (mission 4's answer).
 
             def perform_mission_respawn(
                 checkpoint: int | None, source: str
@@ -2149,71 +1697,16 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                     return respawn_g1(None, pose=checkpoint)
                 selected = active_spawn["index"] if checkpoint is None else checkpoint
                 mission_judge.mission_started(checkpoint)
-                if selected == 6 and soccer_mission is not None:
+                if checkpoint is None:
+                    # A respawn at the start point (fall, gap, key B): cone order, room order
+                    # and ball are drawn again.
+                    room_order, cone_order = randomize_scenario(source, respawn=True)
+                    pub.node.get_logger().info(
+                        f"Scenario after {source}: {current_scenario().summary()}")
+                elif selected == 6 and soccer_mission is not None:
                     soccer_mission.reset(sim.data)
                 index, label, target_pos = respawn_g1(checkpoint)
                 return index, label, target_pos
-
-            def perform_soccer_kick(source: str, mode=None) -> tuple[str, np.ndarray, float]:
-                if soccer_switch is None:
-                    raise RuntimeError("soccer kick requested without a soccer registry")
-                teleport = mode != "here"
-                if teleport and soccer_mission is not None:
-                    soccer_mission.reset(sim.data)
-                if soccer_switch.kicking:
-                    raise RuntimeError("a kick is already in progress")
-                name, pos, yaw_value = soccer_switch.start_kick(
-                    pose=mode if isinstance(mode, tuple) else None, teleport=teleport,
-                )
-                g1_motion_command_seen["value"] = True
-                reveal = teleport or args.ground_truth
-                status.kick_started(name, pos if reveal else None,
-                                    math.degrees(yaw_value) if reveal else None,
-                                    float(sim.data.time), teleported=teleport)
-                pub.node.get_logger().info(
-                    f"G1 soccer kick from {source}: policy '{name}' at "
-                    f"({pos[0]:.3f}, {pos[1]:.3f}) yaw {math.degrees(yaw_value):.2f} deg; "
-                    + ("ball reset; " if teleport else "from the current pose, ball untouched; ")
-                    + "velocity policy resumes after the motion"
-                )
-                return name, pos, yaw_value
-
-            def process_soccer_requests() -> bool:
-                if soccer_switch is None:
-                    return False
-                if (
-                    args.soccer_kick_at > 0
-                    and not auto_kick_done["value"]
-                    and sim.data.time >= args.soccer_kick_at
-                ):
-                    auto_kick_done["value"] = True
-                    soccer_kick_requests.append("auto")
-                if not soccer_kick_requests:
-                    return False
-                request = soccer_kick_requests.pop()
-                soccer_kick_requests.clear()
-                source, mode = request if isinstance(request, tuple) else (request, None)
-                if source == "cycle":
-                    name = soccer_switch.cycle()
-                    pub.node.get_logger().info(f"G1 soccer policy selected: '{name}'")
-                    return False
-                if isinstance(mode, tuple) and mode[0] == "select":
-                    name = soccer_switch.select(mode[1])
-                    pub.node.get_logger().info(f"G1 soccer policy selected from ROS: '{name}'")
-                    status.mission("policy", active_spawn["index"],
-                                   mission_spawns[active_spawn["index"]][0],
-                                   mission_spawns[active_spawn["index"]][1], "ROS select",
-                                   float(sim.data.time), yaw=mission_spawns[active_spawn["index"]][2],
-                                   extra=soccer_status_extra())
-                    return False
-                try:
-                    perform_soccer_kick(source, mode)
-                except Exception as error:  # noqa: BLE001 - keep the simulator alive
-                    pub.node.get_logger().error(
-                        f"G1 soccer kick from {source} failed: {error}"
-                    )
-                    return False
-                return True
 
             env_rng = np.random.default_rng()
 
@@ -2222,7 +1715,6 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                 moved_point5 = point5.copy()
                 moved_point5[1] = 19.55 + classroom_delta_y
                 mission_spawns[5] = (label, moved_point5, point5_yaw)
-                publish_m5_point()
                 if panda_runtime is not None:
                     panda_runtime.workspace_relocated()
                 elif panda_controller is not None:
@@ -2234,15 +1726,13 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                         panda_controller.set_joint_target(
                             sim.data.qpos[panda_controller.qpos_adrs]
                         )
-                half = math.radians(args.panda_yaw_deg) / 2.0
-                pub.publish_static_transform(
-                    panda_tf_parent, "panda/robot0_base", moved_panda,
-                    (math.cos(half), 0.0, 0.0, math.sin(half)),
-                )
 
-            def randomize_scenario(source: str) -> tuple[
+            def randomize_scenario(source: str, respawn: bool = False) -> tuple[
                 tuple[str, ...] | None, tuple[str, ...] | None
             ]:
+                """``respawn``: only the cone order, room order and ball are drawn again (the mission 1
+                goal, mission 2 colour and pencil/holder placement stay)."""
+
                 room_order = None
                 cone_order = None
                 if room_permutation is not None:
@@ -2252,12 +1742,13 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                     cone_order = cone_permutation.randomize()
                 from ros2_bridge.tools.mission_judge import COLORS
 
-                mission_judge.set_m2_color(COLORS[int(env_rng.integers(len(COLORS)))])
-                gx, gy = sample_point(env_rng, args.m1_goal_region)
-                mission_judge.set_m1_goal_world(gx, gy, args.m1_goal_yaw)
+                if not respawn:
+                    mission_judge.set_m2_color(COLORS[int(env_rng.integers(len(COLORS)))])
+                    gx, gy = sample_point(env_rng, args.m1_goal_region)
+                    mission_judge.set_m1_goal_world(gx, gy, args.m1_goal_yaw)
                 if soccer_mission is not None:
                     soccer_mission.set_home(sim.data, *sample_point(env_rng, args.ball_region))
-                if task is not None:
+                if task is not None and not respawn:
                     reset_panda_task(source)
                 write_scenario(source)
                 return room_order, cone_order
@@ -2340,29 +1831,14 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                     controller.set_eef_target(controller.site_transform(sim.data))
                 else:
                     controller.set_joint_target(arm_home)
-                restarted = ""
                 if panda_runtime is not None:
-                    was_active = bool(panda_runtime.policy_active)
                     panda_runtime.workspace_relocated()
-                    prompt = panda_last_prompt["prompt"]
-                    if panda_runtime.mode == "policy" and prompt:
-                        panda_runtime.start_policy(prompt)
-                        if not was_active:
-                            status.panda_started(prompt, float(sim.data.time))
-                        restarted = f"; policy restarted: {prompt!r}"
                 pencil, cup = task["pencil_xy"], task["cup_xy"]
                 pub.node.get_logger().info(
                     f"Panda task ({source}): arm home, pencil ({pencil[0]:.3f}, "
-                    f"{pencil[1]:.3f}), holder ({cup[0]:.3f}, {cup[1]:.3f}){restarted}"
+                    f"{pencil[1]:.3f}), holder ({cup[0]:.3f}, {cup[1]:.3f})"
                 )
                 return True
-
-            def drain_task_respawn_requests() -> None:
-                if not task_respawn_requests:
-                    return
-                source = task_respawn_requests.pop()
-                task_respawn_requests.clear()
-                reset_panda_task(source)
 
             def drain_randomize_requests() -> None:
                 if not scenario_randomize_requests:
@@ -2373,8 +1849,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                 env = current_scenario()
                 index = active_spawn["index"]
                 label, point, point_yaw = mission_spawns[index]
-                status.mission("randomized", index, label, point, source, float(sim.data.time),
-                               yaw=point_yaw, extra=soccer_status_extra())
+                status.mission("randomized", index, label, None, source, float(sim.data.time))
                 pub.node.get_logger().info(f"Scenario after {source}: {env.summary()}")
                 if room_order is not None:
                     pub.node.get_logger().info(
@@ -2389,24 +1864,14 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                         + "; G1 pose preserved"
                     )
 
-            def soccer_status_extra() -> dict:
-                if soccer_switch is None or soccer_switch.selected is None:
-                    return {}
-                registry = soccer_switch.registry
-                entry = registry["policies"][soccer_switch.selected]
-                spawn = entry.get("spawn") or {}
-                return {"soccer": {
-                    "policy": soccer_switch.selected,
-                    "run_up_pos": [float(v) for v in spawn.get("pos", ())[:2]],
-                    "run_up_yaw_deg": float(spawn.get("yaw_deg", 0.0)),
-                    "ball_xy": [float(v) for v in registry.get("ball_xy", ())],
-                    "goal_xy": [float(v) for v in registry.get("goal_xy", ())],
-                    "ready": list(soccer_switch.ready_names),
-                }}
-
             def announce_respawn(index: int, label: str, target_pos, source: str) -> None:
+                # counted: a respawn to the start point (fall, key B, /g1/respawn); the mission
+                # runner counts these against missions.falls_allowed.
                 status.mission("respawned", index, label, target_pos, source, float(sim.data.time),
-                               yaw=0.0 if label == "G1 start (16, 11)" else mission_spawns[index][2], extra=soccer_status_extra())
+                               yaw=0.0 if label == START_LABEL else mission_spawns[index][2],
+                               extra={"counted": label == START_LABEL})
+                if label == START_LABEL:
+                    respawned_pub.publish(Empty())
                 if initial_pose_pub is not None:
                     localize_requests.append(f"respawn {index}")
                 pub.node.get_logger().info(
@@ -2415,7 +1880,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                     f"{target_pos[1]:.2f}, {target_pos[2]:.2f}); "
                     "pose, velocity, policy state and command cleared"
                 )
-                if index == 6:
+                if index == 6 and label != START_LABEL:
                     pub.node.get_logger().info(
                         "Mission 6 soccer goal and ball restored to their initial poses"
                     )
@@ -2428,7 +1893,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             status.mission(
                 "startup", active_spawn["index"], mission_spawns[active_spawn["index"]][0],
                 mission_spawns[active_spawn["index"]][1], "startup", float(sim.data.time),
-                yaw=mission_spawns[active_spawn["index"]][2], extra=soccer_status_extra(),
+                yaw=mission_spawns[active_spawn["index"]][2],
             )
 
             pub.node.get_logger().info(
@@ -2528,6 +1993,8 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                         if key in mission_keys:
                             checkpoint = mission_keys[key]
                             respawn_requests.append((checkpoint, f"key {checkpoint}"))
+                        elif key == glfw.KEY_B:
+                            respawn_requests.append((None, "key B"))
                         elif key == glfw.KEY_G:
                             place_mode["armed"] = not place_mode["armed"]
                             place_mode["seen"] = selection()
@@ -2570,7 +2037,8 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                         pub.node.get_logger().info(
                             "Viewer keys: 1-6 = G1 to a mission's start point (1 launch, "
                             "2 cone door, 3 cliff entrance, 4 launch facing the rooms, "
-                            "5 Panda desk, 6 soccer door); G then a double-click = G1 to that "
+                            "5 Panda desk, 6 soccer door); B = respawn G1 at the start (16, 11), "
+                            "counted like a fall; G then a double-click = G1 to that "
                             "point; R = new random scenario "
                             "(goal, cones, rooms, ball, pencil; G1 not moved); "
                             "J = success regions on/off, K = random spawn regions on/off, "
@@ -2589,10 +2057,6 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                             with viewer.lock():
                                 poll_place_mode()
                                 drain_randomize_requests()
-                                drain_task_respawn_requests()
-                                if soccer_switch is not None and process_soccer_requests():
-                                    camera_request["mode"] = "soccer"
-                                    camera_request["dirty"] = True
                                 if respawn_requests:
                                     checkpoint, source = respawn_requests.pop()
                                     respawn_requests.clear()
@@ -2618,10 +2082,10 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                                         f"up_z={recovered_pose[1]:.3f})"
                                     )
                                 mission_judge.track(sim.data)
-                                fell_z = check_pit_fall()
-                                if fell_z is not None:
+                                fell = check_fall()
+                                if fell is not None:
                                     pub.node.get_logger().warning(
-                                        f"G1 fell into a cliff gap (pelvis z {fell_z:.2f} m); "
+                                        f"G1 fell over (pelvis z {fell[0]:.2f} m, up_z {fell[1]:.2f}); "
                                         "respawning at launch point (16, 11)"
                                     )
                                 pub.update(sim.data)
@@ -2636,10 +2100,6 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                                             },
                                             float(observation["time"]),
                                         )
-                                status.poll(
-                                    float(sim.data.time), soccer_switch, soccer_mission,
-                                    sim.data, panda_runtime,
-                                )
                             if panda_runtime is not None and panda_runtime.stop_requested:
                                 break
                             now_wall = time.perf_counter()
@@ -2693,8 +2153,6 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                                         else (args.panda_x, args.panda_y)
                                     )
                                     set_panda_table_camera(viewer.cam, panda_xy)
-                                elif camera_request["mode"] == "soccer":
-                                    set_soccer_field_camera(viewer.cam)
                                 else:
                                     set_scene_overview_camera(
                                         viewer.cam, sim.model, sim.data, scene_ngeom
@@ -2731,9 +2189,6 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                     previous_sim_time = pace_sim_started
                     while rclpy.ok() and not stop_requested:
                         drain_randomize_requests()
-                        drain_task_respawn_requests()
-                        if soccer_switch is not None:
-                            process_soccer_requests()
                         if respawn_requests:
                             checkpoint, source = respawn_requests.pop()
                             respawn_requests.clear()
@@ -2756,10 +2211,10 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                                 f"up_z={recovered_pose[1]:.3f})"
                             )
                         mission_judge.track(sim.data)
-                        fell_z = check_pit_fall()
-                        if fell_z is not None:
+                        fell = check_fall()
+                        if fell is not None:
                             pub.node.get_logger().warning(
-                                f"G1 fell into a cliff gap (pelvis z {fell_z:.2f} m); "
+                                f"G1 fell over (pelvis z {fell[0]:.2f} m, up_z {fell[1]:.2f}); "
                                 "respawning at launch point (16, 11)"
                             )
                         pub.update(sim.data)
@@ -2775,10 +2230,6 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                                 )
                             if panda_runtime.stop_requested:
                                 break
-                        status.poll(
-                            float(sim.data.time), soccer_switch, soccer_mission,
-                            sim.data, panda_runtime,
-                        )
                         if args.realtime:
                             now_wall = time.perf_counter()
                             current_sim_time = float(sim.data.time)
@@ -2799,27 +2250,6 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                 f"stopped at sim={sim.data.time:.2f}s wall={wall:.2f}s "
                 f"RTF={sim.data.time / max(wall, 1e-9):.2f}"
             )
-            kicked = soccer_switch is not None and soccer_switch.mimic is not None
-            if (mimic_mode or kicked) and walker is not None:
-                metrics = walker.metrics()
-                pub.node.get_logger().info(
-                    "G1 mimic report: "
-                    f"frame={metrics['last_frame']}/{metrics['reference_frames'] - 1}, "
-                    f"finished={metrics['finished']}, "
-                    f"joint_rmse={metrics['joint_rmse_rad']:.4f} rad, "
-                    f"min_pelvis_z={metrics['min_root_z_m']:.3f} m, "
-                    f"min_up_z={metrics['min_up_z']:.3f}, "
-                    f"walk_handoff={metrics.get('switched_to_walk', False)}"
-                )
-                if soccer_mission is not None:
-                    ball = soccer_mission.metrics(sim.data)
-                    pub.node.get_logger().info(
-                        "Soccer ball report: "
-                        f"xy_displacement={ball['horizontal_displacement_m']:.3f} m, "
-                        f"speed={ball['speed_mps']:.3f} m/s, "
-                        f"position=({ball['x_m']:.3f}, {ball['y_m']:.3f}, "
-                        f"{ball['z_m']:.3f})"
-                    )
     finally:
         if "previous_sigint" in locals():
             signal.signal(signal.SIGINT, previous_sigint)

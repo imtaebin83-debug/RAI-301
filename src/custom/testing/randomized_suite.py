@@ -21,10 +21,11 @@ def main():
     ap.add_argument('--cases',type=int,default=2)
     ap.add_argument('--missions',nargs='+',type=int,default=[1,2])
     ap.add_argument('--output',type=Path,help='write evidence here instead of tracked baseline fixtures')
+    ap.add_argument('--source',type=Path,help='isolated source tree, for baseline comparison')
     args=ap.parse_args()
     if 5 in args.missions:
         ap.error('Mission 5 is owned by another active task')
-    root=Path(__file__).resolve().parents[2]
+    root=args.source.resolve() if args.source else Path(__file__).resolve().parents[2]
     rng=random.Random(args.seed)
     output=args.output.resolve() if args.output else root/'custom'/'docs'/'validation'
     output.mkdir(parents=True,exist_ok=True)
@@ -47,7 +48,9 @@ def main():
             before=set((root/'results').glob('*.json'))
             command=[sys.executable,'-u',str(root/'main.py'),'--missions',*map(str,args.missions),
                      '--no-wait','--config',str(configfile),'--scenario',str(scenefile)]
-            env={**os.environ,'MUJOCO_GL':'egl','PYTHONDONTWRITEBYTECODE':'1'}
+            env={**os.environ,'MUJOCO_GL':'egl','PYTHONDONTWRITEBYTECODE':'1',
+                 'HAIC_ROOT':str(root.parent),
+                 'PYTHONPATH':str(root)+os.pathsep+os.environ.get('PYTHONPATH','')}
             name=f'seed{args.seed}_case{case}'
             with (output/(name+'.log')).open('w') as log:
                 process=subprocess.Popen(command,cwd=root,env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)

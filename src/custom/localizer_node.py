@@ -1,34 +1,56 @@
-"""Continuous sensor odometry, stamped with the scan that produced each pose."""
+"""Continuous public-sensor odometry stamped with each accepted LiDAR scan."""
 import json
 import math
 import os
+import threading
 import time
 from geometry_msgs.msg import PoseStamped, TransformStamped
 from scipy.spatial.transform import Rotation
 from std_msgs.msg import String
 from tf2_ros import TransformBroadcaster
-from mission_api import MissionRunner, START_POSE_WORLD
+from mission_api import START_POSE_WORLD
+from custom.sensor_mission import Mission
 from custom.localization import Localizer
 
 
 def main():
-    with MissionRunner('custom_lidar_localizer') as runner:
-        runner.api.wait_for_sim(timeout=40)
+    import rclpy
+    from rclpy.executors import MultiThreadedExecutor, ExternalShutdownException
+    from rclpy.parameter import Parameter
+    from sensor_msgs.msg import PointCloud2
+
+    rclpy.init()
+    node = Mission(node_name='custom_lidar_localizer')
+    node.set_parameters([Parameter('use_sim_time', value=True)])
+    executor = MultiThreadedExecutor(num_threads=3)
+    executor.add_node(node)
+
+    def spin():
+        try:
+            executor.spin()
+        except ExternalShutdownException:
+            pass
+
+    thread = threading.Thread(target=spin, daemon=True)
+    thread.start()
+    try:
+        if node.latest('/lidar/points', PointCloud2, timeout=40.) is None:
+            raise TimeoutError('No public LiDAR sensor within 40 seconds')
         initial = [float(v) for v in os.getenv(
             'HAIC_INITIAL_POSE', ','.join(map(str, START_POSE_WORLD))).split(',')]
         if len(initial) != 3 or not all(math.isfinite(v) for v in initial):
             raise ValueError('HAIC_INITIAL_POSE requires finite x,y,yaw_deg')
-        loc = Localizer(runner.api, {'pos': initial[:2], 'yaw_deg': initial[2], 'seq': -1})
-        pub = runner.api.create_publisher(PoseStamped, '/custom/estimated_pose', 10)
-        status_pub = runner.api.create_publisher(String, '/custom/localization_status', 10)
-        tf = TransformBroadcaster(runner.api)
+        loc = Localizer(node, {'pos': initial[:2], 'yaw_deg': initial[2], 'seq': -1})
+        pub = node.create_publisher(PoseStamped, '/custom/estimated_pose', 10)
+        status_pub = node.create_publisher(String, '/custom/localization_status', 10)
+        tf = TransformBroadcaster(node)
         lastlog = 0
         published_stamp = None
         traced_state = None
         trace_path = os.getenv('HAIC_LOCALIZATION_TRACE')
         trace = open(trace_path, 'a', buffering=1) if trace_path else None
         try:
-            while runner._rclpy.ok():
+            while rclpy.ok():
                 started = time.monotonic()
                 loc.update()
                 stamp = loc.measurement_stamp
@@ -73,15 +95,21 @@ def main():
                     tf.sendTransform(t)
                     published_stamp = stamp
                 elif not valid and time.monotonic() - lastlog > 5:
-                    runner.api.log('[localizer] waiting: ' + reason)
+                    node.log('[localizer] waiting: ' + reason)
                     lastlog = time.monotonic()
                 time.sleep(.025)
         finally:
             if trace:
                 trace.close()
+    finally:
+        executor.shutdown(timeout_sec=2.)
+        thread.join(timeout=2.)
+        node.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     try:
         main()
     except KeyboardInterrupt:

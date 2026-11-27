@@ -8,15 +8,21 @@ import numpy as np
 from scipy.spatial.transform import Rotation
 
 try:
-    from custom.mission_5.ros_io import (ARM_NAMES, FINGER_NAMES, PandaKinematics,
-        base_action_to_world, joint_mapping, rgb_array)
+    from custom.mission_5.ros_io import (ARM_NAMES, FINGER_NAMES, PandaKinematics, PandaROSIO,
+        base_action_to_world, joint_mapping, rgb_array, public_base_axes)
 except ModuleNotFoundError:
     sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
-    from mission_5.ros_io import (ARM_NAMES, FINGER_NAMES, PandaKinematics,
-        base_action_to_world, joint_mapping, rgb_array)
+    from mission_5.ros_io import (ARM_NAMES, FINGER_NAMES, PandaKinematics, PandaROSIO,
+        base_action_to_world, joint_mapping, rgb_array, public_base_axes)
 
 
 class ActionContractTests(unittest.TestCase):
+    def test_public_axes_have_fixed_yaw_and_no_world_translation(self):
+        axes = public_base_axes()
+        np.testing.assert_allclose(axes[:3, 3], 0.)
+        np.testing.assert_allclose(axes[:3, :3], [[0, 1, 0], [-1, 0, 0], [0, 0, 1]], atol=1e-12)
+        np.testing.assert_allclose(axes[3], [0, 0, 0, 1])
+
     def test_base_yaw_rotates_translation_and_rotvec(self):
         world = np.eye(4)
         world[:3, :3] = Rotation.from_euler('z', -90, degrees=True).as_matrix()
@@ -89,6 +95,47 @@ class KinematicContractTests(unittest.TestCase):
         self.assertTrue(np.isfinite(state).all())
         np.testing.assert_allclose(state[-2:], [.02,-.02])
         np.testing.assert_allclose(fk.base_from_eef[:3,:3].T @ fk.base_from_eef[:3,:3],np.eye(3),atol=1e-6)
+
+
+class V2PandaBoundaryTests(unittest.TestCase):
+    def test_two_rgb_and_fk_work_without_any_world_tf(self):
+        stamp = SimpleNamespace(sec=2, nanosec=0)
+        header = SimpleNamespace(stamp=stamp)
+        rgb = SimpleNamespace(header=header, encoding='rgb8', width=256, height=256,
+                              step=256*3, data=bytes(256*256*3))
+        names = ARM_NAMES + FINGER_NAMES
+        joints = SimpleNamespace(header=header, name=names, position=[0.]*7+[.02, -.02])
+        messages = {'/panda/agentview/image_raw': rgb,
+                    '/panda/wrist_camera/image_raw': rgb, '/panda/joint_states': joints}
+        subscriptions, publications = [], {}
+
+        def latest(topic, kind, timeout=0.):
+            subscriptions.append(topic)
+            return messages.get(topic)
+
+        def publish_to(kind, topic, qos):
+            publications[topic] = []
+            return SimpleNamespace(publish=publications[topic].append)
+
+        def forbidden_tf():
+            self.fail('Panda world/map TF must not be requested by the v2 adapter')
+
+        mission = SimpleNamespace(latest=latest, create_publisher=publish_to, _tf=forbidden_tf)
+        expected_state = np.array([.4, .1, .2, 0., 0., 0., .02, -.02], dtype=np.float32)
+        fk = SimpleNamespace(state=lambda mapping: expected_state.copy())
+        io = PandaROSIO(mission, kinematics=fk)
+        observation = io.observation(timeout=.1)
+        self.assertEqual(set(observation), {'time', 'image', 'wrist_image', 'state'})
+        self.assertEqual(observation['image'].shape, (256, 256, 3))
+        self.assertEqual(observation['wrist_image'].shape, (256, 256, 3))
+        np.testing.assert_allclose(observation['state'], expected_state)
+        self.assertEqual(set(subscriptions), set(messages))
+        command = io.command([.2, -.4, .1, .3, .1, -.2, -1])
+        np.testing.assert_allclose(command, [-.4, -.2, .1, .1, -.3, -.2, -1], atol=1e-8)
+        self.assertEqual(len(publications['/panda/eef_delta_command']), 1)
+        first = io.robot_base()
+        first[:3, 3] = 999.
+        np.testing.assert_allclose(io.robot_base()[:3, 3], 0.)
 
 
 if __name__=='__main__':

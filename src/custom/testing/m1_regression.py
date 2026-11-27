@@ -76,7 +76,7 @@ def worker(source, directory):
                         began = time.monotonic()
                         reached = nav.route_to(*target, timeout=100.)
                         estimated = nav.pose()
-                        verdict = mission.judge(1)  # Evaluator only, never controller input.
+                        verdict = runner.api.judge(1)  # Evaluator only, never controller input.
                         actual = verdict.get('pelvis', [])
                         error = (math.dist(actual[:2], target) if len(actual) >= 2 else None)
                         checkpoints.append({'target': target, 'reached': reached,
@@ -93,7 +93,7 @@ def worker(source, directory):
                     result = mission.result(error=str(error), checkpoints=checkpoints)
                 finally:
                     mission.stop()
-                referee.finish(mission, result)
+                referee.finish(runner.api, result)
                 runner.finish(mission)
             else:
                 for number in case['missions']:

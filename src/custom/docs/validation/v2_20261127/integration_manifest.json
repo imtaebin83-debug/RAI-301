@@ -1,0 +1,18 @@
+{
+  "team_before": "7542e7efbbaf1f55c47d92a8acbc12070df37538",
+  "upstream": "f03a50078bed86c8e751c5d82066dd14025d0e55",
+  "merge_base": "052a00be32fdd818550c3b2d176b8c1c1db13b7d",
+  "protected_paths_different_from_official": [],
+  "sensor_values_preserved": true,
+  "walking_values_preserved": true,
+  "learned_checkpoint_sha256": "5399000712043f249abdc3414374ddd0bf710c696a6ed3b6f623497dd7b6b3ca",
+  "rulebook_v2_sha256": "99dfc6db883a27d9016a0c2159d0180d9e5df8d25d266e6098445c27aa6ffc13",
+  "model_endpoint_env_configured": {
+    "HAIC_LLM_BASE_URL": false,
+    "HAIC_VLM_BASE_URL": false,
+    "HAIC_LLM_MODEL": false,
+    "HAIC_VLM_MODEL": false
+  },
+  "python": "3.10.22",
+  "conflicted_paths": []
+}

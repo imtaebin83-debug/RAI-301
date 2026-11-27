@@ -1,5 +1,7 @@
 # RAI 301 기본 구현
 
+**2026-11-27 Starter/Rulebook v2 반영:** 조교 `f03a500`과 팀 구현을 병합하고 `robot.yaml`, 공개 센서 API·리스폰, Panda 행동 좌표를 호환시켰다. 새 `haic_rai301_v2`에서 M1→M2→M5 연속 3/3 PASS, 회귀 검사 110개 통과. 최신 미션별 main/팀원 브랜치 구분·미통합 성과·규칙상 준비 과제는 [v2 업데이트와 진행도](docs/V2_UPDATE_AND_MISSION_STATUS_20261127.md)를 먼저 읽는다. 아래 예전 성공 기록을 v2 전 배치 검증으로 해석하지 않는다.
+
 규칙과 원본 API를 검토한 센서 기반 초기 구현이다. 미션 1·2는 실제 시뮬레이터 PASS를 확인했다. 미션 4는 방 분류 3/3 정답이나 배달 실패이며, 미션 3·6도 아직 성공하지 못했다. 미션 5는 팀 학습 keypose 정책의 파지·몸통 검출을 안정화해 동일 배치 8개에서 기존 4/8 → 개선 8/8 PASS, 별도 새 배치에서 12/12 PASS를 확인했다. 실행·재학습은 [미션 5 안내](mission_5/README.md), 최신 증거·한계는 [파지 안정화 보고서](mission_5/STABILITY_20261122.md)에 있다. 다른 미션의 기존 결과는 `docs/VALIDATION_REPORT.md`와 `docs/validation/`을 확인한다. 팀별 작업 방법은 `docs/TEAM_OPTIMIZATION.md`에 있다.
 
 ## 설치와 실행
@@ -14,7 +16,7 @@ python custom/tools/download_models.py
 
 ```bash
 source ~/miniconda3/etc/profile.d/conda.sh
-conda activate haic_rai301
+conda activate haic_rai301_v2
 cd ~/RAI-301/src
 export PYTHONDONTWRITEBYTECODE=1
 python main.py --missions 1 2
@@ -47,7 +49,7 @@ python main.py --llm-web
 
 ## 실행 환경 변수
 
-- 기본 플래너는 `models/Qwen2.5-1.5B-Instruct`를 CPU로 실행한다. API는 `HAIC_LLM_MODEL`, `HAIC_LLM_API_KEY`(또는 `OPENAI_API_KEY`), `HAIC_LLM_BASE_URL`로 설정한다. 정확한 기본 URL은 `planner/planner.py` 참조.
+- 기본 플래너는 `models/Qwen2.5-1.5B-Instruct`를 CPU로 실행하며, 전용 자식 프로세스에서 가중치를 재사용한다. v2는 외부 LLM API를 금지한다. 팀의 local 모델 서버를 쓸 때만 `HAIC_LLM_MODEL`, 명시적인 `HAIC_LLM_BASE_URL`(localhost/사설 IP/Tailscale IP), 필요한 경우 `HAIC_LLM_API_KEY`를 설정한다. 공개 API URL·기본 상용 endpoint·redirect·환경 proxy는 사용하지 않는다.
 - `HAIC_REQUIRE_LLM=1`: 규칙 기반 개발 모드를 차단한다. `HAIC_ALLOW_RULE_PLANNER=1`은 모델 없는 오프라인 개발 전용이며 대회 검증에 쓰지 않는다.
 - 기본 VLM은 `models/SmolVLM-500M-Instruct`를 CPU로 실행한다. 비전 API는 `HAIC_VLM_BASE_URL`, `HAIC_VLM_MODEL`, `HAIC_VLM_API_KEY`로 설정한다.
 - `HAIC_INITIAL_POSE=x,y,yaw_deg`: 평가에서 초기 배치를 명시적으로 바꾼 경우에만 설정한다. 기본값은 README의 공개 시작 자세 `16,11,0`이다. 미션 선택 응답의 nominal 위치를 현재 위치로 사용하지 않는다.

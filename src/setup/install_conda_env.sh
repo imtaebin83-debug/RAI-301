@@ -56,7 +56,8 @@ set +u                               # ROS setup scripts read unset variables
 conda activate "$ENV_NAME"
 python - <<'PY'
 import importlib
-for mod in ("mujoco", "onnxruntime", "cv2", "PIL", "shapely", "scipy", "rclpy"):
+for mod in ("mujoco", "onnxruntime", "cv2", "PIL", "shapely", "scipy", "rclpy",
+            "h5py", "teledex", "qrcode"):
     try:
         importlib.import_module(mod)
         print(f"  ok   {mod}")

@@ -1,6 +1,7 @@
 CSH / Mission 1 common navigation, 2026-11-27 (Asia/Seoul)
 
-No new shared environment, sensor, walking-policy or dependency change is required.
+No new packages or sensor/walking values are requested by this implementation.
+The canonical v2 environment is haic_rai301_v2, installed separately by integration.
 HAIC_MAP_CORRECTION remains OFF. No changes to mission 2/3/4/5/6 bodies or vision.py
 are submitted by this branch.
 
@@ -42,3 +43,20 @@ probe checkpoints or heading checks succeeded.
 
 The full evidence and remaining integration limits are in
 custom/docs/experiments/CSH_m1_20261127.md.
+
+Starter v2 integration (origin/main 56f307d):
+- This branch uses custom.sensor_mission.Mission and public /g1/respawned Empty.
+  Localizer no longer creates MissionRunner/SimLink or reads mission_status.
+  Only the evaluator runner.api may ask the original judge.
+- Rulebook v2 requires a team-trained G1 action policy and training evidence.
+  Current robot.yaml walking.policy=null still uses the provided policy.
+  Policy training or an explicit provided-policy exception is an integration
+  prerequisite; navigation PASS is not evidence of satisfying that rule.
+- The planner blocks public LLM APIs and defaults to actual local Qwen CPU.
+  Optional team HTTP endpoints must be explicit private/loopback/Tailscale IPs,
+  with no redirects or environment proxies. No network inference was used in
+  our actual tests. VLM endpoint configuration belongs to its owner; use the
+  local SmolVLM path, not an external API, under v2.
+- Actual fall -> public respawn -> full multi-mission resumption is not yet
+  validated. The unit test verifies fixed documented anchoring and discarding
+  the cached pre-respawn cloud without stamping it as an accepted measurement.

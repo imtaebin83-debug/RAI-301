@@ -12,3 +12,6 @@ python-xlib==0.33
 pyyaml>=6.0
 catkin-pkg==1.1.1
 streamlit==1.63.0                # main.py --llm-web (web/instruction_page.py)
+h5py>=3.8                        # tools/collect_panda.py (Panda demonstrations, TeleDex)
+teledex==0.0.7
+qrcode>=7.4

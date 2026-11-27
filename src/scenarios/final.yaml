@@ -1,5 +1,3 @@
-# written 2026-11-03T17:37:28+09:00: 10 random draw(s), the last one kept
-
 m1_goal: [16.7544, 12.2909, 90.0]        # mission 1 goal: world x, y, yaw_deg
 m2_color: green             # mission 2 target cone: green | blue | orange
 cone_order: [blue, green, orange]   # cone colours left -> right (x 14.0, 15.5, 17.0)

@@ -242,8 +242,8 @@ class PendingScanTests(unittest.TestCase):
         loc = object.__new__(Localizer)
         cloud = SimpleNamespace(header=SimpleNamespace(frame_id='lidar_link',
             stamp=SimpleNamespace(sec=10, nanosec=100000000)))
-        loc.mission = SimpleNamespace(last_status=lambda: {'seq': -1}, latest=lambda *a, **k: cloud)
-        loc._last_status_seq, loc._recovery_blocked = -1, False
+        loc.mission = SimpleNamespace(respawn_count=0, latest=lambda *a, **k: cloud)
+        loc._last_respawn_count, loc._recovery_blocked = 0, False
         loc._stamp = loc._attempt_stamp = (10, 0)
         loc._last_received, loc.quality = 100., .99
         loc._pose = (16., 11., 0.)

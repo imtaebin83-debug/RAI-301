@@ -1,39 +1,46 @@
-"""External evaluation of learned Mission5 on your own reserved simulator.
+"""Evaluate learned Mission5 once on your own already-running simulator.
 
-Only this harness requests a fresh public Panda placement and reads the referee.
-The submitted Mission5 controller does neither.
+Starter v2 removed the public Panda reset. This harness evaluates the current
+placement once and reads the referee; it never silently repeats that placement.
+Use benchmark.py for seeded trials, each in a fresh simulator process.
 """
-import argparse,json,time
+import argparse,json
 from pathlib import Path
-from mission_api import MissionRunner
-from referee import Referee
-from custom.mission_5.mission_5 import Mission5
 
 
-def main():
+def parse_args(argv=None):
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--episodes',type=int,default=3)
+    p.add_argument('--episodes',type=int,default=1,
+                   help='Exactly 1 current-placement trial; use benchmark.py for multiple fresh simulators')
     p.add_argument('--out',type=Path,required=True)
-    p.add_argument('--keep-first',action='store_true',help='First trial keeps the existing initial placement')
-    args=p.parse_args()
-    if not 1<=args.episodes<=50:p.error('episodes must be between1 and50')
+    p.add_argument('--keep-first',action='store_true',
+                   help='Compatibility no-op: the single trial always keeps the existing placement; no reset is available')
+    args=p.parse_args(argv)
+    if args.episodes!=1:
+        p.error('--episodes must be 1: starter v2 has no public Panda reset. '
+                'Use python -m custom.mission_5.benchmark for multiple seeded trials '
+                'in fresh simulator processes.')
+    return args
+
+
+def main(argv=None):
+    args=parse_args(argv)
+    from mission_api import MissionRunner
+    from referee import Referee
+    from custom.mission_5.mission_5 import Mission5
+
     args.out.parent.mkdir(parents=True,exist_ok=True)
     with MissionRunner('m5_policy_evaluation') as runner:
         runner.api.wait_for_sim(timeout=40)
-        from std_msgs.msg import Empty
-        reset=runner.api.create_publisher(Empty,'/panda/retry',10)
-        referee=Referee(args.out,run={'kind':'learned_mission5_random_placement_evaluation'})
-        for index in range(args.episodes):
-            if index or not args.keep_first:
-                until=time.monotonic()+5
-                while reset.get_subscription_count()==0 and time.monotonic()<until:time.sleep(.05)
-                if reset.get_subscription_count()==0:
-                    raise RuntimeError('Panda reset subscriber unavailable; refusing to label an unreset trial')
-                reset.publish(Empty());time.sleep(2.)
-            node=runner.start(Mission5)
+        referee=Referee(args.out,run={'kind':'learned_mission5_single_placement_evaluation',
+            'episodes':1,'placement':'existing','reset_available':False,
+            'keep_first_compatibility_flag':args.keep_first})
+        node=runner.start(Mission5)
+        try:
             referee.begin(5)
             result=node.run()
-            referee.finish(node,result)
+            referee.finish(runner.api,result)
+        finally:
             runner.finish(node)
         total=referee.close(complete=True)
         print(json.dumps(total,indent=2))

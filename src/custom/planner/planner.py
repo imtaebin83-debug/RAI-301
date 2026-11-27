@@ -1,4 +1,4 @@
-"""LLM instruction planner: compatible API or local Qwen CPU inference.
+"""LLM planner: team-hosted local-model API or local Qwen CPU inference.
 
 Rules are available only when HAIC_ALLOW_RULE_PLANNER=1 is explicitly set for
 development. HAIC_REQUIRE_LLM=1 always disables that development path.
@@ -6,6 +6,7 @@ development. HAIC_REQUIRE_LLM=1 always disables that development path.
 from __future__ import annotations
 
 import json
+import ipaddress
 import math
 import os
 from pathlib import Path
@@ -13,6 +14,7 @@ import re
 import subprocess
 import sys
 import urllib.request
+from urllib.parse import urlsplit
 from custom.planner.worker import generate_local
 
 SYSTEM = '''Extract an ordered robot mission plan from the user's instruction.
@@ -150,6 +152,34 @@ def _fallback(instruction: str) -> list:
     return validate({"steps": [step for _, step in sorted(found, key=lambda p: p[0])]})
 
 
+def _team_endpoint(endpoint: str) -> str:
+    """v2 permits local models on a team server, not external model APIs.
+
+    Require an explicit localhost/private IP; no DNS guessing or default
+    commercial endpoint. Operators must use their own authorized model server.
+    """
+    parsed = urlsplit(endpoint)
+    allowed = parsed.hostname == 'localhost'
+    if not allowed:
+        try:
+            address = ipaddress.ip_address(parsed.hostname or '')
+            networks = ('10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16',
+                        '100.64.0.0/10', '127.0.0.0/8', '::1/128', 'fc00::/7')
+            allowed = any(address in ipaddress.ip_network(net) for net in networks)
+        except ValueError:
+            pass
+    if (not allowed or parsed.scheme not in ('http', 'https') or
+            parsed.username is not None or parsed.password is not None or
+            parsed.query or parsed.fragment):
+        raise ValueError('v2 requires HAIC_LLM_BASE_URL on an explicit localhost/private team server')
+    return endpoint.rstrip('/')
+
+
+class _NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        raise ValueError('team model endpoint redirects are disabled')
+
+
 def plan(instruction: str) -> list:
     if not isinstance(instruction, str) or not instruction.strip():
         raise ValueError("instruction is empty")
@@ -157,14 +187,18 @@ def plan(instruction: str) -> list:
         raise ValueError("instruction exceeds 4000 characters")
     key = os.getenv("HAIC_LLM_API_KEY") or os.getenv("OPENAI_API_KEY")
     model = os.getenv("HAIC_LLM_MODEL")
-    if key and model:
-        endpoint = os.getenv("HAIC_LLM_BASE_URL", "https://api.openai.com/v1").rstrip("/")
+    base = os.getenv('HAIC_LLM_BASE_URL')
+    if model and (key or base):
+        endpoint = _team_endpoint(base or '')
         body = {"model": model, "temperature": 0, "messages": [
             {"role": "system", "content": SYSTEM}, {"role": "user", "content": instruction}]}
+        headers = {'Content-Type': 'application/json'}
+        if key:
+            headers['Authorization'] = 'Bearer ' + key
         request = urllib.request.Request(endpoint + "/chat/completions",
-            data=json.dumps(body).encode(), headers={"Authorization": "Bearer " + key,
-                                                     "Content-Type": "application/json"})
-        with urllib.request.urlopen(request, timeout=30) as response:
+            data=json.dumps(body).encode(), headers=headers)
+        opener = urllib.request.build_opener(urllib.request.ProxyHandler({}), _NoRedirect())
+        with opener.open(request, timeout=30) as response:
             answer = json.load(response)["choices"][0]["message"]["content"]
         return parse_plan(answer)
     if (os.getenv("HAIC_ALLOW_RULE_PLANNER") == "1" and

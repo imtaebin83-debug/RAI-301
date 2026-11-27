@@ -152,7 +152,7 @@ class ApiContractTests(unittest.TestCase):
     def setUp(self):
         self.environment = patch.dict("os.environ", {
             "HAIC_REQUIRE_LLM": "1", "HAIC_LLM_API_KEY": "offline-dummy",
-            "HAIC_LLM_MODEL": "offline-model", "HAIC_LLM_BASE_URL": "https://example.invalid/v1"
+            "HAIC_LLM_MODEL": "offline-model", "HAIC_LLM_BASE_URL": "http://127.0.0.1:8000/v1"
         }, clear=True)
         self.environment.start()
         self.addCleanup(self.environment.stop)
@@ -162,23 +162,39 @@ class ApiContractTests(unittest.TestCase):
 
     def test_strict_configured_llm_path_and_fenced_json(self):
         text = '```json\n{"steps":[{"mission":6},{"mission":2,"params":{"color":"green"}}]}\n```'
-        with patch.object(planner.urllib.request, "urlopen", return_value=self._response(text)) as call:
+        with patch.object(planner.urllib.request.OpenerDirector, "open", return_value=self._response(text)) as call:
             self.assertEqual(planner.plan("soccer then green cone"), [6, (2, {"color": "green"})])
         request = call.call_args.args[0]
-        self.assertEqual(request.full_url, "https://example.invalid/v1/chat/completions")
+        self.assertEqual(request.full_url, "http://127.0.0.1:8000/v1/chat/completions")
         self.assertEqual(call.call_args.kwargs["timeout"], 30)
         body = json.loads(request.data)
         self.assertEqual(body["messages"][-1]["content"], "soccer then green cone")
 
     def test_malformed_llm_json_never_silently_falls_back(self):
-        with patch.object(planner.urllib.request, "urlopen", return_value=self._response("not JSON")):
+        with patch.object(planner.urllib.request.OpenerDirector, "open", return_value=self._response("not JSON")):
             with self.assertRaises(json.JSONDecodeError):
                 planner.plan("score a goal")
 
     def test_network_error_never_silently_falls_back(self):
-        with patch.object(planner.urllib.request, "urlopen", side_effect=TimeoutError("offline")):
+        with patch.object(planner.urllib.request.OpenerDirector, "open", side_effect=TimeoutError("offline")):
             with self.assertRaises(TimeoutError):
                 planner.plan("score a goal")
+
+    def test_external_or_missing_endpoint_is_rejected_before_network(self):
+        for endpoint in ('https://api.openai.com/v1', 'https://example.invalid/v1', '',
+                         'http://127.0.0.1.evil.invalid/v1', 'http://user@127.0.0.1/v1'):
+            with self.subTest(endpoint=endpoint), patch.dict('os.environ', {'HAIC_LLM_BASE_URL': endpoint}):
+                with patch.object(planner.urllib.request, 'build_opener') as network:
+                    with self.assertRaises(ValueError):
+                        planner.plan('score a goal')
+                    network.assert_not_called()
+
+    def test_private_team_addresses_and_no_redirects(self):
+        for endpoint in ('http://localhost:8000/v1', 'http://192.168.1.2/v1',
+                         'http://100.77.17.47:8000/v1', 'http://[::1]:8000/v1'):
+            self.assertEqual(planner._team_endpoint(endpoint), endpoint)
+        with self.assertRaisesRegex(ValueError, 'redirects'):
+            planner._NoRedirect().redirect_request(None, None, 302, '', {}, 'https://example.invalid')
 
 
 class LocalLlmContractTests(unittest.TestCase):
@@ -226,8 +242,9 @@ class LocalLlmContractTests(unittest.TestCase):
         response = io.BytesIO(json.dumps({"choices": [{"message": {
             "content": '{"steps":[{"mission":3}]}'}}]}).encode())
         with patch.dict("os.environ", {"HAIC_ALLOW_RULE_PLANNER": "1", "HAIC_LLM_MODEL": "test",
-                                       "HAIC_LLM_API_KEY": "dummy"}):
-            with patch.object(planner.urllib.request, "urlopen", return_value=response) as call:
+                                       "HAIC_LLM_API_KEY": "dummy",
+                                       "HAIC_LLM_BASE_URL": "http://127.0.0.1:8000/v1"}):
+            with patch.object(planner.urllib.request.OpenerDirector, "open", return_value=response) as call:
                 self.assertEqual(planner.plan("cross cliff"), [3])
                 call.assert_called_once()
 
