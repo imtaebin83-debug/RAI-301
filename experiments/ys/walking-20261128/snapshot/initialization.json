@@ -1,0 +1,8 @@
+{
+  "checkpoint": "/home/aril/rai-training/ys-walk-restarts-refine-20261128/iteration_0500/checkpoint.pt",
+  "sha256": "b0631ddf19903bd1e2ba3ec8f639e00da1ed35704053383a9db55db52c35ecfa",
+  "restored": "actor, critic, normalizers, optimizer",
+  "additional_iterations": 500,
+  "learning_rate": 5e-06,
+  "environment": "fresh reset; curriculum starts with gentle direction practice"
+}

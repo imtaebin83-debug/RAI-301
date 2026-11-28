@@ -1,0 +1,1204 @@
+[
+  {
+    "directory": "/home/aril/rai-training/ys-walk-benchmark-20261127",
+    "checkpoints": []
+  },
+  {
+    "directory": "/home/aril/rai-training/ys-walk-compatible-20261127",
+    "checkpoints": []
+  },
+  {
+    "directory": "/home/aril/rai-training/ys-walk-directions-pilot-20261127",
+    "checkpoints": [
+      {
+        "directory": "/home/aril/rai-training/ys-walk-directions-pilot-20261127/iteration_0250",
+        "summary.json": {
+          "supplied": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.08012553621839462,
+            "max_tilt_degrees": 5.152144477612836
+          },
+          "candidate": {
+            "passed": 0,
+            "trials": 3,
+            "minimum_survival_seconds": 11.776000000000602,
+            "mean_survival_seconds": 11.783333333333937,
+            "mean_linear_velocity_rmse": 0.35501274482753137,
+            "max_tilt_degrees": 64.81997508590183
+          }
+        },
+        "checkpoint.pt": {
+          "path": "/home/aril/rai-training/ys-walk-directions-pilot-20261127/iteration_0250/checkpoint.pt",
+          "bytes": 5913845,
+          "sha256": "e3d128c4afb3a2f954ad30f5e6ce276ed86124e022cb38026ad69881ec5c6a9c"
+        },
+        "small_policy.onnx": {
+          "path": "/home/aril/rai-training/ys-walk-directions-pilot-20261127/iteration_0250/small_policy.onnx",
+          "bytes": 876814,
+          "sha256": "5a9f1d725160f54f64d6b60d130130ab08b22fb4cc666cd557f4002c594cbb72"
+        }
+      },
+      {
+        "directory": "/home/aril/rai-training/ys-walk-directions-pilot-20261127/iteration_0500",
+        "summary.json": {
+          "supplied": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.08012553621839462,
+            "max_tilt_degrees": 5.152144477612836
+          },
+          "candidate": {
+            "passed": 0,
+            "trials": 3,
+            "minimum_survival_seconds": 15.756000000001931,
+            "mean_survival_seconds": 15.756666666668599,
+            "mean_linear_velocity_rmse": 0.32107440586587777,
+            "max_tilt_degrees": 69.7896602538282
+          }
+        },
+        "extended/summary.json": {
+          "supplied": {
+            "passed": 1,
+            "trials": 1,
+            "minimum_survival_seconds": 64.00000000003224,
+            "mean_survival_seconds": 64.00000000003224,
+            "mean_linear_velocity_rmse": 0.09039243146630282,
+            "max_tilt_degrees": 5.423797087589011
+          },
+          "candidate": {
+            "passed": 0,
+            "trials": 1,
+            "minimum_survival_seconds": 10.308000000000112,
+            "mean_survival_seconds": 10.308000000000112,
+            "mean_linear_velocity_rmse": 0.2458066902150444,
+            "max_tilt_degrees": 36.488396511361714
+          }
+        },
+        "checkpoint.pt": {
+          "path": "/home/aril/rai-training/ys-walk-directions-pilot-20261127/iteration_0500/checkpoint.pt",
+          "bytes": 5913845,
+          "sha256": "a0c6d3483b6480fe76beff8f73c7b8f0a4552c8c9dd8676407db9a94bbdf99ab"
+        },
+        "small_policy.onnx": {
+          "path": "/home/aril/rai-training/ys-walk-directions-pilot-20261127/iteration_0500/small_policy.onnx",
+          "bytes": 876814,
+          "sha256": "d7ebe5673811c2ba3afdb019e84f5cc0a335105de68c3bb7d909d7373cf13780"
+        }
+      },
+      {
+        "directory": "/home/aril/rai-training/ys-walk-directions-pilot-20261127/iteration_0750",
+        "summary.json": {
+          "supplied": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.08012553621839462,
+            "max_tilt_degrees": 5.152144477612836
+          },
+          "candidate": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.07496104304462921,
+            "max_tilt_degrees": 8.177678485486188
+          }
+        },
+        "checkpoint.pt": {
+          "path": "/home/aril/rai-training/ys-walk-directions-pilot-20261127/iteration_0750/checkpoint.pt",
+          "bytes": 5913845,
+          "sha256": "34764d874ffc6e35b1867e1af5f1622d044f153fe1fa5db78d69cd308a36915b"
+        },
+        "small_policy.onnx": {
+          "path": "/home/aril/rai-training/ys-walk-directions-pilot-20261127/iteration_0750/small_policy.onnx",
+          "bytes": 876814,
+          "sha256": "5a5b30d27aceba176a6ab2babff314f45edf73c5772d4f7f3796b6112d5a5985"
+        }
+      },
+      {
+        "directory": "/home/aril/rai-training/ys-walk-directions-pilot-20261127/iteration_1000",
+        "summary.json": {
+          "supplied": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.08012553621839462,
+            "max_tilt_degrees": 5.152144477612836
+          },
+          "candidate": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.04350745704472405,
+            "max_tilt_degrees": 8.807377089849249
+          }
+        },
+        "extended/summary.json": {
+          "supplied": {
+            "passed": 1,
+            "trials": 1,
+            "minimum_survival_seconds": 64.00000000003224,
+            "mean_survival_seconds": 64.00000000003224,
+            "mean_linear_velocity_rmse": 0.09039243146630282,
+            "max_tilt_degrees": 5.423797087589011
+          },
+          "candidate": {
+            "passed": 0,
+            "trials": 1,
+            "minimum_survival_seconds": 9.61399999999988,
+            "mean_survival_seconds": 9.61399999999988,
+            "mean_linear_velocity_rmse": 0.23594167282398373,
+            "max_tilt_degrees": 56.364978728194856
+          }
+        },
+        "checkpoint.pt": {
+          "path": "/home/aril/rai-training/ys-walk-directions-pilot-20261127/iteration_1000/checkpoint.pt",
+          "bytes": 5913845,
+          "sha256": "0d3ecd8b951627bdf01a502010dd1be0657852925adc097c0e2c9fb0a52b6c6d"
+        },
+        "small_policy.onnx": {
+          "path": "/home/aril/rai-training/ys-walk-directions-pilot-20261127/iteration_1000/small_policy.onnx",
+          "bytes": 876814,
+          "sha256": "ab81b536b3d35fe5f931c7bca4d9280ba70f6b1f854cd990829e3b4fd00de11e"
+        }
+      }
+    ],
+    "done.json": {
+      "iterations": 1000,
+      "milestones": [
+        250,
+        500,
+        750,
+        1000
+      ],
+      "wall_seconds": 1941.9674558260012,
+      "working_policy_unchanged": true
+    },
+    "initialization.json": {
+      "checkpoint": "/home/aril/rai-training/ys-walk-stability-pilot-20261127/iteration_0750/checkpoint.pt",
+      "sha256": "761626c9bb8949115ba7952488c1602654e8a025704d8acaa7314a24f3bd9e43",
+      "restored": "actor, critic, normalizers, optimizer",
+      "additional_iterations": 1000,
+      "learning_rate": 0.0001,
+      "environment": "fresh reset; curriculum starts with gentle direction practice"
+    }
+  },
+  {
+    "directory": "/home/aril/rai-training/ys-walk-movement-pilot-20261127",
+    "checkpoints": [
+      {
+        "directory": "/home/aril/rai-training/ys-walk-movement-pilot-20261127/iteration_0250",
+        "summary.json": {
+          "supplied": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.08012553621839462,
+            "max_tilt_degrees": 5.152144477612836
+          },
+          "candidate": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.1015724661062772,
+            "max_tilt_degrees": 5.13043939212582
+          }
+        },
+        "checkpoint.pt": {
+          "path": "/home/aril/rai-training/ys-walk-movement-pilot-20261127/iteration_0250/checkpoint.pt",
+          "bytes": 5913717,
+          "sha256": "b4fe3e47701ee6ab53b8d0a13aa3e8357e747c20fbe3905091fb0be3926ddcbf"
+        },
+        "small_policy.onnx": {
+          "path": "/home/aril/rai-training/ys-walk-movement-pilot-20261127/iteration_0250/small_policy.onnx",
+          "bytes": 876814,
+          "sha256": "0bbbecf70a9a4b7733e32f5e0096921c049c39fd8710838904eafb9257453493"
+        }
+      },
+      {
+        "directory": "/home/aril/rai-training/ys-walk-movement-pilot-20261127/iteration_0500",
+        "summary.json": {
+          "supplied": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.08012553621839462,
+            "max_tilt_degrees": 5.152144477612836
+          },
+          "candidate": {
+            "passed": 0,
+            "trials": 3,
+            "minimum_survival_seconds": 8.423999999999483,
+            "mean_survival_seconds": 10.706000000000245,
+            "mean_linear_velocity_rmse": 0.3240264298605982,
+            "max_tilt_degrees": 90.54449860001753
+          }
+        },
+        "extended/summary.json": {
+          "supplied": {
+            "passed": 1,
+            "trials": 1,
+            "minimum_survival_seconds": 64.00000000003224,
+            "mean_survival_seconds": 64.00000000003224,
+            "mean_linear_velocity_rmse": 0.09039243146630282,
+            "max_tilt_degrees": 5.423797087589011
+          },
+          "candidate": {
+            "passed": 0,
+            "trials": 1,
+            "minimum_survival_seconds": 9.13599999999972,
+            "mean_survival_seconds": 9.13599999999972,
+            "mean_linear_velocity_rmse": 0.3407424379177297,
+            "max_tilt_degrees": 71.77821295043113
+          }
+        },
+        "checkpoint.pt": {
+          "path": "/home/aril/rai-training/ys-walk-movement-pilot-20261127/iteration_0500/checkpoint.pt",
+          "bytes": 5913717,
+          "sha256": "f0d891ed8025d4daec707cfb74410bcf70b871c26215990ca67272797cc01405"
+        },
+        "small_policy.onnx": {
+          "path": "/home/aril/rai-training/ys-walk-movement-pilot-20261127/iteration_0500/small_policy.onnx",
+          "bytes": 876814,
+          "sha256": "ce59d0ca22dbd30992e9a04b8acc956d299dfa65dd9c96c3be714a0915a75d29"
+        }
+      },
+      {
+        "directory": "/home/aril/rai-training/ys-walk-movement-pilot-20261127/iteration_0750",
+        "summary.json": {
+          "supplied": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.08012553621839462,
+            "max_tilt_degrees": 5.152144477612836
+          },
+          "candidate": {
+            "passed": 0,
+            "trials": 3,
+            "minimum_survival_seconds": 8.931999999999652,
+            "mean_survival_seconds": 8.951333333332991,
+            "mean_linear_velocity_rmse": 0.35318191317112935,
+            "max_tilt_degrees": 82.17163933729718
+          }
+        },
+        "checkpoint.pt": {
+          "path": "/home/aril/rai-training/ys-walk-movement-pilot-20261127/iteration_0750/checkpoint.pt",
+          "bytes": 5913717,
+          "sha256": "e75afe4c0e4b4e86071fa887652615cb8b5ae302cd717ea66e0b9d3c6d8369f7"
+        },
+        "small_policy.onnx": {
+          "path": "/home/aril/rai-training/ys-walk-movement-pilot-20261127/iteration_0750/small_policy.onnx",
+          "bytes": 876814,
+          "sha256": "31e8bca6679fb0e355a053bf74120aa743159c3ec62df4816d7c3db1196ed210"
+        }
+      },
+      {
+        "directory": "/home/aril/rai-training/ys-walk-movement-pilot-20261127/iteration_1000",
+        "summary.json": {
+          "supplied": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.08012553621839462,
+            "max_tilt_degrees": 5.152144477612836
+          },
+          "candidate": {
+            "passed": 0,
+            "trials": 3,
+            "minimum_survival_seconds": 7.991999999999342,
+            "mean_survival_seconds": 8.043999999999357,
+            "mean_linear_velocity_rmse": 0.39458892364354664,
+            "max_tilt_degrees": 83.80451678968625
+          }
+        },
+        "extended/summary.json": {
+          "supplied": {
+            "passed": 1,
+            "trials": 1,
+            "minimum_survival_seconds": 64.00000000003224,
+            "mean_survival_seconds": 64.00000000003224,
+            "mean_linear_velocity_rmse": 0.09039243146630282,
+            "max_tilt_degrees": 5.423797087589011
+          },
+          "candidate": {
+            "passed": 0,
+            "trials": 1,
+            "minimum_survival_seconds": 8.961999999999662,
+            "mean_survival_seconds": 8.961999999999662,
+            "mean_linear_velocity_rmse": 0.3061270329916496,
+            "max_tilt_degrees": 77.04143473405692
+          }
+        },
+        "checkpoint.pt": {
+          "path": "/home/aril/rai-training/ys-walk-movement-pilot-20261127/iteration_1000/checkpoint.pt",
+          "bytes": 5913717,
+          "sha256": "d9d33478e81bf78417720d22d379c706ee16d78a1d7ca51d131f4300053a2bdd"
+        },
+        "small_policy.onnx": {
+          "path": "/home/aril/rai-training/ys-walk-movement-pilot-20261127/iteration_1000/small_policy.onnx",
+          "bytes": 876814,
+          "sha256": "e83333697e18c4b36922e04e600058ceeb8888608773fb128fdf244b5f077a57"
+        }
+      }
+    ],
+    "done.json": {
+      "iterations": 1000,
+      "milestones": [
+        250,
+        500,
+        750,
+        1000
+      ],
+      "wall_seconds": 2422.5030262350338,
+      "working_policy_unchanged": true
+    },
+    "initialization.json": {
+      "actor_checkpoint": "/home/aril/rai-training/ys-walk-pilot-20261127/iteration_0500/checkpoint.pt",
+      "sha256": "1e324ee374e1d57a546fa3e3c12c9dc84b9dfd1fa035d0b5fb9ca0a111fc2432",
+      "critic_and_optimizer": "fresh",
+      "curriculum_iteration": 0
+    }
+  },
+  {
+    "directory": "/home/aril/rai-training/ys-walk-pilot-20261127",
+    "checkpoints": [
+      {
+        "directory": "/home/aril/rai-training/ys-walk-pilot-20261127/iteration_0250",
+        "summary.json": {
+          "supplied": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.08012553621839462,
+            "max_tilt_degrees": 5.152144477612836
+          },
+          "candidate": {
+            "passed": 0,
+            "trials": 3,
+            "minimum_survival_seconds": 2.6519999999999295,
+            "mean_survival_seconds": 2.6519999999999295,
+            "mean_linear_velocity_rmse": 0.45922571028448417,
+            "max_tilt_degrees": 139.64825964156
+          }
+        },
+        "checkpoint.pt": {
+          "path": "/home/aril/rai-training/ys-walk-pilot-20261127/iteration_0250/checkpoint.pt",
+          "bytes": 5913717,
+          "sha256": "e4af232041e2158de871b322dd1bd66946108930edbd88b2e49029879be51001"
+        },
+        "small_policy.onnx": {
+          "path": "/home/aril/rai-training/ys-walk-pilot-20261127/iteration_0250/small_policy.onnx",
+          "bytes": 876814,
+          "sha256": "99652881223747a6d8986d1e6b64be70cff7dd73142da9e533ea75bb4cff5c4d"
+        }
+      },
+      {
+        "directory": "/home/aril/rai-training/ys-walk-pilot-20261127/iteration_0500",
+        "summary.json": {
+          "supplied": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.08012553621839462,
+            "max_tilt_degrees": 5.152144477612836
+          },
+          "candidate": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.21177773987827733,
+            "max_tilt_degrees": 17.833579988840796
+          }
+        },
+        "checkpoint.pt": {
+          "path": "/home/aril/rai-training/ys-walk-pilot-20261127/iteration_0500/checkpoint.pt",
+          "bytes": 5913717,
+          "sha256": "1e324ee374e1d57a546fa3e3c12c9dc84b9dfd1fa035d0b5fb9ca0a111fc2432"
+        },
+        "small_policy.onnx": {
+          "path": "/home/aril/rai-training/ys-walk-pilot-20261127/iteration_0500/small_policy.onnx",
+          "bytes": 876814,
+          "sha256": "0081d718d42a2d20a5df96ca148da9ff40330ebe3bfd2af93acd3b5991138cfb"
+        }
+      },
+      {
+        "directory": "/home/aril/rai-training/ys-walk-pilot-20261127/iteration_0750",
+        "summary.json": {
+          "supplied": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.08012553621839462,
+            "max_tilt_degrees": 5.152144477612836
+          },
+          "candidate": {
+            "passed": 0,
+            "trials": 3,
+            "minimum_survival_seconds": 4.797999999999694,
+            "mean_survival_seconds": 4.797999999999694,
+            "mean_linear_velocity_rmse": 0.4175125481501906,
+            "max_tilt_degrees": 75.58024660962549
+          }
+        },
+        "checkpoint.pt": {
+          "path": "/home/aril/rai-training/ys-walk-pilot-20261127/iteration_0750/checkpoint.pt",
+          "bytes": 5913717,
+          "sha256": "bc1629a9846b7c9c26275313a65e0190a823589c6bc1b0a7f0371df757e5e1a9"
+        },
+        "small_policy.onnx": {
+          "path": "/home/aril/rai-training/ys-walk-pilot-20261127/iteration_0750/small_policy.onnx",
+          "bytes": 876814,
+          "sha256": "8387d9d7374599703e7ccd4eda461a8a066961c3a94229a0389f6e9c3a1ce85c"
+        }
+      },
+      {
+        "directory": "/home/aril/rai-training/ys-walk-pilot-20261127/iteration_1000",
+        "summary.json": {
+          "supplied": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.08012553621839462,
+            "max_tilt_degrees": 5.152144477612836
+          },
+          "candidate": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.20565511548009055,
+            "max_tilt_degrees": 39.33518609788293
+          }
+        },
+        "checkpoint.pt": {
+          "path": "/home/aril/rai-training/ys-walk-pilot-20261127/iteration_1000/checkpoint.pt",
+          "bytes": 5913717,
+          "sha256": "7a130295a0954513c77a1cd427676c64897126bd2b8e0cab97e238741bd42ff9"
+        },
+        "small_policy.onnx": {
+          "path": "/home/aril/rai-training/ys-walk-pilot-20261127/iteration_1000/small_policy.onnx",
+          "bytes": 876814,
+          "sha256": "e42b3818b5f5c860d6fe61c9374985693a2342527b108dfa4fdf62fe80b2873f"
+        }
+      }
+    ],
+    "done.json": {
+      "iterations": 1000,
+      "milestones": [
+        250,
+        500,
+        750,
+        1000
+      ],
+      "wall_seconds": 1691.8516829939326,
+      "working_policy_unchanged": true
+    }
+  },
+  {
+    "directory": "/home/aril/rai-training/ys-walk-progress-pilot-20261128",
+    "checkpoints": [
+      {
+        "directory": "/home/aril/rai-training/ys-walk-progress-pilot-20261128/iteration_0100",
+        "summary.json": {
+          "supplied": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.08012553621839462,
+            "max_tilt_degrees": 5.152144477612836
+          },
+          "candidate": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.06328823408518634,
+            "max_tilt_degrees": 9.066941168968134
+          }
+        },
+        "checkpoint.pt": {
+          "path": "/home/aril/rai-training/ys-walk-progress-pilot-20261128/iteration_0100/checkpoint.pt",
+          "bytes": 5913845,
+          "sha256": "7197ae4a46bb90ca497997a7316e79790c6d849349687aea8c8fd778091be788"
+        },
+        "small_policy.onnx": {
+          "path": "/home/aril/rai-training/ys-walk-progress-pilot-20261128/iteration_0100/small_policy.onnx",
+          "bytes": 876814,
+          "sha256": "fb9c29917278d466b09ff5174b79876d5ff91428e4c714560c8094526db09ebe"
+        }
+      },
+      {
+        "directory": "/home/aril/rai-training/ys-walk-progress-pilot-20261128/iteration_0250",
+        "summary.json": {
+          "supplied": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.08012553621839462,
+            "max_tilt_degrees": 5.152144477612836
+          },
+          "candidate": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.0649178468668292,
+            "max_tilt_degrees": 5.263255502144216
+          }
+        },
+        "extended/summary.json": {
+          "supplied": {
+            "passed": 1,
+            "trials": 1,
+            "minimum_survival_seconds": 64.00000000003224,
+            "mean_survival_seconds": 64.00000000003224,
+            "mean_linear_velocity_rmse": 0.09039243146630282,
+            "max_tilt_degrees": 5.423797087589011
+          },
+          "candidate": {
+            "passed": 0,
+            "trials": 1,
+            "minimum_survival_seconds": 9.665999999999897,
+            "mean_survival_seconds": 9.665999999999897,
+            "mean_linear_velocity_rmse": 0.25585465828245163,
+            "max_tilt_degrees": 42.05640082132601
+          }
+        },
+        "checkpoint.pt": {
+          "path": "/home/aril/rai-training/ys-walk-progress-pilot-20261128/iteration_0250/checkpoint.pt",
+          "bytes": 5913845,
+          "sha256": "2a81326f52c6bc48b20dc1553868ccbc70aa3957b989739ea4a17cb1abc31011"
+        },
+        "small_policy.onnx": {
+          "path": "/home/aril/rai-training/ys-walk-progress-pilot-20261128/iteration_0250/small_policy.onnx",
+          "bytes": 876814,
+          "sha256": "6efd83cadd574d10e8144fb3a1809fb6a82e863f35981caddaf43c44e693d47d"
+        }
+      },
+      {
+        "directory": "/home/aril/rai-training/ys-walk-progress-pilot-20261128/iteration_0500",
+        "summary.json": {
+          "supplied": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.08012553621839462,
+            "max_tilt_degrees": 5.152144477612836
+          },
+          "candidate": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.059812997302123756,
+            "max_tilt_degrees": 6.985767386045455
+          }
+        },
+        "extended/summary.json": {
+          "supplied": {
+            "passed": 1,
+            "trials": 1,
+            "minimum_survival_seconds": 64.00000000003224,
+            "mean_survival_seconds": 64.00000000003224,
+            "mean_linear_velocity_rmse": 0.09039243146630282,
+            "max_tilt_degrees": 5.423797087589011
+          },
+          "candidate": {
+            "passed": 0,
+            "trials": 1,
+            "minimum_survival_seconds": 9.589999999999872,
+            "mean_survival_seconds": 9.589999999999872,
+            "mean_linear_velocity_rmse": 0.23926991012637844,
+            "max_tilt_degrees": 38.579559484262255
+          }
+        },
+        "checkpoint.pt": {
+          "path": "/home/aril/rai-training/ys-walk-progress-pilot-20261128/iteration_0500/checkpoint.pt",
+          "bytes": 5913845,
+          "sha256": "21256ed859de50cf93813379176646b00b2e4e8c2e07d8d6fcb4e391ce1b8e03"
+        },
+        "small_policy.onnx": {
+          "path": "/home/aril/rai-training/ys-walk-progress-pilot-20261128/iteration_0500/small_policy.onnx",
+          "bytes": 876814,
+          "sha256": "47537bed90dd51b8f40c9f176f1a174677026a79a47de8885fdab4427852c9cc"
+        }
+      }
+    ],
+    "done.json": {
+      "iterations": 500,
+      "milestones": [
+        100,
+        250,
+        500
+      ],
+      "wall_seconds": 1159.4796781929908,
+      "working_policy_unchanged": true
+    },
+    "initialization.json": {
+      "checkpoint": "/home/aril/rai-training/ys-walk-restarts-refine-20261128/iteration_0500/checkpoint.pt",
+      "sha256": "b0631ddf19903bd1e2ba3ec8f639e00da1ed35704053383a9db55db52c35ecfa",
+      "restored": "actor, critic, normalizers, optimizer",
+      "additional_iterations": 500,
+      "learning_rate": 5e-06,
+      "environment": "fresh reset; curriculum starts with gentle direction practice"
+    }
+  },
+  {
+    "directory": "/home/aril/rai-training/ys-walk-restarts-pilot-20261127",
+    "checkpoints": [
+      {
+        "directory": "/home/aril/rai-training/ys-walk-restarts-pilot-20261127/iteration_0250",
+        "summary.json": {
+          "supplied": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.08012553621839462,
+            "max_tilt_degrees": 5.152144477612836
+          },
+          "candidate": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.05583783542910744,
+            "max_tilt_degrees": 6.905704478391638
+          }
+        },
+        "checkpoint.pt": {
+          "path": "/home/aril/rai-training/ys-walk-restarts-pilot-20261127/iteration_0250/checkpoint.pt",
+          "bytes": 5913845,
+          "sha256": "5afdf6c8898e361fe1df36e7fe43dce2d244d2f110421b0976b0d9f5a4084bae"
+        },
+        "small_policy.onnx": {
+          "path": "/home/aril/rai-training/ys-walk-restarts-pilot-20261127/iteration_0250/small_policy.onnx",
+          "bytes": 876814,
+          "sha256": "c5733a1494229cc640437c0d163ec933071f0f5e8f1ab1c462d88de6e36a0d7d"
+        }
+      },
+      {
+        "directory": "/home/aril/rai-training/ys-walk-restarts-pilot-20261127/iteration_0500",
+        "summary.json": {
+          "supplied": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.08012553621839462,
+            "max_tilt_degrees": 5.152144477612836
+          },
+          "candidate": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.06462794371728701,
+            "max_tilt_degrees": 7.549825648947809
+          }
+        },
+        "extended/summary.json": {
+          "supplied": {
+            "passed": 1,
+            "trials": 1,
+            "minimum_survival_seconds": 64.00000000003224,
+            "mean_survival_seconds": 64.00000000003224,
+            "mean_linear_velocity_rmse": 0.09039243146630282,
+            "max_tilt_degrees": 5.423797087589011
+          },
+          "candidate": {
+            "passed": 0,
+            "trials": 1,
+            "minimum_survival_seconds": 9.417999999999815,
+            "mean_survival_seconds": 9.417999999999815,
+            "mean_linear_velocity_rmse": 0.3704042206378752,
+            "max_tilt_degrees": 65.90702850377801
+          }
+        },
+        "checkpoint.pt": {
+          "path": "/home/aril/rai-training/ys-walk-restarts-pilot-20261127/iteration_0500/checkpoint.pt",
+          "bytes": 5913845,
+          "sha256": "0b9ea038ab1a5007d85ec8dbbf8d3ceaad0c30e24de14e5abd35aa4389a40415"
+        },
+        "small_policy.onnx": {
+          "path": "/home/aril/rai-training/ys-walk-restarts-pilot-20261127/iteration_0500/small_policy.onnx",
+          "bytes": 876814,
+          "sha256": "47f899baf717ee2fa2fee12acb8675550ddbfc635b7211a10e00e4dc22f6d9b2"
+        }
+      },
+      {
+        "directory": "/home/aril/rai-training/ys-walk-restarts-pilot-20261127/iteration_0750",
+        "summary.json": {
+          "supplied": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.08012553621839462,
+            "max_tilt_degrees": 5.152144477612836
+          },
+          "candidate": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.07485112739780168,
+            "max_tilt_degrees": 7.533018519997181
+          }
+        },
+        "checkpoint.pt": {
+          "path": "/home/aril/rai-training/ys-walk-restarts-pilot-20261127/iteration_0750/checkpoint.pt",
+          "bytes": 5913845,
+          "sha256": "bb24a5e1cc340ce5a19556b6d2ca0e14f4ae38cccfc92ed31d10f0ed8f5afbe3"
+        },
+        "small_policy.onnx": {
+          "path": "/home/aril/rai-training/ys-walk-restarts-pilot-20261127/iteration_0750/small_policy.onnx",
+          "bytes": 876814,
+          "sha256": "93ce6ab45b3ba51031fbf832a0fea226fc4804e048b5c692bd03d0a84747d611"
+        }
+      },
+      {
+        "directory": "/home/aril/rai-training/ys-walk-restarts-pilot-20261127/iteration_1000",
+        "summary.json": {
+          "supplied": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.08012553621839462,
+            "max_tilt_degrees": 5.152144477612836
+          },
+          "candidate": {
+            "passed": 0,
+            "trials": 3,
+            "minimum_survival_seconds": 11.156000000000395,
+            "mean_survival_seconds": 11.308666666667113,
+            "mean_linear_velocity_rmse": 0.32837591750419715,
+            "max_tilt_degrees": 53.11282924994038
+          }
+        },
+        "extended/summary.json": {
+          "supplied": {
+            "passed": 1,
+            "trials": 1,
+            "minimum_survival_seconds": 64.00000000003224,
+            "mean_survival_seconds": 64.00000000003224,
+            "mean_linear_velocity_rmse": 0.09039243146630282,
+            "max_tilt_degrees": 5.423797087589011
+          },
+          "candidate": {
+            "passed": 0,
+            "trials": 1,
+            "minimum_survival_seconds": 10.378000000000135,
+            "mean_survival_seconds": 10.378000000000135,
+            "mean_linear_velocity_rmse": 0.3233794814807173,
+            "max_tilt_degrees": 33.19512207904748
+          }
+        },
+        "checkpoint.pt": {
+          "path": "/home/aril/rai-training/ys-walk-restarts-pilot-20261127/iteration_1000/checkpoint.pt",
+          "bytes": 5913845,
+          "sha256": "80cb9cd51df7b98034fbb159dc1e73c10a18b5b6fdbd41bd8ea06f8c877bdad2"
+        },
+        "small_policy.onnx": {
+          "path": "/home/aril/rai-training/ys-walk-restarts-pilot-20261127/iteration_1000/small_policy.onnx",
+          "bytes": 876814,
+          "sha256": "79527183a2d48605ee46ef2589ebbc0314000308c4a8216911d8e689e61ed905"
+        }
+      }
+    ],
+    "done.json": {
+      "iterations": 1000,
+      "milestones": [
+        250,
+        500,
+        750,
+        1000
+      ],
+      "wall_seconds": 2026.2085889539449,
+      "working_policy_unchanged": true
+    },
+    "initialization.json": {
+      "checkpoint": "/home/aril/rai-training/ys-walk-directions-pilot-20261127/iteration_1000/checkpoint.pt",
+      "sha256": "0d3ecd8b951627bdf01a502010dd1be0657852925adc097c0e2c9fb0a52b6c6d",
+      "restored": "actor, critic, normalizers, optimizer",
+      "additional_iterations": 1000,
+      "learning_rate": 0.0001,
+      "environment": "fresh reset; curriculum starts with gentle direction practice"
+    }
+  },
+  {
+    "directory": "/home/aril/rai-training/ys-walk-restarts-refine-20261128",
+    "checkpoints": [
+      {
+        "directory": "/home/aril/rai-training/ys-walk-restarts-refine-20261128/iteration_0100",
+        "summary.json": {
+          "supplied": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.08012553621839462,
+            "max_tilt_degrees": 5.152144477612836
+          },
+          "candidate": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.03432110249482879,
+            "max_tilt_degrees": 7.393149450864159
+          }
+        },
+        "checkpoint.pt": {
+          "path": "/home/aril/rai-training/ys-walk-restarts-refine-20261128/iteration_0100/checkpoint.pt",
+          "bytes": 5913845,
+          "sha256": "6ffda34d84b666d70ca7834b9c9453f607b7611e4e8f623747ddc4cea436f56c"
+        },
+        "small_policy.onnx": {
+          "path": "/home/aril/rai-training/ys-walk-restarts-refine-20261128/iteration_0100/small_policy.onnx",
+          "bytes": 876814,
+          "sha256": "f56c1c217c5ee5f77d71ab2feff794ecf93230f27d0787e5850e70a71e7cd533"
+        }
+      },
+      {
+        "directory": "/home/aril/rai-training/ys-walk-restarts-refine-20261128/iteration_0250",
+        "summary.json": {
+          "supplied": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.08012553621839462,
+            "max_tilt_degrees": 5.152144477612836
+          },
+          "candidate": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.0348999148340606,
+            "max_tilt_degrees": 6.384936276869991
+          }
+        },
+        "extended/summary.json": {
+          "supplied": {
+            "passed": 1,
+            "trials": 1,
+            "minimum_survival_seconds": 64.00000000003224,
+            "mean_survival_seconds": 64.00000000003224,
+            "mean_linear_velocity_rmse": 0.09039243146630282,
+            "max_tilt_degrees": 5.423797087589011
+          },
+          "candidate": {
+            "passed": 0,
+            "trials": 1,
+            "minimum_survival_seconds": 12.270000000000767,
+            "mean_survival_seconds": 12.270000000000767,
+            "mean_linear_velocity_rmse": 0.2755896483353702,
+            "max_tilt_degrees": 64.41464482828013
+          }
+        },
+        "checkpoint.pt": {
+          "path": "/home/aril/rai-training/ys-walk-restarts-refine-20261128/iteration_0250/checkpoint.pt",
+          "bytes": 5913845,
+          "sha256": "cdec8924a44b221f89bac2e2897a69bb6012b0f5ca0d65f6ccd60ff07ff81f00"
+        },
+        "small_policy.onnx": {
+          "path": "/home/aril/rai-training/ys-walk-restarts-refine-20261128/iteration_0250/small_policy.onnx",
+          "bytes": 876814,
+          "sha256": "fbaeb1084d64c9c86dfac996e08104aad55fec2a07f6cd9b817be7b555195ed4"
+        }
+      },
+      {
+        "directory": "/home/aril/rai-training/ys-walk-restarts-refine-20261128/iteration_0500",
+        "summary.json": {
+          "supplied": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.08012553621839462,
+            "max_tilt_degrees": 5.152144477612836
+          },
+          "candidate": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.10260770399820858,
+            "max_tilt_degrees": 11.92217799785588
+          }
+        },
+        "extended/summary.json": {
+          "supplied": {
+            "passed": 1,
+            "trials": 1,
+            "minimum_survival_seconds": 64.00000000003224,
+            "mean_survival_seconds": 64.00000000003224,
+            "mean_linear_velocity_rmse": 0.09039243146630282,
+            "max_tilt_degrees": 5.423797087589011
+          },
+          "candidate": {
+            "passed": 0,
+            "trials": 1,
+            "minimum_survival_seconds": 11.958000000000663,
+            "mean_survival_seconds": 11.958000000000663,
+            "mean_linear_velocity_rmse": 0.33825357171726855,
+            "max_tilt_degrees": 60.764401652280796
+          }
+        },
+        "checkpoint.pt": {
+          "path": "/home/aril/rai-training/ys-walk-restarts-refine-20261128/iteration_0500/checkpoint.pt",
+          "bytes": 5913845,
+          "sha256": "b0631ddf19903bd1e2ba3ec8f639e00da1ed35704053383a9db55db52c35ecfa"
+        },
+        "small_policy.onnx": {
+          "path": "/home/aril/rai-training/ys-walk-restarts-refine-20261128/iteration_0500/small_policy.onnx",
+          "bytes": 876814,
+          "sha256": "3733802116753918841f5bdf01251ce3b4d1dbf157d832d03d36ee3c6fa4a1f4"
+        }
+      }
+    ],
+    "done.json": {
+      "iterations": 500,
+      "milestones": [
+        100,
+        250,
+        500
+      ],
+      "wall_seconds": 1185.7511822000379,
+      "working_policy_unchanged": true
+    },
+    "initialization.json": {
+      "checkpoint": "/home/aril/rai-training/ys-walk-directions-pilot-20261127/iteration_1000/checkpoint.pt",
+      "sha256": "0d3ecd8b951627bdf01a502010dd1be0657852925adc097c0e2c9fb0a52b6c6d",
+      "restored": "actor, critic, normalizers, optimizer",
+      "additional_iterations": 500,
+      "learning_rate": 2.5e-05,
+      "environment": "fresh reset; curriculum starts with gentle direction practice"
+    }
+  },
+  {
+    "directory": "/home/aril/rai-training/ys-walk-stability-pilot-20261127",
+    "checkpoints": [
+      {
+        "directory": "/home/aril/rai-training/ys-walk-stability-pilot-20261127/iteration_0250",
+        "summary.json": {
+          "supplied": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.08012553621839462,
+            "max_tilt_degrees": 5.152144477612836
+          },
+          "candidate": {
+            "passed": 0,
+            "trials": 3,
+            "minimum_survival_seconds": 8.289999999999438,
+            "mean_survival_seconds": 8.289999999999438,
+            "mean_linear_velocity_rmse": 0.45890910482636255,
+            "max_tilt_degrees": 98.96650527485399
+          }
+        },
+        "checkpoint.pt": {
+          "path": "/home/aril/rai-training/ys-walk-stability-pilot-20261127/iteration_0250/checkpoint.pt",
+          "bytes": 5913717,
+          "sha256": "257985cdc31c87ef4e7f01332325f109de40222bba5021425adf02a777d31245"
+        },
+        "small_policy.onnx": {
+          "path": "/home/aril/rai-training/ys-walk-stability-pilot-20261127/iteration_0250/small_policy.onnx",
+          "bytes": 876814,
+          "sha256": "042d6578ea840b2e94ec1370bff525783eacc511a77904d376a6e8483560d527"
+        }
+      },
+      {
+        "directory": "/home/aril/rai-training/ys-walk-stability-pilot-20261127/iteration_0500",
+        "summary.json": {
+          "supplied": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.08012553621839462,
+            "max_tilt_degrees": 5.152144477612836
+          },
+          "candidate": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.09804212925463801,
+            "max_tilt_degrees": 12.918629357738695
+          }
+        },
+        "extended/summary.json": {
+          "supplied": {
+            "passed": 1,
+            "trials": 1,
+            "minimum_survival_seconds": 64.00000000003224,
+            "mean_survival_seconds": 64.00000000003224,
+            "mean_linear_velocity_rmse": 0.09039243146630282,
+            "max_tilt_degrees": 5.423797087589011
+          },
+          "candidate": {
+            "passed": 0,
+            "trials": 1,
+            "minimum_survival_seconds": 11.000000000000343,
+            "mean_survival_seconds": 11.000000000000343,
+            "mean_linear_velocity_rmse": 0.36261586208456736,
+            "max_tilt_degrees": 54.51409723197846
+          }
+        },
+        "checkpoint.pt": {
+          "path": "/home/aril/rai-training/ys-walk-stability-pilot-20261127/iteration_0500/checkpoint.pt",
+          "bytes": 5913717,
+          "sha256": "db102ab84d34bc25e42a060ff3776a82466bbc113ac8037e7707958fc3a9a8d2"
+        },
+        "small_policy.onnx": {
+          "path": "/home/aril/rai-training/ys-walk-stability-pilot-20261127/iteration_0500/small_policy.onnx",
+          "bytes": 876814,
+          "sha256": "93a9983049b281d49007ddb165f2136d9cdde45172700cc4ca765a64ef73308a"
+        }
+      },
+      {
+        "directory": "/home/aril/rai-training/ys-walk-stability-pilot-20261127/iteration_0750",
+        "summary.json": {
+          "supplied": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.08012553621839462,
+            "max_tilt_degrees": 5.152144477612836
+          },
+          "candidate": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.07665360483165791,
+            "max_tilt_degrees": 5.563615979230935
+          }
+        },
+        "extended/summary.json": {
+          "supplied": {
+            "passed": 1,
+            "trials": 1,
+            "minimum_survival_seconds": 64.00000000003224,
+            "mean_survival_seconds": 64.00000000003224,
+            "mean_linear_velocity_rmse": 0.09039243146630282,
+            "max_tilt_degrees": 5.423797087589011
+          },
+          "candidate": {
+            "passed": 0,
+            "trials": 1,
+            "minimum_survival_seconds": 10.520000000000183,
+            "mean_survival_seconds": 10.520000000000183,
+            "mean_linear_velocity_rmse": 0.2536537311364358,
+            "max_tilt_degrees": 37.30642138302957
+          }
+        },
+        "checkpoint.pt": {
+          "path": "/home/aril/rai-training/ys-walk-stability-pilot-20261127/iteration_0750/checkpoint.pt",
+          "bytes": 5913717,
+          "sha256": "761626c9bb8949115ba7952488c1602654e8a025704d8acaa7314a24f3bd9e43"
+        },
+        "small_policy.onnx": {
+          "path": "/home/aril/rai-training/ys-walk-stability-pilot-20261127/iteration_0750/small_policy.onnx",
+          "bytes": 876814,
+          "sha256": "ecadcd5fd3166f9fbc8e6586f0fa695cc4314cd933b756c89ba70a1df53d0634"
+        }
+      },
+      {
+        "directory": "/home/aril/rai-training/ys-walk-stability-pilot-20261127/iteration_1000",
+        "summary.json": {
+          "supplied": {
+            "passed": 3,
+            "trials": 3,
+            "minimum_survival_seconds": 17.000000000001457,
+            "mean_survival_seconds": 17.000000000001457,
+            "mean_linear_velocity_rmse": 0.08012553621839462,
+            "max_tilt_degrees": 5.152144477612836
+          },
+          "candidate": {
+            "passed": 0,
+            "trials": 3,
+            "minimum_survival_seconds": 10.748000000000259,
+            "mean_survival_seconds": 10.78400000000027,
+            "mean_linear_velocity_rmse": 0.33954096624945507,
+            "max_tilt_degrees": 84.35871034647177
+          }
+        },
+        "extended/summary.json": {
+          "supplied": {
+            "passed": 1,
+            "trials": 1,
+            "minimum_survival_seconds": 64.00000000003224,
+            "mean_survival_seconds": 64.00000000003224,
+            "mean_linear_velocity_rmse": 0.09039243146630282,
+            "max_tilt_degrees": 5.423797087589011
+          },
+          "candidate": {
+            "passed": 0,
+            "trials": 1,
+            "minimum_survival_seconds": 9.713999999999913,
+            "mean_survival_seconds": 9.713999999999913,
+            "mean_linear_velocity_rmse": 0.2978234157271847,
+            "max_tilt_degrees": 54.83124380788988
+          }
+        },
+        "checkpoint.pt": {
+          "path": "/home/aril/rai-training/ys-walk-stability-pilot-20261127/iteration_1000/checkpoint.pt",
+          "bytes": 5913717,
+          "sha256": "2c28d6c07dff4cb79536a12d948ac37a1a2e29a719d30b80547f27fc264d7735"
+        },
+        "small_policy.onnx": {
+          "path": "/home/aril/rai-training/ys-walk-stability-pilot-20261127/iteration_1000/small_policy.onnx",
+          "bytes": 876814,
+          "sha256": "959e7b45d0cb6fcb8c8b2632c13d124249278896c4bc4953b15230380038ccec"
+        }
+      }
+    ],
+    "done.json": {
+      "iterations": 1000,
+      "milestones": [
+        250,
+        500,
+        750,
+        1000
+      ],
+      "wall_seconds": 1829.1769840719644,
+      "working_policy_unchanged": true
+    },
+    "initialization.json": {
+      "actor_checkpoint": "/home/aril/rai-training/ys-walk-movement-pilot-20261127/iteration_1000/checkpoint.pt",
+      "sha256": "d9d33478e81bf78417720d22d379c706ee16d78a1d7ca51d131f4300053a2bdd",
+      "critic_and_optimizer": "fresh",
+      "curriculum_iteration": 0
+    }
+  }
+]

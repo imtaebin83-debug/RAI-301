@@ -1,0 +1,15 @@
+{
+  "samples": 100,
+  "max_abs_error": 2.384185791015625e-06,
+  "input": [
+    1,
+    98
+  ],
+  "output": [
+    1,
+    29
+  ],
+  "provider": [
+    "CPUExecutionProvider"
+  ]
+}

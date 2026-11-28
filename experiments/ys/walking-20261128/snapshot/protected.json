@@ -1,0 +1,9 @@
+{
+  "/home/aril/rai-worktrees/ys-all-v2-20261127/src/ros2_bridge/tools/g1_walk_policy_29dof.py": "94336673bc1efaa45bffca900850c51035f82d7842dee0812b9fc1a1f8ebd6ee",
+  "/home/aril/rai-worktrees/ys-all-v2-20261127/src/custom/robot.yaml": "0f1f60d3dbc687f609a0b7a5c7b9e8c5772094b863712e55ae591e94c09e3ec1",
+  "/home/aril/rai-worktrees/ys-all-v2-20261127/src/environment/robots/control/g1/walking/g1_29dof_velocity.onnx": "2a66ca6336eadb3c0b34b557763f3e06d01ff8fcf6260dd4cedbd69d6093fc28",
+  "/home/aril/rai-worktrees/ys-all-v2-20261127/src/environment/robots/mujoco/g1/models/g1_dex_sensors_missions.xml": "83fcfbf957517223423f740b9d559368d923d1e836f58858977cecded5fce086",
+  "/home/aril/rai-training/ys-walk-stability-pilot-20261127/iteration_0750/checkpoint.pt": "761626c9bb8949115ba7952488c1602654e8a025704d8acaa7314a24f3bd9e43",
+  "/home/aril/rai-training/ys-walk-directions-pilot-20261127/iteration_1000/checkpoint.pt": "0d3ecd8b951627bdf01a502010dd1be0657852925adc097c0e2c9fb0a52b6c6d",
+  "/home/aril/rai-training/ys-walk-restarts-refine-20261128/iteration_0500/checkpoint.pt": "b0631ddf19903bd1e2ba3ec8f639e00da1ed35704053383a9db55db52c35ecfa"
+}

@@ -1,0 +1,15 @@
+{
+  "active_observations_compared": 137,
+  "max_abs_error": 1.7881393432617188e-07,
+  "tested": [
+    "98-input order",
+    "quaternion gravity",
+    "joint offsets",
+    "previous action",
+    "command slew/reversal",
+    "stop and restart",
+    "phase wrap and suppression",
+    "29-output scale and actuator mapping",
+    "idempotent phase read"
+  ]
+}

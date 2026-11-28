@@ -1,0 +1,8 @@
+{
+  "pid": 590889,
+  "maximum_iterations": 500,
+  "maximum_seconds": 3600,
+  "detached": true,
+  "overnight_started": false,
+  "smoke_short_trials_passed": 3
+}

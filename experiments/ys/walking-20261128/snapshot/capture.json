@@ -1,0 +1,12 @@
+{
+  "captured_utc": "2026-11-28T06:58:08.670811+00:00",
+  "remote_experiment": "/home/aril/rai-training/ys-walk-progress-pilot-20261128",
+  "gpu": "utilization.gpu [%], memory.used [MiB], temperature.gpu\n100 %, 199 MiB, 46",
+  "latest_log_tail": [
+    "ROLLOUT {'policy': 'candidate', 'start_yaw': 0.0, 'linear_velocity_rmse': 0.23926991012637844, 'yaw_velocity_rmse': 0.2944470939980828, 'max_tilt_degrees': 38.579559484262255, 'max_joint_limit_excess_rad': 0.06630743228563846, 'noslip_iterations': 4, 'sha256': '47537bed90dd51b8f40c9f176f1a174677026a79a47de8885fdab4427852c9cc', 'loader_accepted': True, 'finite': True, 'minimum_root_height': 0.44678730208529954, 'simulated_seconds': 9.589999999999872, 'wall_seconds': 1.1468892230186611, 'failure': {'reason': 'fell_below_0.45m', 'time': 9.589999999999872, 'command': (-0.25, 0, 0)}}",
+    "DONE {\"supplied\": {\"passed\": 1, \"trials\": 1, \"minimum_survival_seconds\": 64.00000000003224, \"mean_survival_seconds\": 64.00000000003224, \"mean_linear_velocity_rmse\": 0.09039243146630282, \"max_tilt_degrees\": 5.423797087589011}, \"candidate\": {\"passed\": 0, \"trials\": 1, \"minimum_survival_seconds\": 9.589999999999872, \"mean_survival_seconds\": 9.589999999999872, \"mean_linear_velocity_rmse\": 0.23926991012637844, \"max_tilt_degrees\": 38.579559484262255}}",
+    "PILOT_MILESTONE {\"completed_iterations\": 500, \"seconds_including_evaluations\": 1157.1528860740364, \"checkpoint\": \"/home/aril/rai-training/ys-walk-progress-pilot-20261128/iteration_0500\", \"export\": {\"samples\": 100, \"max_abs_error\": 2.86102294921875e-06, \"input\": [1, 98], \"output\": [1, 29], \"provider\": [\"CPUExecutionProvider\"]}, \"evaluations\": {\"supplied\": {\"passed\": 3, \"trials\": 3, \"minimum_survival_seconds\": 17.000000000001457, \"mean_survival_seconds\": 17.000000000001457, \"mean_linear_velocity_rmse\": 0.08012553621839462, \"max_tilt_degrees\": 5.152144477612836}, \"candidate\": {\"passed\": 3, \"trials\": 3, \"minimum_survival_seconds\": 17.000000000001457, \"mean_survival_seconds\": 17.000000000001457, \"mean_linear_velocity_rmse\": 0.059812997302123756, \"max_tilt_degrees\": 6.985767386045455}}}"
+  ],
+  "protected_hashes_verified": 7,
+  "models_location": "OMEN only; see checkpoint inventory"
+}

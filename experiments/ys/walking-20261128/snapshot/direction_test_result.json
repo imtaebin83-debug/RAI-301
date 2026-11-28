@@ -1,0 +1,21 @@
+{
+  "sampling": {
+    "0": {
+      "forward": 0.39864999055862427,
+      "backward": 0.29635000228881836,
+      "lateral": 0.25540000200271606
+    },
+    "1": {
+      "forward": 0.40149998664855957,
+      "backward": 0.29945001006126404,
+      "lateral": 0.2496500015258789
+    },
+    "2": {
+      "forward": 0.3982999920845032,
+      "backward": 0.2987000048160553,
+      "lateral": 0.2537499964237213
+    }
+  },
+  "stage_gates": true,
+  "stationary_wrongway_rejected": true
+}

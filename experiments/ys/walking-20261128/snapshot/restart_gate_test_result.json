@@ -1,0 +1,6 @@
+{
+  "both_bursts_required": true,
+  "wrongway_second_burst_rejected": true,
+  "heading_and_stop_drift_checked": true,
+  "three_orientations_required": true
+}

@@ -1,0 +1,18 @@
+{
+  "supplied": {
+    "passed": 1,
+    "trials": 1,
+    "minimum_survival_seconds": 64.00000000003224,
+    "mean_survival_seconds": 64.00000000003224,
+    "mean_linear_velocity_rmse": 0.09039243146630282,
+    "max_tilt_degrees": 5.423797087589011
+  },
+  "candidate": {
+    "passed": 0,
+    "trials": 1,
+    "minimum_survival_seconds": 9.665999999999897,
+    "mean_survival_seconds": 9.665999999999897,
+    "mean_linear_velocity_rmse": 0.25585465828245163,
+    "max_tilt_degrees": 42.05640082132601
+  }
+}

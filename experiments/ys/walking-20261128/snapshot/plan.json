@@ -1,0 +1,24 @@
+{
+  "seed_checkpoint": "/home/aril/rai-training/ys-walk-restarts-refine-20261128/iteration_0500/checkpoint.pt",
+  "additional_iterations": 500,
+  "learning_rate": 5e-06,
+  "changes": [
+    "Normalized commanded-speed error penalty, weight -0.8",
+    "Smooth heading cost 2*(1-cos(error)) continues increasing beyond 57 degrees",
+    "Within lateral commands, two-thirds right and one-third left"
+  ],
+  "checks": [
+    100,
+    250,
+    500
+  ],
+  "extended_checks": [
+    250,
+    500
+  ],
+  "maximum_wall_seconds": 3600,
+  "stop_on_two_consecutive_mixed_walking_regressions": true,
+  "working_policy_unchanged": true,
+  "overnight_started": false,
+  "smoke_regression": "2.5e-5/64-env smoke failed mixed sequence; reduce to 5e-6 and test full 512-env setup"
+}

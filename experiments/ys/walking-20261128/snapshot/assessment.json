@@ -1,0 +1,161 @@
+{
+  "ready_for_overnight_training": false,
+  "overnight_started": false,
+  "scope": "Evidence for longer learning; does not authorize policy deployment",
+  "interpretation": "Requires commanded movement and repeatable short/long official-physics tests at two later checkpoints",
+  "criteria": {
+    "minimum_forward_displacement_m": 0.5,
+    "minimum_forward_requested_distance_ratio": 0.5,
+    "maximum_linear_velocity_rmse": 0.18,
+    "maximum_tilt_degrees": 30,
+    "short_trials_without_fall": 3,
+    "extended_trials_without_fall": 1
+  },
+  "checkpoints": [
+    {
+      "iteration": 100,
+      "short_summary": {
+        "supplied": {
+          "passed": 3,
+          "trials": 3,
+          "minimum_survival_seconds": 17.000000000001457,
+          "mean_survival_seconds": 17.000000000001457,
+          "mean_linear_velocity_rmse": 0.08012553621839462,
+          "max_tilt_degrees": 5.152144477612836
+        },
+        "candidate": {
+          "passed": 3,
+          "trials": 3,
+          "minimum_survival_seconds": 17.000000000001457,
+          "mean_survival_seconds": 17.000000000001457,
+          "mean_linear_velocity_rmse": 0.06328823408518634,
+          "max_tilt_degrees": 9.066941168968134
+        }
+      },
+      "extended_summary": null,
+      "forward_displacement_m": [
+        0.9658933926774445,
+        0.9658934680761178,
+        0.9658934073169385
+      ],
+      "forward_requested_distance_ratio": [
+        0.7884844021857379,
+        0.7884844637356753,
+        0.7884844141363453
+      ],
+      "useful_commanded_motion": true,
+      "short_gate": true,
+      "extended_gate": false,
+      "direction_gate": false,
+      "all_motion_gates": false
+    },
+    {
+      "iteration": 250,
+      "short_summary": {
+        "supplied": {
+          "passed": 3,
+          "trials": 3,
+          "minimum_survival_seconds": 17.000000000001457,
+          "mean_survival_seconds": 17.000000000001457,
+          "mean_linear_velocity_rmse": 0.08012553621839462,
+          "max_tilt_degrees": 5.152144477612836
+        },
+        "candidate": {
+          "passed": 3,
+          "trials": 3,
+          "minimum_survival_seconds": 17.000000000001457,
+          "mean_survival_seconds": 17.000000000001457,
+          "mean_linear_velocity_rmse": 0.0649178468668292,
+          "max_tilt_degrees": 5.263255502144216
+        }
+      },
+      "extended_summary": {
+        "supplied": {
+          "passed": 1,
+          "trials": 1,
+          "minimum_survival_seconds": 64.00000000003224,
+          "mean_survival_seconds": 64.00000000003224,
+          "mean_linear_velocity_rmse": 0.09039243146630282,
+          "max_tilt_degrees": 5.423797087589011
+        },
+        "candidate": {
+          "passed": 0,
+          "trials": 1,
+          "minimum_survival_seconds": 9.665999999999897,
+          "mean_survival_seconds": 9.665999999999897,
+          "mean_linear_velocity_rmse": 0.25585465828245163,
+          "max_tilt_degrees": 42.05640082132601
+        }
+      },
+      "forward_displacement_m": [
+        0.9701946959714822,
+        0.9701961521240072,
+        0.9701935086966883
+      ],
+      "forward_requested_distance_ratio": [
+        0.7919956701808711,
+        0.7919968588768099,
+        0.7919947009769577
+      ],
+      "useful_commanded_motion": true,
+      "short_gate": true,
+      "extended_gate": false,
+      "direction_gate": false,
+      "all_motion_gates": false
+    },
+    {
+      "iteration": 500,
+      "short_summary": {
+        "supplied": {
+          "passed": 3,
+          "trials": 3,
+          "minimum_survival_seconds": 17.000000000001457,
+          "mean_survival_seconds": 17.000000000001457,
+          "mean_linear_velocity_rmse": 0.08012553621839462,
+          "max_tilt_degrees": 5.152144477612836
+        },
+        "candidate": {
+          "passed": 3,
+          "trials": 3,
+          "minimum_survival_seconds": 17.000000000001457,
+          "mean_survival_seconds": 17.000000000001457,
+          "mean_linear_velocity_rmse": 0.059812997302123756,
+          "max_tilt_degrees": 6.985767386045455
+        }
+      },
+      "extended_summary": {
+        "supplied": {
+          "passed": 1,
+          "trials": 1,
+          "minimum_survival_seconds": 64.00000000003224,
+          "mean_survival_seconds": 64.00000000003224,
+          "mean_linear_velocity_rmse": 0.09039243146630282,
+          "max_tilt_degrees": 5.423797087589011
+        },
+        "candidate": {
+          "passed": 0,
+          "trials": 1,
+          "minimum_survival_seconds": 9.589999999999872,
+          "mean_survival_seconds": 9.589999999999872,
+          "mean_linear_velocity_rmse": 0.23926991012637844,
+          "max_tilt_degrees": 38.579559484262255
+        }
+      },
+      "forward_displacement_m": [
+        1.0276228123798032,
+        1.0276223452463,
+        1.0276154864292364
+      ],
+      "forward_requested_distance_ratio": [
+        0.838875765208076,
+        0.838875383874604,
+        0.8388697848402663
+      ],
+      "useful_commanded_motion": true,
+      "short_gate": true,
+      "extended_gate": false,
+      "direction_gate": false,
+      "all_motion_gates": false
+    }
+  ]
+}

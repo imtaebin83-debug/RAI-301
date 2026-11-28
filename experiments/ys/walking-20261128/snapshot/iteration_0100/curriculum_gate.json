@@ -1,0 +1,166 @@
+{
+  "before": 0,
+  "after": 0,
+  "forward_passed": false,
+  "broad_passed": true,
+  "details": [
+    {
+      "forward_m": 0.9658933926774445,
+      "lateral_drift_m": -0.2726755340104816,
+      "pass": false
+    },
+    {
+      "forward_m": 0.9658934680761178,
+      "lateral_drift_m": -0.2726755905159557,
+      "pass": false
+    },
+    {
+      "forward_m": 0.9658934073169385,
+      "lateral_drift_m": -0.27267637397352784,
+      "pass": false
+    }
+  ],
+  "skills": {
+    "backward": {
+      "pass": false,
+      "metrics": [
+        {
+          "start_yaw": -0.2,
+          "burst_distances_m": [
+            0.11995448490298335,
+            0.44794871838253986
+          ],
+          "burst_perpendicular_drift_m": [
+            0.011727891243216779,
+            0.03978313450146061
+          ],
+          "max_heading_error_rad": 0.37172656718212516,
+          "max_stop_drift_m": 0.0064338950336569395,
+          "pass": false
+        },
+        {
+          "start_yaw": 0.0,
+          "burst_distances_m": [
+            0.1199544871743985,
+            0.4479569406922206
+          ],
+          "burst_perpendicular_drift_m": [
+            0.011727892464636014,
+            0.0397934775055635
+          ],
+          "max_heading_error_rad": 0.3717284698989377,
+          "max_stop_drift_m": 0.006430760394656449,
+          "pass": false
+        },
+        {
+          "start_yaw": 0.2,
+          "burst_distances_m": [
+            0.11995449751656628,
+            0.4496114301400201
+          ],
+          "burst_perpendicular_drift_m": [
+            0.011727877218399994,
+            0.05190156618599691
+          ],
+          "max_heading_error_rad": 0.3700222751352649,
+          "max_stop_drift_m": 0.0030526783304692696,
+          "pass": false
+        }
+      ]
+    },
+    "left": {
+      "pass": false,
+      "metrics": [
+        {
+          "start_yaw": -0.2,
+          "burst_distances_m": [
+            0.25190690476925176,
+            0.1679913665141761
+          ],
+          "burst_perpendicular_drift_m": [
+            0.030420661198122857,
+            0.0002477978626618041
+          ],
+          "max_heading_error_rad": 0.41107230295637526,
+          "max_stop_drift_m": 0.004173339550385365,
+          "pass": false
+        },
+        {
+          "start_yaw": 0.0,
+          "burst_distances_m": [
+            0.251906910851444,
+            0.16799214534847273
+          ],
+          "burst_perpendicular_drift_m": [
+            0.030420651029116286,
+            0.00024766103675588624
+          ],
+          "max_heading_error_rad": 0.41107140751744403,
+          "max_stop_drift_m": 0.004173340015488437,
+          "pass": false
+        },
+        {
+          "start_yaw": 0.2,
+          "burst_distances_m": [
+            0.25190661747923665,
+            0.16799366431444476
+          ],
+          "burst_perpendicular_drift_m": [
+            0.03042058917656739,
+            0.00024746957970307737
+          ],
+          "max_heading_error_rad": 0.4110696587923943,
+          "max_stop_drift_m": 0.004173339342129538,
+          "pass": false
+        }
+      ]
+    },
+    "right": {
+      "pass": false,
+      "metrics": [
+        {
+          "start_yaw": -0.2,
+          "burst_distances_m": [
+            0.25636546439490054,
+            -0.30673695727668
+          ],
+          "burst_perpendicular_drift_m": [
+            0.04299367564764463,
+            0.35666180223755745
+          ],
+          "max_heading_error_rad": 1.1269945677498872,
+          "max_stop_drift_m": 0.014445513263520006,
+          "pass": false
+        },
+        {
+          "start_yaw": 0.0,
+          "burst_distances_m": [
+            0.25636546265043414,
+            -0.28768402989581077
+          ],
+          "burst_perpendicular_drift_m": [
+            0.04299368852773355,
+            0.3175310866930552
+          ],
+          "max_heading_error_rad": 1.210098823605521,
+          "max_stop_drift_m": 0.0144455072313944,
+          "pass": false
+        },
+        {
+          "start_yaw": 0.2,
+          "burst_distances_m": [
+            0.2563650781085507,
+            -0.24085315743193866
+          ],
+          "burst_perpendicular_drift_m": [
+            0.04299384316714364,
+            0.3074478226867173
+          ],
+          "max_heading_error_rad": 1.2812771813533774,
+          "max_stop_drift_m": 0.014445484254155498,
+          "pass": false
+        }
+      ]
+    }
+  }
+}

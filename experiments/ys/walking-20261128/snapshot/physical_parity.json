@@ -1,0 +1,12 @@
+{
+  "body_mass": 31,
+  "body_inertia": 31,
+  "body_ipos": 31,
+  "body_iquat": 31,
+  "jnt_range": 30,
+  "jnt_axis": 30,
+  "jnt_pos": 30,
+  "actuator_gainprm": 29,
+  "actuator_biasprm": 29,
+  "actuator_forcerange": 29
+}

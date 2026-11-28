@@ -1,0 +1,38 @@
+{
+  "completed_iterations": 500,
+  "seconds_including_evaluations": 1157.1528860740364,
+  "checkpoint": "/home/aril/rai-training/ys-walk-progress-pilot-20261128/iteration_0500",
+  "export": {
+    "samples": 100,
+    "max_abs_error": 2.86102294921875e-06,
+    "input": [
+      1,
+      98
+    ],
+    "output": [
+      1,
+      29
+    ],
+    "provider": [
+      "CPUExecutionProvider"
+    ]
+  },
+  "evaluations": {
+    "supplied": {
+      "passed": 3,
+      "trials": 3,
+      "minimum_survival_seconds": 17.000000000001457,
+      "mean_survival_seconds": 17.000000000001457,
+      "mean_linear_velocity_rmse": 0.08012553621839462,
+      "max_tilt_degrees": 5.152144477612836
+    },
+    "candidate": {
+      "passed": 3,
+      "trials": 3,
+      "minimum_survival_seconds": 17.000000000001457,
+      "mean_survival_seconds": 17.000000000001457,
+      "mean_linear_velocity_rmse": 0.059812997302123756,
+      "max_tilt_degrees": 6.985767386045455
+    }
+  }
+}

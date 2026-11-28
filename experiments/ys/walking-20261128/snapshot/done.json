@@ -1,0 +1,10 @@
+{
+  "iterations": 500,
+  "milestones": [
+    100,
+    250,
+    500
+  ],
+  "wall_seconds": 1159.4796781929908,
+  "working_policy_unchanged": true
+}

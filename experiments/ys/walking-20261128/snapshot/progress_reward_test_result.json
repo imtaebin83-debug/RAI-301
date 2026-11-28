@@ -1,0 +1,8 @@
+{
+  "correct_speed_has_zero_cost": true,
+  "stationary_wrongway_overspeed_penalized": true,
+  "idle_and_turn_excluded": true,
+  "heading_penalty_increases_beyond_57_degrees": true,
+  "left_samples": 1738,
+  "right_samples": 3370
+}

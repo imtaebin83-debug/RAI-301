@@ -1,0 +1,8 @@
+{
+  "official_idle_wrench_parity_samples": 200,
+  "maximum_abs_error": 7.958078640513122e-13,
+  "active_force_clear_pass": true,
+  "heading_reward_pass": true,
+  "repeated_restart_schedule_pass": true,
+  "heading_reference_survives_pause_and_restart": true
+}
